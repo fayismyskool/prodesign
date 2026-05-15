@@ -30,5 +30,5 @@
     "SocialLink": true,
     "ContactSetting": false,
     "Menubuilder": true,
-    "Installer": true
+    "Installer": false
 }
