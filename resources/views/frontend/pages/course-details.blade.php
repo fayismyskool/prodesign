@@ -61,12 +61,12 @@
                                     data-bs-target="#overview-tab-pane" type="button" role="tab"
                                     aria-controls="overview-tab-pane" aria-selected="true">{{ __('Overview') }}</button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <!-- <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab"
                                     data-bs-target="#curriculum-tab-pane" type="button" role="tab"
                                     aria-controls="curriculum-tab-pane"
                                     aria-selected="false">{{ __('Curriculum') }}</button>
-                            </li>
+                            </li> -->
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="instructors-tab" data-bs-toggle="tab"
                                     data-bs-target="#instructors-tab-pane" type="button" role="tab"
@@ -203,8 +203,8 @@
                                                                             <span
                                                                                 class="item-name">{{ $chapterItem->quiz?->title }}</span>
                                                                             <div class="course-item-meta">
-                                                                                <!-- <span
-                                                                                class="item-meta duration">{{ minutesToHours($chapterItem->lesson?->duration) }}</span> -->
+                                                                                <span
+<!--                                                                                class="item-meta duration">{{ minutesToHours($chapterItem->lesson?->duration) }}</span>-->
                                                                                     class="item-meta duration">{{ ($chapterItem->lesson?->duration) }}</span>
                                                                                 <span class="item-meta course-item-status">
                                                                                     <img src="{{ asset('frontend/img/icons/lock.svg') }}"
