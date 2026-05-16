@@ -203,8 +203,8 @@
                                                                             <span
                                                                                 class="item-name">{{ $chapterItem->quiz?->title }}</span>
                                                                             <div class="course-item-meta">
-                                                                                <span
-<!--                                                                                class="item-meta duration">{{ minutesToHours($chapterItem->lesson?->duration) }}</span>-->
+                                                                                <!-- <span
+                                                                                class="item-meta duration">{{ minutesToHours($chapterItem->lesson?->duration) }}</span> -->
                                                                                     class="item-meta duration">{{ ($chapterItem->lesson?->duration) }}</span>
                                                                                 <span class="item-meta course-item-status">
                                                                                     <img src="{{ asset('frontend/img/icons/lock.svg') }}"
