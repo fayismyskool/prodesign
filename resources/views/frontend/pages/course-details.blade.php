@@ -201,7 +201,7 @@
                                                                     <li class="course-item">
                                                                         <a href="javascript:;" class="course-item-link">
                                                                             <span
-                                                                                class="item-name">{{ $chapterItem->quiz->title }}</span>
+                                                                                class="item-name">{{ $chapterItem->quiz?->title }}</span>
                                                                             <div class="course-item-meta">
                                                                                 <span
 <!--                                                                                class="item-meta duration">{{ minutesToHours($chapterItem->lesson?->duration) }}</span>-->
