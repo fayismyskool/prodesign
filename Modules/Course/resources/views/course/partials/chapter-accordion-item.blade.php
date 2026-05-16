@@ -9,6 +9,7 @@
                 <div class="icon_area d-flex flex-wrap justify-content-between align-items-center w-100">
                     <div class="d-flex flex-wrap align-items-center">
                         <span class="icon-container"><i class="far fa-folder"></i></span>
+                        <small class="mb-0 ms-2 bold-text">{{ $chapter->grade->title }} :&nbsp; </small>
                         <p class="mb-0 ms-2 bold-text">{{ $chapter->title }}</p>
                     </div>
                 </div>
@@ -52,7 +53,7 @@
     </h2>
 
     <div id="panelsStayOpen-collapse{{ $chapter->id }}"
-        class="accordion-collapse collapse {{ isset($loop) && $loop->first ? 'show' : '' }}"
+        class="accordion-collapse collapse"
         aria-labelledby="panelsStayOpen-heading{{ $chapter->id }}">
         <div class="accordion-body">
             @forelse ($chapter->chapterItems as $chapterItem)
@@ -64,6 +65,7 @@
                             <div class="edit_course_icons d-flex flex-wrap align-items-center">
                                 <span class="icon-container"><i class="fas fa-video"></i></span>
                                 <p class="mb-0 ms-2 bold-text">{{ truncate($chapterItem->lesson->title) }}</p>
+                                
                             </div>
                             <div class="item-action">
                                 <a href="javascript:;" class="ms-2 text-dark edit-lesson-btn"
