@@ -39,7 +39,11 @@ Route::group(['middleware' => 'maintenance.mode'], function () {
     Route::get('set-language', [DashboardController::class, 'setLanguage'])->name('set-language');
     Route::get('set-currency', [HomePageController::class, 'setCurrency'])->name('set-currency');
 
-    Route::get('/', [HomePageController::class, 'index'])->name('home');
+    Route::get('/', function () {
+        return redirect('/designs/index.html');
+    })->name('home');
+
+    Route::get('/app', [HomePageController::class, 'index'])->name('home.app');
 
     Route::get('countries', [HomePageController::class, 'countries'])->name('countries');
     Route::get('states/{country_id}', [HomePageController::class, 'states'])->name('states');
