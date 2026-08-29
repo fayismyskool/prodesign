@@ -1,0 +1,11 @@
+{
+    "name": "CourseApi",
+    "alias": "Courseapi",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CourseApi\\app\\Providers\\CourseServiceProvider"
+    ],
+    "files": []
+}

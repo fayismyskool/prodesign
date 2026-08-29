@@ -664,6 +664,7 @@ if (!function_exists('routeList')) {
     function routeList(): object {
         $route_list = [
             (object) ['name' => __('Dashboard'), 'route' => route('admin.dashboard'), 'permission' => 'dashboard.view'],
+            (object) ['name' => __('CoursesApi'), 'route' => route('admin.courses.index'), 'permission' => 'course-api.management'],
             (object) ['name' => __('Courses'), 'route' => route('admin.courses.index'), 'permission' => 'course.management'],
             (object) ['name' => __('Course Categories'), 'route' => route('admin.course-category.index'), 'permission' => 'course.management'],
             (object) ['name' => __('Course languages'), 'route' => route('admin.course-language.index'), 'permission' => 'course.management'],

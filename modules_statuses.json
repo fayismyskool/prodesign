@@ -21,6 +21,7 @@
     "Location": true,
     "InstructorRequest": true,
     "Course": true,
+    "CourseApi": true,
     "CertificateBuilder": true,
     "Badges": true,
     "Frontend": true,

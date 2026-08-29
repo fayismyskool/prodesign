@@ -566,13 +566,13 @@ class PaymentController extends Controller
 
         // send mail
 
-        $this->handleMailSending([
-            'email' => $user->email,
-            'name' => $user->name,
-            'order_id' => $order->invoice_id,
-            'paid_amount' => $order->paid_amount. ' '.$order->payable_currency,
-            'payment_method' => $order->payment_method
-        ]);
+        // $this->handleMailSending([
+        //     'email' => $user->email,
+        //     'name' => $user->name,
+        //     'order_id' => $order->invoice_id,
+        //     'paid_amount' => $order->paid_amount. ' '.$order->payable_currency,
+        //     'payment_method' => $order->payment_method
+        // ]);
 
         Session::forget([
             'after_success_url',

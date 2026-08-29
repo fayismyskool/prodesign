@@ -19,11 +19,14 @@
                 </li>
             @endadminCan
 
-            @if(checkAdminHasPermission('course.management') || checkAdminHasPermission('course.certificate.management') || checkAdminHasPermission('badge.management') || checkAdminHasPermission('blog.view'))
+            @if(checkAdminHasPermission('course.management') || checkAdminHasPermission('course-api.management') || checkAdminHasPermission('course.certificate.management') || checkAdminHasPermission('badge.management') || checkAdminHasPermission('blog.view'))
                 <li class="menu-header">{{ __('Manage Contents') }}</li>
 
                 @if (Module::isEnabled('Course') && checkAdminHasPermission('course.management'))
                     @include('course::sidebar')
+                @endif
+                @if (Module::isEnabled('CourseApi') && checkAdminHasPermission('course-api.management'))
+                    @include('courseapi::sidebar')
                 @endif
 
                 @if (Module::isEnabled('CertificateBuilder') && checkAdminHasPermission('course.certificate.management'))

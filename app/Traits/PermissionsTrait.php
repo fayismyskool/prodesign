@@ -232,6 +232,13 @@ trait PermissionsTrait
         ],
     ];
 
+    public static array $courseapiPermissions = [
+        'group_name' => 'courses-api',
+        'permissions' => [
+            'course-api.management',
+        ],
+    ];
+
     public static array $CertificatePermission = [
         'group_name' => 'course certificate management',
         'permissions' => [
