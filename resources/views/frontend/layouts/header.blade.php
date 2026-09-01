@@ -192,14 +192,20 @@
                                                                 href="{{ route('instructor.dashboard') }}">{{ __('Instructor Dashboard') }}</a>
                                                         </li>
                                                     @endif
+                                                    @if (userAuth()->role == 'school')
+                                                        <li><a
+                                                                href="{{ route('school.dashboard') }}">{{ __('School Dashboard') }}</a>
+                                                        </li>
+                                                    @else
+                                                        <li><a
+                                                                href="{{ route('student.dashboard') }}">{{ __('Student Dashboard') }}</a>
+                                                        </li>
+                                                    @endif
                                                     <li><a
-                                                            href="{{ route('student.dashboard') }}">{{ __('Student Dashboard') }}</a>
+                                                            href="{{ userAuth()->role == 'instructor' ? route('instructor.setting.index') : (userAuth()->role == 'school' ? route('school.profile.index') : route('student.setting.index')) }}">{{ __('Profile') }}</a>
                                                     </li>
                                                     <li><a
-                                                            href="{{ userAuth()->role == 'instructor' ? route('instructor.setting.index') : route('student.setting.index') }}">{{ __('Profile') }}</a>
-                                                    </li>
-                                                    <li><a
-                                                            href="{{ userAuth()->role == 'instructor' ? route('instructor.courses.index') : route('student.enrolled-courses') }}">{{ __('Courses') }}</a>
+                                                            href="{{ userAuth()->role == 'instructor' ? route('instructor.courses.index') : (userAuth()->role == 'school' ? route('school.courses.index') : route('student.enrolled-courses')) }}">{{ __('Courses') }}</a>
                                                     </li>
                                                     <li><a href=""
                                                             class="text-danger logout-btn">{{ __('Logout') }}</a>
@@ -275,6 +281,12 @@
                                     <ul class="mobile_menu_login d-flex flex-wrap">
                                         <li><a href="{{ route('instructor.dashboard') }}">{{ __('Dashboard') }}</a></li>
                                         <li><a href="{{ route('instructor.courses.index') }}">{{ __('Courses') }}</a>
+                                        </li>
+                                    </ul>
+                                @elseif (Auth::guard('web')->user()->role == 'school')
+                                    <ul class="mobile_menu_login d-flex flex-wrap">
+                                        <li><a href="{{ route('school.dashboard') }}">{{ __('Dashboard') }}</a></li>
+                                        <li><a href="{{ route('school.courses.index') }}">{{ __('Courses') }}</a>
                                         </li>
                                     </ul>
                                 @else

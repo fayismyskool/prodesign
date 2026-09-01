@@ -36,6 +36,9 @@ class User extends Authenticatable {
         'is_banned',
         'verification_token',
         'forget_password_token',
+        'school_name',
+        'registration_number',
+        'contact_person',
     ];
 
     /**
@@ -148,6 +151,57 @@ class User extends Authenticatable {
     }
     function jitsi_credential(): HasOne {
         return $this->hasOne(JitsiSetting::class, 'instructor_id', 'id');
+    }
+
+    // ── Role helpers ────────────────────────────────────────────
+
+    public function isSchool(): bool {
+        return $this->role === 'school';
+    }
+
+    public function isInstructor(): bool {
+        return $this->role === 'instructor';
+    }
+
+    public function isStudent(): bool {
+        return $this->role === 'student';
+    }
+
+    // ── School relationships ────────────────────────────────────
+
+    /**
+     * All roster members of this school.
+     */
+    public function schoolMembers(): HasMany {
+        return $this->hasMany(SchoolMember::class, 'school_id');
+    }
+
+    /**
+     * Teachers belonging to this school.
+     */
+    public function schoolTeachers(): HasMany {
+        return $this->hasMany(SchoolMember::class, 'school_id')->where('role_in_school', 'teacher');
+    }
+
+    /**
+     * Students belonging to this school.
+     */
+    public function schoolStudents(): HasMany {
+        return $this->hasMany(SchoolMember::class, 'school_id')->where('role_in_school', 'student');
+    }
+
+    /**
+     * Course assignments made by this school.
+     */
+    public function schoolCourseAssignments(): HasMany {
+        return $this->hasMany(SchoolCourseAssignment::class, 'school_id');
+    }
+
+    /**
+     * Courses assigned to this user by a school.
+     */
+    public function assignedCourses(): HasMany {
+        return $this->hasMany(SchoolCourseAssignment::class, 'user_id');
     }
 
     /**

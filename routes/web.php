@@ -26,6 +26,12 @@ use App\Http\Controllers\Frontend\StudentProfileSettingController;
 use App\Http\Controllers\Frontend\StudentReviewController;
 use App\Http\Controllers\Frontend\TinymceImageUploadController;
 use App\Http\Controllers\Global\CloudStorageController;
+use App\Http\Controllers\Frontend\SchoolCourseController;
+use App\Http\Controllers\Frontend\SchoolDashboardController;
+use App\Http\Controllers\Frontend\SchoolOrderController;
+use App\Http\Controllers\Frontend\SchoolProfileSettingController;
+use App\Http\Controllers\Frontend\SchoolStudentController;
+use App\Http\Controllers\Frontend\SchoolTeacherController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'maintenance.mode'], function () {
@@ -159,6 +165,53 @@ Route::group(['middleware' => 'maintenance.mode'], function () {
 
         /** download certificate route */
         Route::get('download-certificate/{id}', [StudentDashboardController::class, 'downloadCertificate'])->name('download-certificate');
+    });
+
+    /**
+     * ============================================================================
+     * School Dashboard Routes
+     * ============================================================================
+     */
+
+    Route::group(['middleware' => ['auth', 'verified', 'role:school'], 'prefix' => 'school', 'as' => 'school.'], function () {
+        Route::get('dashboard', [SchoolDashboardController::class, 'index'])->name('dashboard');
+
+        /** Teachers */
+        Route::get('teachers', [SchoolTeacherController::class, 'index'])->name('teachers.index');
+        Route::get('teachers/create', [SchoolTeacherController::class, 'create'])->name('teachers.create');
+        Route::get('teachers/download-template', [SchoolTeacherController::class, 'downloadTemplate'])->name('teachers.download-template');
+        Route::get('teachers/{member}', [SchoolTeacherController::class, 'show'])->name('teachers.show');
+        Route::post('teachers', [SchoolTeacherController::class, 'store'])->name('teachers.store');
+        Route::post('teachers/import', [SchoolTeacherController::class, 'import'])->name('teachers.import');
+        Route::patch('teachers/{member}/toggle-status', [SchoolTeacherController::class, 'toggleStatus'])->name('teachers.toggle-status');
+        Route::delete('teachers/{member}', [SchoolTeacherController::class, 'destroy'])->name('teachers.destroy');
+
+        /** Students */
+        Route::get('students', [SchoolStudentController::class, 'index'])->name('students.index');
+        Route::get('students/create', [SchoolStudentController::class, 'create'])->name('students.create');
+        Route::get('students/download-template', [SchoolStudentController::class, 'downloadTemplate'])->name('students.download-template');
+        Route::get('students/{member}', [SchoolStudentController::class, 'show'])->name('students.show');
+        Route::post('students', [SchoolStudentController::class, 'store'])->name('students.store');
+        Route::post('students/import', [SchoolStudentController::class, 'import'])->name('students.import');
+        Route::patch('students/{member}/toggle-status', [SchoolStudentController::class, 'toggleStatus'])->name('students.toggle-status');
+        Route::delete('students/{member}', [SchoolStudentController::class, 'destroy'])->name('students.destroy');
+
+        /** Courses & Assignments */
+        Route::get('courses', [SchoolCourseController::class, 'index'])->name('courses.index');
+        Route::get('courses/{courseId}/assign', [SchoolCourseController::class, 'assign'])->name('courses.assign');
+        Route::post('courses/{courseId}/assign', [SchoolCourseController::class, 'storeAssignment'])->name('courses.store-assignment');
+        Route::get('courses/{courseId}/assignments', [SchoolCourseController::class, 'assignments'])->name('courses.assignments');
+        Route::patch('courses/assignment/{assignmentId}/revoke', [SchoolCourseController::class, 'revokeAssignment'])->name('courses.revoke-assignment');
+
+        /** Order History */
+        Route::get('orders', [SchoolOrderController::class, 'index'])->name('orders.index');
+        Route::get('orders/{id}', [SchoolOrderController::class, 'show'])->name('orders.show');
+        Route::get('orders/invoice/{id}', [SchoolOrderController::class, 'printInvoice'])->name('orders.print-invoice');
+
+        /** Profile Settings */
+        Route::get('profile', [SchoolProfileSettingController::class, 'index'])->name('profile.index');
+        Route::put('profile', [SchoolProfileSettingController::class, 'updateProfile'])->name('profile.update');
+        Route::put('profile/password', [SchoolProfileSettingController::class, 'updatePassword'])->name('profile.update-password');
     });
 
     /**

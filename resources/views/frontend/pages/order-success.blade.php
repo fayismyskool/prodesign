@@ -17,7 +17,14 @@
                     <img src="{{ asset('uploads/website-images/success.png') }}" alt="">
                     <h6 class="mt-2">{{ __('Your order has been placed') }}</h6>
                     <p>{{ __('For check more details you can go to your dashboard') }}</p>
-                    <a href="{{ route('student.dashboard') }}" class="btn btn-primary">{{ __('Go to Dashboard') }}</a>
+                    @php
+                        $dashboardUrl = match(userAuth()?->role) {
+                            'school'     => route('school.dashboard'),
+                            'instructor' => route('instructor.dashboard'),
+                            default      => route('student.dashboard'),
+                        };
+                    @endphp
+                    <a href="{{ $dashboardUrl }}" class="btn btn-primary">{{ __('Go to Dashboard') }}</a>
                 </div>
             </div>
         </div>

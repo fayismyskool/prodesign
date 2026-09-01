@@ -31,6 +31,10 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', 'min:4', 'max:100'],
+            'account_type' => ['nullable', 'in:student,school'],
+            'school_name' => ['required_if:account_type,school', 'nullable', 'string', 'max:255'],
+            'registration_number' => ['nullable', 'string', 'max:100'],
+            'contact_person' => ['nullable', 'string', 'max:255'],
             'g-recaptcha-response' => $setting->recaptcha_status == 'active' ? ['required', new CustomRecaptcha()] : '',
         ], [
             'name.required' => __('Name is required'),
@@ -39,18 +43,30 @@ class RegisteredUserController extends Controller
             'password.required' => __('Password is required'),
             'password.confirmed' => __('Confirm password does not match'),
             'password.min' => __('You have to provide minimum 4 character password'),
+            'school_name.required_if' => __('School name is required for school accounts'),
             'g-recaptcha-response.required' => __('Please complete the recaptcha to submit the form'),
         ]);
 
-        $user = User::create([
-            'role' => 'student',
+        $role = $request->input('account_type', 'student');
+
+        $userData = [
+            'role' => $role,
             'name' => $request->name,
             'email' => $request->email,
             'status' => 'active',
             'is_banned' => 'no',
             'password' => Hash::make($request->password),
             'verification_token' => Str::random(100),
-        ]);
+        ];
+
+        // Add school-specific fields
+        if ($role === 'school') {
+            $userData['school_name'] = $request->school_name;
+            $userData['registration_number'] = $request->registration_number;
+            $userData['contact_person'] = $request->contact_person;
+        }
+
+        $user = User::create($userData);
 
         $settings = cache()->get('setting');
         $marketingSettings = cache()->get('marketing_setting');

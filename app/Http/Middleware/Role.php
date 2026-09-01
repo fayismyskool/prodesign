@@ -18,6 +18,8 @@ class Role
         if($request->user()->role !== $role) {
             if($request->user()->role === 'instructor'){
                 return redirect()->route('instructor.dashboard');
+            }elseif($request->user()->role === 'school'){
+                return redirect()->route('school.dashboard');
             }elseif($request->user()->role === 'student'){
                 return redirect()->route('student.dashboard');
             }

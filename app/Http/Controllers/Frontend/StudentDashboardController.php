@@ -19,7 +19,11 @@ use Modules\Order\app\Models\Enrollment;
 use Modules\Order\app\Models\Order;
 
 class StudentDashboardController extends Controller {
-    public function index(): View {
+    public function index() {
+        if (userAuth()->role === 'school') {
+            return redirect()->route('school.dashboard');
+        }
+
         $totalEnrolledCourses = Enrollment::where('user_id', userAuth()->id)->count();
         $totalQuizAttempts = QuizResult::where('user_id', userAuth()->id)->count();
         $totalReviews = CourseReview::where('user_id', userAuth()->id)->count();

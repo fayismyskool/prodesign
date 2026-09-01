@@ -28,7 +28,50 @@
                         @endif
                         <form method="POST" action="{{ route('register') }}" class="account__form">
                             @csrf
-                            
+
+                            {{-- Account Type Selector --}}
+                            <div class="form-grp">
+                                <label>{{ __('Account Type') }}</label>
+                                <div class="d-flex gap-3 mt-2">
+                                    <label class="d-flex align-items-center gap-2" style="cursor:pointer;">
+                                        <input type="radio" name="account_type" value="student" id="type-student" checked>
+                                        <span>{{ __('Student') }}</span>
+                                    </label>
+                                    <label class="d-flex align-items-center gap-2" style="cursor:pointer;">
+                                        <input type="radio" name="account_type" value="school" id="type-school"
+                                            {{ old('account_type') === 'school' ? 'checked' : '' }}>
+                                        <span>{{ __('School / Institution') }}</span>
+                                    </label>
+                                </div>
+                                <x-frontend.validation-error name="account_type" />
+                            </div>
+
+                            {{-- School-specific fields (hidden by default) --}}
+                            <div id="school-fields" style="display: {{ old('account_type') === 'school' ? 'block' : 'none' }};">
+                                <div class="form-grp">
+                                    <label for="school_name">{{ __('School / Institution Name') }} <span class="text-danger">*</span></label>
+                                    <input type="text" id="school_name" name="school_name" value="{{ old('school_name') }}"
+                                           placeholder="{{ __('e.g. Springfield Academy') }}">
+                                    <x-frontend.validation-error name="school_name" />
+                                </div>
+                                <div class="row gutter-20">
+                                    <div class="col-md-6">
+                                        <div class="form-grp">
+                                            <label for="registration_number">{{ __('Registration Number') }}</label>
+                                            <input type="text" id="registration_number" name="registration_number"
+                                                   value="{{ old('registration_number') }}" placeholder="{{ __('Optional') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-grp">
+                                            <label for="contact_person">{{ __('Contact Person') }}</label>
+                                            <input type="text" id="contact_person" name="contact_person"
+                                                   value="{{ old('contact_person') }}" placeholder="{{ __('Principal / Admin name') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row gutter-20">
                                 <div class="col-md-12">
                                     <div class="form-grp">
@@ -90,4 +133,18 @@
         </div>
     </section>
     <!-- singUp-area-end -->
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const schoolFields = document.getElementById('school-fields');
+        const radios = document.querySelectorAll('input[name="account_type"]');
+        radios.forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                schoolFields.style.display = this.value === 'school' ? 'block' : 'none';
+            });
+        });
+    });
+</script>
+@endpush
 @endsection
