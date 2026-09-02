@@ -46,7 +46,7 @@ Route::group(['middleware' => 'maintenance.mode'], function () {
     Route::get('set-currency', [HomePageController::class, 'setCurrency'])->name('set-currency');
 
     Route::get('/', function () {
-        return redirect('/designs/index.html');
+        return redirect('/designs/Skill2School.html');
     })->name('home');
 
     Route::get('/app', [HomePageController::class, 'index'])->name('home.app');
@@ -66,6 +66,7 @@ Route::group(['middleware' => 'maintenance.mode'], function () {
     /** cart routes */
     Route::get('cart', [CartController::class, 'index'])->name('cart');
     Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add-to-cart');
+    Route::post('add-to-cart-by-api-id/{api_course_id}', [CartController::class, 'addToCartByApiId'])->name('add-to-cart-by-api-id');
     Route::get('remove-cart-item/{rowId}', [CartController::class, 'removeCartItem'])->name('remove-cart-item');
     Route::post('apply-coupon', [CartController::class, 'applyCoupon'])->name('apply-coupon');
     Route::get('remove-coupon', [CartController::class, 'removeCoupon'])->name('remove-coupon');

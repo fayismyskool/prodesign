@@ -127,6 +127,49 @@ class CartController extends Controller {
         return Course::where('id', $id)->where('instructor_id', userAuth()?->id)->exists();
     }
 
+    function addToCartByApiId(Request $request, string $api_course_id) {
+        $course = Course::where('api_course_id', $api_course_id)
+            ->where('status', 'active')
+            ->first();
+
+        if (!$course) {
+            return response(['status' => 'error', 'message' => 'Course not found.']);
+        }
+
+        if ($this->checkItemExist($course->id)) {
+            return response(['status' => 'already', 'message' => 'Already in cart!', 'checkout_url' => route('checkout.index')]);
+        }
+
+        if ($this->checkIfOwnCourse($course->id)) {
+            return response(['status' => 'error', 'message' => 'You cannot purchase your own course.']);
+        }
+
+        $price = $course->discount > 0 ? $course->discount : $course->price;
+
+        Cart::add([
+            'id'      => $course->id,
+            'name'    => $course->title,
+            'qty'     => 1,
+            'price'   => $price,
+            'weight'  => 0,
+            'options' => [
+                'image'          => $course->thumbnail,
+                'slug'           => $course->slug,
+                'real_price'     => $course->price,
+                'discount_price' => $course->discount,
+            ],
+        ]);
+
+        $this->updateCouponDiscountAmount();
+
+        return response([
+            'status'       => 'success',
+            'message'      => 'Added to cart!',
+            'checkout_url' => route('checkout.index'),
+            'cart_count'   => Cart::content()->count(),
+        ]);
+    }
+
     function applyCoupon(Request $request) {
         $rules = [
             'coupon' => 'required',

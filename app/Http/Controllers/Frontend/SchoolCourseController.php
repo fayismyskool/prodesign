@@ -166,6 +166,9 @@ class SchoolCourseController extends Controller
                     [
                         'user_id'   => $member->user_id,
                         'course_id' => $courseId,
+                    ],
+                    [
+                        'has_access' => 1,
                     ]
                 );
             }

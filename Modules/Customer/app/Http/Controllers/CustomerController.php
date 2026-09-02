@@ -69,8 +69,56 @@ class CustomerController extends Controller
         ]);
     }
 
-    function allInstructors(Request $request)
+    function allSchools(Request $request)
     {
+        checkAdminHasPermissionAndThrowException('customer.view');
+
+        $query = User::query();
+
+        $query->when($request->filled('keyword'), function ($q) use ($request) {
+            $q->where('name', 'like', '%' . $request->keyword . '%')
+                ->orWhere('email', 'like', '%' . $request->keyword . '%')
+                ->orWhere('phone', 'like', '%' . $request->keyword . '%')
+                ->orWhere('school_name', 'like', '%' . $request->keyword . '%');
+        });
+
+        $query->when($request->filled('verified'), function ($q) use ($request) {
+            $q->where(function ($query) use ($request) {
+                if ($request->verified == 1) {
+                    $query->whereNotNull('email_verified_at');
+                } elseif ($request->verified == 0) {
+                    $query->whereNull('email_verified_at');
+                }
+            });
+        });
+
+        $query->when($request->filled('banned'), function ($q) use ($request) {
+            $q->where(function ($query) use ($request) {
+                if ($request->banned == 1) {
+                    $query->where('is_banned', 'yes');
+                } elseif ($request->banned == 0) {
+                    $query->where('is_banned', 'no');
+                }
+            });
+        });
+
+        $query->where('role', 'school');
+        $orderBy = $request->filled('order_by') && $request->order_by == 1 ? 'asc' : 'desc';
+
+        if ($request->filled('par-page')) {
+            $users = $request->get('par-page') == 'all'
+                ? $query->orderBy('id', $orderBy)->get()
+                : $query->orderBy('id', $orderBy)->paginate($request->get('par-page'))->withQueryString();
+        } else {
+            $users = $query->orderBy('id', $orderBy)->paginate()->withQueryString();
+        }
+
+        return view('customer::all_school')->with([
+            'users' => $users,
+        ]);
+    }
+
+    function allInstructors(Request $request)    {
         checkAdminHasPermissionAndThrowException('customer.view');
 
         $query = User::query();

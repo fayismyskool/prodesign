@@ -1,5 +1,5 @@
 <li
-    class="nav-item dropdown {{ isRoute(['admin.all-customers','admin.all-instructors', 'admin.active-customers', 'admin.non-verified-customers', 'admin.banned-customers', 'admin.customer-show', 'admin.send-bulk-mail'], 'active') }}">
+    class="nav-item dropdown {{ isRoute(['admin.all-customers','admin.all-instructors', 'admin.all-schools', 'admin.active-customers', 'admin.non-verified-customers', 'admin.banned-customers', 'admin.customer-show', 'admin.send-bulk-mail'], 'active') }}">
     <a href="javascript:void()" class="nav-link has-dropdown">
         <i class="fas fa-users"></i><span>{{ __('Manage Users') }}</span>
     </a>
@@ -14,6 +14,12 @@
         <li class="{{ isRoute('admin.all-instructors', 'active') }}">
             <a class="nav-link" href="{{ route('admin.all-instructors') }}">
                 {{ __('All Instructors') }}
+            </a>
+        </li>
+
+        <li class="{{ isRoute('admin.all-schools', 'active') }}">
+            <a class="nav-link" href="{{ route('admin.all-schools') }}">
+                {{ __('All Schools') }}
             </a>
         </li>
 

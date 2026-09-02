@@ -19,6 +19,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth:admi
 
         Route::get('all-customers', 'index')->name('all-customers');
         Route::get('all-instructors', 'allInstructors')->name('all-instructors');
+        Route::get('all-schools', 'allSchools')->name('all-schools');
         Route::get('active-customers', 'active_customer')->name('active-customers');
         Route::get('non-verified-customers', 'non_verified_customers')->name('non-verified-customers');
         Route::get('banned-customers', 'banned_customers')->name('banned-customers');
