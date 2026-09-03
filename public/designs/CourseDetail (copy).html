@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Course Details - Skillvation</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700;0..1&display=swap"
+        rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+
+            theme: {
+                extend: {
+
+                    fontFamily: {
+                        sans: ['"Hanken Grotesk"', 'sans-serif'],
+                    },
+
+                    colors: {
+                        primary: '#1976d2',
+                        'primary-light': '#4791db',
+                        'primary-dark': '#115293',
+
+                        surface: '#ffffff',
+                        'surface-container': '#f9fafb',
+
+                        'on-surface': '#1f2937',
+                        'on-surface-variant': '#4b5563',
+
+                        outline: '#e5e7eb',
+                    },
+
+                    borderRadius: {
+                        card: '0.5rem',
+                        image: '1rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background: #ffffff;
+            color: #1f2937;
+        }
+
+        .nav-link {
+            transition: color 0.2s ease-in-out;
+        }
+
+        .nav-link:hover {
+            color: #1976d2;
+        }
+
+        .btn-primary {
+            background-color: #1976d2;
+            color: #ffffff;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-content.expanded {
+            max-height: 500px;
+        }
+
+        .loading {
+            opacity: 0.6;
+        }
+    </style>
+
+</head>
+
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Shared Header -->
+    <div id="header-placeholder"></div>
+
+    <main class="flex-grow pt-28 pb-20">
+
+        <div class="max-w-[1200px] mx-auto px-4 lg:px-8 space-y-12">
+
+            <!-- ========================================= -->
+            <!-- HERO IMAGE GRID -->
+            <!-- ========================================= -->
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[400px]">
+
+                <!-- Main Image -->
+                <div
+                    class="md:col-span-8 h-[300px] md:h-full rounded-xl overflow-hidden relative border border-gray-200">
+
+                    <div id="course-main-image"
+                        class="bg-cover bg-center w-full h-full bg-gray-100">
+
+                        <div id="image-loading"
+                            class="w-full h-full flex items-center justify-center text-gray-400">
+                            Loading image...
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Side Images -->
+                <div class="md:col-span-4 flex flex-col gap-6 h-full">
+
+                    <div
+                        class="h-1/2 rounded-xl overflow-hidden relative border border-gray-200">
+
+                        <div id="course-side-image-1"
+                            class="bg-cover bg-center w-full h-full bg-gray-100">
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="h-1/2 rounded-xl overflow-hidden relative border border-gray-200">
+
+                        <div id="course-side-image-2"
+                            class="bg-cover bg-center w-full h-full bg-gray-100">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- COURSE CONTENT -->
+            <!-- ========================================= -->
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 pt-8">
+
+                <!-- ========================================= -->
+                <!-- LEFT COLUMN -->
+                <!-- ========================================= -->
+
+                <div class="md:col-span-8 space-y-10">
+
+                    <!-- COURSE TITLE -->
+                    <div>
+
+                        <h1 id="course-title"
+                            class="text-4xl font-bold text-gray-900 mb-8">
+                            Loading course...
+                        </h1>
+
+
+                        <!-- COURSE BASIC INFO -->
+
+                        <div class="flex flex-wrap gap-3 mb-8">
+
+                            <span id="course-location"
+                                class="inline-flex items-center gap-1 px-3 py-2 bg-gray-100 rounded-lg text-sm text-gray-600">
+
+                                <span class="material-symbols-outlined text-lg">
+                                    location_on
+                                </span>
+
+                                Loading...
+
+                            </span>
+
+
+                            <span id="course-type"
+                                class="inline-flex items-center gap-1 px-3 py-2 bg-gray-100 rounded-lg text-sm text-gray-600">
+
+                                <span class="material-symbols-outlined text-lg">
+                                    school
+                                </span>
+
+                                Loading...
+
+                            </span>
+
+
+                            <span id="course-online"
+                                class="inline-flex items-center gap-1 px-3 py-2 bg-gray-100 rounded-lg text-sm text-gray-600">
+
+                                <span class="material-symbols-outlined text-lg">
+                                    computer
+                                </span>
+
+                                Loading...
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- DESCRIPTION -->
+
+                        <div class="space-y-4">
+
+                            <h2 class="text-2xl font-bold text-gray-900">
+                                Description
+                            </h2>
+
+                            <p id="course-description"
+                                class="text-base text-gray-600 leading-relaxed">
+                                Loading course description...
+                            </p>
+
+                        </div>
+
+
+                        <!-- SHORT DESCRIPTION -->
+
+                        <div class="space-y-4 mt-8">
+
+                            <h2 class="text-2xl font-bold text-gray-900">
+                                Overview
+                            </h2>
+
+                            <p id="course-short-description"
+                                class="text-base text-gray-600 leading-relaxed">
+                                Loading...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- COURSE DETAILS -->
+
+                    <div class="space-y-6">
+
+                        <h2 class="text-2xl font-bold text-gray-900">
+                            Course Details
+                        </h2>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                            <!-- Price -->
+
+                            <div class="p-5 rounded-xl border border-gray-200 bg-gray-50">
+
+                                <div class="flex items-center gap-3">
+
+                                    <span class="material-symbols-outlined text-blue-600">
+                                        payments
+                                    </span>
+
+                                    <div>
+
+                                        <p class="text-sm text-gray-500">
+                                            Price
+                                        </p>
+
+                                        <p id="course-price"
+                                            class="text-xl font-bold text-gray-900">
+                                            Loading...
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Location -->
+
+                            <div class="p-5 rounded-xl border border-gray-200 bg-gray-50">
+
+                                <div class="flex items-center gap-3">
+
+                                    <span class="material-symbols-outlined text-blue-600">
+                                        location_on
+                                    </span>
+
+                                    <div>
+
+                                        <p class="text-sm text-gray-500">
+                                            Location
+                                        </p>
+
+                                        <p id="course-location-detail"
+                                            class="text-xl font-bold text-gray-900">
+                                            Loading...
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Start Date -->
+
+                            <div class="p-5 rounded-xl border border-gray-200 bg-gray-50">
+
+                                <div class="flex items-center gap-3">
+
+                                    <span class="material-symbols-outlined text-blue-600">
+                                        calendar_month
+                                    </span>
+
+                                    <div>
+
+                                        <p class="text-sm text-gray-500">
+                                            Start Date
+                                        </p>
+
+                                        <p id="course-start-date"
+                                            class="text-lg font-bold text-gray-900">
+                                            Loading...
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- End Date -->
+
+                            <div class="p-5 rounded-xl border border-gray-200 bg-gray-50">
+
+                                <div class="flex items-center gap-3">
+
+                                    <span class="material-symbols-outlined text-blue-600">
+                                        event
+                                    </span>
+
+                                    <div>
+
+                                        <p class="text-sm text-gray-500">
+                                            End Date
+                                        </p>
+
+                                        <p id="course-end-date"
+                                            class="text-lg font-bold text-gray-900">
+                                            Loading...
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LEARNING OUTCOME -->
+
+                    <div class="space-y-4">
+
+                        <h2 class="text-2xl font-bold text-gray-900">
+                            Learning Outcome
+                        </h2>
+
+                        <div
+                            class="p-6 bg-gray-50 rounded-xl border border-gray-200">
+
+                            <p id="course-learning-outcome"
+                                class="text-gray-600 leading-relaxed">
+
+                                Learning outcomes details will be displayed here.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RATINGS -->
+
+                    <div class="pt-8 border-t border-gray-200">
+
+                        <h2 class="text-2xl font-bold text-gray-900 mb-8">
+                            Ratings and Review
+                        </h2>
+
+
+                        <!-- Review 1 -->
+
+                        <div class="space-y-3">
+
+                            <div class="flex items-center gap-4">
+
+                                <div
+                                    class="w-12 h-12 rounded-full overflow-hidden border border-gray-200">
+
+                                    <img
+                                        alt="Reviewer"
+                                        class="w-full h-full object-cover"
+                                        src="https://ui-avatars.com/api/?name=Lavanya">
+
+                                </div>
+
+                                <div>
+
+                                    <h4 class="font-semibold text-gray-900">
+                                        Lavanya S
+                                    </h4>
+
+                                    <div class="flex text-yellow-500 text-sm">
+
+                                        ★★★★★
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <p class="text-gray-600 leading-relaxed">
+
+                                Skillvation has made professional development so much easier for me.
+                                The courses are practical, engaging, and easy to follow.
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- Review 2 -->
+
+                        <div class="space-y-3 pt-6 mt-6 border-t border-gray-200">
+
+                            <div class="flex items-center gap-4">
+
+                                <div
+                                    class="w-12 h-12 rounded-full overflow-hidden border border-gray-200">
+
+                                    <img
+                                        alt="Reviewer"
+                                        class="w-full h-full object-cover"
+                                        src="https://ui-avatars.com/api/?name=Arthi">
+
+                                </div>
+
+                                <div>
+
+                                    <h4 class="font-semibold text-gray-900">
+                                        Arthi K
+                                    </h4>
+
+                                    <div class="flex text-yellow-500 text-sm">
+
+                                        ★★★★★
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <p class="text-gray-600 leading-relaxed">
+
+                                Joining Skillvation has been one of the best decisions for my
+                                teaching career. The workshops are well-structured and practical.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ========================================= -->
+                <!-- RIGHT SIDEBAR -->
+                <!-- ========================================= -->
+
+                <div class="md:col-span-4 relative">
+
+                    <div class="sticky top-28">
+
+                        <div
+                            class="bg-gray-50 border border-gray-200 rounded-xl p-6 card-hover flex flex-col gap-6">
+
+
+                            <!-- COURSE PRICE -->
+
+                            <div>
+
+                                <p class="text-sm text-gray-500 mb-1">
+                                    Course Price
+                                </p>
+
+                                <p id="sidebar-price"
+                                    class="text-3xl font-bold text-gray-900">
+                                    Loading...
+                                </p>
+
+                            </div>
+
+
+                            <!-- SYLLABUS -->
+
+                            <div>
+
+                                <button
+                                    class="flex items-center justify-between w-full text-left bg-white p-4 rounded-lg hover:bg-gray-100 transition-colors"
+                                    onclick="toggleSyllabus()">
+
+                                    <span class="font-semibold text-gray-900">
+                                        Course Syllabus
+                                    </span>
+
+                                    <span id="syllabus-icon"
+                                        class="material-symbols-outlined transition-transform">
+
+                                        expand_more
+
+                                    </span>
+
+                                </button>
+
+
+                                <div
+                                    class="accordion-content px-4"
+                                    id="syllabus-content">
+
+                                    <p
+                                        class="text-gray-600 py-4">
+
+                                        Course syllabus details will be available here.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- REQUEST QUOTE -->
+
+                            <button
+                                class="btn-primary w-full py-3 rounded-lg font-bold">
+
+                                Request Quote
+
+                            </button>
+
+
+                            <!-- CONTACT -->
+
+                            <div class="text-center text-sm text-gray-500">
+
+                                Need help?
+
+                                <a href="#"
+                                    class="text-blue-600 font-semibold">
+
+                                    Contact us
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Mobile Navigation -->
+
+    <nav
+        class="md:hidden bg-white fixed bottom-0 w-full z-50 border-t border-gray-200 flex justify-around items-center h-20 px-2">
+
+        <a
+            href="#"
+            class="flex flex-col items-center justify-center text-blue-600">
+
+            <span class="material-symbols-outlined mb-1">
+                info
+            </span>
+
+            <span class="text-xs">
+                Course
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="flex flex-col items-center justify-center text-gray-500">
+
+            <span class="material-symbols-outlined mb-1">
+                menu_book
+            </span>
+
+            <span class="text-xs">
+                Syllabus
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="flex flex-col items-center justify-center text-gray-500">
+
+            <span class="material-symbols-outlined mb-1">
+                star
+            </span>
+
+            <span class="text-xs">
+                Reviews
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="flex flex-col items-center justify-center text-gray-500">
+
+            <span class="material-symbols-outlined mb-1">
+                request_quote
+            </span>
+
+            <span class="text-xs">
+                Quote
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <!-- Shared Footer -->
+
+    <div id="footer-placeholder"></div>
+
+
+    <!-- Shared Header/Footer -->
+
+    <script src="./components/nav.js"></script>
+
+
+    <!-- ========================================= -->
+    <!-- COURSE API -->
+    <!-- ========================================= -->
+
+    <script>
+
+        const API_URL =
+            'http://devapi.local/api/collab-courses';
+
+
+        /*
+         * Get course ID from URL
+         *
+         * Example:
+         *
+         * CourseDetail.html?id=53
+         *
+         */
+
+        const urlParams =
+            new URLSearchParams(window.location.search);
+
+        const courseId =
+            urlParams.get('id');
+
+
+        /*
+         * Load course
+         */
+
+        async function loadCourse() {
+
+            if (!courseId) {
+
+                showError('Course ID is missing.');
+
+                return;
+
+            }
+
+
+            try {
+
+                console.log('Loading course ID:', courseId);
+
+
+                const response =
+                    await fetch(API_URL);
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        'API Error: ' + response.status
+                    );
+
+                }
+
+
+                const result =
+                    await response.json();
+
+
+                console.log('API Response:', result);
+
+
+                /*
+                 * API structure:
+                 *
+                 * result
+                 *   └── courses
+                 *        └── data
+                 */
+
+                const courses =
+                    result.courses?.data || [];
+
+
+                /*
+                 * Find requested course
+                 */
+
+                const course =
+                    courses.find(
+                        item =>
+                            String(item.id) ===
+                            String(courseId)
+                    );
+
+
+                if (!course) {
+
+                    showError(
+                        'Course with ID ' +
+                        courseId +
+                        ' was not found.'
+                    );
+
+                    return;
+
+                }
+
+
+                console.log(
+                    'Selected Course:',
+                    course
+                );
+
+
+                /*
+                 * Update page
+                 */
+
+                updateCourse(course);
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    'Course loading error:',
+                    error
+                );
+
+                showError(
+                    'Unable to load course details.'
+                );
+
+            }
+
+        }
+
+
+        /*
+         * Update HTML with API data
+         */
+
+        function updateCourse(course) {
+            console.log('TITLE:', course.title);
+            console.log('DESCRIPTION:', course.description);
+
+            // =========================================
+            // TITLE
+            // =========================================
+
+            document.title =
+                (course.title || 'Course') +
+                ' - Skillvation';
+
+
+            document.getElementById(
+                'course-title'
+            ).textContent =
+                course.title || '';
+
+
+            // =========================================
+            // DESCRIPTION
+            // =========================================
+
+            document.getElementById(
+                'course-description'
+            ).textContent =
+                course.description || 'No description available.';
+
+
+            // =========================================
+            // SHORT DESCRIPTION
+            // =========================================
+
+            document.getElementById(
+                'course-short-description'
+            ).textContent =
+                course.short_description || '';
+
+
+            // =========================================
+            // PRICE
+            // =========================================
+
+            const price =
+                Number(course.price || 0);
+
+
+            const formattedPrice =
+                '₹ ' +
+                price.toLocaleString('en-IN');
+
+
+            document.getElementById(
+                'course-price'
+            ).textContent =
+                formattedPrice;
+
+
+            document.getElementById(
+                'sidebar-price'
+            ).textContent =
+                formattedPrice;
+
+
+            // =========================================
+            // LOCATION
+            // =========================================
+
+            const location =
+                course.location_name || '';
+
+
+            document.getElementById(
+                'course-location'
+            ).innerHTML = `
+                <span class="material-symbols-outlined text-lg">
+                    location_on
+                </span>
+                ${escapeHtml(location)}
+            `;
+
+
+            document.getElementById(
+                'course-location-detail'
+            ).textContent =
+                location || 'Not specified';
+
+
+            // =========================================
+            // START DATE
+            // =========================================
+
+            document.getElementById(
+                'course-start-date'
+            ).textContent =
+                formatDate(course.start_date);
+
+
+            // =========================================
+            // END DATE
+            // =========================================
+
+            document.getElementById(
+                'course-end-date'
+            ).textContent =
+                formatDate(course.end_date);
+
+
+            // =========================================
+            // ONLINE / OFFLINE
+            // =========================================
+
+            const online =
+                Number(course.online);
+
+
+            document.getElementById(
+                'course-online'
+            ).innerHTML = `
+
+                <span class="material-symbols-outlined text-lg">
+                    ${online ? 'wifi' : 'location_on'}
+                </span>
+
+                ${online ? 'Online' : 'Offline'}
+
+            `;
+
+
+            // =========================================
+            // COURSE TYPE
+            // =========================================
+
+            let typeText =
+                'Course';
+
+
+            switch (Number(course.type)) {
+
+                case 3:
+                    typeText =
+                        'Milestone';
+                    break;
+
+                case 4:
+                    typeText =
+                        'Recurring';
+                    break;
+
+                case 6:
+                    typeText =
+                        'Online Recurring';
+                    break;
+
+                case 7:
+                    typeText =
+                        'Online Milestone';
+                    break;
+
+                case 8:
+                    typeText =
+                        'Course';
+                    break;
+
+            }
+
+
+            document.getElementById(
+                'course-type'
+            ).innerHTML = `
+
+                <span class="material-symbols-outlined text-lg">
+                    school
+                </span>
+
+                ${typeText}
+
+            `;
+
+
+            // =========================================
+            // MAIN IMAGE
+            // =========================================
+
+            setCourseImage(
+                'course-main-image',
+                course.cover_image
+            );
+
+
+            /*
+             * Use same image for side images
+             * until separate API images are available.
+             */
+
+            setCourseImage(
+                'course-side-image-1',
+                course.cover_image
+            );
+
+
+            setCourseImage(
+                'course-side-image-2',
+                course.cover_image
+            );
+
+
+            // =========================================
+            // REMOVE LOADING
+            // =========================================
+
+            const loading =
+                document.getElementById(
+                    'image-loading'
+                );
+
+            if (loading) {
+
+                loading.remove();
+
+            }
+
+        }
+
+
+        /*
+         * Image URL
+         *
+         * IMPORTANT:
+         *
+         * Change this path if your API stores images
+         * somewhere else.
+         */
+
+        function setCourseImage(
+            elementId,
+            imageName
+        ) {
+
+            if (!imageName) {
+
+                return;
+
+            }
+
+
+            const imageUrl =
+                'http://devapi.local/storage/' +
+                imageName;
+
+
+            const element =
+                document.getElementById(
+                    elementId
+                );
+
+
+            if (!element) {
+
+                return;
+
+            }
+
+
+            element.style.backgroundImage =
+                `url("${imageUrl}")`;
+
+        }
+
+
+        /*
+         * Format date
+         */
+
+        function formatDate(dateString) {
+
+            if (!dateString) {
+
+                return 'Not specified';
+
+            }
+
+
+            const date =
+                new Date(dateString);
+
+
+            if (isNaN(date.getTime())) {
+
+                return dateString;
+
+            }
+
+
+            return date.toLocaleDateString(
+                'en-IN',
+                {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                }
+            );
+
+        }
+
+
+        /*
+         * Accordion
+         */
+
+        function toggleSyllabus() {
+
+            const content =
+                document.getElementById(
+                    'syllabus-content'
+                );
+
+
+            const icon =
+                document.getElementById(
+                    'syllabus-icon'
+                );
+
+
+            content.classList.toggle(
+                'expanded'
+            );
+
+
+            icon.classList.toggle(
+                'rotate-180'
+            );
+
+        }
+
+
+        /*
+         * Error message
+         */
+
+        function showError(message) {
+
+            document.getElementById(
+                'course-title'
+            ).textContent =
+                'Course Not Found';
+
+
+            document.getElementById(
+                'course-description'
+            ).textContent =
+                message;
+
+        }
+
+
+        /*
+         * Basic HTML escaping
+         */
+
+        function escapeHtml(value) {
+
+            const div =
+                document.createElement('div');
+
+            div.textContent =
+                value || '';
+
+            return div.innerHTML;
+
+        }
+
+
+        /*
+         * START
+         */
+
+        loadCourse();
+
+    </script>
+
+</body>
+
+</html>
