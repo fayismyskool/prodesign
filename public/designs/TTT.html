@@ -681,7 +681,7 @@
       APP_CONFIG.API_BASE_URL;
 
     const COURSES_URL =
-      APP_CONFIG.COURSES_API_URL;
+      APP_CONFIG.COURSES_API_URL + (APP_CONFIG.COURSES_API_URL.includes('?') ? '&' : '?') + 'type=8';
 
 
     /*

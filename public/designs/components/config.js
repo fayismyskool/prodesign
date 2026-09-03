@@ -9,22 +9,18 @@ const APP_CONFIG = {
 
     /**
      * Base URL of the courses API.
-     * All fetch() calls should use this.
      */
-    API_BASE_URL: 'http://devapi.local',
+    API_BASE_URL: window.location.origin,
 
     /**
      * Full URL for the courses listing endpoint.
      */
-    COURSES_API_URL: 'http://devapi.local/api/collab-courses',
+    COURSES_API_URL: window.location.origin + '/api/collab-courses',
 
     /**
      * Base URL for course cover images.
-     * cover_image filenames from the API are relative to this path.
-     * e.g.  cover_image: "698f0d98e741f1770982808.png"
-     * →  http://devcollab.local/assets/images/event/cover/698f0d98e741f1770982808.png
      */
-    IMAGE_BASE_URL: 'http://devcollab.local/assets/images/event/cover/',
+    IMAGE_BASE_URL: '',
 
     /**
      * Fallback image when a course has no cover_image.
@@ -32,8 +28,8 @@ const APP_CONFIG = {
     IMAGE_FALLBACK: './img/TTT-1.png',
 
     /**
-     * Laravel app base URL (for cart / checkout).
+     * Laravel app base URL.
      */
-    APP_URL: 'http://pro.local',
+    APP_URL: window.location.origin,
 
 };

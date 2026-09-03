@@ -44,7 +44,7 @@ class MenuItem extends Model
 
     public function getLabelAttribute(): ?string
     {
-        return $this->translation->label;
+        return $this->translation?->label ?? ($this->attributes['label'] ?? '');
     }
     public function translation(): ?HasOne
     {
