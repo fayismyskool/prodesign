@@ -16,7 +16,7 @@
         <input type="hidden" name="next_step" value="4">
     </form>
 
-    @include('course::course.partials.add-new-section-modal')
+    @include('courseapi::course.partials.add-new-section-modal')
 
     {{-- ── Activity Files Modal ── --}}
     <div class="modal fade" id="activityFilesModal" tabindex="-1" role="dialog" aria-hidden="true">

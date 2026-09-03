@@ -65,11 +65,11 @@ class InstructorRequestController extends Controller
         $user->role = 'instructor';
         $user->save();
 
-        (new EmailService)->handleInstructorRequestStatusMailSending([
-            'user_email' => $instructorRequest->user->email,
-            'user_name' => $instructorRequest->user->name,
-            'status' => $instructorRequest->status
-        ]);
+        // (new EmailService)->handleInstructorRequestStatusMailSending([
+        //     'user_email' => $instructorRequest->user->email,
+        //     'user_name' => $instructorRequest->user->name,
+        //     'status' => $instructorRequest->status
+        // ]);
 
         return $this->redirectWithMessage(RedirectType::UPDATE->value, 'admin.instructor-request.index');
     }

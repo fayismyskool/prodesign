@@ -57,7 +57,7 @@ class CourseController extends Controller
     function create()
     {
         $instructors = User::where('role', 'instructor')->get();
-        $response = Http::get('http://devapi.local/api/collab-courses');
+        $response = Http::get(env('APP_API'));
 
         $courses = [];
 
@@ -76,7 +76,7 @@ class CourseController extends Controller
         $course = Course::findOrFail($id);
         $instructors = User::where('role', 'instructor')->get();
         $editMode = true;
-        $response = Http::get('http://devapi.local/api/collab-courses');
+        $response = Http::get(env('APP_API'));
 
         $courses = [];
 
@@ -134,7 +134,7 @@ class CourseController extends Controller
                 $course = Course::findOrFail($request->id);
                 $instructors = User::where('role', 'instructor')->get();
                 $editMode = true;
-                $response = Http::get('http://devapi.local/api/collab-courses');
+                $response = Http::get(env('APP_API'));
                 $courses = [];
                 if ($response->successful()) {
                     $courses = $response->json()['courses']['data'] ?? [];

@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-12">
-                            @include('course::course.navigation')
+                            @include('courseapi::course.navigation')
                             <div class="instructor__profile-form-wrap mt-4">
                                 <form action="{{ route('admin.courses.update') }}" class="instructor__profile-form course-form">
                                     @csrf

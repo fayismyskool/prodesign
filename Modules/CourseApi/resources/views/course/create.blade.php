@@ -35,24 +35,41 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="instructor">{{ __('Instructor') }} <code>*</code></label>
-                                                        <select name="instructor" id="" class="form-control select2">
-                                                            <option value="">{{ __('Select') }}</option>
-                                                            @foreach ($instructors as $instructor)
-                                                                <option value="{{ $instructor->id }}" @selected($instructor->id == @$course?->instructor_id)>{{ $instructor->name }} ({{ $instructor->email }})</option>
-                                                            @endforeach
-                                                        </select>
+                                                        @if (isset($editMode) && $editMode)
+                                                            {{-- Readonly on edit: show as plain text, submit via hidden input --}}
+                                                            @php $selectedInstructor = collect($instructors)->firstWhere('id', @$course?->instructor_id); @endphp
+                                                            <input type="text" class="form-control bg-light"
+                                                                value="{{ $selectedInstructor ? $selectedInstructor->name . ' (' . $selectedInstructor->email . ')' : '' }}"
+                                                                readonly>
+                                                            <input type="hidden" name="instructor" value="{{ @$course?->instructor_id }}">
+                                                        @else
+                                                            <select name="instructor" id="" class="form-control select2">
+                                                                <option value="">{{ __('Select') }}</option>
+                                                                @foreach ($instructors as $instructor)
+                                                                    <option value="{{ $instructor->id }}" @selected($instructor->id == @$course?->instructor_id)>{{ $instructor->name }} ({{ $instructor->email }})</option>
+                                                                @endforeach
+                                                            </select>
+                                                        @endif
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="api_course_id">{{ __('Apicourses') }} <code>*</code></label>
-                                                        <select name="api_course_id" id="api_course_id" class="form-control select2">
-                                                            <option value="">{{ __('Select') }}</option>
-                                                            @foreach ($courses as $apiCourse)
-                                                                <option value="{{ $apiCourse['id'] }}" @selected($apiCourse['id'] == @$course?->api_course_id)>{{ $apiCourse['title'] }}</option>
-                                                            @endforeach
-                                                        </select>
+                                                        @if (isset($editMode) && $editMode)
+                                                            @php $selectedApiCourse = collect($courses)->firstWhere('id', @$course?->api_course_id); @endphp
+                                                            <input type="text" class="form-control bg-light"
+                                                                value="{{ $selectedApiCourse ? $selectedApiCourse['title'] : '' }}"
+                                                                readonly>
+                                                            <input type="hidden" name="api_course_id" id="api_course_id" value="{{ @$course?->api_course_id }}">
+                                                        @else
+                                                            <select name="api_course_id" id="api_course_id" class="form-control select2">
+                                                                <option value="">{{ __('Select') }}</option>
+                                                                @foreach ($courses as $apiCourse)
+                                                                    <option value="{{ $apiCourse['id'] }}" @selected($apiCourse['id'] == @$course?->api_course_id)>{{ $apiCourse['title'] }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        @endif
                                                     </div>
                                                 </div>
 

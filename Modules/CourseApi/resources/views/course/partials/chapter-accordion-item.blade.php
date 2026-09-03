@@ -9,7 +9,7 @@
                 <div class="icon_area d-flex flex-wrap justify-content-between align-items-center w-100">
                     <div class="d-flex flex-wrap align-items-center">
                         <span class="icon-container"><i class="far fa-folder"></i></span>
-                        <small class="mb-0 ms-2 bold-text">{{ $chapter->grade->title }} :&nbsp; </small>
+                        <small class="mb-0 ms-2 bold-text">{{ $chapter->grade?->title }} :&nbsp; </small>
                         <p class="mb-0 ms-2 bold-text">{{ $chapter->title }}</p>
                     </div>
                 </div>
