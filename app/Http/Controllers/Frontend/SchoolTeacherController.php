@@ -105,7 +105,7 @@ class SchoolTeacherController extends Controller
                 $user = User::create([
                     'name'               => $request->name,
                     'email'              => $request->email,
-                    'role'               => 'instructor',
+                    'role'               => 'student',
                     'password'           => Hash::make($password),
                     'status'             => 'active',
                     'is_banned'          => 'no',
@@ -192,7 +192,7 @@ class SchoolTeacherController extends Controller
                     $user = User::create([
                         'name'               => $name,
                         'email'              => $email,
-                        'role'               => 'instructor',
+                        'role'               => 'student',
                         'password'           => Hash::make($password),
                         'status'             => 'active',
                         'is_banned'          => 'no',

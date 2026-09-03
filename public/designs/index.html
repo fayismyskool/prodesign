@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skill2School – Design System</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            primary: '#1976d2',
+            'primary-light': '#4791db',
+            'primary-dark': '#115293',
+            surface: '#ffffff',
+            'surface-container': '#f9fafb',
+            'on-surface': '#1f2937',
+            'on-surface-variant': '#4b5563',
+            outline: '#e5e7eb',
+          },
+          spacing: {
+            'section-gap': '4rem',
+            'gutter': '2rem',
+            'margin-mobile': '1rem',
+          },
+          maxWidth: {
+            'container-max': '1280px',
+          },
+          borderRadius: {
+            'card': '0.5rem',
+            'image': '1rem',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+    .badge { display: inline-flex; align-items: center; gap: 4px; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- Shared Header -->
+  <div id="header-placeholder"></div>
+
+  <main class="pt-20 max-w-7xl mx-auto px-6 py-12">
+
+    <!-- Hero text -->
+    <div class="mb-12">
+      <h2 class="text-3xl font-extrabold text-gray-900 mb-2">Design Previews</h2>
+      <p class="text-gray-500 text-base">All HTML designs for the Skill2School platform. Click any card to open the full design.</p>
+    </div>
+
+    <!-- Main designs grid -->
+    <section class="mb-14">
+      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Pages</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Skill2School (Homepage) -->
+        <a href="Skill2School.html" class="group block bg-white rounded-2xl overflow-hidden border border-gray-100 card-hover">
+          <div class="relative overflow-hidden bg-gray-100" style="aspect-ratio:16/9">
+            <img src="Skill2School.png" alt="Skill2School Homepage" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-4">
+              <span class="text-white text-sm font-semibold">Open Design →</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="font-bold text-gray-900 text-base mb-1">Skill2School</h4>
+                <p class="text-sm text-gray-500">Main platform homepage</p>
+              </div>
+              <span class="badge bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full shrink-0">Homepage</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Labs (STEMbot) -->
+        <a href="Labs.html" class="group block bg-white rounded-2xl overflow-hidden border border-gray-100 card-hover">
+          <div class="relative overflow-hidden bg-gray-100" style="aspect-ratio:16/9">
+            <img src="Labs.png" alt="STEMbot Labs" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-4">
+              <span class="text-white text-sm font-semibold">Open Design →</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="font-bold text-gray-900 text-base mb-1">STEMbot Labs</h4>
+                <p class="text-sm text-gray-500">STEM Innovation Hubs page</p>
+              </div>
+              <span class="badge bg-orange-50 text-orange-700 text-xs font-semibold px-2.5 py-1 rounded-full shrink-0">Page</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- TTT -->
+        <a href="TTT.html" class="group block bg-white rounded-2xl overflow-hidden border border-gray-100 card-hover">
+          <div class="relative overflow-hidden bg-gray-100" style="aspect-ratio:16/9">
+            <img src="TTT.png" alt="TTT" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-4">
+              <span class="text-white text-sm font-semibold">Open Design →</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="font-bold text-gray-900 text-base mb-1">TTT</h4>
+                <p class="text-sm text-gray-500">Train the Trainer page</p>
+              </div>
+              <span class="badge bg-purple-50 text-purple-700 text-xs font-semibold px-2.5 py-1 rounded-full shrink-0">Page</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Course Detail -->
+        <a href="CourseDetail.html" class="group block bg-white rounded-2xl overflow-hidden border border-gray-100 card-hover">
+          <div class="relative overflow-hidden bg-gray-100" style="aspect-ratio:16/9">
+            <img src="CourseDetail.png" alt="Course Detail" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-4">
+              <span class="text-white text-sm font-semibold">Open Design →</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="font-bold text-gray-900 text-base mb-1">Course Detail</h4>
+                <p class="text-sm text-gray-500">Individual course page</p>
+              </div>
+              <span class="badge bg-green-50 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full shrink-0">Page</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Upskill4Teacher -->
+        <a href="Upskill4Teacher.html" class="group block bg-white rounded-2xl overflow-hidden border border-gray-100 card-hover">
+          <div class="relative overflow-hidden bg-gray-100" style="aspect-ratio:16/9">
+            <img src="Upskill4Teacher.png" alt="Upskill4Teacher" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-4">
+              <span class="text-white text-sm font-semibold">Open Design →</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="font-bold text-gray-900 text-base mb-1">Upskill4Teacher</h4>
+                <p class="text-sm text-gray-500">Teacher upskilling programme</p>
+              </div>
+              <span class="badge bg-orange-50 text-orange-700 text-xs font-semibold px-2.5 py-1 rounded-full shrink-0">Page</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Components section -->
+    <section class="mb-14">
+      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Components</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Header -->
+        <a href="header.html" class="group block bg-white rounded-2xl overflow-hidden border border-gray-100 card-hover">
+          <div class="bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center" style="aspect-ratio:16/9">
+            <div class="text-center">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mx-auto mb-3 shadow-sm">
+                <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+                </svg>
+              </div>
+              <p class="text-slate-500 text-sm font-medium">Navigation Header</p>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="font-bold text-gray-900 text-base mb-1">Header</h4>
+                <p class="text-sm text-gray-500">Site-wide navigation bar</p>
+              </div>
+              <span class="badge bg-slate-50 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-full shrink-0">Component</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Footer -->
+        <a href="footer.html" class="group block bg-white rounded-2xl overflow-hidden border border-gray-100 card-hover">
+          <div class="bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center" style="aspect-ratio:16/9">
+            <div class="text-center">
+              <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mx-auto mb-3 shadow-sm">
+                <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </div>
+              <p class="text-slate-500 text-sm font-medium">Site Footer</p>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="font-bold text-gray-900 text-base mb-1">Footer</h4>
+                <p class="text-sm text-gray-500">Site-wide footer component</p>
+              </div>
+              <span class="badge bg-slate-50 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-full shrink-0">Component</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Variants section -->
+    <section>
+      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Variants &amp; Iterations</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <a href="Skill2School%20(copy).html" class="flex items-center gap-4 bg-white rounded-xl p-4 border border-gray-100 card-hover">
+          <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <p class="font-semibold text-gray-800 text-sm truncate">Skill2School (copy)</p>
+            <p class="text-xs text-gray-400">Homepage – v2</p>
+          </div>
+        </a>
+
+        <a href="Skill2School%20(another%20copy).html" class="flex items-center gap-4 bg-white rounded-xl p-4 border border-gray-100 card-hover">
+          <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <p class="font-semibold text-gray-800 text-sm truncate">Skill2School (another copy)</p>
+            <p class="text-xs text-gray-400">Homepage – v3</p>
+          </div>
+        </a>
+
+        <a href="TTT%20(copy).html" class="flex items-center gap-4 bg-white rounded-xl p-4 border border-gray-100 card-hover">
+          <div class="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <p class="font-semibold text-gray-800 text-sm truncate">TTT (copy)</p>
+            <p class="text-xs text-gray-400">TTT – v2</p>
+          </div>
+        </a>
+
+        <a href="TTT%20(another%20copy).html" class="flex items-center gap-4 bg-white rounded-xl p-4 border border-gray-100 card-hover">
+          <div class="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <p class="font-semibold text-gray-800 text-sm truncate">TTT (another copy)</p>
+            <p class="text-xs text-gray-400">TTT – v3</p>
+          </div>
+        </a>
+
+        <a href="CourseDetail%20(copy).html" class="flex items-center gap-4 bg-white rounded-xl p-4 border border-gray-100 card-hover">
+          <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <p class="font-semibold text-gray-800 text-sm truncate">CourseDetail (copy)</p>
+            <p class="text-xs text-gray-400">Course Detail – v2</p>
+          </div>
+        </a>
+
+        <a href="CourseDetail%20(another%20copy).html" class="flex items-center gap-4 bg-white rounded-xl p-4 border border-gray-100 card-hover">
+          <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <p class="font-semibold text-gray-800 text-sm truncate">CourseDetail (another copy)</p>
+            <p class="text-xs text-gray-400">Course Detail – v3</p>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Shared Footer -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Load shared config & nav scripts -->
+  <script src="./components/config.js"></script>
+  <script src="./components/nav.js"></script>
+
+</body>
+</html>

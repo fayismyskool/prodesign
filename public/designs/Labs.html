@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STEMBot — Transforming Classrooms into STEM Innovation Hubs</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              navy: '#28246f',
+              darknavy: '#1d1956',
+              orange: '#f05f43',
+              orangehover: '#e24e31',
+              peach: '#ffe8dc',
+              peachlight: '#fff4ee',
+              lavender: '#ecebff',
+              lavenderlight: '#f5f4ff',
+              blue: '#e1ebfd',
+              bluelight: '#f0f5fe',
+              green: '#e3f9ec',
+              cyan: '#e0f8fb',
+              pink: '#ffe8f0',
+            }
+          },
+          maxWidth: {
+            'container-max': '1240px',
+          },
+          borderRadius: {
+            'card': '1.25rem',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #242254;
+      background-color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .pin-shadow {
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+    }
+
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -10px rgba(40, 36, 111, 0.12);
+    }
+
+    /* Custom accordion transition */
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+    details[open] summary .faq-icon {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+
+<body class="antialiased text-brand-darknavy selection:bg-brand-orange selection:text-white">
+
+  <!-- Shared Header -->
+  <div id="header-placeholder"></div>
+
+  <main class="pt-16">
+
+    <!-- =========================================================================
+         1. HERO SECTION (White Background)
+         ========================================================================= -->
+    <section class="relative pt-12 pb-16 lg:pt-20 lg:pb-24 overflow-hidden bg-white" id="about">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Hero Left Content -->
+          <div class="lg:col-span-6 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-peach text-brand-orange text-xs font-bold uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+              Future-ready education
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-brand-navy leading-[1.12] tracking-tight">
+              Transforming Classrooms into <span class="text-brand-orange">STEM Innovation</span> Hubs
+            </h1>
+
+            <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl">
+              Empower students with hands-on STEM learning, creative problem solving and real-world skills through an engaging, turnkey school innovation ecosystem.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a href="#demo" class="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-brand-navy hover:bg-brand-darknavy text-white text-sm font-bold transition-all duration-200 shadow-md hover:shadow-xl hover:-translate-y-0.5 group">
+                <span>Book a Demo</span>
+                <i class="fa-solid fa-arrow-right ml-2.5 text-xs transition-transform group-hover:translate-x-1"></i>
+              </a>
+              <a href="#labs" class="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-brand-navy text-sm font-bold transition-all duration-200">
+                Explore STEM Labs
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Right Image Card -->
+          <div class="lg:col-span-6">
+            <div class="relative mx-auto max-w-lg lg:max-w-none">
+              <!-- Decorative Backdrops -->
+              <div class="absolute -inset-2 bg-gradient-to-tr from-brand-orange/20 to-brand-navy/10 rounded-3xl transform rotate-1 blur-sm"></div>
+              
+              <!-- Main Image Box -->
+              <div class="relative bg-white p-3 sm:p-4 rounded-3xl border-2 border-brand-orange/40 shadow-2xl overflow-hidden">
+                <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100">
+                  <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1000&q=85" 
+                       alt="Student exploring STEM robotics kit in classroom" 
+                       class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 3 Stats Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-14 lg:mt-20">
+          <div class="bg-brand-lavender/70 border border-brand-navy/10 rounded-2xl p-6 text-center shadow-sm card-hover">
+            <div class="text-3xl lg:text-4xl font-black text-brand-navy mb-1">1K+</div>
+            <div class="text-xs lg:text-sm font-semibold text-slate-600">Schools Reached</div>
+          </div>
+          <div class="bg-brand-lavender/70 border border-brand-navy/10 rounded-2xl p-6 text-center shadow-sm card-hover">
+            <div class="text-3xl lg:text-4xl font-black text-brand-orange mb-1">4.9★</div>
+            <div class="text-xs lg:text-sm font-semibold text-slate-600">Educator Satisfaction</div>
+          </div>
+          <div class="bg-brand-lavender/70 border border-brand-navy/10 rounded-2xl p-6 text-center shadow-sm card-hover">
+            <div class="text-3xl lg:text-4xl font-black text-brand-navy mb-1">80%</div>
+            <div class="text-xs lg:text-sm font-semibold text-slate-600">Hands-on Experiential Learning</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         2. WHAT IS A STEM LAB SECTION (Peach Background)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-[#fff1ea] border-y border-brand-orange/10 relative overflow-hidden" id="what-is-stem">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          
+          <!-- Left: Robot Mascot & Title -->
+          <div class="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 text-brand-orange text-xs font-bold uppercase tracking-wider border border-brand-orange/20 shadow-sm">
+              Discover STEM
+            </div>
+
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy leading-tight">
+              What's a STEM Lab, <br class="hidden sm:inline" />Anyway?
+            </h2>
+
+            <!-- Cute Robot Illustration SVG -->
+            <div class="w-48 sm:w-56 h-auto py-2">
+              <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto drop-shadow-md">
+                <!-- Antenna -->
+                <line x1="100" y1="20" x2="100" y2="45" stroke="#f05f43" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="100" cy="16" r="8" fill="#f05f43"/>
+                <!-- Head -->
+                <rect x="50" y="45" width="100" height="70" rx="16" stroke="#f05f43" stroke-width="4" fill="#ffffff"/>
+                <!-- Eyes -->
+                <circle cx="78" cy="75" r="9" fill="#28246f"/>
+                <circle cx="122" cy="75" r="9" fill="#28246f"/>
+                <!-- Smile -->
+                <path d="M85 95 Q100 106 115 95" stroke="#f05f43" stroke-width="3.5" stroke-linecap="round"/>
+                <!-- Body -->
+                <rect x="40" y="125" width="120" height="95" rx="18" stroke="#f05f43" stroke-width="4" fill="#ffffff"/>
+                <!-- Chest Screen & Beaker/Gauge -->
+                <rect x="62" y="145" width="76" height="55" rx="8" fill="#ffe3d4"/>
+                <circle cx="85" cy="172" r="12" fill="#28246f" opacity="0.8"/>
+                <rect x="105" y="162" width="22" height="6" rx="3" fill="#f05f43"/>
+                <rect x="105" y="174" width="16" height="6" rx="3" fill="#28246f"/>
+                <!-- Hands / Tools -->
+                <path d="M40 145 Q15 130 25 105 Q32 108 30 120" stroke="#f05f43" stroke-width="4" fill="none" stroke-linecap="round"/>
+                <path d="M160 145 Q185 160 180 185" stroke="#f05f43" stroke-width="4" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Right: 2 Photos & Description -->
+          <div class="lg:col-span-7 space-y-6">
+            <!-- 2 Photos Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="rounded-2xl overflow-hidden border-2 border-brand-orange/30 shadow-lg aspect-[4/3] bg-slate-900 group">
+                <img src="https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=700&q=80" 
+                     alt="Student with telescope in astronomy STEM lab" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="rounded-2xl overflow-hidden border-2 border-brand-orange/30 shadow-lg aspect-[4/3] bg-slate-900 group">
+                <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=700&q=80" 
+                     alt="Student building electronics circuits in STEM lab" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+            </div>
+
+            <!-- Content Card -->
+            <div class="bg-white/95 rounded-2xl p-6 sm:p-7 shadow-md border border-brand-orange/15 space-y-3">
+              <h3 class="text-xl sm:text-2xl font-bold text-brand-navy">
+                Learning by doing changes everything.
+              </h3>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                A dedicated space where curiosity becomes creation and students learn by designing, building, testing and improving. STEM labs turn abstract textbook concepts into tangible, practical experiences.
+              </p>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Students collaborate on real-world challenges, experiment with cutting-edge tools, and solve meaningful problems while developing confidence and critical thinking along the way.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. WHY STEMBOT SECTION (White Background)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-white" id="why">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-lavender text-brand-navy text-xs font-bold uppercase tracking-wider">
+            Why STEMbot?
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
+            Why Choose STEMbot Labs?
+          </h2>
+          <p class="text-base text-slate-600">
+            More than a lab — a complete ecosystem for innovation, confidence, and future-ready 21st-century capabilities.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- 4 Features Grid -->
+          <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            
+            <div class="bg-brand-lavender/50 border border-brand-navy/10 rounded-2xl p-6 card-hover space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-sm">
+                01
+              </div>
+              <h3 class="text-lg font-bold text-brand-navy">Future-Ready Skills</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Foster critical thinking, collaboration, creativity, and computational problem-solving.
+              </p>
+            </div>
+
+            <div class="bg-brand-lavender/50 border border-brand-navy/10 rounded-2xl p-6 card-hover space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-orange text-white flex items-center justify-center font-bold text-sm">
+                02
+              </div>
+              <h3 class="text-lg font-bold text-brand-navy">Curriculum Aligned</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Structured projects mapped to NEP 2020, CBSE, ICSE, and international STEM learning outcomes.
+              </p>
+            </div>
+
+            <div class="bg-brand-lavender/50 border border-brand-navy/10 rounded-2xl p-6 card-hover space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-sm">
+                03
+              </div>
+              <h3 class="text-lg font-bold text-brand-navy">Teacher Enablement</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Comprehensive training, detailed lesson plans, and round-the-year pedagogical guidance.
+              </p>
+            </div>
+
+            <div class="bg-brand-lavender/50 border border-brand-navy/10 rounded-2xl p-6 card-hover space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-orange text-white flex items-center justify-center font-bold text-sm">
+                04
+              </div>
+              <h3 class="text-lg font-bold text-brand-navy">Measurable Impact</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Track student participation, project portfolios, and tangible skill progression metrics.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Right Classroom Photo -->
+          <div class="lg:col-span-6">
+            <div class="rounded-3xl overflow-hidden border-2 border-brand-navy/15 shadow-xl aspect-[4/3] bg-slate-100 group">
+              <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=85" 
+                   alt="Modern colorful STEM lab classroom setup" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. INITIATE EDUCATIONAL TRANSFORMATION (Lavender Box)
+         ========================================================================= -->
+    <section class="py-12 bg-white">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-gradient-to-br from-brand-lavender/90 to-brand-lavenderlight border border-brand-navy/15 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm">
+          <div class="text-center max-w-2xl mx-auto mb-8">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy">
+              Initiate Educational Transformation with STEMbot
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Left: Student Group Photo -->
+            <div class="lg:col-span-6">
+              <div class="rounded-2xl overflow-hidden shadow-lg border-2 border-white aspect-[4/3] bg-slate-900 group">
+                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=85" 
+                     alt="Students and teacher interacting with educational tools" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+            </div>
+
+            <!-- Right: List of Points -->
+            <div class="lg:col-span-6 space-y-4">
+              <div class="flex items-start gap-3.5 bg-white/80 p-3.5 rounded-xl border border-brand-navy/5">
+                <div class="w-6 h-6 rounded-full bg-brand-navy text-white flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="text-sm font-semibold text-brand-darknavy">
+                  Complete STEM lab setup with age-appropriate kits, tools, and hardware modules.
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3.5 bg-white/80 p-3.5 rounded-xl border border-brand-navy/5">
+                <div class="w-6 h-6 rounded-full bg-brand-navy text-white flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="text-sm font-semibold text-brand-darknavy">
+                  Structured project-based curriculum mapped to classroom learning & NEP goals.
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3.5 bg-white/80 p-3.5 rounded-xl border border-brand-navy/5">
+                <div class="w-6 h-6 rounded-full bg-brand-navy text-white flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="text-sm font-semibold text-brand-darknavy">
+                  Certified teacher training programs with continuous mentoring & class resources.
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3.5 bg-white/80 p-3.5 rounded-xl border border-brand-navy/5">
+                <div class="w-6 h-6 rounded-full bg-brand-navy text-white flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="text-sm font-semibold text-brand-darknavy">
+                  Student showcases, innovation competitions, hackathons, and global challenges.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Slider Indicator Bar -->
+          <div class="mt-8 pt-6 border-t border-brand-navy/10 flex justify-center items-center gap-2">
+            <div class="w-16 h-1.5 rounded-full bg-brand-navy"></div>
+            <div class="w-4 h-1.5 rounded-full bg-brand-navy/30"></div>
+            <div class="w-4 h-1.5 rounded-full bg-brand-navy/30"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. WHAT'S INCLUDED IN THE LAB SECTION (White Background)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-white" id="labs">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-peach text-brand-orange text-xs font-bold uppercase tracking-wider">
+            Hands-on learning
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
+            What's Included in the Lab?
+          </h2>
+          <p class="text-base text-slate-600">
+            Everything needed to create an engaging, safe, and future-focused STEM innovation environment.
+          </p>
+        </div>
+
+        <!-- 5 Pastel Feature Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          
+          <!-- Card 1: Robotics & Coding -->
+          <div class="bg-[#ebf3ff] rounded-2xl p-6 border border-blue-200/70 card-hover space-y-4">
+            <div class="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy">Robotics & Coding</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Age-appropriate modular robotics kits, block-based to Python programming, sensors, and intelligent machines.
+            </p>
+          </div>
+
+          <!-- Card 2: Electronics & IoT -->
+          <div class="bg-[#ffebf2] rounded-2xl p-6 border border-pink-200/70 card-hover space-y-4">
+            <div class="w-14 h-14 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy">Electronics & IoT</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Breadboards, electronic components, smart sensors, and microcontrollers to design interconnected IoT prototypes.
+            </p>
+          </div>
+
+          <!-- Card 3: 3D Design & Making -->
+          <div class="bg-[#f2efff] rounded-2xl p-6 border border-purple-200/70 card-hover space-y-4">
+            <div class="w-14 h-14 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-cubes"></i>
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy">3D Design & Making</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              CAD modeling software, 3D printing equipment, rapid prototyping tools, and mechanical fabrication materials.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Row 2: 2 wider cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Card 4: AI & Future Tech -->
+          <div class="bg-[#e2f9fd] rounded-2xl p-6 border border-cyan-200/70 card-hover space-y-4">
+            <div class="w-14 h-14 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy">AI & Digital Technologies</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Foundational artificial intelligence, computer vision experiments, machine learning logic, and future tech modules.
+            </p>
+          </div>
+
+          <!-- Card 5: Project-Based Learning -->
+          <div class="bg-[#e4faed] rounded-2xl p-6 border border-emerald-200/70 card-hover space-y-4">
+            <div class="w-14 h-14 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy">Project-Based Learning</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Real-world thematic problem-solving challenges, team collaboration cycles, innovation showcases, and hackathons.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="text-center mt-10">
+          <a href="#demo" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-brand-navy hover:bg-brand-darknavy text-white text-sm font-bold shadow-md hover:shadow-lg transition-all duration-200">
+            <span>Explore All Modules</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. BOOK A FREE STEMBOT DEMO FORM SECTION (Peach Background)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-[#fedecf] border-y border-brand-orange/20" id="demo">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-brand-orange text-xs font-bold uppercase tracking-wider shadow-sm">
+            See the buzz in action
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
+            Book a Free STEMbot Demo
+          </h2>
+          <p class="text-sm sm:text-base text-slate-700">
+            Tell us about your school and our education specialist team will help design the right STEM experience for your learners.
+          </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto bg-white/95 rounded-3xl p-6 sm:p-10 shadow-xl border border-white/80">
+          <form class="space-y-5" onsubmit="event.preventDefault(); alert('Thank you! Our STEM team will contact your school shortly.');">
+            
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">School Name *</label>
+              <input type="text" required placeholder="e.g. National Public School" 
+                     class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Contact Person *</label>
+                <input type="text" required placeholder="Your full name" 
+                       class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Email Address *</label>
+                <input type="email" required placeholder="principal@school.edu.in" 
+                       class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Phone Number *</label>
+                <input type="tel" required placeholder="+91 98765 43210" 
+                       class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">City *</label>
+                <input type="text" required placeholder="e.g. Bengaluru, Mumbai, Delhi" 
+                       class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">State</label>
+                <input type="text" placeholder="e.g. Karnataka" 
+                       class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">School Board *</label>
+                <select required class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all">
+                  <option value="">Select Board</option>
+                  <option value="cbse">CBSE</option>
+                  <option value="icse">ICSE</option>
+                  <option value="cambridge">Cambridge / IGCSE</option>
+                  <option value="ib">IB</option>
+                  <option value="state">State Board</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Your Requirements / Message</label>
+              <textarea rows="3" placeholder="Tell us about student count, grade levels, or lab space..." 
+                        class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all"></textarea>
+            </div>
+
+            <div class="pt-2">
+              <button type="submit" class="w-full sm:w-auto px-10 py-3.5 rounded-xl bg-brand-navy hover:bg-brand-darknavy text-white text-sm font-bold shadow-md hover:shadow-xl transition-all duration-200">
+                Submit Demo Request
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         7. WHY SCHOOLS & PARENTS CHOOSE US SECTION (Lavender Background)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-[#e5e4fe] border-b border-brand-navy/10">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 text-brand-navy text-xs font-bold uppercase tracking-wider shadow-sm">
+            Trusted by educators
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
+            Why Schools And Parents Choose Us
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Left Column: 2 Cards -->
+          <div class="lg:col-span-4 space-y-5">
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-brand-navy/10 card-hover space-y-2">
+              <h3 class="text-base font-bold text-brand-navy">Complete Connected Ecosystem</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Lab infrastructure, progressive grade curriculum, hardware kits, and teacher mentorship in one cohesive solution.
+              </p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-brand-navy/10 card-hover space-y-2">
+              <h3 class="text-base font-bold text-brand-navy">Active Student Engagement</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Hands-on tactile projects make learning interactive, memorable, and immensely fun for every student.
+              </p>
+            </div>
+          </div>
+
+          <!-- Center Column: Photo Card -->
+          <div class="lg:col-span-4">
+            <div class="rounded-3xl overflow-hidden border-2 border-brand-navy/20 shadow-xl aspect-[3/4] bg-slate-900 group">
+              <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=85" 
+                   alt="Students conducting scientific experiment in classroom" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+          </div>
+
+          <!-- Right Column: 2 Cards -->
+          <div class="lg:col-span-4 space-y-5">
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-brand-navy/10 card-hover space-y-2">
+              <h3 class="text-base font-bold text-brand-navy">Teacher-Friendly Curriculum</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Step-by-step lesson plans, digital slide decks, assessment rubrics, and continuous classroom guidance.
+              </p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-brand-navy/10 card-hover space-y-2">
+              <h3 class="text-base font-bold text-brand-navy">Measurable Learning Outcomes</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Build verifiable skills and tangible student project portfolios aligned with NEP & international benchmarks.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         8. STEM LEARNING PROGRAMS / KITS (Peach Background)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-[#fee2d5]" id="products">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-brand-orange text-xs font-bold uppercase tracking-wider shadow-sm">
+            Explore our full range
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
+            STEM Learning Programs
+          </h2>
+          <p class="text-base text-slate-700">
+            Hands-on STEM modules and kits designed for different age groups, learning levels, and curriculum goals.
+          </p>
+        </div>
+
+        <!-- 8 Product Kits Grid (4x2) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Kit 1 -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-brand-orange/20 shadow-md card-hover flex flex-col">
+            <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=600&q=80" 
+                   alt="Junior Robotics Kit" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-peach text-brand-orange text-[11px] font-bold">Grades 1–3</span>
+                <h3 class="font-bold text-base text-brand-navy mt-1.5">Junior Robotics</h3>
+                <p class="text-xs text-slate-500">Foundational mechanics, gears, and block coding adventures.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kit 2 -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-brand-orange/20 shadow-md card-hover flex flex-col">
+            <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=600&q=80" 
+                   alt="Maker Lab Kit" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-lavender text-brand-navy text-[11px] font-bold">Grades 4–6</span>
+                <h3 class="font-bold text-base text-brand-navy mt-1.5">Maker Lab</h3>
+                <p class="text-xs text-slate-500">Mechanical contraptions, linkages, and creative design tools.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kit 3 -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-brand-orange/20 shadow-md card-hover flex flex-col">
+            <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=600&q=80" 
+                   alt="AI & Coding Kit" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-blue text-blue-800 text-[11px] font-bold">Grades 6–8</span>
+                <h3 class="font-bold text-base text-brand-navy mt-1.5">AI & Coding</h3>
+                <p class="text-xs text-slate-500">Block to text programming, algorithms, and AI vision projects.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kit 4 -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-brand-orange/20 shadow-md card-hover flex flex-col">
+            <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80" 
+                   alt="Advanced Robotics Kit" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-peach text-brand-orange text-[11px] font-bold">Grades 8–12</span>
+                <h3 class="font-bold text-base text-brand-navy mt-1.5">Advanced Robotics</h3>
+                <p class="text-xs text-slate-500">Microcontrollers, IoT autonomous rovers, and sensor arrays.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kit 5 -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-brand-orange/20 shadow-md card-hover flex flex-col">
+            <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80" 
+                   alt="Science Exploration Lab" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">Experiential</span>
+                <h3 class="font-bold text-base text-brand-navy mt-1.5">Science Lab</h3>
+                <p class="text-xs text-slate-500">Hands-on physics, chemistry, and environmental experiments.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kit 6 -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-brand-orange/20 shadow-md card-hover flex flex-col">
+            <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80" 
+                   alt="3D Design & Prototyping" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 text-[11px] font-bold">3D Modeling</span>
+                <h3 class="font-bold text-base text-brand-navy mt-1.5">3D Design & Printing</h3>
+                <p class="text-xs text-slate-500">CAD fundamentals, 3D pens, and prototype manufacturing.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kit 7 -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-brand-orange/20 shadow-md card-hover flex flex-col">
+            <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=600&q=80" 
+                   alt="Smart Electronics" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-800 text-[11px] font-bold">Electronics</span>
+                <h3 class="font-bold text-base text-brand-navy mt-1.5">Smart Electronics</h3>
+                <p class="text-xs text-slate-500">Breadboard circuits, digital logic gates, and sensor alarms.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kit 8 -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-brand-orange/20 shadow-md card-hover flex flex-col">
+            <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80" 
+                   alt="Innovation Challenges" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-cyan-100 text-cyan-800 text-[11px] font-bold">Competition</span>
+                <h3 class="font-bold text-base text-brand-navy mt-1.5">Innovation Challenges</h3>
+                <p class="text-xs text-slate-500">Inter-school project hackathons and robotics olympiad kits.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         9. A CURRICULUM THAT SPARKS GENIUS (White Background)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-white">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          <!-- Left Text Content -->
+          <div class="lg:col-span-6 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-peach text-brand-orange text-xs font-bold uppercase tracking-wider">
+              A curriculum that sparks genius
+            </div>
+
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy leading-tight">
+              A Curriculum That Sparks Curiosity
+            </h2>
+
+            <p class="text-base text-slate-600 leading-relaxed">
+              Structured learning journeys combine fundamental scientific concepts, exciting hands-on builds, and reflective discussions so students progressively develop deep STEM competencies across each grade level.
+            </p>
+
+            <div class="pt-2">
+              <a href="#demo" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-brand-navy hover:bg-brand-darknavy text-white text-sm font-bold shadow-md hover:shadow-lg transition-all duration-200">
+                <span>View Curriculum</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Image -->
+          <div class="lg:col-span-6">
+            <div class="rounded-3xl overflow-hidden border-2 border-brand-navy/15 shadow-xl aspect-[4/3] bg-slate-900 group">
+              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=85" 
+                   alt="Student focused on wiring robotics board" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         10. INNOVATION IN ACTION GALLERY (Lavender Background)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-[#e7e6ff] border-y border-brand-navy/10">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-10 gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-brand-navy text-xs font-bold uppercase tracking-wider shadow-sm mb-2">
+              Innovation in action
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
+              Innovation In Action
+            </h2>
+          </div>
+
+          <!-- Nav Buttons -->
+          <div class="flex items-center gap-3">
+            <button class="w-10 h-10 rounded-full bg-white hover:bg-brand-navy hover:text-white text-brand-navy shadow-md flex items-center justify-center text-sm transition-colors">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="w-10 h-10 rounded-full bg-white hover:bg-brand-navy hover:text-white text-brand-navy shadow-md flex items-center justify-center text-sm transition-colors">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 5 Photos Grid / Row -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          
+          <div class="rounded-2xl overflow-hidden border-2 border-white shadow-md aspect-[3/4] bg-slate-800 group">
+            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80" 
+                 alt="STEM lab wall branding and learning stations" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+
+          <div class="rounded-2xl overflow-hidden border-2 border-white shadow-md aspect-[3/4] bg-slate-800 group">
+            <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=600&q=80" 
+                 alt="Mobile robotic testing station in class" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+
+          <div class="rounded-2xl overflow-hidden border-2 border-white shadow-md aspect-[3/4] bg-slate-800 group col-span-2 sm:col-span-1">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" 
+                 alt="Teacher assisting young students with robotics project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+
+          <div class="rounded-2xl overflow-hidden border-2 border-white shadow-md aspect-[3/4] bg-slate-800 group">
+            <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=600&q=80" 
+                 alt="Robotics toolkit with electronic parts and sensors" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+
+          <div class="rounded-2xl overflow-hidden border-2 border-white shadow-md aspect-[3/4] bg-slate-800 group">
+            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" 
+                 alt="High school students collaborating on technology project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         11. BUILDING SKILLS THAT LAST (White Background)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-white">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          <!-- Left Image: Students testing robotic rover -->
+          <div class="lg:col-span-6 order-2 lg:order-1">
+            <div class="rounded-3xl overflow-hidden border-2 border-brand-navy/15 shadow-xl aspect-[4/3] bg-slate-900 group">
+              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=85" 
+                   alt="Students collaborating and testing robotic car" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+          </div>
+
+          <!-- Right Text Content -->
+          <div class="lg:col-span-6 space-y-6 order-1 lg:order-2">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-lavender text-brand-navy text-xs font-bold uppercase tracking-wider">
+              Building skills that last
+            </div>
+
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy leading-tight">
+              Learning Today. Creating Tomorrow.
+            </h2>
+
+            <p class="text-base text-slate-600 leading-relaxed">
+              Students leave the lab with far more than textbook knowledge — they cultivate genuine curiosity, resilience, problem-solving confidence, and the collaborative spirit required to thrive in a rapidly changing world.
+            </p>
+
+            <div class="pt-2">
+              <a href="#demo" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-brand-navy hover:bg-brand-darknavy text-white text-sm font-bold shadow-md hover:shadow-lg transition-all duration-200">
+                <span>Start Your STEM Journey</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         12. WHAT SCHOOLS SAY / TESTIMONIALS (Light Blue Background)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-[#e2ecfd] border-y border-blue-200">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-12 gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-blue-700 text-xs font-bold uppercase tracking-wider shadow-sm mb-2">
+              What schools say
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
+              Voices of Transformation
+            </h2>
+          </div>
+
+          <!-- Nav Buttons -->
+          <div class="flex items-center gap-3">
+            <button class="w-10 h-10 rounded-full bg-white hover:bg-brand-navy hover:text-white text-brand-navy shadow-md flex items-center justify-center text-sm transition-colors">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="w-10 h-10 rounded-full bg-white hover:bg-brand-navy hover:text-white text-brand-navy shadow-md flex items-center justify-center text-sm transition-colors">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Testimonial 1 -->
+          <div class="bg-white rounded-2xl p-6 shadow-md border border-blue-100 flex flex-col justify-between space-y-4 card-hover">
+            <div class="space-y-3">
+              <i class="fa-solid fa-quote-left text-2xl text-blue-400"></i>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                “The hands-on approach has completely transformed how our students engage with science and technology concepts. They look forward to every STEM period.”
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100">
+              <div class="text-xs font-bold text-brand-navy">School Leadership Team</div>
+              <div class="text-[11px] text-slate-500">St. Mary's Academy</div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 (Event Photo) -->
+          <div class="rounded-2xl overflow-hidden border-2 border-white shadow-md aspect-[3/4] bg-slate-800 group">
+            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80" 
+                 alt="School leadership team at STEM lab inauguration" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="bg-white rounded-2xl p-6 shadow-md border border-blue-100 flex flex-col justify-between space-y-4 card-hover">
+            <div class="space-y-3">
+              <i class="fa-solid fa-quote-left text-2xl text-blue-400"></i>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                “Students are excited to collaborate, code their rovers, and build models from scratch. The excitement and pride in their projects is wonderful to watch.”
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100">
+              <div class="text-xs font-bold text-brand-navy">STEM Coordinator</div>
+              <div class="text-[11px] text-slate-500">Greenwood Global School</div>
+            </div>
+          </div>
+
+          <!-- Testimonial 4 -->
+          <div class="bg-white rounded-2xl p-6 shadow-md border border-blue-100 flex flex-col justify-between space-y-4 card-hover">
+            <div class="space-y-3">
+              <i class="fa-solid fa-quote-left text-2xl text-blue-400"></i>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                “The structured curriculum and continuous teacher training made the entire implementation seamless for our faculty across all grades.”
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100">
+              <div class="text-xs font-bold text-brand-navy">Academic Director</div>
+              <div class="text-[11px] text-slate-500">Delhi Public School</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Dots indicator -->
+        <div class="mt-8 flex justify-center items-center gap-2">
+          <div class="w-8 h-1.5 rounded-full bg-brand-navy"></div>
+          <div class="w-2.5 h-1.5 rounded-full bg-brand-navy/30"></div>
+          <div class="w-2.5 h-1.5 rounded-full bg-brand-navy/30"></div>
+          <div class="w-2.5 h-1.5 rounded-full bg-brand-navy/30"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         13. IMPLEMENTATION PROCESS (8 Sticky Notes / Post-Its)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-white" id="process">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-peach text-brand-orange text-xs font-bold uppercase tracking-wider">
+            Simple to implement
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
+            Implementation Process
+          </h2>
+        </div>
+
+        <!-- 8 Sticky Note Cards Grid (4x2) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 pt-4">
+          
+          <!-- Step 01: Discover (Peach Note) -->
+          <div class="bg-[#fff1ea] rounded-2xl p-6 shadow-md border border-orange-200 relative card-hover">
+            <!-- Red Pin -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-red-500 pin-shadow flex items-center justify-center text-[10px] text-white border-2 border-white">
+              <i class="fa-solid fa-thumbtack text-[8px]"></i>
+            </div>
+            <div class="text-3xl font-black text-brand-orange mb-2">01</div>
+            <h3 class="font-bold text-base text-brand-navy mb-1.5">Discover</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Understand school vision, student strength, grade targets, and available lab space.
+            </p>
+          </div>
+
+          <!-- Step 02: Design (Purple Note) -->
+          <div class="bg-[#f2efff] rounded-2xl p-6 shadow-md border border-purple-200 relative card-hover">
+            <!-- Purple Pin -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-purple-600 pin-shadow flex items-center justify-center text-[10px] text-white border-2 border-white">
+              <i class="fa-solid fa-thumbtack text-[8px]"></i>
+            </div>
+            <div class="text-3xl font-black text-purple-600 mb-2">02</div>
+            <h3 class="font-bold text-base text-brand-navy mb-1.5">Design</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Plan custom lab layout, equipment list, learning stations, and curriculum mapping.
+            </p>
+          </div>
+
+          <!-- Step 03: Install (Pink Note) -->
+          <div class="bg-[#ffe8f0] rounded-2xl p-6 shadow-md border border-pink-200 relative card-hover">
+            <!-- Pink Pin -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-pink-500 pin-shadow flex items-center justify-center text-[10px] text-white border-2 border-white">
+              <i class="fa-solid fa-thumbtack text-[8px]"></i>
+            </div>
+            <div class="text-3xl font-black text-pink-600 mb-2">03</div>
+            <h3 class="font-bold text-base text-brand-navy mb-1.5">Install</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Setup hardware, testing tables, storage cabinets, toolkits, and lab wall branding.
+            </p>
+          </div>
+
+          <!-- Step 04: Launch (Green Note) -->
+          <div class="bg-[#e4faed] rounded-2xl p-6 shadow-md border border-emerald-200 relative card-hover">
+            <!-- Green Pin -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-emerald-500 pin-shadow flex items-center justify-center text-[10px] text-white border-2 border-white">
+              <i class="fa-solid fa-thumbtack text-[8px]"></i>
+            </div>
+            <div class="text-3xl font-black text-emerald-600 mb-2">04</div>
+            <h3 class="font-bold text-base text-brand-navy mb-1.5">Launch</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Conduct educator onboarding, teacher workshops, and kick off student project sessions.
+            </p>
+          </div>
+
+          <!-- Step 05: Engage (Orange Note) -->
+          <div class="bg-[#fff1ea] rounded-2xl p-6 shadow-md border border-orange-200 relative card-hover">
+            <!-- Orange Pin -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-orange-500 pin-shadow flex items-center justify-center text-[10px] text-white border-2 border-white">
+              <i class="fa-solid fa-thumbtack text-[8px]"></i>
+            </div>
+            <div class="text-3xl font-black text-brand-orange mb-2">05</div>
+            <h3 class="font-bold text-base text-brand-navy mb-1.5">Engage</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Run weekly hands-on experiments, robotics challenges, coding cycles, and making.
+            </p>
+          </div>
+
+          <!-- Step 06: Measure (Blue Note) -->
+          <div class="bg-[#ebf3ff] rounded-2xl p-6 shadow-md border border-blue-200 relative card-hover">
+            <!-- Blue Pin -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-blue-600 pin-shadow flex items-center justify-center text-[10px] text-white border-2 border-white">
+              <i class="fa-solid fa-thumbtack text-[8px]"></i>
+            </div>
+            <div class="text-3xl font-black text-blue-600 mb-2">06</div>
+            <h3 class="font-bold text-base text-brand-navy mb-1.5">Measure</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Track student portfolios, rubric assessments, participation stats, and outcomes.
+            </p>
+          </div>
+
+          <!-- Step 07: Showcase (Purple Note) -->
+          <div class="bg-[#f2efff] rounded-2xl p-6 shadow-md border border-purple-200 relative card-hover">
+            <!-- Purple Pin -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-purple-600 pin-shadow flex items-center justify-center text-[10px] text-white border-2 border-white">
+              <i class="fa-solid fa-thumbtack text-[8px]"></i>
+            </div>
+            <div class="text-3xl font-black text-purple-600 mb-2">07</div>
+            <h3 class="font-bold text-base text-brand-navy mb-1.5">Showcase</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Celebrate student innovations at annual school STEM expos, parent demos, and fairs.
+            </p>
+          </div>
+
+          <!-- Step 08: Scale (Green Note) -->
+          <div class="bg-[#e4faed] rounded-2xl p-6 shadow-md border border-emerald-200 relative card-hover">
+            <!-- Green Pin -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-emerald-500 pin-shadow flex items-center justify-center text-[10px] text-white border-2 border-white">
+              <i class="fa-solid fa-thumbtack text-[8px]"></i>
+            </div>
+            <div class="text-3xl font-black text-emerald-600 mb-2">08</div>
+            <h3 class="font-bold text-base text-brand-navy mb-1.5">Scale</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Expand innovation modules across additional grades and enter national STEM competitions.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         14. FREQUENTLY ASKED QUESTIONS (Peach Background)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-[#fedecf] border-y border-brand-orange/20" id="faq">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-brand-orange text-xs font-bold uppercase tracking-wider shadow-sm">
+            Frequently asked questions
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        <div class="space-y-3.5">
+          
+          <details class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-brand-orange/15 group cursor-pointer" open>
+            <summary class="flex justify-between items-center font-bold text-base text-brand-navy list-none">
+              <span>What is a STEM lab?</span>
+              <span class="faq-icon transition-transform duration-200 text-brand-orange ml-4 flex-shrink-0">
+                <i class="fa-solid fa-chevron-down"></i>
+              </span>
+            </summary>
+            <p class="text-sm text-slate-600 leading-relaxed mt-3 pt-3 border-t border-slate-100">
+              A dedicated, hands-on learning environment equipped with robotics kits, electronic tools, 3D prototyping gear, and structured curricula where students explore science, technology, engineering, and mathematics through experiential projects.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-brand-orange/15 group cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-base text-brand-navy list-none">
+              <span>Which grades can use the STEM lab?</span>
+              <span class="faq-icon transition-transform duration-200 text-brand-orange ml-4 flex-shrink-0">
+                <i class="fa-solid fa-chevron-down"></i>
+              </span>
+            </summary>
+            <p class="text-sm text-slate-600 leading-relaxed mt-3 pt-3 border-t border-slate-100">
+              Our STEMbot programs are designed for learners across Grades 1 through 12, featuring age-appropriate kits, progressive projects, and curriculum modules tailored for primary, middle, and senior school students.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-brand-orange/15 group cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-base text-brand-navy list-none">
+              <span>Do you provide teacher training and lesson plans?</span>
+              <span class="faq-icon transition-transform duration-200 text-brand-orange ml-4 flex-shrink-0">
+                <i class="fa-solid fa-chevron-down"></i>
+              </span>
+            </summary>
+            <p class="text-sm text-slate-600 leading-relaxed mt-3 pt-3 border-t border-slate-100">
+              Yes! Implementation includes comprehensive teacher onboarding workshops, certified training modules, step-by-step teacher manuals, slide decks, and ongoing pedagogical support throughout the academic year.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-brand-orange/15 group cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-base text-brand-navy list-none">
+              <span>How long does implementation take?</span>
+              <span class="faq-icon transition-transform duration-200 text-brand-orange ml-4 flex-shrink-0">
+                <i class="fa-solid fa-chevron-down"></i>
+              </span>
+            </summary>
+            <p class="text-sm text-slate-600 leading-relaxed mt-3 pt-3 border-t border-slate-100">
+              A standard lab implementation typically takes 2 to 4 weeks from space assessment to complete hardware installation, calibration, and initial teacher training.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-brand-orange/15 group cursor-pointer">
+            <summary class="flex justify-between items-center font-bold text-base text-brand-navy list-none">
+              <span>Can the curriculum be customized to our school board?</span>
+              <span class="faq-icon transition-transform duration-200 text-brand-orange ml-4 flex-shrink-0">
+                <i class="fa-solid fa-chevron-down"></i>
+              </span>
+            </summary>
+            <p class="text-sm text-slate-600 leading-relaxed mt-3 pt-3 border-t border-slate-100">
+              Absolutely. Our curriculum modules are flexible and mapped to CBSE, ICSE, Cambridge, IB, and State Board academic standards and NEP 2020 experiential learning guidelines.
+            </p>
+          </details>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         15. TRANSFORM HOW STUDENTS LEARN STEM (CTA Banner Card)
+         ========================================================================= -->
+    <section class="py-16 lg:py-24 bg-white">
+      <div class="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-gradient-to-r from-[#e3ecfe] via-[#edf3ff] to-[#f4f7ff] border border-blue-200 rounded-3xl p-8 sm:p-12 shadow-lg overflow-hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-7 space-y-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider">
+                Ready to transform?
+              </div>
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy leading-tight">
+                Transform How Students Learn STEM
+              </h2>
+              <p class="text-sm sm:text-base text-slate-600 max-w-lg leading-relaxed">
+                Bring hands-on innovation, problem-solving confidence, and future-ready capabilities to your classrooms today.
+              </p>
+              <div class="pt-2">
+                <a href="#demo" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-brand-navy hover:bg-brand-darknavy text-white text-sm font-bold shadow-md hover:shadow-xl transition-all duration-200">
+                  <span>Book a Demo</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5">
+              <div class="rounded-2xl overflow-hidden shadow-md border-2 border-white aspect-[4/3] bg-slate-900 group">
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=85" 
+                     alt="Hands connecting electronic breadboard components" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Shared Footer -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Load shared config & nav scripts -->
+  <script src="./components/config.js"></script>
+  <script src="./components/nav.js"></script>
+
+</body>
+
+</html>

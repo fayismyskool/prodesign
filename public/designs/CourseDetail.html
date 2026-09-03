@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Course Details - Skillvation</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+
+    <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            primary: '#1976d2',
+            'primary-light': '#4791db',
+            'primary-dark': '#115293',
+            surface: '#ffffff',
+            'surface-container': '#f9fafb',
+            'on-surface': '#1f2937',
+            'on-surface-variant': '#4b5563',
+            outline: '#e5e7eb',
+          },
+          spacing: {
+            'section-gap': '4rem',
+            'gutter': '2rem',
+            'margin-mobile': '1rem',
+          },
+          maxWidth: {
+            'container-max': '1280px',
+          },
+          borderRadius: {
+            'card': '0.5rem',
+            'image': '1rem',
+          }
+        }
+      }
+    }
+  </script>
+   
+    <style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: theme('colors.background');
+            color: theme('colors.text-primary');
+        }
+
+        .nav-link {
+            transition: color 0.2s ease-in-out;
+        }
+
+        .nav-link:hover {
+            color: theme('colors.primary');
+        }
+
+        .btn-primary {
+            background-color: theme('colors.primary');
+            color: theme('colors.on-primary');
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            border: 1px solid theme('colors.primary');
+            color: theme('colors.primary');
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-outline:hover {
+            background-color: theme('colors.surface-container');
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-content.expanded {
+            max-height: 500px;
+        }
+    </style>
+</head>
+
+<body class="antialiased overflow-x-hidden">
+
+  <!-- Shared Header -->
+  <div id="header-placeholder"></div>
+
+    <main class="flex-grow pt-28 pb-20">
+        <div class="max-w-[1200px] mx-auto px-gutter space-y-12">
+            <!-- Hero Image Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[400px]">
+                <!-- Main Featured Image -->
+                <div
+                    class="md:col-span-8 h-[300px] md:h-full rounded-xl overflow-hidden relative border border-surface-border">
+                    <div class="bg-cover bg-center w-full h-full"
+                        id="course-main-image"
+                        style="background-image: url('./img/TTT-1.png')">
+                    </div>
+                </div>
+                <!-- Side Images Stack -->
+                <div class="md:col-span-4 flex flex-col gap-6 h-full">
+                    <div class="h-1/2 rounded-xl overflow-hidden relative border border-surface-border">
+                        <div class="bg-cover bg-center w-full h-full"
+                            id="course-side-image-1"
+                            style="background-image: url('./img/TTT-1.png')">
+                        </div>
+                    </div>
+                    <div class="h-1/2 rounded-xl overflow-hidden relative border border-surface-border">
+                        <div class="bg-cover bg-center w-full h-full"
+                            id="course-side-image-2"
+                            style="background-image: url('./img/TTT-1.png')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Course Content & Sidebar -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 pt-8">
+                <!-- Main Left Column (2/3) -->
+                <div class="md:col-span-8 space-y-10">
+                    <div>
+                        <h1 id="course-title" class="text-4xl font-bold text-gray-900 mb-8"></h1>
+                        <div class="space-y-4">
+                            <h2 class="text-2xl font-bold text-gray-900">Description</h2>
+                            <p id="course-description" class="text-base text-gray-600 leading-relaxed">
+                                
+                            </p>
+                            <!-- <p class="font-body-md text-body-md text-text-muted leading-relaxed mt-4">
+                                A 2-day Faculty Development Programme designed to enhance teaching skills through 3D and
+                                AI platform practice sessions. Available in Online and Offline mode.
+                            </p> -->
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h2 class="text-2xl font-bold text-gray-900">Learning Outcome</h2>
+                        <!-- Learning outcomes content would go here -->
+                        <div
+                            class="p-6 bg-gray-50 rounded-xl border border-gray-200">
+                            <p id="course-short-description" class="text-gray-600 leading-relaxed"></p>
+                        </div>
+                    </div>
+                    <!-- Ratings & Reviews Section -->
+                    <div class="pt-8 border-t border-surface-border">
+                        <h2 class="font-headline-lg text-headline-lg text-text-primary mb-8">Ratings and Review</h2>
+                        <div class="space-y-8">
+                            <!-- Review 1 -->
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden border border-surface-border">
+                                        <img alt="Lavanya S" class="w-full h-full object-cover"
+                                            src="https://lh3.googleusercontent.com/aida/AEtjO1VVeqCXCplQg833w5ko86uRvXEyqsuW7AHkTpXcxKNA-5pG8xbD49PLO3DRAZekBo-cLnqqjrpDfxn_I9cqKev_1_Fz0UBhK05qLV1KdNyIdynD06y5Sy2gLGNguov3SMnFkFGQkzEzsLdUUJ9tfDhQVJooVccSWMLke0e_ILlIdrJXS22g3qC4Or1fjeD4U-UqU-zS-vu90ZR8GddKwkHzkbYJOIMlhNh8o4BKVfpNosKA59OODltuxqs" />
+                                    </div>
+                                    <div>
+                                        <h4 class="font-headline-md text-headline-md text-text-primary">Lavanya S</h4>
+                                        <div class="flex text-[#FFC107] text-sm">
+                                            <span class="material-symbols-outlined"
+                                                style="font-variation-settings: 'FILL' 1;">star</span>
+                                            <span class="material-symbols-outlined"
+                                                style="font-variation-settings: 'FILL' 1;">star</span>
+                                            <span class="material-symbols-outlined"
+                                                style="font-variation-settings: 'FILL' 1;">star</span>
+                                            <span class="material-symbols-outlined"
+                                                style="font-variation-settings: 'FILL' 1;">star</span>
+                                            <span class="material-symbols-outlined"
+                                                style="font-variation-settings: 'FILL' 1;">star</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="font-body-md text-body-md text-text-muted leading-relaxed">
+                                    Skillvation has made professional development so much easier for me. The courses are
+                                    practical, engaging, and easy to follow. I have learned several new classroom
+                                    strategies that keep my students more involved, and the AI sessions have
+                                    significantly reduced the time I spend preparing teaching materials.
+                                </p>
+                            </div>
+                            <!-- Review 2 -->
+                            <div class="space-y-3 pt-6 border-t border-surface-border">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden border border-surface-border">
+                                        <img alt="Arthi K" class="w-full h-full object-cover"
+                                            src="https://lh3.googleusercontent.com/aida/AEtjO1U8BzI1Qp0QRWRVj-P83nNFrJtVDJfmDhorZ9ejvcKF7o155ChR6l5wP937YirKN-tJCyRs8-DqV1iQHgi48qM2ytAMwsleCP-0IXP1q2VKmD5nd4L-dWrQyFEDjT7WgtXBiXHd8thTGIvg-PEhAxkUkj1_0EcF7UvkNxN_8xP-SvUzfddMxwjSuWlaOta5ewIE50yryc-aBthFdT50R2wGkezs7ATX3Pv0L9i6inHAw1iB5fRCOudq0hA" />
+                                    </div>
+                                    <div>
+                                        <h4 class="font-headline-md text-headline-md text-text-primary">Arthi K</h4>
+                                        <div class="flex text-[#FFC107] text-sm">
+                                            <span class="material-symbols-outlined"
+                                                style="font-variation-settings: 'FILL' 1;">star</span>
+                                            <span class="material-symbols-outlined"
+                                                style="font-variation-settings: 'FILL' 1;">star</span>
+                                            <span class="material-symbols-outlined"
+                                                style="font-variation-settings: 'FILL' 1;">star</span>
+                                            <span class="material-symbols-outlined"
+                                                style="font-variation-settings: 'FILL' 1;">star</span>
+                                            <span class="material-symbols-outlined"
+                                                style="font-variation-settings: 'FILL' 1;">star</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="font-body-md text-body-md text-text-muted leading-relaxed">
+                                    Joining Skillvation has been one of the best decisions for my teaching career. The
+                                    workshops are well-structured, the mentors are knowledgeable, and the learning
+                                    resources are excellent. Every session gives me ideas that I can immediately apply
+                                    in my classroom, making teaching more effective and enjoyable.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sticky Sidebar Right Column (1/3) -->
+                <div class="md:col-span-4 relative">
+                    <div class="sticky top-28">
+                        <div
+                            class="bg-surface-container-lowest border border-surface-border rounded-xl p-6 card-hover flex flex-col gap-6">
+                            <p class="text-sm text-gray-500 mb-1">Course Price</p>
+                            <p id="sidebar-price" class="text-3xl font-bold text-gray-900"> </p>
+                            <!-- Accordion Header -->
+                            <!-- <button
+                                class="flex items-center justify-between w-full text-left bg-surface-container-low p-4 rounded-lg hover:bg-surface-container transition-colors"
+                                onclick="document.getElementById('syllabus-content').classList.toggle('expanded'); this.querySelector('.material-symbols-outlined').classList.toggle('rotate-180')">
+                                <span class="font-headline-md text-headline-md text-text-primary text-lg">Day 1 –
+                                    Foundations of AI &amp; 3D Integrated Teaching</span>
+                                <span
+                                    class="material-symbols-outlined text-text-muted transition-transform duration-300">expand_more</span>
+                            </button> -->
+                            <!-- Accordion Content (Hidden by default) -->
+                            <!-- <div class="accordion-content px-4" id="syllabus-content">
+                                <p class="font-body-md text-body-md text-text-muted pb-4">Detailed syllabus content for
+                                    Day 1 goes here...</p>
+                            </div> -->
+                            <!-- Action Button -->
+                            <button id="buy-now-btn" onclick="buyNow()"
+                                class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium w-full">
+                                Buy now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- BottomNavBar (from JSON) - Mobile Only -->
+    <nav
+        class="md:hidden bg-surface-container-lowest dark:bg-surface-dim fixed bottom-0 w-full z-50 border-t border-surface-border dark:border-outline-variant flat no shadows flex justify-around items-center h-20 pb-safe px-2">
+        <a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container rounded-full px-4 py-1 scale-90 transition-transform"
+            href="#">
+            <span class="material-symbols-outlined mb-1">info</span>
+            <span class="font-label-md text-label-md">Course</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors"
+            href="#">
+            <span class="material-symbols-outlined mb-1">menu_book</span>
+            <span class="font-label-md text-label-md">Syllabus</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors"
+            href="#">
+            <span class="material-symbols-outlined mb-1">star</span>
+            <span class="font-label-md text-label-md">Reviews</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors"
+            href="#">
+            <span class="material-symbols-outlined mb-1">request_quote</span>
+            <span class="font-label-md text-label-md">Quote</span>
+        </a>
+    </nav>
+
+    <!-- Shared Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Load shared header & footer -->
+    <script src="./components/config.js"></script>
+    <script src="./components/nav.js"></script>
+
+     <!-- ========================================= -->
+    <!-- COURSE API -->
+    <!-- ========================================= -->
+
+    <script>
+
+        const API_URL =
+            APP_CONFIG.COURSES_API_URL;
+
+
+        /*
+         * Get course ID from URL
+         *
+         * Example:
+         *
+         * CourseDetail.html?id=53
+         *
+         */
+
+        const urlParams =
+            new URLSearchParams(window.location.search);
+
+        const courseId =
+            urlParams.get('id');
+
+
+        /*
+         * Load course
+         */
+
+        async function loadCourse() {
+
+            if (!courseId) {
+
+                showError('Course ID is missing.');
+
+                return;
+
+            }
+
+
+            try {
+
+                console.log('Loading course ID:', courseId);
+
+
+                const response =
+                    await fetch(API_URL);
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        'API Error: ' + response.status
+                    );
+
+                }
+
+
+                const result =
+                    await response.json();
+
+
+                console.log('API Response:', result);
+
+
+                /*
+                 * API structure:
+                 *
+                 * result
+                 *   └── courses
+                 *        └── data
+                 */
+
+                const courses =
+                    result.courses?.data || [];
+
+
+                /*
+                 * Find requested course
+                 */
+
+                const course =
+                    courses.find(
+                        item =>
+                            String(item.id) ===
+                            String(courseId)
+                    );
+
+
+                if (!course) {
+
+                    showError(
+                        'Course with ID ' +
+                        courseId +
+                        ' was not found.'
+                    );
+
+                    return;
+
+                }
+
+
+                console.log(
+                    'Selected Course:',
+                    course
+                );
+
+
+                /*
+                 * Update page
+                 */
+
+                updateCourse(course);
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    'Course loading error:',
+                    error
+                );
+
+                showError(
+                    'Unable to load course details.'
+                );
+
+            }
+
+        }
+
+
+        /*
+         * Update HTML with API data
+         */
+
+        function updateCourse(course) {
+
+
+            // =========================================
+            // TITLE
+            // =========================================
+
+            document.title =
+                (course.title || 'Course') +
+                ' - Skillvation';
+
+
+            document.getElementById(
+                'course-title'
+            ).textContent =
+                course.title || '';
+
+
+            // =========================================
+            // DESCRIPTION
+            // =========================================
+
+            document.getElementById(
+                'course-description'
+            ).textContent =
+                course.description || 'No description available.';
+
+
+            // =========================================
+            // SHORT DESCRIPTION
+            // =========================================
+
+            document.getElementById(
+                'course-short-description'
+            ).textContent =
+                course.short_description || '';
+
+
+            // =========================================
+            // PRICE
+            // =========================================
+
+            const price =
+                Number(course.price || 0);
+
+
+            const formattedPrice =
+                '₹ ' +
+                price.toLocaleString('en-IN');
+
+
+            // document.getElementById(
+            //     'course-price'
+            // ).textContent =
+            //     formattedPrice;
+
+
+            document.getElementById(
+                'sidebar-price'
+            ).textContent =
+                formattedPrice;
+
+
+            // =========================================
+            // LOCATION
+            // =========================================
+
+            // const location =
+            //     course.location_name || '';
+
+
+            // document.getElementById(
+            //     'course-location'
+            // ).innerHTML = `
+            //     <span class="material-symbols-outlined text-lg">
+            //         location_on
+            //     </span>
+            //     ${escapeHtml(location)}
+            // `;
+
+
+            // document.getElementById(
+            //     'course-location-detail'
+            // ).textContent =
+            //     location || 'Not specified';
+
+
+            // =========================================
+            // START DATE
+            // =========================================
+
+            // document.getElementById(
+            //     'course-start-date'
+            // ).textContent =
+            //     formatDate(course.start_date);
+
+
+            // =========================================
+            // END DATE
+            // =========================================
+
+            // document.getElementById(
+            //     'course-end-date'
+            // ).textContent =
+            //     formatDate(course.end_date);
+
+
+            // =========================================
+            // ONLINE / OFFLINE
+            // =========================================
+
+            // const online =
+            //     Number(course.online);
+
+
+            // document.getElementById(
+            //     'course-online'
+            // ).innerHTML = `
+
+            //     <span class="material-symbols-outlined text-lg">
+            //         ${online ? 'wifi' : 'location_on'}
+            //     </span>
+
+            //     ${online ? 'Online' : 'Offline'}
+
+            // `;
+
+
+            // =========================================
+            // COURSE TYPE
+            // =========================================
+
+            // let typeText =
+            //     'Course';
+
+
+            // switch (Number(course.type)) {
+
+            //     case 3:
+            //         typeText =
+            //             'Milestone';
+            //         break;
+
+            //     case 4:
+            //         typeText =
+            //             'Recurring';
+            //         break;
+
+            //     case 6:
+            //         typeText =
+            //             'Online Recurring';
+            //         break;
+
+            //     case 7:
+            //         typeText =
+            //             'Online Milestone';
+            //         break;
+
+            //     case 8:
+            //         typeText =
+            //             'Course';
+            //         break;
+
+            // }
+
+
+            // document.getElementById(
+            //     'course-type'
+            // ).innerHTML = `
+
+            //     <span class="material-symbols-outlined text-lg">
+            //         school
+            //     </span>
+
+            //     ${typeText}
+
+            // `;
+
+
+            // =========================================
+            // MAIN IMAGE
+            // =========================================
+
+            setCourseImage('course-main-image', course.cover_image);
+
+            /*
+             * Use same image for side images
+             * until separate API images are available.
+             */
+
+            setCourseImage('course-side-image-1', course.cover_image);
+            setCourseImage('course-side-image-2', course.cover_image);
+
+
+            // =========================================
+            // REMOVE LOADING
+            // =========================================
+
+            // const loading =
+            //     document.getElementById(
+            //         'image-loading'
+            //     );
+
+            // if (loading) {
+
+            //     loading.remove();
+
+            // }
+
+        }
+
+
+        /*
+         * Image URL
+         *
+         * IMPORTANT:
+         *
+         * Change this path if your API stores images
+         * somewhere else.
+         */
+
+        function setCourseImage(
+            elementId,
+            imageName
+        ) {
+
+            if (!imageName) {
+
+                return;
+
+            }
+
+
+            const imageUrl =
+                APP_CONFIG.IMAGE_BASE_URL +
+                imageName;
+
+
+            const element =
+                document.getElementById(
+                    elementId
+                );
+
+
+            if (!element) {
+
+                return;
+
+            }
+
+
+            element.style.backgroundImage =
+                `url("${imageUrl}")`;
+
+        }
+
+
+        /*
+         * Format date
+         */
+
+        function formatDate(dateString) {
+
+            if (!dateString) {
+
+                return 'Not specified';
+
+            }
+
+
+            const date =
+                new Date(dateString);
+
+
+            if (isNaN(date.getTime())) {
+
+                return dateString;
+
+            }
+
+
+            return date.toLocaleDateString(
+                'en-IN',
+                {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                }
+            );
+
+        }
+
+
+        /*
+         * Accordion
+         */
+
+        function toggleSyllabus() {
+
+            const content =
+                document.getElementById(
+                    'syllabus-content'
+                );
+
+
+            const icon =
+                document.getElementById(
+                    'syllabus-icon'
+                );
+
+
+            content.classList.toggle(
+                'expanded'
+            );
+
+
+            icon.classList.toggle(
+                'rotate-180'
+            );
+
+        }
+
+
+        /*
+         * Error message
+         */
+
+        function showError(message) {
+
+            // Hide the main content area
+            document.querySelector('main .max-w-\\[1200px\\]').style.display = 'none';
+
+            // Build and inject a full-page error card
+            const errorHtml = `
+                <div style="
+                    min-height: 60vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 2rem;
+                ">
+                    <div style="
+                        background: #fff;
+                        border: 1px solid #e5e7eb;
+                        border-radius: 1rem;
+                        padding: 3rem 2.5rem;
+                        max-width: 480px;
+                        width: 100%;
+                        text-align: center;
+                        box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+                    ">
+                        <div style="
+                            width: 64px;
+                            height: 64px;
+                            background: #fef2f2;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin: 0 auto 1.5rem;
+                        ">
+                            <span class="material-symbols-outlined" style="
+                                font-size: 32px;
+                                color: #ef4444;
+                            ">error</span>
+                        </div>
+                        <h2 style="
+                            font-size: 1.4rem;
+                            font-weight: 700;
+                            color: #111827;
+                            margin: 0 0 0.75rem;
+                        ">Course Not Found</h2>
+                        <p style="
+                            font-size: 0.95rem;
+                            color: #6b7280;
+                            margin: 0 0 2rem;
+                            line-height: 1.6;
+                        ">${message}</p>
+                        <a href="javascript:history.back()" style="
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 0.4rem;
+                            background: #1976d2;
+                            color: #fff;
+                            padding: 0.6rem 1.4rem;
+                            border-radius: 9999px;
+                            font-size: 0.875rem;
+                            font-weight: 600;
+                            text-decoration: none;
+                        ">
+                            <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
+                            Go Back
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            const main = document.querySelector('main');
+            main.insertAdjacentHTML('afterbegin', errorHtml);
+
+        }
+
+
+        /*
+         * Basic HTML escaping
+         */
+
+        function escapeHtml(value) {
+
+            const div =
+                document.createElement('div');
+
+            div.textContent =
+                value || '';
+
+            return div.innerHTML;
+
+        }
+
+
+        /*
+         * START
+         */
+
+        loadCourse();
+
+    </script>
+
+    <script>
+        const CART_API_BASE = APP_CONFIG.APP_URL;
+
+        async function getCsrfToken() {
+            // Laravel sets XSRF-TOKEN cookie on any request
+            // Read it from the cookie if already set
+            const match = document.cookie.match(/XSRF-TOKEN=([^;]+)/);
+            if (match) return decodeURIComponent(match[1]);
+
+            // Otherwise fetch a lightweight route to seed the cookie
+            await fetch(`${CART_API_BASE}/sanctum/csrf-cookie`, { credentials: 'include' });
+            const match2 = document.cookie.match(/XSRF-TOKEN=([^;]+)/);
+            return match2 ? decodeURIComponent(match2[1]) : '';
+        }
+
+        async function buyNow() {
+            if (!courseId) {
+                alert('Course not loaded yet.');
+                return;
+            }
+
+            const btn = document.getElementById('buy-now-btn');
+            btn.disabled = true;
+            btn.textContent = 'Processing...';
+
+            try {
+                const csrf = await getCsrfToken();
+
+                const res = await fetch(
+                    `${CART_API_BASE}/add-to-cart-by-api-id/${courseId}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-XSRF-TOKEN': csrf,
+                        },
+                        credentials: 'include',
+                        body: JSON.stringify({}),
+                    }
+                );
+
+                const data = await res.json();
+
+                if (data.status === 'success' || data.status === 'already') {
+                    window.location.href = data.checkout_url || `${CART_API_BASE}/checkout`;
+                } else {
+                    alert(data.message || 'Something went wrong.');
+                    btn.disabled = false;
+                    btn.textContent = 'Buy now';
+                }
+            } catch (err) {
+                console.error('Buy now error:', err);
+                alert('Unable to process. Please try again.');
+                btn.disabled = false;
+                btn.textContent = 'Buy now';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
