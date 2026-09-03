@@ -117,6 +117,9 @@ Route::group(['middleware' => 'maintenance.mode'], function () {
                 $thumb = $course->thumbnail ? asset($course->thumbnail) : asset('designs/img/TTT-1.png');
                 $catName = $course->category?->translation?->name ?? 'Skill Courses';
                 $assignedType = is_numeric($course->type) ? (int)$course->type : ($type ? (int)$type : 8);
+                $effectivePrice = $course->discount > 0 ? (float)$course->discount : (float)$course->price;
+                $originalPrice = (float)$course->price;
+                $hasDiscount = $course->discount > 0 && $course->discount < $course->price;
 
                 return [
                     'id' => $course->id,
@@ -127,8 +130,12 @@ Route::group(['middleware' => 'maintenance.mode'], function () {
                     'slug' => $course->slug,
                     'description' => strip_tags($course->description ?? ''),
                     'short_description' => $course->short_description ?? '',
-                    'price' => (float) $course->price,
-                    'formatted_price' => '₹ ' . number_format($course->price, 0),
+                    'price' => $effectivePrice,
+                    'formatted_price' => $effectivePrice > 0 ? '₹ ' . number_format($effectivePrice, 0) : 'Free',
+                    'original_price' => $originalPrice,
+                    'formatted_original_price' => '₹ ' . number_format($originalPrice, 0),
+                    'discount' => (float) $course->discount,
+                    'has_discount' => $hasDiscount,
                     'cover_image' => $thumb,
                     'image' => $thumb,
                     'thumbnail' => $thumb,

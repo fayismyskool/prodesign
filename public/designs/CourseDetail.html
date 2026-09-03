@@ -372,7 +372,7 @@
                  */
 
                 const courses =
-                    result.courses?.data || [];
+                    result.courses?.data || result.data || (Array.isArray(result) ? result : []);
 
 
                 /*
@@ -382,8 +382,9 @@
                 const course =
                     courses.find(
                         item =>
-                            String(item.id) ===
-                            String(courseId)
+                            String(item.id) === String(courseId) ||
+                            String(item.course_id) === String(courseId) ||
+                            String(item.slug) === String(courseId)
                     );
 
 
