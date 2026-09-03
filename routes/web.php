@@ -61,8 +61,12 @@ Route::group(['middleware' => 'maintenance.mode'], function () {
         return view('frontend.home-four.pages.ttt');
     })->name('ttt');
 
-    Route::get('/course-detail/{id}', function () {
-        return view('frontend.home-four.pages.course-detail');
+    Route::get('/course-detail/{id}', function ($id) {
+        $course = \App\Models\Course::with(['category.translation', 'instructor', 'chapters.chapterItems', 'reviews.user'])->find($id);
+        if (!$course) {
+            $course = \App\Models\Course::with(['category.translation', 'instructor', 'chapters.chapterItems', 'reviews.user'])->where('slug', $id)->first();
+        }
+        return view('frontend.home-four.pages.course-detail', compact('course', 'id'));
     })->name('courses.detail');
 
     Route::get('/upskill4teacher', function () {
