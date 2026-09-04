@@ -3,6 +3,33 @@
         return menuGetBySlug('nav-menu');
     });
     $setting = Cache::get('setting');
+
+    $labLinks = [
+        [
+            'label' => 'AI & Robotics Lab',
+            'route' => route('labs.ai-robotics'),
+            'image' => 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80',
+            'desc'  => 'Hands-on robotics, coding & AI experiments',
+        ],
+        [
+            'label' => 'STEM Lab',
+            'route' => route('labs.stem'),
+            'image' => 'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=400&q=80',
+            'desc'  => 'Electronics, IoT & project-based learning',
+        ],
+        [
+            'label' => 'ECEC Lab',
+            'route' => route('labs.ecec'),
+            'image' => 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80',
+            'desc'  => 'Early childhood exploration & creativity',
+        ],
+        [
+            'label' => 'Composite Skill Lab',
+            'route' => route('labs.composite-skill'),
+            'image' => 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80',
+            'desc'  => '3D design, making & future-ready skills',
+        ],
+    ];
 @endphp
 
 <!-- BEGIN: TopNavBar (Common CMS-Managed Header) -->
@@ -64,6 +91,53 @@
         <a class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-primary" href="{{ route('labs') }}">LABS</a>
         <a class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-primary" href="{{ route('courses') }}">Courses</a>
       @endif
+
+      <!-- Labs Dropdown -->
+        @php $labsActive = request()->is('labs*'); @endphp
+        <div class="relative group">
+          <button type="button"
+                  class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition-colors duration-200
+                        {{ $labsActive ? 'text-primary bg-blue-50 font-bold' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">
+            Labs
+            <i class="fa-solid fa-chevron-down text-[10px] opacity-60 group-hover:rotate-180 transition-transform duration-200"></i>
+          </button>
+
+          <!-- Dropdown Panel -->
+          <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[880px] opacity-0 invisible
+                      group-hover:opacity-100 group-hover:visible transition-all duration-200
+                      translate-y-1 group-hover:translate-y-0 z-50">
+            <div class="bg-white rounded-2xl shadow-2xl border border-slate-100 p-6">
+
+              <div class="flex items-center justify-between mb-5">
+                <div>
+                  <span class="text-base font-extrabold text-slate-900">Labs</span>
+                  <span class="ml-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-100 text-slate-500 text-xs font-bold">4</span>
+                </div>
+                <a href="{{ route('labs') }}" class="text-xs font-bold text-primary hover:underline">View all →</a>
+              </div>
+
+              <div class="grid grid-cols-4 gap-4">
+                @foreach ($labLinks as $lab)
+                  <a href="{{ $lab['route'] }}"
+                    class="group/item flex flex-col gap-3 p-3 rounded-xl border border-slate-200 hover:border-primary hover:shadow-md bg-white transition-all duration-200">
+                    <div class="w-full aspect-[4/3] rounded-lg overflow-hidden bg-slate-100">
+                      <img src="{{ $lab['image'] }}"
+                          alt="{{ $lab['label'] }}"
+                          class="w-full h-full object-cover group-hover/item:scale-105 transition-transform duration-300" />
+                    </div>
+                    <div>
+                      <p class="text-sm font-bold text-slate-900 group-hover/item:text-primary transition-colors">
+                        {{ $lab['label'] }}
+                      </p>
+                      
+                    </div>
+                  </a>
+                @endforeach
+              </div>
+
+            </div>
+          </div>
+        </div>
     </nav>
 
     <!-- Auth Buttons & Action Area -->
@@ -74,7 +148,7 @@
             <i class="fa-solid fa-graduation-cap text-xs"></i>
             <span>School Portal</span>
           </a>
-        @elseif (auth()->user()->role === 'instructor' && auth()->user()->instructorStatus() === 'approved')
+        @elseif (auth()->user()->role === 'instructor' && instructorStatus() === 'approved')
           <a href="{{ route('instructor.dashboard') }}" class="bg-primary hover:bg-primary-dark text-white px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all shadow-sm hover:shadow inline-flex items-center justify-center gap-1.5">
             <i class="fa-solid fa-chalkboard-user text-xs"></i>
             <span>Instructor Portal</span>
