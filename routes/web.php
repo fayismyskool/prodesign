@@ -82,6 +82,9 @@ Route::group(['middleware' => 'maintenance.mode'], function () {
         if (!$course) {
             $course = \App\Models\Course::with(['category.translation', 'instructor', 'chapters.chapterItems', 'reviews.user'])->where('slug', $id)->first();
         }
+        if (!$course) {
+            $course = \App\Models\Course::with(['category.translation', 'instructor', 'chapters.chapterItems', 'reviews.user'])->where('api_course_id', $id)->first();
+        }
         return view('frontend.home-four.pages.course-detail', compact('course', 'id'));
     })->name('courses.detail');
 
@@ -90,86 +93,218 @@ Route::group(['middleware' => 'maintenance.mode'], function () {
     })->name('upskill4teacher');
 
     Route::get('/api/collab-courses', function (\Illuminate\Http\Request $request) {
-        $type = $request->get('type');
-        
-        $query = \App\Models\Course::active()
-            ->with(['category.translation', 'instructor:id,name']);
+        $type    = $request->get('type');     // e.g. '8' or '10' or '5,10'
+        $upskill = $request->get('upskill');  // null = no filter, '0' or '1'
+        $lmsOnly = $request->get('lms_only'); // '1' = only courses with LMS created in backend
 
+        // ── Proxy all courses from external devapi ──────────────────────
+        try {
+            $response = \Illuminate\Support\Facades\Http::timeout(8)->get(env('APP_API'));
+            $apiCourses = $response->successful()
+                ? collect($response->json()['courses']['data'] ?? [])
+                : collect();
+        } catch (\Throwable $e) {
+            $apiCourses = collect();
+        }
+
+        // ── Filter by type ──────────────────────────────────────────────
         if ($type !== null && $type !== '') {
-            $hasExactType = \App\Models\Course::where('type', $type)->exists();
-            if ($hasExactType) {
-                $query->where('type', $type);
-            } else {
-                if ((string)$type === '8') {
-                    // Type 8: TTT - Train the Trainer / Educator courses
-                    $query->where(function($q) {
-                        $q->whereIn('category_id', [47, 53, 54, 56, 57])
-                          ->orWhere('title', 'like', '%TRAINER%')
-                          ->orWhere('title', 'like', '%TEACHER%')
-                          ->orWhere('title', 'like', '%NLP%')
-                          ->orWhere('title', 'like', '%ECE%')
-                          ->orWhere('title', 'like', '%MTT%')
-                          ->orWhere('title', 'like', '%NTT%')
-                          ->orWhere('title', 'like', '%Grade%');
-                    });
-                } elseif ((string)$type === '10') {
-                    // Type 10: Upskill 4 Teacher / Skill Enhancement courses
-                    $query->where(function($q) {
-                        $q->whereIn('category_id', [44, 46, 49, 50, 51, 52, 58, 59])
-                          ->orWhere('title', 'like', '%SKILL%')
-                          ->orWhere('title', 'like', '%DEVELOPMENT%')
-                          ->orWhere('title', 'like', '%LITERACY%')
-                          ->orWhere('title', 'like', '%WONDERKIDS%')
-                          ->orWhere('title', 'like', '%YEP%')
-                          ->orWhere('title', 'like', '%LDP%');
+            $types = array_map('trim', explode(',', (string)$type));
+            $apiCourses = $apiCourses->filter(
+                fn($c) => in_array((string)($c['type'] ?? ''), $types, true)
+            );
+        }
+
+        // ── Filter by upskill ───────────────────────────────────────────
+        if ($upskill !== null && $upskill !== '') {
+            $apiCourses = $apiCourses->filter(
+                fn($c) => (string)($c['upskill'] ?? '0') === (string)$upskill
+            );
+        }
+
+        $lmsCourses = class_exists('\App\Models\Course')
+            ? \App\Models\Course::with(['category.translation'])->get()
+            : collect();
+
+        // ── Filter by LMS created only if requested ────────────────────
+        if ($lmsOnly == '1') {
+            $apiCourses = $apiCourses->filter(function ($c) use ($lmsCourses) {
+                $cId = (string)($c['id'] ?? '');
+                $cCode = strtolower(trim($c['course_code'] ?? ''));
+                $cTitle = strtolower(trim($c['title'] ?? ''));
+                $cSlug = strtolower(trim($c['slug'] ?? ''));
+
+                return $lmsCourses->contains(function ($lms) use ($cId, $cCode, $cTitle, $cSlug) {
+                    $lmsApiId = (string)($lms->api_course_id ?? '');
+                    $lmsId = (string)($lms->id ?? '');
+                    $lmsCode = strtolower(trim($lms->course_code ?? ''));
+                    $lmsTitle = strtolower(trim($lms->title ?? ''));
+                    $lmsSlug = strtolower(trim($lms->slug ?? ''));
+
+                    return ($lmsApiId && $lmsApiId === $cId)
+                        || ($lmsId === $cId)
+                        || ($lmsCode && $cCode && $lmsCode === $cCode)
+                        || ($lmsTitle && $cTitle && $lmsTitle === $cTitle)
+                        || ($lmsSlug && $cSlug && $lmsSlug === $cSlug);
+                });
+            });
+        }
+
+        // ── Image base URL (devcollab hosts the cover images) ───────────
+        $imgBase = rtrim(env('APP_API_BASE', 'http://devcollab.local'), '/');
+        $fallback = asset('designs/img/TTT-1.png');
+
+        // ── Map to standardised shape ───────────────────────────────────
+        $courses = $apiCourses->values()->map(function ($c) use ($imgBase, $fallback, $lmsCourses) {
+            $cId = (string)($c['id'] ?? '');
+            $cCode = strtolower(trim($c['course_code'] ?? ''));
+            $cTitle = strtolower(trim($c['title'] ?? ''));
+            $cSlug = strtolower(trim($c['slug'] ?? ''));
+
+            $matchingLms = $lmsCourses->first(function ($lms) use ($cId, $cCode, $cTitle, $cSlug) {
+                $lmsApiId = (string)($lms->api_course_id ?? '');
+                $lmsId = (string)($lms->id ?? '');
+                $lmsCode = strtolower(trim($lms->course_code ?? ''));
+                $lmsTitle = strtolower(trim($lms->title ?? ''));
+                $lmsSlug = strtolower(trim($lms->slug ?? ''));
+
+                return ($lmsApiId && $lmsApiId === $cId)
+                    || ($lmsId === $cId)
+                    || ($lmsCode && $cCode && $lmsCode === $cCode)
+                    || ($lmsTitle && $cTitle && $lmsTitle === $cTitle)
+                    || ($lmsSlug && $cSlug && $lmsSlug === $cSlug);
+            });
+
+            $lmsId = $matchingLms ? $matchingLms->id : $c['id'];
+            $coverFile = $c['cover_image'] ?? null;
+            $thumb = $coverFile
+                ? "{$imgBase}/assets/images/event/cover/{$coverFile}"
+                : ($matchingLms && $matchingLms->thumbnail ? asset($matchingLms->thumbnail) : $fallback);
+
+            $price = (float)($c['price'] ?? ($matchingLms ? $matchingLms->price : 0));
+            $formatted = $price > 0 ? '₹ ' . number_format($price, 0) : 'Free';
+
+            $cType = (string)($c['type'] ?? '');
+            $fallbackCategory = match ($cType) {
+                '8' => 'CBSE Skill',
+                '10' => 'Teacher Training',
+                '5' => 'Teacher Workshop',
+                '6' => 'Online 1:1',
+                '12' => 'Activity Kit',
+                '14' => 'Science Kit',
+                default => 'Skill Course'
+            };
+
+            $catName = $matchingLms?->category?->translation?->name
+                ?? $matchingLms?->category?->name
+                ?? $c['category_name']
+                ?? $c['category']
+                ?? $fallbackCategory;
+
+            return [
+                'id'                       => $lmsId,
+                'api_course_id'            => $c['id'],
+                'lms_id'                   => $matchingLms ? $matchingLms->id : null,
+                'has_lms'                  => (bool)$matchingLms,
+                'type'                     => $c['type'] ?? null,
+                'upskill'                  => $c['upskill'] ?? 0,
+                'title'                    => $c['title'] ?? '',
+                'slug'                     => $matchingLms?->slug ?? ($c['slug'] ?? ''),
+                'description'              => strip_tags($c['description'] ?? ''),
+                'short_description'        => $c['short_description'] ?? '',
+                'price'                    => $price,
+                'formatted_price'          => $formatted,
+                'original_price'           => $price,
+                'formatted_original_price' => $formatted,
+                'discount'                 => 0,
+                'has_discount'             => false,
+                'thumbnail'                => $thumb,
+                'cover_image'              => $thumb,
+                'image'                    => $thumb,
+                'category_name'            => $catName,
+                'category'                 => $catName,
+                'instructor_name'          => 'Skillvation',
+                'rating'                   => 5,
+                'reviews_count'            => 0,
+                'start_date'               => $c['start_date'] ?? null,
+                'is_event'                 => $c['is_event'] ?? 0,
+                'online'                   => $c['online'] ?? 0,
+            ];
+        });
+
+        // ── Fallback to local DB if API returned no courses ────────────
+        if ($courses->isEmpty() && class_exists('\App\Models\Course')) {
+            try {
+                $dbQuery = \App\Models\Course::active()->with(['category.translation', 'instructor:id,name']);
+                if ($type !== null && $type !== '') {
+                    $types = array_map('trim', explode(',', (string)$type));
+                    $dbQuery->where(function ($q) use ($types) {
+                        $q->whereIn('type', $types);
+                        if (in_array('8', $types)) {
+                            $q->orWhere('title', 'like', '%Grade%')
+                              ->orWhere('title', 'like', '%Beauty%')
+                              ->orWhere('title', 'like', '%Skill%');
+                        }
+                        if (in_array('10', $types) || in_array('5', $types)) {
+                            $q->orWhere('title', 'like', '%TTT%')
+                              ->orWhere('title', 'like', '%TEACHER%')
+                              ->orWhere('title', 'like', '%TRAINER%')
+                              ->orWhere('title', 'like', '%WORKSHOP%');
+                        }
                     });
                 }
+                $dbCourses = $dbQuery->get();
+                if ($dbCourses->isNotEmpty()) {
+                    $courses = $dbCourses->map(function ($course) use ($fallback) {
+                        $thumb = $course->thumbnail ? asset($course->thumbnail) : $fallback;
+                        $catName = $course->category?->translation?->name ?? 'Skill Course';
+                        $effectivePrice = $course->discount > 0 ? (float)$course->discount : (float)$course->price;
+                        $originalPrice = (float)$course->price;
+                        $hasDiscount = $course->discount > 0 && $course->discount < $course->price;
+
+                        return [
+                            'id'                       => $course->id,
+                            'api_course_id'            => $course->api_course_id ?? $course->id,
+                            'lms_id'                   => $course->id,
+                            'has_lms'                  => true,
+                            'type'                     => $course->type,
+                            'upskill'                  => 0,
+                            'title'                    => $course->title,
+                            'slug'                     => $course->slug,
+                            'description'              => strip_tags($course->description ?? ''),
+                            'short_description'        => $course->short_description ?? '',
+                            'price'                    => $effectivePrice,
+                            'formatted_price'          => $effectivePrice > 0 ? '₹ ' . number_format($effectivePrice, 0) : 'Free',
+                            'original_price'           => $originalPrice,
+                            'formatted_original_price' => '₹ ' . number_format($originalPrice, 0),
+                            'discount'                 => (float)$course->discount,
+                            'has_discount'             => $hasDiscount,
+                            'thumbnail'                => $thumb,
+                            'cover_image'              => $thumb,
+                            'image'                    => $thumb,
+                            'category_name'            => $catName,
+                            'category'                 => $catName,
+                            'instructor_name'          => $course->instructor?->name ?? 'Skillvation',
+                            'rating'                   => 5,
+                            'reviews_count'            => 0,
+                            'start_date'               => null,
+                            'is_event'                 => 0,
+                            'online'                   => 0,
+                        ];
+                    });
+                }
+            } catch (\Throwable $e) {
+                // Ignore DB fallback error
             }
         }
 
-        $courses = $query->orderBy('id', 'desc')
-            ->get()
-            ->map(function ($course) use ($type) {
-                $thumb = $course->thumbnail ? asset($course->thumbnail) : asset('designs/img/TTT-1.png');
-                $catName = $course->category?->translation?->name ?? 'Skill Courses';
-                $assignedType = is_numeric($course->type) ? (int)$course->type : ($type ? (int)$type : 8);
-                $effectivePrice = $course->discount > 0 ? (float)$course->discount : (float)$course->price;
-                $originalPrice = (float)$course->price;
-                $hasDiscount = $course->discount > 0 && $course->discount < $course->price;
-
-                return [
-                    'id' => $course->id,
-                    'course_id' => $course->id,
-                    'type' => $assignedType,
-                    'course_type' => $assignedType,
-                    'title' => $course->title,
-                    'slug' => $course->slug,
-                    'description' => strip_tags($course->description ?? ''),
-                    'short_description' => $course->short_description ?? '',
-                    'price' => $effectivePrice,
-                    'formatted_price' => $effectivePrice > 0 ? '₹ ' . number_format($effectivePrice, 0) : 'Free',
-                    'original_price' => $originalPrice,
-                    'formatted_original_price' => '₹ ' . number_format($originalPrice, 0),
-                    'discount' => (float) $course->discount,
-                    'has_discount' => $hasDiscount,
-                    'cover_image' => $thumb,
-                    'image' => $thumb,
-                    'thumbnail' => $thumb,
-                    'category' => $catName,
-                    'category_name' => $catName,
-                    'instructor_name' => $course->instructor?->name ?? 'Skillvation',
-                    'rating' => 5,
-                    'reviews_count' => 12,
-                ];
-            });
-
         return response()->json([
-            'status' => 'success',
-            'type' => $type,
-            'data' => $courses,
-            'courses' => [
-                'data' => $courses
-            ]
+            'status'  => 'success',
+            'type'    => $type,
+            'upskill' => $upskill,
+            'total'   => $courses->count(),
+            'data'    => $courses,
+            'courses' => ['data' => $courses],
         ])->header('Access-Control-Allow-Origin', '*')
           ->header('Access-Control-Allow-Methods', 'GET, OPTIONS');
     })->name('api.collab-courses');

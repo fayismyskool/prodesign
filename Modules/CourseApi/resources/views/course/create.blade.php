@@ -56,17 +56,40 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="api_course_id">{{ __('Apicourses') }} <code>*</code></label>
+                                                        @php
+                                                            $getCoursePageTag = function($c) {
+                                                                if (!$c) return '';
+                                                                $t = (string)($c['type'] ?? '');
+                                                                $u = (string)($c['upskill'] ?? '0');
+                                                                if ($t === '10') return 'TTT';
+                                                                if ($t === '8') return $u === '1' ? 'U4T' : 'S2S';
+                                                                if ($t === '5') return 'Workshop';
+                                                                if ($t === '6') return '1:1';
+                                                                if ($t === '12') return 'Activity Kit';
+                                                                if ($t === '14') return 'Science Kit';
+                                                                return $t !== '' ? $t : '';
+                                                            };
+                                                        @endphp
                                                         @if (isset($editMode) && $editMode)
-                                                            @php $selectedApiCourse = collect($courses)->firstWhere('id', @$course?->api_course_id); @endphp
+                                                            @php
+                                                                $selectedApiCourse = collect($courses)->firstWhere('id', @$course?->api_course_id);
+                                                                $selectedTag = $getCoursePageTag($selectedApiCourse);
+                                                            @endphp
                                                             <input type="text" class="form-control bg-light"
-                                                                value="{{ $selectedApiCourse ? $selectedApiCourse['title'] : '' }}"
+                                                                value="{{ $selectedApiCourse ? $selectedApiCourse['title'] . ($selectedTag ? ' (' . $selectedTag . ')' : '') : '' }}"
                                                                 readonly>
                                                             <input type="hidden" name="api_course_id" id="api_course_id" value="{{ @$course?->api_course_id }}">
                                                         @else
                                                             <select name="api_course_id" id="api_course_id" class="form-control select2">
                                                                 <option value="">{{ __('Select') }}</option>
                                                                 @foreach ($courses as $apiCourse)
-                                                                    <option value="{{ $apiCourse['id'] }}" @selected($apiCourse['id'] == @$course?->api_course_id)>{{ $apiCourse['title'] }}</option>
+                                                                    @php $pageTag = $getCoursePageTag($apiCourse); @endphp
+                                                                    <option value="{{ $apiCourse['id'] }}"
+                                                                            data-type="{{ $apiCourse['type'] ?? '' }}"
+                                                                            data-upskill="{{ $apiCourse['upskill'] ?? '0' }}"
+                                                                            @selected($apiCourse['id'] == @$course?->api_course_id)>
+                                                                        {{ $apiCourse['title'] }}{{ $pageTag ? ' (' . $pageTag . ')' : '' }}
+                                                                    </option>
                                                                 @endforeach
                                                             </select>
                                                         @endif
@@ -203,7 +226,70 @@
 
     <script>
         const apiCourses = @json($courses);
+ 
+        function getCoursePageTag(course) {
+            if (!course) return '';
+            const type = String(course.type ?? '');
+            const upskill = String(course.upskill ?? '0');
+            if (type === '10') return 'TTT';
+            if (type === '8') return upskill === '1' ? 'U4T' : 'S2S';
+            if (type === '5') return 'Workshop';
+            if (type === '6') return '1:1';
+            if (type === '12') return 'Activity Kit';
+            if (type === '14') return 'Science Kit';
+            return type !== '' ? type : '';
+        }
 
+        // ── Type filter ──────────────────────────────────────────────
+        $('#course_type_filter').on('change', function () {
+            const selectedType = $(this).val();
+            const $apiSelect   = $('#api_course_id');
+
+            // Destroy select2 before manipulating options
+            if ($apiSelect.hasClass('select2-hidden-accessible')) {
+                $apiSelect.select2('destroy');
+            }
+
+            // Remove all options except the placeholder
+            $apiSelect.find('option:not(:first)').remove();
+
+            // Filter and sort options alphabetically by type tag, then title
+            const filteredCourses = apiCourses.filter(function (course) {
+                return selectedType === '' || String(course.type) === String(selectedType);
+            });
+
+            filteredCourses.sort(function (a, b) {
+                const tagA = getCoursePageTag(a);
+                const tagB = getCoursePageTag(b);
+                const cmp = tagA.localeCompare(tagB);
+                if (cmp !== 0) return cmp;
+                return (a.title || '').localeCompare(b.title || '');
+            });
+
+            // Re-add filtered options
+            filteredCourses.forEach(function (course) {
+                const tag = getCoursePageTag(course);
+                const tagSuffix = tag ? ' (' + tag + ')' : '';
+                $apiSelect.append(
+                    $('<option>', {
+                        value: course.id,
+                        'data-type': course.type,
+                        'data-upskill': course.upskill ?? 0,
+                        text: course.title + tagSuffix,
+                    })
+                );
+            });
+
+            // Re-init select2
+            $apiSelect.select2();
+
+            // Reset dependent fields
+            $('#title').val('').trigger('keyup');
+            $('#price').val('');
+            $('#course_code').val('');
+        });
+
+        // ── Auto-fill on course select ────────────────────────────────
         $('#api_course_id').on('change', function () {
             const id = parseInt($(this).val());
             const course = apiCourses.find(c => c.id === id);

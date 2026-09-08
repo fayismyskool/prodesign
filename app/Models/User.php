@@ -163,6 +163,10 @@ class User extends Authenticatable {
         return $this->role === 'instructor';
     }
 
+    public function instructorStatus(): ?string {
+        return $this->instructorInfo?->status;
+    }
+
     public function isStudent(): bool {
         return $this->role === 'student';
     }

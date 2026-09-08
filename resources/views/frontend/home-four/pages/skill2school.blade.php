@@ -164,6 +164,7 @@
         @include('frontend.home-four.components.course-carousel', [
           'type' => '8',
           'upskill' => '0',
+          'lms_only' => '1',
           'title' => 'Start Learning What Matters',
           'subtitle' => 'Interactive hands-on modules',
           'tagline' => 'Skill Readiness & Student Mapping'

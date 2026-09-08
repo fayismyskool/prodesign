@@ -3,6 +3,8 @@
   $carouselSubtitle = $subtitle ?? 'Because great learning never stops';
   $tagline = $tagline ?? 'Skill Learning Programs';
   $courseType = $type ?? null;
+  $courseUpskill = $upskill ?? null;
+  $courseLmsOnly = $lms_only ?? null;
 @endphp
 
 <!-- BEGIN: Dynamic Courses Carousel Component -->
@@ -79,11 +81,23 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const targetType = "{{ $courseType }}";
+  const targetUpskill = "{{ $courseUpskill }}";
+  const targetLmsOnly = "{{ $courseLmsOnly }}";
   let apiUrl = window.APP_CONFIG?.COURSES_API_URL || '/api/collab-courses';
   
+  const queryParams = [];
   if (targetType) {
+    queryParams.push(`type=${encodeURIComponent(targetType)}`);
+  }
+  if (targetUpskill !== '') {
+    queryParams.push(`upskill=${encodeURIComponent(targetUpskill)}`);
+  }
+  if (targetLmsOnly !== '') {
+    queryParams.push(`lms_only=${encodeURIComponent(targetLmsOnly)}`);
+  }
+  if (queryParams.length > 0) {
     const sep = apiUrl.includes('?') ? '&' : '?';
-    apiUrl = `${apiUrl}${sep}type=${encodeURIComponent(targetType)}`;
+    apiUrl = `${apiUrl}${sep}${queryParams.join('&')}`;
   }
 
   const loadingEl = document.getElementById('courses-loading');
@@ -102,9 +116,14 @@ document.addEventListener("DOMContentLoaded", function () {
     containerEl.innerHTML = '';
     
     // Filter by type if provided and courses have type property
-    const filteredCourses = targetType 
-      ? courses.filter(c => c.type === undefined || c.type === null || String(c.type) === String(targetType) || String(c.course_type) === String(targetType))
+    const targetTypes = targetType ? targetType.split(',').map(s => s.trim()).filter(Boolean) : [];
+    let filteredCourses = targetTypes.length > 0 
+      ? courses.filter(c => c.type === undefined || c.type === null || targetTypes.includes(String(c.type)) || targetTypes.includes(String(c.course_type)))
       : courses;
+
+    if (targetLmsOnly === '1') {
+      filteredCourses = filteredCourses.filter(c => c.has_lms === true || c.lms_id || c.has_lms === 1);
+    }
 
     if (filteredCourses.length === 0) {
       emptyEl.classList.remove('hidden');
@@ -117,8 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const price = course.formatted_price || ('₹ ' + (course.price || 0));
       const image = course.thumbnail || course.cover_image || course.image || window.APP_CONFIG?.IMAGE_FALLBACK || '';
       const cat = course.category_name || course.category || 'Skill Course';
-      const slug = course.id || '';
-      const courseId = course.id || '';
+      const courseId = course.lms_id || course.id || '';
       const courseUrl = courseId
         ? `{{ url('/course-detail') }}/${encodeURIComponent(courseId)}`
         : '#';

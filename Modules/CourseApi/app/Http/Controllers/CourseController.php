@@ -63,9 +63,30 @@ class CourseController extends Controller
 
         if ($response->successful()) {
             $data = $response->json();
-
             $courses = $data['courses']['data'] ?? [];
         }
+
+        $getCoursePageTag = function ($c) {
+            $t = (string)($c['type'] ?? '');
+            $u = (string)($c['upskill'] ?? '0');
+            if ($t === '10') return 'TTT';
+            if ($t === '8') return $u === '1' ? 'U4T' : 'S2S';
+            if ($t === '5') return 'Workshop';
+            if ($t === '6') return '1:1';
+            return $t !== '' ? $t : '';
+        };
+
+        // Filter only known courses and sort alphabetically by type tag, then title
+        $knownTypes = [8, 10];
+        $courses = collect($courses)->filter(function ($c) use ($knownTypes) {
+            return in_array((int)($c['type'] ?? 0), $knownTypes, true);
+        })->sort(function ($a, $b) use ($getCoursePageTag) {
+            $tagA = $getCoursePageTag($a);
+            $tagB = $getCoursePageTag($b);
+            $cmp = strcmp($tagA, $tagB);
+            if ($cmp !== 0) return $cmp;
+            return strcasecmp($a['title'] ?? '', $b['title'] ?? '');
+        })->values()->all();
 
         return view('courseapi::course.create', compact('instructors', 'courses'));
     }
@@ -82,11 +103,31 @@ class CourseController extends Controller
 
         if ($response->successful()) {
             $data = $response->json();
-
             $courses = $data['courses']['data'] ?? [];
         }
 
-        // return view('courseapi::course.create', compact('instructors', 'courses'));
+        $getCoursePageTag = function ($c) {
+            $t = (string)($c['type'] ?? '');
+            $u = (string)($c['upskill'] ?? '0');
+            if ($t === '10') return 'TTT';
+            if ($t === '8') return $u === '1' ? 'U4T' : 'S2S';
+            if ($t === '5') return 'Workshop';
+            if ($t === '6') return '1:1';
+            return $t !== '' ? $t : '';
+        };
+
+        // Filter only known courses and sort alphabetically by type tag, then title
+        $knownTypes = [8, 10];
+        $courses = collect($courses)->filter(function ($c) use ($knownTypes) {
+            return in_array((int)($c['type'] ?? 0), $knownTypes, true);
+        })->sort(function ($a, $b) use ($getCoursePageTag) {
+            $tagA = $getCoursePageTag($a);
+            $tagB = $getCoursePageTag($b);
+            $cmp = strcmp($tagA, $tagB);
+            if ($cmp !== 0) return $cmp;
+            return strcasecmp($a['title'] ?? '', $b['title'] ?? '');
+        })->values()->all();
+
         return view('courseapi::course.create', compact('course', 'courses', 'editMode', 'instructors'));
     }
 

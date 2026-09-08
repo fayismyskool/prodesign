@@ -31,17 +31,22 @@ if (! function_exists('menuGetById')) {
 }
 
 if (! function_exists('menuTree')) {
-    function menuTree($items, $all_items){
+    function menuTree($items, $all_items, $visited = []){
         $data_arr = array();
         $i = 0;
         foreach ($items as $item) {
+            if (in_array($item->id, $visited, true)) {
+                continue;
+            }
             $data_arr[$i] = $item->toArray();
             $find = $all_items->where('parent_id', $item->id);
 
             $data_arr[$i]['child'] = array();
 
             if ($find->count()) {
-                $data_arr[$i]['child'] = menuTree($find, $all_items);
+                $nextVisited = $visited;
+                $nextVisited[] = $item->id;
+                $data_arr[$i]['child'] = menuTree($find, $all_items, $nextVisited);
             }
 
             $i++;

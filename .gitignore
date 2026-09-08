@@ -49,3 +49,13 @@ Homestead.json
 .env.production
 .phpactor.json
 auth.json
+
+**/vendor/
+# Composer
+/composer.lock
+
+# Local design files
+/prodesign/
+
+# Uploaded images
+/public/uploads/custom-images/

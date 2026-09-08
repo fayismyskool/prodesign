@@ -25,13 +25,14 @@ Route::get('/collab-courses', function (\Illuminate\Http\Request $request) {
         ->with(['category.translation', 'instructor:id,name']);
 
     if ($type !== null && $type !== '') {
-        $hasExactType = \App\Models\Course::where('type', $type)->exists();
+        $types = array_map('trim', explode(',', (string)$type));
+        $hasExactType = \App\Models\Course::whereIn('type', $types)->exists();
         if ($hasExactType) {
-            $query->where('type', $type);
+            $query->whereIn('type', $types);
         } else {
-            if ((string)$type === '8') {
-                $query->where(function($q) {
-                    $q->whereIn('category_id', [47, 53, 54, 56, 57])
+            $query->where(function($q) use ($types) {
+                if (in_array('8', $types)) {
+                    $q->orWhereIn('category_id', [47, 53, 54, 56, 57])
                       ->orWhere('title', 'like', '%TRAINER%')
                       ->orWhere('title', 'like', '%TEACHER%')
                       ->orWhere('title', 'like', '%NLP%')
@@ -39,18 +40,19 @@ Route::get('/collab-courses', function (\Illuminate\Http\Request $request) {
                       ->orWhere('title', 'like', '%MTT%')
                       ->orWhere('title', 'like', '%NTT%')
                       ->orWhere('title', 'like', '%Grade%');
-                });
-            } elseif ((string)$type === '10') {
-                $query->where(function($q) {
-                    $q->whereIn('category_id', [44, 46, 49, 50, 51, 52, 58, 59])
+                }
+                if (in_array('10', $types) || in_array('5', $types)) {
+                    $q->orWhereIn('category_id', [44, 46, 49, 50, 51, 52, 58, 59])
+                      ->orWhere('title', 'like', '%TTT%')
+                      ->orWhere('title', 'like', '%WORKSHOP%')
                       ->orWhere('title', 'like', '%SKILL%')
                       ->orWhere('title', 'like', '%DEVELOPMENT%')
                       ->orWhere('title', 'like', '%LITERACY%')
                       ->orWhere('title', 'like', '%WONDERKIDS%')
                       ->orWhere('title', 'like', '%YEP%')
                       ->orWhere('title', 'like', '%LDP%');
-                });
-            }
+                }
+            });
         }
     }
 
