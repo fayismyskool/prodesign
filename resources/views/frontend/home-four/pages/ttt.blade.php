@@ -191,7 +191,7 @@
 
 <!-- BEGIN: Course Carousel Section -->
 @include('frontend.home-four.components.course-carousel', [
-  'type' => '8',
+  'type' => '10',
   'title' => 'Explore Our Courses',
   'subtitle' => 'Our specialised modules focus on practical classroom delivery and competencies',
   'tagline' => 'Teacher Development Courses'

@@ -160,9 +160,15 @@
     src="{{ asset('designs/img/skill2school-8.png') }}" />
   <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
     <div class="text-center mb-12">
-      <p class="text-primary font-semibold mb-2 text-sm uppercase tracking-wider">Skill Readiness &amp; Student Mapping</p>
-      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-on-surface">Start Learning What Matters</h2>
-      <p class="text-on-surface-variant italic">Interactive hands-on modules</p>
+      <!-- BEGIN: Explore Courses Section -->
+        @include('frontend.home-four.components.course-carousel', [
+          'type' => '8',
+          'upskill' => '0',
+          'title' => 'Start Learning What Matters',
+          'subtitle' => 'Interactive hands-on modules',
+          'tagline' => 'Skill Readiness & Student Mapping'
+        ])
+      <!-- END: Explore Courses Section -->
     </div>
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div class="order-2 md:order-1 relative">
@@ -203,8 +209,9 @@
 <!-- END: Active Participation Section -->
 
 <!-- BEGIN: Ecosystem Section -->
-<section class="py-20 bg-surface-container relative">
-  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter text-center">
+<section class="py-10 bg-surface-container relative">
+  <!-- <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter text-center"> -->
+  <div class="container-fluid text-center">
     <p class="text-primary font-semibold mb-2 text-sm uppercase tracking-wider">Skill Readiness &amp; Student Mapping</p>
     <h2 class="text-3xl md:text-4xl font-bold mb-6 text-on-surface">A Skill Ecosystem for Your School</h2>
     <p class="text-on-surface-variant max-w-3xl mx-auto text-lg mb-12">
@@ -229,7 +236,8 @@
         <span class="text-on-surface-variant font-medium">Communication and collaboration</span>
       </div>
     </div>
-    <div class="w-full max-w-4xl mx-auto">
+    <!-- <div class="w-full max-w-4xl mx-auto"> -->
+    <div class="container-fluid">
       <img alt="Illustration of teacher and students" class="w-full h-auto" src="{{ asset('designs/img/skill2school-3.png') }}" />
     </div>
   </div>
@@ -237,10 +245,10 @@
 <!-- END: Ecosystem Section -->
 
 <!-- Curved divider -->
-<div class="curved-divider border-b border-primary"></div>
+<!-- <div class="curved-divider border-b border-primary"></div> -->
 
 <!-- BEGIN: SAFAL & SQAAF Section -->
-<section class="py-20 relative overflow-hidden">
+<section class="py-10 relative overflow-hidden">
   <img alt="" class="absolute left-0 top-0 w-64 opacity-10 pointer-events-none transform -scale-x-100"
     src="{{ asset('designs/img/skill2school-7.png') }}" />
   <img alt="" class="absolute right-0 bottom-0 w-64 pointer-events-none"

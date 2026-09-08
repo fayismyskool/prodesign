@@ -101,7 +101,8 @@
 
 <!-- BEGIN: Explore Courses Section -->
 @include('frontend.home-four.components.course-carousel', [
-  'type' => '10',
+  'type' => '8',
+  'upskill' => '1',
   'title' => 'Explore Our Courses',
   'subtitle' => 'Because great teachers never stop learning. Discover 33+ NEP-aligned professional tracks.',
   'tagline' => 'CBSE Skill Education'
@@ -109,7 +110,7 @@
 <!-- END: Explore Courses Section -->
 
 <!-- BEGIN: CTA Section -->
-<section class="py-20 bg-slate-50 border-t border-slate-100">
+<!-- <section class="py-20 bg-slate-50 border-t border-slate-100">
   <div class="max-w-4xl mx-auto px-4 text-center space-y-6">
     <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Ready to Elevate Your Teaching Career?</h2>
     <p class="text-slate-600 max-w-2xl mx-auto text-base md:text-lg">
@@ -122,6 +123,6 @@
       </a>
     </div>
   </div>
-</section>
+</section> -->
 <!-- END: CTA Section -->
 @endsection
