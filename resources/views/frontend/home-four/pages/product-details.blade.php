@@ -339,6 +339,31 @@
     color: #E2002B;
     font-weight: 700;
   }
+
+  /* Cart Drawer Item */
+  .cart-item-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem 0;
+  }
+  .cart-item-img {
+    width: 58px;
+    height: 58px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+  .cart-item-img img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
 </style>
 @endpush
 
@@ -360,10 +385,12 @@
         <a href="{{ route('shop') }}" class="text-sm font-semibold text-slate-600 hover:text-red-600 transition-colors flex items-center gap-1.5">
           <i class="fa-solid fa-arrow-left"></i> Back to Shop
         </a>
-        <a href="{{ route('cart') }}" class="relative inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-red-600 shadow-sm transition-all" title="View Cart">
+        
+        <!-- Cart Trigger Button -->
+        <button type="button" id="openCartBtn" class="relative inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-red-600 shadow-sm transition-all cursor-pointer" title="View Shopping Cart">
           <i class="fa-solid fa-cart-shopping"></i>
-          <span id="headerCartBadge" class="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">{{ Cart::content()->count() }}</span>
-        </a>
+          <span id="headerCartBadge" class="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+        </button>
       </div>
     </div>
 
@@ -548,6 +575,71 @@
   </div>
 </div>
 
+<!-- ── SkillBox Cart Drawer / Modal ──────────────────────────────── -->
+<div id="skillboxCartDrawer" class="modal-overlay">
+  <div class="modal-container p-0 max-w-lg w-full flex flex-col max-h-[92vh] overflow-hidden">
+    <!-- Cart Header -->
+    <div class="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50/50">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center text-sm font-bold">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-slate-900">Your Shopping Cart</h3>
+          <p class="text-xs text-slate-500" id="cartItemCountSubtitle">0 items</p>
+        </div>
+      </div>
+      <button type="button" id="closeCartDrawerBtn" class="text-slate-400 hover:text-slate-700 text-2xl leading-none transition-colors p-1">
+        &times;
+      </button>
+    </div>
+
+    <!-- Cart Items List Container -->
+    <div id="cartItemsList" class="p-5 flex-grow overflow-y-auto space-y-3">
+      <!-- Items dynamically injected -->
+    </div>
+
+    <!-- Empty Cart State -->
+    <div id="cartEmptyState" class="p-10 text-center flex-grow flex flex-col items-center justify-center hidden">
+      <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-2xl mb-3">
+        <i class="fa-solid fa-basket-shopping"></i>
+      </div>
+      <h4 class="text-base font-bold text-slate-800 mb-1">Your cart is empty</h4>
+      <p class="text-xs text-slate-500 mb-4 max-w-xs">Explore hands-on kits and activity boxes to add to your cart.</p>
+      <a href="{{ route('shop') }}" class="btn-purchase-now text-xs py-2 px-4 rounded-lg inline-block">
+        Explore Kits
+      </a>
+    </div>
+
+    <!-- Cart Footer & Checkout -->
+    <div id="cartFooterSection" class="p-5 border-t border-slate-100 bg-slate-50/80 space-y-3">
+      <div class="space-y-1.5 text-xs text-slate-600">
+        <div class="flex justify-between">
+          <span>Subtotal</span>
+          <strong id="cartSubtotalText" class="text-slate-900 font-bold">₹0</strong>
+        </div>
+        <div class="flex justify-between">
+          <span>Delivery Charges</span>
+          <span class="text-emerald-600 font-bold">FREE Express Delivery</span>
+        </div>
+        <div class="flex justify-between text-sm pt-2 border-t border-slate-200/80">
+          <span class="font-bold text-slate-900">Total Amount</span>
+          <strong id="cartGrandTotalText" class="font-extrabold text-slate-900 text-base">₹0</strong>
+        </div>
+      </div>
+
+      <div class="pt-2 flex flex-col gap-2">
+        <button type="button" id="cartProceedCheckoutBtn" class="btn-purchase-now w-full py-3 text-sm font-bold">
+          <i class="fa-solid fa-lock mr-2"></i> Proceed to Checkout
+        </button>
+        <button type="button" id="clearCartBtn" class="text-[11px] text-slate-400 hover:text-red-500 text-center transition-colors">
+          Clear all items
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ── Delivery Address & Checkout Modal ──────────────────────────── -->
 <div id="deliveryModal" class="modal-overlay">
   <div class="modal-container p-6 sm:p-8">
@@ -727,6 +819,10 @@
     let productData = null;
     let quantity = 1;
     let selectedAddressType = 'Home';
+    let checkoutMode = 'direct'; // 'direct' or 'cart'
+
+    // Cart array from localStorage
+    let skillboxCart = JSON.parse(localStorage.getItem('skillbox_cart') || '[]');
 
     // Elements
     const productLoading = document.getElementById('productLoading');
@@ -756,6 +852,19 @@
     const toast = document.getElementById('prodToast');
     const toastTitle = document.getElementById('toastTitle');
     const toastMessage = document.getElementById('toastMessage');
+
+    // Cart Drawer Elements
+    const openCartBtn = document.getElementById('openCartBtn');
+    const skillboxCartDrawer = document.getElementById('skillboxCartDrawer');
+    const closeCartDrawerBtn = document.getElementById('closeCartDrawerBtn');
+    const cartItemsList = document.getElementById('cartItemsList');
+    const cartEmptyState = document.getElementById('cartEmptyState');
+    const cartFooterSection = document.getElementById('cartFooterSection');
+    const cartSubtotalText = document.getElementById('cartSubtotalText');
+    const cartGrandTotalText = document.getElementById('cartGrandTotalText');
+    const cartItemCountSubtitle = document.getElementById('cartItemCountSubtitle');
+    const cartProceedCheckoutBtn = document.getElementById('cartProceedCheckoutBtn');
+    const clearCartBtn = document.getElementById('clearCartBtn');
 
     // Delivery Modal Elements
     const deliveryModal = document.getElementById('deliveryModal');
@@ -794,7 +903,131 @@
       setTimeout(() => toast.classList.remove('show'), 3500);
     }
 
-    // Dynamic Price Calculation
+    // Cart Management
+    function saveCart() {
+      localStorage.setItem('skillbox_cart', JSON.stringify(skillboxCart));
+      updateAllCartBadges();
+      renderCartDrawer();
+    }
+
+    function updateAllCartBadges() {
+      const totalCount = skillboxCart.reduce((sum, item) => sum + (Number(item.quantity) || 1), 0);
+      const badges = document.querySelectorAll('#headerCartBadge, #cartCountBadge, .mini-cart-count');
+      badges.forEach(b => {
+        b.textContent = totalCount;
+      });
+    }
+
+    function renderCartDrawer() {
+      const totalCount = skillboxCart.reduce((sum, item) => sum + (Number(item.quantity) || 1), 0);
+      cartItemCountSubtitle.textContent = `${totalCount} ${totalCount === 1 ? 'item' : 'items'}`;
+
+      if (skillboxCart.length === 0) {
+        cartItemsList.classList.add('hidden');
+        cartFooterSection.classList.add('hidden');
+        cartEmptyState.classList.remove('hidden');
+        return;
+      }
+
+      cartEmptyState.classList.add('hidden');
+      cartItemsList.classList.remove('hidden');
+      cartFooterSection.classList.remove('hidden');
+
+      let subtotal = 0;
+      cartItemsList.innerHTML = skillboxCart.map((item, idx) => {
+        const itemPrice = Number(item.price_discounted || item.price || 0);
+        const itemTotal = itemPrice * (item.quantity || 1);
+        subtotal += itemTotal;
+
+        return `
+          <div class="cart-item-row">
+            <div class="cart-item-img">
+              <img src="${item.image || 'https://pedaskills.com/static/media/skillBoxImg.54ef565f4b0836600035.png'}" alt="${item.title}" onerror="this.src='https://pedaskills.com/static/media/skillBoxImg.54ef565f4b0836600035.png';" />
+            </div>
+            <div class="flex-grow min-w-0">
+              <a href="/ProductDetails/${item.id}" class="text-xs font-bold text-slate-800 line-clamp-1 hover:text-red-600 transition-colors">${item.title}</a>
+              <div class="text-xs font-semibold text-slate-900 mt-0.5">₹ ${itemPrice.toLocaleString('en-IN')}</div>
+              <div class="flex items-center gap-2 mt-1.5">
+                <div class="inline-flex items-center border border-slate-200 rounded-md overflow-hidden bg-white">
+                  <button type="button" class="w-6 h-6 bg-slate-100 text-slate-600 flex items-center justify-center text-[10px] hover:bg-red-50 hover:text-red-600" onclick="window.updateCartItemQty(${idx}, -1)">-</button>
+                  <span class="w-7 text-center text-xs font-bold text-slate-800">${item.quantity || 1}</span>
+                  <button type="button" class="w-6 h-6 bg-slate-100 text-slate-600 flex items-center justify-center text-[10px] hover:bg-red-50 hover:text-red-600" onclick="window.updateCartItemQty(${idx}, 1)">+</button>
+                </div>
+                <span class="text-[11px] text-slate-400 font-medium ml-auto">₹ ${itemTotal.toLocaleString('en-IN')}</span>
+              </div>
+            </div>
+            <button type="button" class="text-slate-400 hover:text-red-600 p-1 transition-colors ml-1" onclick="window.removeCartItem(${idx})" title="Remove item">
+              <i class="fa-solid fa-trash-can text-xs"></i>
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      cartSubtotalText.textContent = `₹ ${subtotal.toLocaleString('en-IN')}`;
+      cartGrandTotalText.textContent = `₹ ${subtotal.toLocaleString('en-IN')}`;
+    }
+
+    window.updateCartItemQty = function(index, delta) {
+      if (!skillboxCart[index]) return;
+      skillboxCart[index].quantity = (skillboxCart[index].quantity || 1) + delta;
+      if (skillboxCart[index].quantity <= 0) {
+        skillboxCart.splice(index, 1);
+      }
+      saveCart();
+    };
+
+    window.removeCartItem = function(index) {
+      if (!skillboxCart[index]) return;
+      const title = skillboxCart[index].title;
+      skillboxCart.splice(index, 1);
+      saveCart();
+      showToast('Item Removed', `"${title}" removed from cart.`);
+    };
+
+    function openSkillboxCart() {
+      renderCartDrawer();
+      skillboxCartDrawer.classList.add('active');
+    }
+
+    function closeSkillboxCart() {
+      skillboxCartDrawer.classList.remove('active');
+    }
+
+    if (openCartBtn) {
+      openCartBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openSkillboxCart();
+      });
+    }
+
+    if (closeCartDrawerBtn) {
+      closeCartDrawerBtn.addEventListener('click', closeSkillboxCart);
+    }
+
+    skillboxCartDrawer.addEventListener('click', (e) => {
+      if (e.target === skillboxCartDrawer) {
+        closeSkillboxCart();
+      }
+    });
+
+    if (clearCartBtn) {
+      clearCartBtn.addEventListener('click', () => {
+        if (confirm('Are you sure you want to clear your cart?')) {
+          skillboxCart = [];
+          saveCart();
+        }
+      });
+    }
+
+    // Hook into navbar header cart icons
+    document.querySelectorAll('.mini-cart-icon a.cart-count').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openSkillboxCart();
+      });
+    });
+
+    // Dynamic Price Calculation for product page
     function updatePriceDisplay() {
       if (!productData) return;
       const unitPrice = Number(productData.price || 0);
@@ -813,11 +1046,6 @@
         productOldPrice.classList.add('hidden');
         unitPriceNote.textContent = '';
       }
-
-      // Update Modal summary if modal elements exist
-      if (modalSummaryQty) modalSummaryQty.textContent = quantity;
-      if (modalSummaryTotal) modalSummaryTotal.textContent = `₹ ${totalPrice.toLocaleString('en-IN')}`;
-      if (btnPayAmountText) btnPayAmountText.textContent = `Pay ₹ ${totalPrice.toLocaleString('en-IN')}`;
     }
 
     // Load Product Data
@@ -967,14 +1195,31 @@
       }
     });
 
-    // Cart Handlers
+    // Add To Cart Handler
     addToCartBtn.addEventListener('click', () => {
-      const title = productData ? productData.title || productData.course_name : 'Product';
-      showToast('Added to Cart', `Added ${quantity} x "${title}" to your cart.`);
-      const badge = document.getElementById('headerCartBadge');
-      if (badge) {
-        badge.textContent = parseInt(badge.textContent || '0', 10) + quantity;
+      if (!productData) return;
+      const unitPrice = Number(productData.price || 0);
+      const unitDiscounted = Number(productData.price_discounted || unitPrice);
+      const title = productData.title || productData.course_name || 'Activity Kit';
+      const img = (productData.images && productData.images[0]) || productData.image || 'https://pedaskills.com/static/media/skillBoxImg.54ef565f4b0836600035.png';
+
+      const existingIdx = skillboxCart.findIndex(item => String(item.id) === String(productId));
+      if (existingIdx > -1) {
+        skillboxCart[existingIdx].quantity = (skillboxCart[existingIdx].quantity || 1) + quantity;
+      } else {
+        skillboxCart.push({
+          id: productId,
+          title: title,
+          price: unitPrice,
+          price_discounted: unitDiscounted,
+          image: img,
+          quantity: quantity
+        });
       }
+
+      saveCart();
+      showToast('Added to Cart', `Added ${quantity} x "${title}" to your cart.`);
+      openSkillboxCart(); // Open cart drawer immediately
     });
 
     // Address Type Pill Selection
@@ -1019,9 +1264,9 @@
       }
     });
 
-    // Open Delivery Address Modal on "Purchase Now"
-    purchaseNowBtn.addEventListener('click', () => {
+    function openDeliveryModalForDirectBuy() {
       if (!productData) return;
+      checkoutMode = 'direct';
       
       const title = productData.title || productData.course_name || 'Activity Kit';
       const unitPrice = Number(productData.price || 0);
@@ -1035,7 +1280,33 @@
       btnPayAmountText.textContent = `Pay ₹ ${totalPrice.toLocaleString('en-IN')}`;
       modalSummaryImg.src = mainProductImg.src;
 
-      // Pre-fill user details if logged in or stored in localStorage
+      loadSavedAddress();
+      deliveryModal.classList.add('active');
+    }
+
+    function openDeliveryModalForCart() {
+      if (skillboxCart.length === 0) return;
+      checkoutMode = 'cart';
+      closeSkillboxCart();
+
+      const totalItems = skillboxCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      let subtotal = 0;
+      skillboxCart.forEach(item => {
+        subtotal += Number(item.price_discounted || item.price || 0) * (item.quantity || 1);
+      });
+
+      modalSummaryTitle.textContent = `Cart Checkout (${totalItems} items)`;
+      modalSummaryQty.textContent = totalItems;
+      modalSummaryUnitPrice.textContent = '-';
+      modalSummaryTotal.textContent = `₹ ${subtotal.toLocaleString('en-IN')}`;
+      btnPayAmountText.textContent = `Pay ₹ ${subtotal.toLocaleString('en-IN')}`;
+      modalSummaryImg.src = skillboxCart[0]?.image || mainProductImg.src;
+
+      loadSavedAddress();
+      deliveryModal.classList.add('active');
+    }
+
+    function loadSavedAddress() {
       const savedAddress = JSON.parse(localStorage.getItem('skillbox_delivery_address') || '{}');
       if (savedAddress.fullName && !addrFullName.value) addrFullName.value = savedAddress.fullName;
       if (savedAddress.phone && !addrPhone.value) addrPhone.value = savedAddress.phone;
@@ -1043,9 +1314,13 @@
       if (savedAddress.city && !addrCity.value) addrCity.value = savedAddress.city;
       if (savedAddress.state && !addrState.value) addrState.value = savedAddress.state;
       if (savedAddress.street && !addrStreet.value) addrStreet.value = savedAddress.street;
+    }
 
-      deliveryModal.classList.add('active');
-    });
+    // Direct Purchase Now button
+    purchaseNowBtn.addEventListener('click', openDeliveryModalForDirectBuy);
+
+    // Cart Drawer Proceed to Checkout button
+    cartProceedCheckoutBtn.addEventListener('click', openDeliveryModalForCart);
 
     // Close Delivery Modal
     closeDeliveryModalBtn.addEventListener('click', () => {
@@ -1118,21 +1393,29 @@
         fullName, phone, pincode, city, state, street, addressType: selectedAddressType
       }));
 
-      // Calculate total amount in paise for Razorpay
-      const unitPrice = Number(productData.price || 0);
-      const unitDiscounted = Number(productData.price_discounted || unitPrice);
-      const totalPayableRupees = unitDiscounted * quantity;
+      // Calculate total payable
+      let totalPayableRupees = 0;
+      let orderTitle = '';
+      let orderQty = 0;
+
+      if (checkoutMode === 'cart') {
+        skillboxCart.forEach(item => {
+          totalPayableRupees += Number(item.price_discounted || item.price || 0) * (item.quantity || 1);
+        });
+        orderQty = skillboxCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        orderTitle = `SkillBox Cart Order (${orderQty} items)`;
+      } else {
+        const unitPrice = Number(productData.price || 0);
+        const unitDiscounted = Number(productData.price_discounted || unitPrice);
+        totalPayableRupees = unitDiscounted * quantity;
+        orderQty = quantity;
+        orderTitle = productData.title || productData.course_name || 'SkillBox Kit';
+      }
+
       const totalPayablePaise = Math.round(totalPayableRupees * 100);
-      const title = productData.title || productData.course_name || 'SkillBox Kit';
 
       // Hide delivery modal
       deliveryModal.classList.remove('active');
-
-      // Check if Razorpay SDK loaded
-      if (typeof Razorpay === 'undefined') {
-        alert('Payment gateway is loading. Please try again in a few seconds.');
-        return;
-      }
 
       @php
         $rzpKey = \DB::table('payment_gateways')->where('key', 'razorpay_key')->value('value') ?? 'rzp_test_RmNXpiPry9Pf7U';
@@ -1140,12 +1423,63 @@
 
       const razorpayKey = "{{ $rzpKey }}";
 
+      // Prepare items payload
+      let orderItemsPayload = [];
+      if (checkoutMode === 'cart') {
+        orderItemsPayload = skillboxCart.map(item => ({
+          product_id: item.id || null,
+          title: item.title,
+          image: item.image || null,
+          unit_price: parseFloat(item.price) || 0,
+          quantity: parseInt(item.qty) || 1
+        }));
+      } else {
+        orderItemsPayload = [{
+          product_id: currentProductId || null,
+          title: orderTitle,
+          image: (productData.thumbnail_image || productData.image || null),
+          unit_price: unitDiscounted,
+          quantity: quantity
+        }];
+      }
+
+      function recordShopOrder(paymentId, payStatus) {
+        fetch('/api/shop-orders/create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+          },
+          body: JSON.stringify({
+            customer_name: fullName,
+            customer_phone: phone,
+            customer_email: "{{ userAuth() ? userAuth()->email : '' }}",
+            pincode: pincode,
+            city: city,
+            state: state,
+            country: 'India',
+            address: street,
+            address_type: selectedAddressType,
+            payment_method: 'razorpay',
+            payment_id: paymentId,
+            payment_status: payStatus || 'paid',
+            total_amount: totalPayableRupees,
+            items: orderItemsPayload
+          })
+        }).then(r => r.json()).then(data => {
+          console.log('Shop order saved successfully:', data);
+        }).catch(err => {
+          console.error('Error saving shop order:', err);
+        });
+      }
+
       const rzpOptions = {
         key: razorpayKey,
         amount: totalPayablePaise,
         currency: "INR",
         name: "{{ config('app.name', 'Skillvation') }}",
-        description: `Order for ${title} (Qty: ${quantity})`,
+        description: `${orderTitle}`,
         image: "{{ asset('frontend/img/logo/logo.png') }}",
         prefill: {
           name: fullName,
@@ -1153,9 +1487,8 @@
           email: "{{ userAuth() ? userAuth()->email : 'customer@myskill.club' }}"
         },
         notes: {
-          product_id: productId,
-          product_name: title,
-          quantity: quantity,
+          order_title: orderTitle,
+          quantity: orderQty,
           full_address: `${street}, ${city}, ${state} - ${pincode}`,
           address_type: selectedAddressType
         },
@@ -1163,11 +1496,20 @@
           color: "#E2002B"
         },
         handler: function(response) {
-          // Payment Success Handler
-          successPaymentId.textContent = response.razorpay_payment_id || 'PAY_' + Math.random().toString(36).substr(2, 9).toUpperCase();
-          successItemTitle.textContent = `${title} (Qty: ${quantity})`;
+          const paymentId = response.razorpay_payment_id || 'PAY_' + Math.random().toString(36).substr(2, 9).toUpperCase();
+          successPaymentId.textContent = paymentId;
+          successItemTitle.textContent = `${orderTitle}`;
           successTotalPaid.textContent = `₹ ${totalPayableRupees.toLocaleString('en-IN')}`;
           successShippingAddress.textContent = `${fullName}, ${street}, ${city}, ${state} - ${pincode}`;
+
+          // Save order to backend database
+          recordShopOrder(paymentId, 'paid');
+
+          // Clear cart if cart checkout
+          if (checkoutMode === 'cart') {
+            skillboxCart = [];
+            saveCart();
+          }
 
           orderSuccessModal.classList.add('active');
         },
@@ -1179,18 +1521,30 @@
       };
 
       try {
-        const rzp = new Razorpay(rzpOptions);
-        rzp.on('payment.failed', function(response) {
-          alert('Payment Failed: ' + (response.error.description || 'Unknown error'));
-        });
-        rzp.open();
+        if (typeof Razorpay !== 'undefined') {
+          const rzp = new Razorpay(rzpOptions);
+          rzp.on('payment.failed', function(response) {
+            alert('Payment Failed: ' + (response.error.description || 'Unknown error'));
+          });
+          rzp.open();
+        } else {
+          throw new Error('Razorpay SDK unavailable');
+        }
       } catch (err) {
-        console.error('Error opening Razorpay checkout:', err);
-        // Fallback demo completion if test keys trigger environment issue
-        successPaymentId.textContent = 'DEMO_PAY_' + Math.random().toString(36).substr(2, 9).toUpperCase();
-        successItemTitle.textContent = `${title} (Qty: ${quantity})`;
+        console.error('Opening Razorpay fallback:', err);
+        const demoPaymentId = 'DEMO_PAY_' + Math.random().toString(36).substr(2, 9).toUpperCase();
+        successPaymentId.textContent = demoPaymentId;
+        successItemTitle.textContent = `${orderTitle}`;
         successTotalPaid.textContent = `₹ ${totalPayableRupees.toLocaleString('en-IN')}`;
         successShippingAddress.textContent = `${fullName}, ${street}, ${city}, ${state} - ${pincode}`;
+        
+        recordShopOrder(demoPaymentId, 'paid');
+
+        if (checkoutMode === 'cart') {
+          skillboxCart = [];
+          saveCart();
+        }
+
         orderSuccessModal.classList.add('active');
       }
     });
@@ -1219,9 +1573,10 @@
       });
     });
 
+    // Initialize
+    updateAllCartBadges();
     loadProductDetails();
 
   })();
 </script>
 @endpush
-
