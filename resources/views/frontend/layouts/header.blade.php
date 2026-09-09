@@ -6,6 +6,21 @@
         ->where('status', 1)
         ->whereNull('parent_id')
         ->get();
+
+    // Image map for known child menu links
+    $childImageMap = [
+        '/'                => ['image' => asset('designs/img/logo.png'),              'desc' => 'Back to homepage'],
+        '/skill2school'    => ['image' => asset('designs/img/skill2school-2.jpeg'),   'desc' => 'School-wide skill curriculum'],
+        '/upskill4teacher' => ['image' => asset('designs/img/TTT-1.png'),             'desc' => 'Professional educator development'],
+        '/ttt'             => ['image' => asset('designs/img/TTT-1.png'),             'desc' => 'Master trainer & bootcamp'],
+        '/shop'            => ['image' => asset('frontend/img/skillbox/skillbox_banner.png'), 'desc' => 'Interactive kits & learning boxes'],
+        '/SkillBox'        => ['image' => asset('frontend/img/skillbox/skillbox_banner.png'), 'desc' => 'Interactive kits & learning boxes'],
+        '/skillbox'        => ['image' => asset('frontend/img/skillbox/skillbox_banner.png'), 'desc' => 'Interactive kits & learning boxes'],
+        '/labs'            => ['image' => 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80', 'desc' => 'Hands-on innovation labs'],
+        '/courses'         => ['image' => asset('designs/img/skill2school-3.png'),    'desc' => 'Browse all courses'],
+        '/blog'            => ['image' => asset('designs/img/skill2school-4.jpeg'),   'desc' => 'Articles & insights'],
+        '/contact'         => ['image' => asset('designs/img/skill2school-5.jpeg'),   'desc' => 'Get in touch'],
+    ];
 @endphp
 <!-- header-area -->
 <header>
@@ -123,16 +138,51 @@
                                                     </ul><!-- /.sub-menu -->
                                                 </li>
                                             @else
-                                                <li class="{{ $menu['child'] ? 'menu-item-has-children' : '' }}">
+                                                <li class="{{ $menu['child'] ? 'menu-item-has-children mega-menu-parent' : '' }}">
                                                     <a href="{{ $menu['child'] ? 'javascript:;' : url($menu['link']) }}"
                                                         title="">{{ $menu['label'] }}</a>
                                                     @if ($menu['child'])
-                                                        <ul class="sub-menu">
-                                                            @foreach ($menu['child'] as $child)
-                                                                <li class=""><a href="{{ url($child['link']) }}"
-                                                                        title="">{{ $child['label'] }}</a></li>
-                                                            @endforeach
-                                                        </ul><!-- /.sub-menu -->
+                                                        @php
+                                                            $childCount = count($menu['child']);
+                                                            $panelW     = $childCount <= 2 ? '480px' : ($childCount === 3 ? '660px' : '880px');
+                                                            $colW       = $childCount <= 2 ? 'calc(50% - 8px)' : ($childCount === 3 ? 'calc(33.333% - 11px)' : 'calc(25% - 12px)');
+                                                        @endphp
+                                                        {{-- Mega image-card panel --}}
+                                                        <div class="mega-dropdown-panel" style="width:{{ $panelW }};">
+                                                            <div class="mega-dropdown-header">
+                                                                <span class="mega-dropdown-title">{{ $menu['label'] }}</span>
+                                                                <span class="mega-dropdown-count">{{ $childCount }}</span>
+                                                                @if($menu['link'] !== '#' && $menu['link'] !== 'javascript:;')
+                                                                    <a href="{{ url($menu['link']) }}" class="mega-dropdown-viewall">View all →</a>
+                                                                @endif
+                                                            </div>
+                                                            <div class="mega-dropdown-grid">
+                                                                @foreach ($menu['child'] as $child)
+                                                                    @php
+                                                                        $childPath  = '/' . ltrim($child['link'], '/');
+                                                                        $childMeta  = $childImageMap[$childPath] ?? null;
+                                                                        $childImg   = $childMeta['image'] ?? 'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=400&q=80';
+                                                                        $childDesc  = $childMeta['desc'] ?? '';
+                                                                        $isActive   = request()->is(ltrim($child['link'], '/'));
+                                                                    @endphp
+                                                                    <a href="{{ url($child['link']) }}"
+                                                                       class="mega-card {{ $isActive ? 'mega-card--active' : '' }}"
+                                                                       style="width:{{ $colW }};">
+                                                                        <div class="mega-card__img">
+                                                                            <img src="{{ $childImg }}"
+                                                                                 alt="{{ $child['label'] }}"
+                                                                                 onerror="this.onerror=null;this.style.opacity='.3';" />
+                                                                        </div>
+                                                                        <div class="mega-card__body">
+                                                                            <p class="mega-card__title">{{ $child['label'] }}</p>
+                                                                            @if($childDesc)
+                                                                                <p class="mega-card__desc">{{ $childDesc }}</p>
+                                                                            @endif
+                                                                        </div>
+                                                                    </a>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
                                                     @endif
                                                 </li>
                                             @endif
@@ -141,7 +191,7 @@
                                 @endif
 
                             </div>
-                            <div class="tgmenu__search d-none d-md-block">
+                            <!-- <div class="tgmenu__search d-none d-md-block">
                                 <form action="{{ route('courses') }}" class="tgmenu__search-form">
                                     <div class="select-grp">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
@@ -166,7 +216,7 @@
                                         <button type="submit"><i class="flaticon-search"></i></button>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                             <div class="tgmenu__action">
                                 <ul class="list-wrap">
                                     <li class="mini-cart-icon">
@@ -184,6 +234,7 @@
                                         <ul class="menu_user_list">
                                             @guest
                                                 <li><a href="{{ route('login') }}">{{ __('Sign in') }}</a></li>
+                                                <li><a href="https://sso.myskool.club/login?client_id=skillvation&redirect_uri=https%3A%2F%2Fskillvation.com%2Fcallback&state=4jWtX7gbTl2fWjN2" class="hidden sm:inline-block text-slate-600 font-bold hover:text-primary transition-colors text-xs sm:text-sm px-2">SSO Login </a>
                                                 <li><a href="{{ route('register') }}">{{ __('Sign Up') }}</a></li>
                                             @else
                                                 @if (Auth::guard('web')->user())
@@ -344,3 +395,126 @@
     </div>
 </header>
 <!-- header-area-end -->
+<style>
+/* ── Mega dropdown panel ──────────────────────────────────── */
+.mega-menu-parent { position: relative; }
+
+.mega-dropdown-panel {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.13);
+    border: 1px solid #f0f0f0;
+    padding: 20px;
+    z-index: 999;
+    min-width: 280px;
+}
+
+.mega-menu-parent:hover .mega-dropdown-panel,
+.mega-menu-parent:focus-within .mega-dropdown-panel {
+    display: block;
+}
+
+.mega-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f3f3f3;
+}
+.mega-dropdown-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+}
+.mega-dropdown-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: #f1f1f1;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    color: #555;
+}
+.mega-dropdown-viewall {
+    margin-left: auto;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1976d2;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.mega-dropdown-viewall:hover { text-decoration: underline; }
+
+.mega-dropdown-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* ── Individual card ──────────────────────────────────────── */
+.mega-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #e8e8e8;
+    text-decoration: none !important;
+    background: #fff;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+    box-sizing: border-box;
+}
+.mega-card:hover {
+    border-color: #1976d2;
+    box-shadow: 0 6px 20px rgba(25,118,210,.12);
+    transform: translateY(-2px);
+}
+.mega-card--active {
+    border-color: #1976d2;
+    background: #f0f7ff;
+}
+
+.mega-card__img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+.mega-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s;
+    display: block;
+}
+.mega-card:hover .mega-card__img img { transform: scale(1.06); }
+
+.mega-card__body { padding: 0 2px; }
+.mega-card__title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 3px;
+    line-height: 1.3;
+    transition: color .2s;
+}
+.mega-card:hover .mega-card__title { color: #1976d2; }
+.mega-card--active .mega-card__title { color: #1976d2; }
+
+.mega-card__desc {
+    font-size: 11px;
+    color: #888;
+    margin: 0;
+    line-height: 1.4;
+}
+</style>

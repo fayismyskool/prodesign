@@ -92,6 +92,125 @@ Route::group(['middleware' => 'maintenance.mode'], function () {
         return view('frontend.home-four.pages.upskill-teacher');
     })->name('upskill4teacher');
 
+    Route::get('/shop', function () {
+        return view('frontend.home-four.pages.shop');
+    })->name('shop');
+
+    Route::get('/SkillBox', function () {
+        return view('frontend.home-four.pages.shop');
+    })->name('skillbox');
+
+    Route::get('/skillbox', function () {
+        return view('frontend.home-four.pages.shop');
+    });
+
+    Route::get('/ProductDetails/{id}', function ($id) {
+        return view('frontend.home-four.pages.product-details', compact('id'));
+    })->name('product.details');
+
+    Route::get('/product-details/{id}', function ($id) {
+        return view('frontend.home-four.pages.product-details', compact('id'));
+    });
+
+    Route::get('/api/product-details/{id}', function ($id) {
+        $baseUrl = config('services.shop.api_url', env('SHOP_API_BASE_URL', 'https://myskill.club/api/'));
+        try {
+            $response = \Illuminate\Support\Facades\Http::timeout(5)->get("{$baseUrl}products/{$id}");
+            if ($response->successful()) {
+                return response()->json($response->json());
+            }
+        } catch (\Throwable $e) {}
+
+        // Fallback from local cached products_data.json
+        $localJson = public_path('frontend/img/skillbox/products_data.json');
+        if (file_exists($localJson)) {
+            $data = json_decode(file_get_contents($localJson), true);
+            $items = collect($data['products']['data'] ?? []);
+            $item = $items->first(fn($p) => (string)($p['id'] ?? '') === (string)$id || ($p['slug'] ?? '') === $id);
+            if ($item) {
+                return response()->json(['status' => 'success', 'data' => $item]);
+            }
+        }
+
+        return response()->json(['status' => 'error', 'message' => 'Product not found'], 404);
+    });
+
+    Route::get('/api/shop-categories', function () {
+        $baseUrl = config('services.shop.api_url', env('SHOP_API_BASE_URL', 'https://myskill.club/api/'));
+        try {
+            $response = \Illuminate\Support\Facades\Http::timeout(5)->get("{$baseUrl}categories");
+            if ($response->successful()) {
+                return response()->json($response->json());
+            }
+        } catch (\Throwable $e) {}
+
+        $localJson = public_path('frontend/img/skillbox/products_data.json');
+        if (file_exists($localJson)) {
+            $data = json_decode(file_get_contents($localJson), true);
+            return response()->json($data['categories'] ?? ['status' => 'success', 'data' => []]);
+        }
+
+        return response()->json(['status' => 'success', 'data' => []]);
+    });
+
+    Route::get('/api/shop-products', function (\Illuminate\Http\Request $request) {
+        $baseUrl = config('services.shop.api_url', env('SHOP_API_BASE_URL', 'https://myskill.club/api/'));
+        $categoryId = $request->get('category_id');
+        $search = strtolower(trim((string)$request->get('search', '')));
+        $page = (int)$request->get('page', 1);
+        $perPage = (int)$request->get('per_page', 20);
+
+        try {
+            $url = $categoryId ? "{$baseUrl}categories/{$categoryId}/products" : "{$baseUrl}products";
+            $response = \Illuminate\Support\Facades\Http::timeout(5)->get($url, [
+                'page' => $page,
+                'per_page' => $perPage,
+            ]);
+            if ($response->successful()) {
+                $resData = $response->json();
+                $items = collect($resData['data'] ?? []);
+
+                if ($search !== '') {
+                    $items = $items->filter(function ($item) use ($search) {
+                        $title = strtolower($item['title'] ?? $item['course_name'] ?? '');
+                        $tags = strtolower($item['tags'] ?? '');
+                        return str_contains($title, $search) || str_contains($tags, $search);
+                    })->values();
+                }
+
+                $resData['data'] = $items->all();
+                return response()->json($resData);
+            }
+        } catch (\Throwable $e) {}
+
+        // Fallback to local cached data
+        $localJson = public_path('frontend/img/skillbox/products_data.json');
+        if (file_exists($localJson)) {
+            $data = json_decode(file_get_contents($localJson), true);
+            $items = collect($data['products']['data'] ?? []);
+
+            if ($categoryId) {
+                $items = $items->filter(fn($p) => (string)($p['category_id'] ?? '') === (string)$categoryId);
+            }
+
+            if ($search !== '') {
+                $items = $items->filter(function ($item) use ($search) {
+                    $title = strtolower($item['title'] ?? $item['course_name'] ?? '');
+                    $tags = strtolower($item['tags'] ?? '');
+                    return str_contains($title, $search) || str_contains($tags, $search);
+                });
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'data' => $items->values()->all(),
+                'total' => $items->count(),
+            ]);
+        }
+
+        return response()->json(['status' => 'success', 'data' => []]);
+    });
+
     Route::get('/api/collab-courses', function (\Illuminate\Http\Request $request) {
         $type    = $request->get('type');     // e.g. '8' or '10' or '5,10'
         $upskill = $request->get('upskill');  // null = no filter, '0' or '1'

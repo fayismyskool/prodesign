@@ -4,6 +4,21 @@
     });
     $setting = Cache::get('setting');
 
+    // Image map for known child menu links — keyed by the link path
+    $childImageMap = [
+        '/'                 => ['image' => asset('designs/img/logo.png'),              'desc' => 'Back to homepage'],
+        '/skill2school'     => ['image' => asset('designs/img/skill2school-2.jpeg'),   'desc' => 'School-wide skill curriculum'],
+        '/upskill4teacher'  => ['image' => asset('designs/img/TTT-1.png'),             'desc' => 'Professional educator development'],
+        '/ttt'              => ['image' => asset('designs/img/TTT-1.png'),             'desc' => 'Master trainer & bootcamp program'],
+        '/shop'             => ['image' => asset('frontend/img/skillbox/skillbox_banner.png'), 'desc' => 'Interactive kits & learning boxes'],
+        '/SkillBox'         => ['image' => asset('frontend/img/skillbox/skillbox_banner.png'), 'desc' => 'Interactive kits & learning boxes'],
+        '/skillbox'         => ['image' => asset('frontend/img/skillbox/skillbox_banner.png'), 'desc' => 'Interactive kits & learning boxes'],
+        '/labs'             => ['image' => 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80', 'desc' => 'Hands-on innovation labs'],
+        '/courses'          => ['image' => asset('designs/img/skill2school-3.png'),    'desc' => 'Browse all available courses'],
+        '/blog'             => ['image' => asset('designs/img/skill2school-4.jpeg'),   'desc' => 'Articles & insights'],
+        '/contact'          => ['image' => asset('designs/img/skill2school-5.jpeg'),   'desc' => 'Get in touch with us'],
+    ];
+
     $labLinks = [
         [
             'label' => 'AI & Robotics Lab',
@@ -57,20 +72,66 @@
           @endphp
 
           @if (!empty($menu['child']) && count($menu['child']) > 0)
-            <!-- Dropdown Menu -->
+            <!-- Mega Dropdown — image card grid (same style as Labs) -->
+            @php
+              $childCount = count($menu['child']);
+              // pick panel width based on child count
+              $panelWidth = $childCount <= 2 ? 'w-[480px]' : ($childCount === 3 ? 'w-[660px]' : 'w-[880px]');
+              $gridCols   = $childCount <= 2 ? 'grid-cols-2' : ($childCount === 3 ? 'grid-cols-3' : 'grid-cols-4');
+            @endphp
             <div class="relative group">
               <button type="button" class="nav-link inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 {{ $isActive ? 'text-primary bg-blue-50/60 font-bold' : 'text-slate-600 hover:text-primary hover:bg-slate-50' }}">
                 <span>{{ $menu['label'] }}</span>
                 <i class="fa-solid fa-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition-transform duration-200"></i>
               </button>
 
-              <div class="absolute left-0 top-full pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-1 z-50">
-                <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-2 space-y-1">
-                  @foreach ($menu['child'] as $child)
-                    <a href="{{ url($child['link']) }}" class="block px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-primary hover:bg-blue-50/60 transition-colors">
-                      {{ $child['label'] }}
-                    </a>
-                  @endforeach
+              <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 {{ $panelWidth }} opacity-0 invisible
+                          group-hover:opacity-100 group-hover:visible transition-all duration-200
+                          translate-y-1 group-hover:translate-y-0 z-50">
+                <div class="bg-white rounded-2xl shadow-2xl border border-slate-100 p-6">
+
+                  {{-- Panel header --}}
+                  <div class="flex items-center justify-between mb-5">
+                    <div>
+                      <span class="text-base font-extrabold text-slate-900">{{ $menu['label'] }}</span>
+                      <span class="ml-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-100 text-slate-500 text-xs font-bold">{{ $childCount }}</span>
+                    </div>
+                    @if($menu['link'] !== '#')
+                      <a href="{{ url($menu['link']) }}" class="text-xs font-bold text-primary hover:underline">View all →</a>
+                    @endif
+                  </div>
+
+                  {{-- Image card grid --}}
+                  <div class="grid {{ $gridCols }} gap-4">
+                    @foreach ($menu['child'] as $child)
+                      @php
+                        $childPath   = '/' . ltrim($child['link'], '/');
+                        $childMeta   = $childImageMap[$childPath] ?? null;
+                        $childImage  = $childMeta['image'] ?? 'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=400&q=80';
+                        $childDesc   = $childMeta['desc'] ?? '';
+                        $childActive = request()->is(ltrim($child['link'], '/'));
+                      @endphp
+                      <a href="{{ url($child['link']) }}"
+                         class="group/item flex flex-col gap-3 p-3 rounded-xl border transition-all duration-200
+                                {{ $childActive ? 'border-primary shadow-md bg-blue-50/30' : 'border-slate-200 hover:border-primary hover:shadow-md bg-white' }}">
+                        <div class="w-full aspect-[4/3] rounded-lg overflow-hidden bg-slate-100">
+                          <img src="{{ $childImage }}"
+                               alt="{{ $child['label'] }}"
+                               class="w-full h-full object-cover group-hover/item:scale-105 transition-transform duration-300"
+                               onerror="this.onerror=null;this.style.display='none';" />
+                        </div>
+                        <div>
+                          <p class="text-sm font-bold text-slate-900 group-hover/item:text-primary transition-colors leading-tight">
+                            {{ $child['label'] }}
+                          </p>
+                          @if($childDesc)
+                            <p class="text-xs text-slate-400 mt-0.5 leading-tight">{{ $childDesc }}</p>
+                          @endif
+                        </div>
+                      </a>
+                    @endforeach
+                  </div>
+
                 </div>
               </div>
             </div>

@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'shop' => [
+        'api_url' => rtrim(env('SHOP_API_BASE_URL', 'https://myskill.club/api/'), '/') . '/',
+    ],
+
 ];
