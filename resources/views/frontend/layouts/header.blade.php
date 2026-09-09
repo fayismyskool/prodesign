@@ -9,17 +9,30 @@
 
     // Image map for known child menu links
     $childImageMap = [
-        '/'                => ['image' => asset('designs/img/logo.png'),              'desc' => 'Back to homepage'],
-        '/skill2school'    => ['image' => asset('designs/img/skill2school-2.jpeg'),   'desc' => 'School-wide skill curriculum'],
-        '/upskill4teacher' => ['image' => asset('designs/img/TTT-1.png'),             'desc' => 'Professional educator development'],
-        '/ttt'             => ['image' => asset('designs/img/TTT-1.png'),             'desc' => 'Master trainer & bootcamp'],
-        '/shop'            => ['image' => asset('frontend/img/skillbox/skillbox_banner.png'), 'desc' => 'Interactive kits & learning boxes'],
-        '/SkillBox'        => ['image' => asset('frontend/img/skillbox/skillbox_banner.png'), 'desc' => 'Interactive kits & learning boxes'],
-        '/skillbox'        => ['image' => asset('frontend/img/skillbox/skillbox_banner.png'), 'desc' => 'Interactive kits & learning boxes'],
-        '/labs'            => ['image' => 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80', 'desc' => 'Hands-on innovation labs'],
-        '/courses'         => ['image' => asset('designs/img/skill2school-3.png'),    'desc' => 'Browse all courses'],
-        '/blog'            => ['image' => asset('designs/img/skill2school-4.jpeg'),   'desc' => 'Articles & insights'],
-        '/contact'         => ['image' => asset('designs/img/skill2school-5.jpeg'),   'desc' => 'Get in touch'],
+        '/'                     => ['image' => asset('designs/img/logo.png'),              'desc' => 'Back to homepage'],
+        '/skill2school'         => ['image' => asset('designs/img/skill2school-2.jpeg'),   'desc' => 'School-wide skill curriculum'],
+        '/upskill4teacher'      => ['image' => asset('designs/img/TTT-1.png'),             'desc' => 'Professional educator development'],
+        '/ttt'                  => ['image' => asset('designs/img/TTT-1.png'),             'desc' => 'Master trainer & bootcamp'],
+        '/shop'                 => ['image' => asset('frontend/img/skillbox/skillbox_banner.png'), 'desc' => 'Interactive kits & learning boxes'],
+        '/SkillBox'             => ['image' => asset('frontend/img/skillbox/skillbox_banner.png'), 'desc' => 'Interactive kits & learning boxes'],
+        '/skillbox'             => ['image' => asset('frontend/img/skillbox/skillbox_banner.png'), 'desc' => 'Interactive kits & learning boxes'],
+        '/labs'                 => ['image' => 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80', 'desc' => 'Hands-on innovation labs'],
+        '/labs/ai-robotics'     => ['image' => 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80', 'desc' => ''],
+        '/labs/stem'            => ['image' => 'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=600&q=80', 'desc' => ''],
+        '/labs/ecec'            => ['image' => 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80', 'desc' => ''],
+        '/labs/composite-skill' => ['image' => 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80', 'desc' => ''],
+        '/courses'              => ['image' => asset('designs/img/skill2school-3.png'),    'desc' => 'Browse all courses'],
+        '/blog'                 => ['image' => asset('designs/img/skill2school-4.jpeg'),   'desc' => 'Articles & insights'],
+        '/contact'              => ['image' => asset('designs/img/skill2school-5.jpeg'),   'desc' => 'Get in touch'],
+    ];
+
+    $childLabelMap = [
+        'ai & robotics'       => 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80',
+        'ai & robotics lab'   => 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80',
+        'stem lab'            => 'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=600&q=80',
+        'ecec lab'            => 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80',
+        'composite skill lab' => 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80',
+        'composite lab'       => 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80',
     ];
 @endphp
 <!-- header-area -->
@@ -140,11 +153,16 @@
                                             @else
                                                 <li class="{{ $menu['child'] ? 'menu-item-has-children mega-menu-parent' : '' }}">
                                                     <a href="{{ $menu['child'] ? 'javascript:;' : url($menu['link']) }}"
-                                                        title="">{{ $menu['label'] }}</a>
+                                                        title="">
+                                                        <span>{{ $menu['label'] }}</span>
+                                                        <!-- @if ($menu['child']) -->
+                                                            <!-- <i class="fas fa-chevron-down nav-dropdown-icon"></i> -->
+                                                        <!-- @endif -->
+                                                    </a>
                                                     @if ($menu['child'])
                                                         @php
                                                             $childCount = count($menu['child']);
-                                                            $panelW     = $childCount <= 2 ? '480px' : ($childCount === 3 ? '660px' : '880px');
+                                                            $panelW     = $childCount <= 2 ? '460px' : ($childCount === 3 ? '680px' : '900px');
                                                             $colW       = $childCount <= 2 ? 'calc(50% - 8px)' : ($childCount === 3 ? 'calc(33.333% - 11px)' : 'calc(25% - 12px)');
                                                         @endphp
                                                         {{-- Mega image-card panel --}}
@@ -152,32 +170,24 @@
                                                             <div class="mega-dropdown-header">
                                                                 <span class="mega-dropdown-title">{{ $menu['label'] }}</span>
                                                                 <span class="mega-dropdown-count">{{ $childCount }}</span>
-                                                                @if($menu['link'] !== '#' && $menu['link'] !== 'javascript:;')
-                                                                    <a href="{{ url($menu['link']) }}" class="mega-dropdown-viewall">View all →</a>
-                                                                @endif
                                                             </div>
                                                             <div class="mega-dropdown-grid">
                                                                 @foreach ($menu['child'] as $child)
                                                                     @php
                                                                         $childPath  = '/' . ltrim($child['link'], '/');
+                                                                        $labelKey   = strtolower(trim($child['label']));
                                                                         $childMeta  = $childImageMap[$childPath] ?? null;
-                                                                        $childImg   = $childMeta['image'] ?? 'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=400&q=80';
-                                                                        $childDesc  = $childMeta['desc'] ?? '';
+                                                                        $childImg   = $childMeta['image'] ?? ($childLabelMap[$labelKey] ?? 'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=600&q=80');
                                                                         $isActive   = request()->is(ltrim($child['link'], '/'));
                                                                     @endphp
                                                                     <a href="{{ url($child['link']) }}"
                                                                        class="mega-card {{ $isActive ? 'mega-card--active' : '' }}"
                                                                        style="width:{{ $colW }};">
+                                                                        <p class="mega-card__title">{{ $child['label'] }}</p>
                                                                         <div class="mega-card__img">
                                                                             <img src="{{ $childImg }}"
                                                                                  alt="{{ $child['label'] }}"
                                                                                  onerror="this.onerror=null;this.style.opacity='.3';" />
-                                                                        </div>
-                                                                        <div class="mega-card__body">
-                                                                            <p class="mega-card__title">{{ $child['label'] }}</p>
-                                                                            @if($childDesc)
-                                                                                <p class="mega-card__desc">{{ $childDesc }}</p>
-                                                                            @endif
                                                                         </div>
                                                                     </a>
                                                                 @endforeach
@@ -396,125 +406,191 @@
 </header>
 <!-- header-area-end -->
 <style>
-/* ── Mega dropdown panel ──────────────────────────────────── */
-.mega-menu-parent { position: relative; }
+/* ── Center navigation menu between logo and cart/user actions ── */
+.tgmenu__nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100%;
+}
+.tgmenu__navbar-wrap {
+    display: flex !important;
+    flex-grow: 1 !important;
+    justify-content: center !important;
+}
+.tgmenu__navbar-wrap ul,
+.tgmenu__navbar-wrap ul.navigation {
+    margin: 0 auto !important;
+    justify-content: center !important;
+}
+
+/* ── Mega dropdown panel (STEMbotix reference style) ──────── */
+.mega-menu-parent {
+    position: relative;
+}
+
+.mega-menu-parent > a {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.nav-dropdown-icon {
+    font-size: 10px !important;
+    opacity: 0.65;
+    margin-left: 4px;
+    transition: transform 0.25s ease;
+}
+
+.mega-menu-parent:hover > a .nav-dropdown-icon,
+.mega-menu-parent:focus-within > a .nav-dropdown-icon {
+    transform: rotate(180deg);
+}
 
 .mega-dropdown-panel {
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 14px);
     left: 50%;
     transform: translateX(-50%);
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.13);
-    border: 1px solid #f0f0f0;
-    padding: 20px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f1f5f9;
+    padding: 24px 28px 28px;
     z-index: 999;
-    min-width: 280px;
+    box-sizing: border-box;
+}
+
+/* Upward pointer arrow matching reference */
+.mega-dropdown-panel::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border-left: 1px solid #e2e8f0;
+    border-top: 1px solid #e2e8f0;
+    border-radius: 3px 0 0 0;
+    z-index: 10;
 }
 
 .mega-menu-parent:hover .mega-dropdown-panel,
 .mega-menu-parent:focus-within .mega-dropdown-panel {
     display: block;
+    animation: megaDropdownFade 0.2s ease forwards;
+}
+
+@keyframes megaDropdownFade {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 6px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
 }
 
 .mega-dropdown-header {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #f3f3f3;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding-bottom: 0;
+    border-bottom: none;
 }
+
 .mega-dropdown-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #111;
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
 }
+
 .mega-dropdown-count {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
-    background: #f1f1f1;
-    border-radius: 50%;
-    font-size: 11px;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 8px;
+    background: #ede9fe;
+    color: #6366f1;
+    border-radius: 9999px;
+    font-size: 13px;
     font-weight: 700;
-    color: #555;
 }
-.mega-dropdown-viewall {
-    margin-left: auto;
-    font-size: 12px;
-    font-weight: 700;
-    color: #1976d2;
-    text-decoration: none;
-    white-space: nowrap;
-}
-.mega-dropdown-viewall:hover { text-decoration: underline; }
 
 .mega-dropdown-grid {
     display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+    flex-wrap: nowrap;
+    gap: 16px;
 }
 
-/* ── Individual card ──────────────────────────────────────── */
+/* ── Individual Card (Title on TOP, Photo on BOTTOM) ─────── */
 .mega-card {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    border-radius: 12px;
-    border: 1px solid #e8e8e8;
+    padding: 14px 14px 16px;
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
     text-decoration: none !important;
-    background: #fff;
-    transition: border-color .2s, box-shadow .2s, transform .2s;
+    background: #ffffff;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     box-sizing: border-box;
+    flex: 1 1 0;
+    min-width: 0;
 }
+
 .mega-card:hover {
-    border-color: #1976d2;
-    box-shadow: 0 6px 20px rgba(25,118,210,.12);
-    transform: translateY(-2px);
+    border-color: #cbd5e1;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1);
+    transform: translateY(-3px);
 }
+
 .mega-card--active {
-    border-color: #1976d2;
-    background: #f0f7ff;
+    border-color: #6366f1;
+    box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.15);
+}
+
+.mega-card__title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 12px 2px;
+    line-height: 1.25;
+    transition: color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mega-card:hover .mega-card__title {
+    color: var(--tg-theme-primary, #1976d2);
 }
 
 .mega-card__img {
     width: 100%;
-    aspect-ratio: 4/3;
-    border-radius: 8px;
+    aspect-ratio: 1 / 0.95;
+    border-radius: 12px;
     overflow: hidden;
-    background: #f5f5f5;
+    background: #f1f5f9;
 }
+
 .mega-card__img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform .3s;
+    transition: transform 0.35s ease;
     display: block;
 }
-.mega-card:hover .mega-card__img img { transform: scale(1.06); }
 
-.mega-card__body { padding: 0 2px; }
-.mega-card__title {
-    font-size: 13px;
-    font-weight: 700;
-    color: #111;
-    margin: 0 0 3px;
-    line-height: 1.3;
-    transition: color .2s;
-}
-.mega-card:hover .mega-card__title { color: #1976d2; }
-.mega-card--active .mega-card__title { color: #1976d2; }
-
-.mega-card__desc {
-    font-size: 11px;
-    color: #888;
-    margin: 0;
-    line-height: 1.4;
+.mega-card:hover .mega-card__img img {
+    transform: scale(1.06);
 }
 </style>

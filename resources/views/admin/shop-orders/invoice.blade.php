@@ -1,3 +1,6 @@
+@php
+    $setting = $setting ?? Cache::get('setting');
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,12 +34,26 @@
         .header-table td {
             vertical-align: top;
         }
+        .logo-img {
+            max-height: 52px;
+            max-width: 220px;
+            object-fit: contain;
+            margin-bottom: 8px;
+            display: block;
+        }
         .logo-text {
             font-size: 26px;
             font-weight: 800;
             color: #2b4eff;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .company-address {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+            max-width: 340px;
         }
         .invoice-title {
             text-align: right;
@@ -184,8 +201,22 @@
         <table class="header-table">
             <tr>
                 <td>
-                    <div class="logo-text">{{ config('app.name', 'SkillBox') }}</div>
-                    <div style="font-size: 13px; color: #777; margin-top: 4px;">Shop & Learning Kits Division</div>
+                    @if(!empty($setting?->logo))
+                        <img src="{{ asset($setting->logo) }}" alt="{{ $setting?->app_name ?? config('app.name') }}" class="logo-img">
+                    @else
+                        <div class="logo-text">{{ $setting?->app_name ?? config('app.name', 'SkillBox') }}</div>
+                    @endif
+                    <div class="company-address">
+                        @if(!empty($setting?->site_address))
+                            <div>{{ $setting->site_address }}</div>
+                        @endif
+                        @if(!empty($setting?->site_email))
+                            <div><strong>Email:</strong> {{ $setting->site_email }}</div>
+                        @endif
+                        @if(!empty($setting?->site_phone))
+                            <div><strong>Phone:</strong> {{ $setting->site_phone }}</div>
+                        @endif
+                    </div>
                 </td>
                 <td class="invoice-title">
                     <h1>INVOICE</h1>
@@ -289,7 +320,7 @@
         </div>
 
         <div class="footer-note">
-            <p>Thank you for choosing SkillBox! If you have questions about your order, please contact our support.</p>
+            <p>Thank you for choosing {{ $setting?->app_name ?? 'SkillBox' }}! If you have questions about your order, please contact our support{{ !empty($setting?->site_email) ? ' at ' . $setting->site_email : '' }}.</p>
         </div>
     </div>
 

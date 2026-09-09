@@ -1914,12 +1914,14 @@ textarea {
     padding: 0;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 0 auto 0 73px;
+    margin: 0 auto;
+    justify-content: center;
 }
 
 @media (max-width: 1500px) {
     .tgmenu__navbar-wrap ul {
-        margin: 0 auto 0 20px;
+        margin: 0 auto;
+        justify-content: center;
     }
 }
 

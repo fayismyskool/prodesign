@@ -59,7 +59,7 @@
     </a>
 
     <!-- Desktop Navigation (CMS Dynamic Menu) -->
-    <nav class="hidden lg:flex gap-1 xl:gap-2 items-center" id="main-nav">
+    <nav class="hidden lg:flex gap-1 xl:gap-2 items-center mx-auto justify-center" id="main-nav">
       @if ($nav_menu)
         @foreach ($nav_menu as $menu)
           @php
@@ -169,28 +169,22 @@
                       translate-y-1 group-hover:translate-y-0 z-50">
             <div class="bg-white rounded-2xl shadow-2xl border border-slate-100 p-6">
 
-              <div class="flex items-center justify-between mb-5">
-                <div>
-                  <span class="text-base font-extrabold text-slate-900">Labs</span>
-                  <span class="ml-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-100 text-slate-500 text-xs font-bold">4</span>
-                </div>
-                <a href="{{ route('labs') }}" class="text-xs font-bold text-primary hover:underline">View all →</a>
+              <div class="flex items-center gap-2.5 mb-5">
+                <span class="text-lg font-extrabold text-slate-900">Labs</span>
+                <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full bg-purple-100 text-indigo-600 text-xs font-bold">4</span>
               </div>
 
               <div class="grid grid-cols-4 gap-4">
                 @foreach ($labLinks as $lab)
                   <a href="{{ $lab['route'] }}"
-                    class="group/item flex flex-col gap-3 p-3 rounded-xl border border-slate-200 hover:border-primary hover:shadow-md bg-white transition-all duration-200">
-                    <div class="w-full aspect-[4/3] rounded-lg overflow-hidden bg-slate-100">
+                    class="group/item flex flex-col p-3.5 rounded-2xl border border-slate-200 hover:border-slate-300 hover:shadow-lg bg-white transition-all duration-200">
+                    <p class="text-sm font-bold text-slate-900 group-hover/item:text-primary transition-colors mb-3 leading-tight truncate">
+                      {{ $lab['label'] }}
+                    </p>
+                    <div class="w-full aspect-[1/0.95] rounded-xl overflow-hidden bg-slate-100">
                       <img src="{{ $lab['image'] }}"
                           alt="{{ $lab['label'] }}"
                           class="w-full h-full object-cover group-hover/item:scale-105 transition-transform duration-300" />
-                    </div>
-                    <div>
-                      <p class="text-sm font-bold text-slate-900 group-hover/item:text-primary transition-colors">
-                        {{ $lab['label'] }}
-                      </p>
-                      
                     </div>
                   </a>
                 @endforeach
