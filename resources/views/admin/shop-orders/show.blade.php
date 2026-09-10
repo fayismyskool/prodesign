@@ -226,7 +226,11 @@
                     <hr>
                     <div class="d-flex justify-content-between align-items-center">
                         <a href="{{ route('admin.shop-orders.index') }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left mr-1"></i> {{ __('Back to Shop Orders') }}</a>
-                        <div>
+                        <div class="d-flex align-items-center">
+                            <form action="{{ route('admin.shop-orders.sync-pos', $order->id) }}" method="POST" class="d-inline mr-2">
+                                @csrf
+                                <button type="submit" class="btn btn-info btn-icon icon-left" title="{{ __('Push order details to external POS API') }}"><i class="fas fa-sync-alt"></i> {{ __('Sync to POS') }}</button>
+                            </form>
                             <a target="_blank" href="{{ route('admin.shop-orders.invoice', $order->id) }}" class="btn btn-warning btn-icon icon-left print-btn mr-2"><i class="fas fa-print"></i> {{ __('Print Invoice') }}</a>
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteShopOrder"><i class="fas fa-trash mr-1"></i> {{ __('Delete') }}</button>
                         </div>

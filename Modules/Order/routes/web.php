@@ -32,6 +32,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth:admi
         Route::get('/pending-shop-orders', 'pending')->name('shop-orders.pending');
         Route::get('/shop-order/{id}', 'show')->name('shop-orders.show');
         Route::post('/update-shop-order/{id}', 'updateStatus')->name('shop-orders.update-status');
+        Route::post('/shop-order/sync-pos/{id}', 'syncPos')->name('shop-orders.sync-pos');
         Route::delete('/shop-order-delete/{id}', 'destroy')->name('shop-orders.destroy');
         Route::get('/shop-order/invoice/{id}', 'printInvoice')->name('shop-orders.invoice');
     });

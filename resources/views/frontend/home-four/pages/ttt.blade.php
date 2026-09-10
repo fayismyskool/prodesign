@@ -3,21 +3,96 @@
 @section('meta_title', 'Train the Trainer (TTT) — ' . config('app.name', 'Skillvation'))
 @section('meta_description', 'Empowering teachers for effective, modern classrooms. Comprehensive professional development initiative.')
 
+@push('styles')
+<style>
+  /* ── Hero Banner (Matched exactly with skillvation.com/TTT) ── */
+  .ttt-hero {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    height: 480px;
+    display: flex;
+    align-items: center;
+    background-image: url('{{ asset('designs/img/TTT-1.png') }}');
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+  .ttt-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(281.88deg, rgba(0, 0, 0, 0) 0.3%, rgba(0, 0, 0, 0.7) 56.82%, rgba(0, 0, 0, 0.7) 97.64%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .ttt-hero__container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .ttt-hero__inner {
+    max-width: 68%;
+    color: #ffffff;
+    text-align: left;
+  }
+  .ttt-hero__title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: #ffffff;
+    margin: 0 0 16px 0;
+  }
+  .ttt-hero__divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    margin: 14px 0 16px 0;
+    width: 100%;
+  }
+  .ttt-hero__desc {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: #ffffff;
+    opacity: 0.95;
+    margin: 0;
+  }
+
+  @media (max-width: 991px) {
+    .ttt-hero {
+      height: auto;
+      min-height: 420px;
+      padding: 4rem 0;
+    }
+    .ttt-hero::after {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.85) 100%);
+    }
+    .ttt-hero__inner {
+      max-width: 100%;
+    }
+    .ttt-hero__title {
+      font-size: 26px;
+    }
+    .ttt-hero__desc {
+      font-size: 15px;
+    }
+  }
+</style>
+@endpush
+
 @section('contents')
 <!-- BEGIN: Hero Section -->
-<section class="relative bg-slate-900 text-white py-32 overflow-hidden">
-  <div class="absolute inset-0 z-0">
-    <img alt="Teachers and Students" class="w-full h-full object-cover opacity-40"
-      src="{{ asset('designs/img/TTT-1.png') }}" />
-  </div>
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl">
-      <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">Empowering Teachers for Effective, Modern Classrooms</h1>
-      <p class="text-lg md:text-xl text-slate-200 leading-relaxed">
-        Skillvation's Train the Teacher Programme is a comprehensive professional-development initiative designed to
-        strengthen both foundational teaching skills and subject-specific classroom delivery. The programme equips
-        educators with practical strategies to improve student engagement, concept clarity, and classroom
-        effectiveness - aligned with today's learner needs and modern educational practices.
+<section class="ttt-hero">
+  <div class="ttt-hero__container">
+    <div class="ttt-hero__inner">
+      <h1 class="ttt-hero__title">Empowering Teachers for Effective, Modern Classrooms</h1>
+      <hr class="ttt-hero__divider" />
+      <p class="ttt-hero__desc">
+        Skillvation’s Train the Teacher Programme is a comprehensive professional-development initiative designed to strengthen both foundational teaching skills and subject-specific classroom delivery. The programme equips educators with practical strategies to improve student engagement, concept clarity, and classroom effectiveness—aligned with today’s learner needs and modern educational practices.
       </p>
     </div>
   </div>

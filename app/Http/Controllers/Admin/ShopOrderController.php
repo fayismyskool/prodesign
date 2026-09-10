@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ShopOrder;
 use App\Models\ShopOrderItem;
+use App\Services\ShopApiService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -85,7 +86,7 @@ class ShopOrderController extends Controller
             checkAdminHasPermissionAndThrowException('order.management');
         }
 
-        $order = ShopOrder::findOrFail($id);
+        $order = ShopOrder::with('items')->findOrFail($id);
 
         $request->validate([
             'order_status' => 'required|in:pending,processing,shipped,delivered,cancelled',
@@ -95,6 +96,8 @@ class ShopOrderController extends Controller
             'admin_notes' => 'nullable|string',
         ]);
 
+        $wasPaid = ($order->payment_status === 'paid');
+
         $order->order_status = $request->order_status;
         $order->payment_status = $request->payment_status;
         $order->tracking_number = $request->tracking_number;
@@ -102,7 +105,29 @@ class ShopOrderController extends Controller
         $order->admin_notes = $request->admin_notes;
         $order->save();
 
+        if (!$wasPaid && $order->payment_status === 'paid') {
+            ShopApiService::syncOrderToPos($order);
+        }
+
         $notification = ['messege' => __('Order status updated successfully'), 'alert-type' => 'success'];
+        return redirect()->back()->with($notification);
+    }
+
+    public function syncPos($id)
+    {
+        if (function_exists('checkAdminHasPermissionAndThrowException')) {
+            checkAdminHasPermissionAndThrowException('order.management');
+        }
+
+        $order = ShopOrder::with('items')->findOrFail($id);
+        $result = ShopApiService::syncOrderToPos($order);
+
+        if ($result['success']) {
+            $notification = ['messege' => __('POS order created successfully in remote system'), 'alert-type' => 'success'];
+        } else {
+            $notification = ['messege' => __('Failed to sync with POS API: ') . ($result['message'] ?? 'Unknown error'), 'alert-type' => 'error'];
+        }
+
         return redirect()->back()->with($notification);
     }
 
@@ -200,11 +225,19 @@ class ShopOrderController extends Controller
             ]);
         }
 
+        // Post order details to POS API if payment is completed
+        $posResult = null;
+        if ($shopOrder->payment_status === 'paid') {
+            $shopOrder->load('items');
+            $posResult = ShopApiService::syncOrderToPos($shopOrder);
+        }
+
         return response()->json([
             'status' => 'success',
             'message' => 'Shop order created successfully',
             'order_number' => $orderNumber,
             'order_id' => $shopOrder->id,
+            'pos_sync' => $posResult,
             'data' => $shopOrder->load('items'),
         ]);
     }
