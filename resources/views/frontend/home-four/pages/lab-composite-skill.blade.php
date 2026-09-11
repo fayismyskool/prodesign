@@ -206,15 +206,34 @@
   .vl-row-list { border-top: 1px solid var(--vl-hair); }
   .vl-row-item {
     display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 24px;
+    grid-template-columns: 120px 220px 1fr;
+    gap: 0 32px;
     padding: 26px 0;
     border-bottom: 1px solid var(--vl-hair);
+    align-items: center;
   }
-  @media (max-width: 700px) {
-    .vl-row-item { grid-template-columns: 1fr; gap: 8px; }
+  @media (max-width: 860px) {
+    .vl-row-item { grid-template-columns: 88px 1fr; gap: 0 20px; }
+    .vl-row-item .vl-row-text { grid-column: 2; }
   }
-  .vl-row-item h3 { font-size: 1.15rem; }
+  @media (max-width: 580px) {
+    .vl-row-item { grid-template-columns: 1fr; gap: 14px; }
+    .vl-row-item .vl-row-img { width: 100%; height: 180px; }
+    .vl-row-item .vl-row-text { grid-column: 1; }
+  }
+  .vl-row-img {
+    width: 120px; height: 88px;
+    border-radius: 4px; overflow: hidden;
+    background: #D6D2C8; flex-shrink: 0;
+  }
+  .vl-row-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform .4s ease;
+  }
+  .vl-row-item:hover .vl-row-img img { transform: scale(1.07); }
+  .vl-row-text { display: flex; flex-direction: column; gap: 6px; }
+  .vl-row-item h3 { font-size: 1.15rem; margin: 0; }
   .vl-row-item p { color: #4B4A44; margin: 0; }
 
   /* ---------- Testimonial ---------- */
@@ -339,8 +358,125 @@
   .vl-table td.no { color: #9C6B3E; }
   .vl-table tr:last-child td { border-bottom: none; }
 
-  /* ---------- FAQ ---------- */
-  .vl-details {
+  /* ---------- FAQ Card Carousel ---------- */
+  .vl-faq-carousel { position: relative; }
+
+  .vl-faq-slide {
+    display: none;
+    animation: vl-fade-in .3s ease;
+  }
+  .vl-faq-slide.active { display: block; }
+
+  @keyframes vl-fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 3-col card grid */
+  .vl-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 860px) {
+    .vl-faq-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .vl-faq-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Individual card */
+  .vl-faq-card {
+    background: var(--vl-paper);
+    border: 1px solid var(--vl-hair);
+    border-radius: 4px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: box-shadow .25s, border-color .25s;
+  }
+  .vl-faq-card:hover {
+    border-color: var(--vl-navy);
+    box-shadow: 0 6px 24px rgba(23,35,63,.09);
+  }
+
+  .vl-faq-card__q {
+    font-family: 'Newsreader', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--vl-navy);
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+
+  .vl-faq-card__divider {
+    width: 32px;
+    height: 2px;
+    background: var(--vl-marigold);
+    margin-bottom: 16px;
+    flex-shrink: 0;
+  }
+
+  .vl-faq-card__a {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: .9rem;
+    color: #4B4A44;
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  /* Navigation bar */
+  .vl-faq-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--vl-hair);
+  }
+
+  .vl-faq-btn {
+    width: 40px; height: 40px;
+    border-radius: 2px;
+    border: 1px solid var(--vl-hair);
+    background: var(--vl-paper);
+    color: var(--vl-navy);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, border-color .2s, color .2s;
+    flex-shrink: 0;
+  }
+  .vl-faq-btn:hover:not(:disabled) {
+    background: var(--vl-navy);
+    border-color: var(--vl-navy);
+    color: var(--vl-paper);
+  }
+  .vl-faq-btn:disabled { opacity: .3; cursor: not-allowed; }
+
+  .vl-faq-dots { display: flex; gap: 8px; align-items: center; }
+  .vl-faq-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #C8C4BA;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+    border: none; padding: 0;
+  }
+  .vl-faq-dot.active {
+    background: var(--vl-navy);
+    transform: scale(1.35);
+  }
+
+  .vl-faq-counter {
+    font-size: .8rem;
+    color: #807C70;
+    font-family: 'IBM Plex Sans', sans-serif;
+    letter-spacing: .04em;
+    min-width: 36px;
+    text-align: center;
+  }
     border-bottom: 1px solid var(--vl-hair);
     padding: 20px 0;
   }
@@ -394,8 +530,8 @@
         <h1>The skill lab your NEP&nbsp;2020 review committee will actually approve.</h1>
         <p class="lead">Turnkey Robotics, AI, and coding labs built to CBSE specifications — installed, mapped to your syllabus, and staffed with trained teachers before the term starts.</p>
         <div class="vl-hero-ctas">
-          <a href="#book" class="vl-btn-primary">Book a free site assessment</a>
-          <a href="#checklist" class="vl-btn-secondary">Download the compliance checklist</a>
+          <a href="#book" class="vl-btn-primary">Visit our experience center</a>
+          <a href="#checklist" class="vl-btn-secondary">Download brochure</a>
         </div>
         <div class="vl-stat-strip">
           <div><span class="num">212</span><span class="label">CBSE schools fitted</span></div>
@@ -453,11 +589,25 @@
       </div>
       <div class="vl-split">
         <div class="problem">
+          <div style="width:100%; aspect-ratio:16/9; border-radius:4px; overflow:hidden; margin-bottom:24px; background:#E8E4DA;">
+            <img
+              src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=80"
+              alt="Unused lab equipment stored in a school cupboard"
+              style="width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(30%);"
+            />
+          </div>
           <span class="vl-tag warn">What usually happens</span>
           <h3>A kit arrives, nobody is trained on it</h3>
           <p>Vendors deliver hardware against a purchase order, run one orientation session, and leave. Six months later the robotics kits are in a cupboard and the "lab" is a line item in the prospectus, not a place students go.</p>
         </div>
         <div>
+          <div style="width:100%; aspect-ratio:16/9; border-radius:4px; overflow:hidden; margin-bottom:24px; background:#E8E4DA;">
+            <img
+              src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=80"
+              alt="Students actively working in a composite skill lab"
+              style="width:100%; height:100%; object-fit:cover; display:block;"
+            />
+          </div>
           <span class="vl-tag good">What we install instead</span>
           <h3>A lab mapped to what your teachers already teach</h3>
           <p>Every module is tied to a CBSE syllabus unit before installation. Teachers are certified to run it independently. We check in every term, not just at handover.</p>
@@ -475,31 +625,65 @@
         <p>One vendor, one contract, one team accountable for the lab working — not just existing.</p>
       </div>
       <div class="vl-row-list">
+
         <div class="vl-row-item">
-          <h3>Lab hardware &amp; workstations</h3>
+          <div class="vl-row-img">
+            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=360&q=80"
+                 alt="Robotics kits and hardware workstations" loading="lazy" />
+          </div>
+          <div class="vl-row-text">
+            <h3>Lab hardware &amp; workstations</h3>
+          </div>
           <p>Robotics kits, AI/data stations, electronics benches, and coding pods sized to your enrolment and classroom footprint.</p>
         </div>
+
         <div class="vl-row-item">
-          <h3>Curriculum mapping</h3>
+          <div class="vl-row-img">
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=360&q=80"
+                 alt="Curriculum mapping aligned to CBSE syllabus" loading="lazy" />
+          </div>
+          <div class="vl-row-text">
+            <h3>Curriculum mapping</h3>
+          </div>
           <p>Every activity is matched to a specific CBSE syllabus unit and grade, so the lab supports what's already being taught — not a separate elective nobody has time for.</p>
         </div>
+
         <div class="vl-row-item">
-          <h3>Teacher training &amp; certification</h3>
+          <div class="vl-row-img">
+            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=360&q=80"
+                 alt="Teacher training and certification session" loading="lazy" />
+          </div>
+          <div class="vl-row-text">
+            <h3>Teacher training &amp; certification</h3>
+          </div>
           <p>Your existing science and computer faculty are trained and certified to run sessions independently, with no dependence on our staff after handover.</p>
         </div>
+
         <div class="vl-row-item">
-          <h3>Annual maintenance &amp; support</h3>
+          <div class="vl-row-img">
+            <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=360&q=80"
+                 alt="Annual maintenance and technical support" loading="lazy" />
+          </div>
+          <div class="vl-row-text">
+            <h3>Annual maintenance &amp; support</h3>
+          </div>
           <p>Hardware servicing, software updates, and a direct line to our support team for the life of the contract.</p>
         </div>
+
         <div class="vl-row-item">
-          <h3>Compliance documentation</h3>
+          <div class="vl-row-img">
+            <img src="https://images.unsplash.com/photo-1568716353609-e7f7b8e78e05?auto=format&fit=crop&w=360&q=80"
+                 alt="CBSE compliance documentation and inspection readiness" loading="lazy" />
+          </div>
+          <div class="vl-row-text">
+            <h3>Compliance documentation</h3>
+          </div>
           <p>NEP 2020 and CBSE skill-lab documentation prepared and ready to hand to your inspection committee.</p>
         </div>
+
       </div>
     </div>
   </section>
-
-  
 
   <!-- Subscription Plans Section -->
   <section class="vl-section" id="plans">
@@ -522,10 +706,6 @@
             @foreach([
               'Lab hardware for one 400 sq ft room',
               'Robotics & coding kits (Grades VI–X)',
-              'CBSE Skill-75/2024 documentation',
-              '2-day teacher orientation',
-              'Helpdesk support (email)',
-              '1-year hardware warranty',
             ] as $item)
             <li style="display:flex; align-items:flex-start; gap:10px; font-size:.9rem; color:#4B4A44;">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0; margin-top:2px;"><circle cx="8" cy="8" r="8" fill="#DEE9E4"/><path d="M5 8l2 2 4-4" stroke="#2F6F62" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -551,12 +731,6 @@
             @foreach([
               'Everything in Basic',
               '600 sq ft combined lab layout',
-              'AI & electronics modules added',
-              'Curriculum mapped to Grades VI–XII',
-              '5-day teacher certification programme',
-              'Quarterly term check-ins',
-              'Priority helpdesk (phone + email)',
-              '2-year hardware warranty',
             ] as $item)
             <li style="display:flex; align-items:flex-start; gap:10px; font-size:.9rem; color:#D9D5C8;">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0; margin-top:2px;"><circle cx="8" cy="8" r="8" fill="rgba(217,142,43,.25)"/><path d="M5 8l2 2 4-4" stroke="#D98E2B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -581,12 +755,6 @@
             @foreach([
               'Everything in Advance',
               'Two separate labs (400 sq ft each)',
-              '3D printing & VR/AR stations',
-              'Custom branding for your school',
-              'Dedicated lab coordinator (1st year)',
-              'Annual curriculum update service',
-              'On-site support visits (twice yearly)',
-              '3-year hardware warranty',
             ] as $item)
             <li style="display:flex; align-items:flex-start; gap:10px; font-size:.9rem; color:#4B4A44;">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0; margin-top:2px;"><circle cx="8" cy="8" r="8" fill="#DEE9E4"/><path d="M5 8l2 2 4-4" stroke="#2F6F62" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -627,12 +795,12 @@
   </section>
 
   <!-- Testimonial Section -->
-  <section class="vl-testimonial">
+  <!-- <section class="vl-testimonial">
     <div class="vidyalab-wrap">
       <blockquote>"Our last STEM kit sat in a storeroom for two years. This one has a timetable slot every week, and our own teachers run it without calling anyone for help."</blockquote>
       <cite>— Principal, Sacred Heart CBSE Sr. Sec. School, Coimbatore</cite>
     </div>
-  </section>
+  </section> -->
 
   <!-- Checklist / Lead Form Section -->
   <section class="vl-section" id="checklist">
@@ -654,12 +822,21 @@
           <input id="name" type="text" required>
         </div>
         <div class="vl-field">
+          <label for="designation">Designation</label>
+          <input id="designation" type="text" required>
+        </div>
+        <div class="vl-field">
           <label for="school">School name</label>
           <input id="school" type="text" required>
         </div>
         <div class="vl-field">
           <label for="city">City</label>
           <input id="city" type="text" required>
+        </div>
+        <div class="vl-field">
+          <label for="city">Address</label>
+          <!-- <input id="city" type="text" required> -->
+          <textarea id="address"></textarea>
         </div>
         <div class="vl-field">
           <label for="phone">Phone number</label>
@@ -689,7 +866,7 @@
             <tr>
               <th>&nbsp;</th>
               <th>Generic / DIY vendor</th>
-              <th>Vidyalab</th>
+              <th>Skillvation</th>
             </tr>
           </thead>
           <tbody>
@@ -730,32 +907,85 @@
   </section>
 
   <!-- FAQ Section -->
-  <section class="vl-section" id="faq">
-    <div class="vidyalab-wrap" style="max-width:760px;">
+  <section class="vl-section" id="faq" style="background:#EDEADF;">
+    <div class="vidyalab-wrap">
       <div class="vl-section-head">
         <div class="vl-eyebrow-line"></div>
         <h2>Questions school owners usually ask</h2>
+        <p>Everything you need to know before signing anything.</p>
       </div>
-      <details class="vl-details" open>
-        <summary class="vl-summary">What does a skill lab actually cost?</summary>
-        <p>It depends on school size and the modules you choose — robotics, AI/data, electronics, and coding can be installed together or in phases. We give you a fixed quote after a free site assessment, not a range you have to negotiate down.</p>
-      </details>
-      <details class="vl-details">
-        <summary class="vl-summary">How long does installation take?</summary>
-        <p>Four to six weeks from signed agreement to a working lab, including teacher training. Most schools time this to a term break.</p>
-      </details>
-      <details class="vl-details">
-        <summary class="vl-summary">Will it actually fit our CBSE curriculum, or is it a separate elective?</summary>
-        <p>Every module is mapped to specific CBSE syllabus units by grade before we install anything, so sessions slot into existing science, computer, and skill-education periods.</p>
-      </details>
-      <details class="vl-details">
-        <summary class="vl-summary">What happens after installation — are we on our own?</summary>
-        <p>No. Annual maintenance, software updates, and a direct support line are included for the contract term, and we check in with your faculty every term.</p>
-      </details>
-      <details class="vl-details">
-        <summary class="vl-summary">Is there a minimum school size?</summary>
-        <p>We've fitted labs for schools from 300 to 3,000 students — the hardware and space plan scale to your enrolment and available classroom area.</p>
-      </details>
+
+      {{-- ── FAQ Card Carousel ────────────────────────────────── --}}
+      <div class="vl-faq-carousel" id="faqCarousel">
+
+        {{-- Slide 1 — cards 1, 2, 3 --}}
+        <div class="vl-faq-slide active">
+          <div class="vl-faq-grid">
+
+            <div class="vl-faq-card">
+              <div class="vl-faq-card__q">What does a skill lab actually cost?</div>
+              <div class="vl-faq-card__divider"></div>
+              <div class="vl-faq-card__a">It depends on school size and the modules you choose — robotics, AI/data, electronics, and coding can be installed together or in phases. We give you a fixed quote after a free site assessment, not a range you have to negotiate down.</div>
+            </div>
+
+            <div class="vl-faq-card">
+              <div class="vl-faq-card__q">How long does installation take?</div>
+              <div class="vl-faq-card__divider"></div>
+              <div class="vl-faq-card__a">Four to six weeks from signed agreement to a working lab, including teacher training. Most schools time this to a term break.</div>
+            </div>
+
+            <div class="vl-faq-card">
+              <div class="vl-faq-card__q">Will it actually fit our CBSE curriculum, or is it a separate elective?</div>
+              <div class="vl-faq-card__divider"></div>
+              <div class="vl-faq-card__a">Every module is mapped to specific CBSE syllabus units by grade before we install anything, so sessions slot into existing science, computer, and skill-education periods.</div>
+            </div>
+
+          </div>
+        </div>
+
+        {{-- Slide 2 — cards 4, 5, 6 --}}
+        <div class="vl-faq-slide">
+          <div class="vl-faq-grid">
+
+            <div class="vl-faq-card">
+              <div class="vl-faq-card__q">What happens after installation — are we on our own?</div>
+              <div class="vl-faq-card__divider"></div>
+              <div class="vl-faq-card__a">No. Annual maintenance, software updates, and a direct support line are included for the contract term, and we check in with your faculty every term.</div>
+            </div>
+
+            <div class="vl-faq-card">
+              <div class="vl-faq-card__q">Is there a minimum school size?</div>
+              <div class="vl-faq-card__divider"></div>
+              <div class="vl-faq-card__a">We've fitted labs for schools from 300 to 3,000 students — the hardware and space plan scale to your enrolment and available classroom area.</div>
+            </div>
+
+            <div class="vl-faq-card">
+              <div class="vl-faq-card__q">Can we phase the setup over two academic years?</div>
+              <div class="vl-faq-card__divider"></div>
+              <div class="vl-faq-card__a">Yes. Many schools start with core robotics and coding in year one and add AI/electronics modules in year two — the infrastructure is designed for this from day one.</div>
+            </div>
+
+          </div>
+        </div>
+
+        {{-- Navigation --}}
+        <div class="vl-faq-nav">
+          <button class="vl-faq-btn" id="faqPrev" aria-label="Previous questions" disabled>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 13L7 9l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="vl-faq-dots" id="faqDots">
+            <button class="vl-faq-dot active" data-slide="0" aria-label="Slide 1"></button>
+            <button class="vl-faq-dot" data-slide="1" aria-label="Slide 2"></button>
+          </div>
+          <span class="vl-faq-counter" id="faqCounter">1 / 2</span>
+          <button class="vl-faq-btn" id="faqNext" aria-label="Next questions">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 5l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+      </div>
+      {{-- ── End FAQ Card Carousel ────────────────────────────── --}}
+
     </div>
   </section>
 
@@ -765,7 +995,7 @@
       <h2>Ready to see what a working lab looks like at your school?</h2>
       <p>A 15-minute call with our education consultant — no obligation, no sales pitch, just a straight answer on fit and cost.</p>
       <div class="vl-hero-ctas">
-        <a href="#checklist" class="vl-btn-primary">Book a free site assessment</a>
+        <a href="#checklist" class="vl-btn-primary">Visit our experience center</a>
       </div>
       <p style="margin-top:18px; font-size:0.85rem; color:#9B9688;">We respond within one working day.</p>
     </div>
@@ -777,6 +1007,39 @@
 @push('scripts')
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+
+    // ── FAQ Card Carousel ─────────────────────────────────────
+    const slides   = document.querySelectorAll('.vl-faq-slide');
+    const dots     = document.querySelectorAll('.vl-faq-dot');
+    const prevBtn  = document.getElementById('faqPrev');
+    const nextBtn  = document.getElementById('faqNext');
+    const counter  = document.getElementById('faqCounter');
+    const total    = slides.length;
+    let current    = 0;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+
+      current = (idx + total) % total;
+
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+
+      if (counter) counter.textContent = (current + 1) + ' / ' + total;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === total - 1;
+    }
+
+    // init state
+    if (prevBtn) prevBtn.disabled = true;
+    if (nextBtn) nextBtn.disabled = total <= 1;
+
+    if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    // ── Lead Form ─────────────────────────────────────────────
     const leadForm = document.getElementById('leadForm');
     if (leadForm) {
       leadForm.addEventListener('submit', function (e) {
