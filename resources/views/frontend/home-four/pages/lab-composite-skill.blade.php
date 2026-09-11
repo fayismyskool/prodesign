@@ -1,743 +1,664 @@
 @extends('frontend.home-four.layouts.master')
 
-@section('meta_title', 'Composite Skill Lab for CBSE Schools | Setup from ₹3L | Skillvation')
-@section('meta_description', 'Set up a CBSE-compliant Composite Skill Lab in just 3–4 weeks. Everything you need for CBSE Skill-75/2024 — equipment, installation, training & documentation. Starting at ₹3 Lakh.')
+@section('meta_title', 'Vidyalab — Skill Labs for CBSE Schools | ' . config('app.name', 'Skillvation'))
+@section('meta_description', 'Turnkey Robotics, AI, and coding labs built to CBSE specifications — installed, mapped to your syllabus, and staffed with trained teachers before the term starts.')
 
 @push('styles')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-  .dot-bg {
-    background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-    background-size: 22px 22px;
+  :root {
+    --vl-navy: #17233F;
+    --vl-navy-deep: #101A30;
+    --vl-paper: #F5F2EA;
+    --vl-marigold: #D98E2B;
+    --vl-marigold-deep: #B9721B;
+    --vl-teal: #2F6F62;
+    --vl-ink: #2A2A28;
+    --vl-hair: #D8D2C2;
+    --vl-hair-on-navy: rgba(245, 242, 234, 0.22);
   }
-  details summary::-webkit-details-marker { display: none; }
-  details[open] .faq-chevron { transform: rotate(180deg); }
-  .skill-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
-  .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.10); }
+
+  .vidyalab-page {
+    background: var(--vl-paper);
+    color: var(--vl-ink);
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .vidyalab-page h1,
+  .vidyalab-page h2,
+  .vidyalab-page h3,
+  .vidyalab-page .serif {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 500;
+    color: var(--vl-navy);
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .vidyalab-page a {
+    color: inherit;
+  }
+
+  .vidyalab-wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .vidyalab-page button,
+  .vidyalab-page .btn {
+    font-family: 'IBM Plex Sans', sans-serif;
+    cursor: pointer;
+  }
+
+  /* ---------- Hero ---------- */
+  .vl-hero {
+    background: var(--vl-navy);
+    color: var(--vl-paper);
+    padding: 72px 0 56px;
+  }
+  .vl-hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 860px) {
+    .vl-hero-grid { grid-template-columns: 1fr; }
+  }
+  .vl-hero h1 {
+    font-size: clamp(2.05rem, 4vw, 2.9rem);
+    color: var(--vl-paper);
+  }
+  .vl-hero p.lead {
+    margin-top: 20px;
+    font-size: 1.08rem;
+    max-width: 46ch;
+    color: #D9D5C8;
+    line-height: 1.65;
+  }
+  .vl-hero-ctas {
+    margin-top: 32px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .vl-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--vl-marigold);
+    color: var(--vl-navy-deep) !important;
+    border: none;
+    padding: 14px 26px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .vl-btn-primary:hover {
+    background: #F0A643;
+    color: var(--vl-navy-deep) !important;
+  }
+  .vl-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--vl-paper) !important;
+    border: 1px solid var(--vl-hair-on-navy);
+    padding: 14px 26px;
+    font-size: 0.98rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .vl-btn-secondary:hover {
+    border-color: var(--vl-paper);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* stat strip */
+  .vl-stat-strip {
+    margin-top: 44px;
+    display: flex;
+    border-top: 1px solid var(--vl-hair-on-navy);
+    padding-top: 22px;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+  .vl-stat-strip div { min-width: 120px; }
+  .vl-stat-strip .num {
+    font-family: 'Newsreader', serif;
+    font-size: 1.7rem;
+    color: var(--vl-marigold);
+    display: block;
+    line-height: 1.2;
+  }
+  .vl-stat-strip .label {
+    font-size: 0.85rem;
+    color: #B8B4A6;
+  }
+
+  /* blueprint svg */
+  .vl-blueprint {
+    background: var(--vl-navy-deep);
+    border: 1px solid var(--vl-hair-on-navy);
+    border-radius: 2px;
+    padding: 20px;
+  }
+  .vl-blueprint svg { width: 100%; height: auto; display: block; }
+  .vl-blueprint-cap {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: #9B9688;
+  }
+
+  /* ---------- Section shell ---------- */
+  .vl-section { padding: 76px 0; }
+  .vl-eyebrow-line {
+    width: 44px;
+    height: 2px;
+    background: var(--vl-marigold);
+    margin-bottom: 18px;
+  }
+  .vl-section-head { max-width: 60ch; margin-bottom: 44px; }
+  .vl-section-head h2 { font-size: clamp(1.6rem, 3vw, 2.15rem); }
+  .vl-section-head p { margin-top: 14px; color: #4B4A44; font-size: 1.02rem; }
+
+  /* ---------- Problem/Solution ---------- */
+  .vl-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--vl-hair);
+  }
+  @media (max-width: 760px) {
+    .vl-split { grid-template-columns: 1fr; }
+  }
+  .vl-split > div { padding: 38px; }
+  .vl-split .problem { border-right: 1px solid var(--vl-hair); }
+  @media (max-width: 760px) {
+    .vl-split .problem { border-right: none; border-bottom: 1px solid var(--vl-hair); }
+  }
+  .vl-split h3 { font-size: 1.25rem; margin-bottom: 14px; }
+  .vl-split p { color: #4B4A44; margin: 0; }
+  .vl-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+  .vl-tag.warn { background: #F1E3D2; color: #8A5A1E; }
+  .vl-tag.good { background: #DEE9E4; color: var(--vl-teal); }
+
+  /* ---------- Included rows ---------- */
+  .vl-row-list { border-top: 1px solid var(--vl-hair); }
+  .vl-row-item {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--vl-hair);
+  }
+  @media (max-width: 700px) {
+    .vl-row-item { grid-template-columns: 1fr; gap: 8px; }
+  }
+  .vl-row-item h3 { font-size: 1.15rem; }
+  .vl-row-item p { color: #4B4A44; margin: 0; }
+
+  /* ---------- Testimonial ---------- */
+  .vl-testimonial {
+    background: var(--vl-navy);
+    color: var(--vl-paper);
+    padding: 70px 0;
+  }
+  .vl-testimonial blockquote {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+    max-width: 44ch;
+    margin: 0;
+    color: #F1EEE4;
+    line-height: 1.45;
+  }
+  .vl-testimonial cite {
+    display: block;
+    margin-top: 24px;
+    font-style: normal;
+    font-size: 0.92rem;
+    color: #B8B4A6;
+  }
+
+  /* ---------- Lead form ---------- */
+  .vl-form-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 820px) {
+    .vl-form-panel { grid-template-columns: 1fr; }
+  }
+  .vl-form-copy h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+  .vl-form-copy ul { margin-top: 22px; padding-left: 0; list-style: none; }
+  .vl-form-copy li {
+    padding-left: 26px;
+    position: relative;
+    margin-bottom: 12px;
+    color: #4B4A44;
+  }
+  .vl-form-copy li::before {
+    content: "";
+    position: absolute; left: 0; top: 9px;
+    width: 8px; height: 8px;
+    background: var(--vl-teal);
+  }
+  .vl-form {
+    background: #fff;
+    border: 1px solid var(--vl-hair);
+    padding: 32px;
+  }
+  .vl-field { margin-bottom: 16px; }
+  .vl-field label { display: block; font-size: 0.85rem; margin-bottom: 6px; color: #4B4A44; font-weight: 500; }
+  .vl-field input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--vl-hair);
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: var(--vl-paper);
+    border-radius: 2px;
+    box-sizing: border-box;
+  }
+  .vl-field input:focus {
+    outline: 2.5px solid var(--vl-marigold);
+    outline-offset: 1px;
+    border-color: transparent;
+  }
+  .vl-form-submit {
+    width: 100%;
+    margin-top: 6px;
+    background: var(--vl-navy);
+    color: var(--vl-paper);
+    border: none;
+    padding: 14px;
+    font-weight: 600;
+    font-size: 0.98rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .vl-form-submit:hover { background: var(--vl-navy-deep); }
+  .vl-form-note { font-size: 0.8rem; color: #807C70; margin-top: 12px; }
+  .vl-confirm {
+    display: none;
+    background: #DEE9E4;
+    color: var(--vl-teal);
+    padding: 14px 16px;
+    font-size: 0.92rem;
+    margin-top: 16px;
+    border-radius: 2px;
+  }
+
+  /* ---------- Comparison table ---------- */
+  .vl-table-wrap {
+    overflow-x: auto;
+  }
+  .vl-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--vl-hair);
+    background: #fff;
+  }
+  .vl-table th, 
+  .vl-table td {
+    text-align: left;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--vl-hair);
+    font-size: 0.95rem;
+  }
+  .vl-table th {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    color: var(--vl-navy);
+    font-size: 1rem;
+    background: #EDEADF;
+  }
+  .vl-table td.yes { color: var(--vl-teal); font-weight: 600; }
+  .vl-table td.no { color: #9C6B3E; }
+  .vl-table tr:last-child td { border-bottom: none; }
+
+  /* ---------- FAQ ---------- */
+  .vl-details {
+    border-bottom: 1px solid var(--vl-hair);
+    padding: 20px 0;
+  }
+  .vl-summary {
+    font-family: 'Newsreader', serif;
+    font-size: 1.08rem;
+    color: var(--vl-navy);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vl-summary::-webkit-details-marker { display: none; }
+  .vl-summary::after {
+    content: "+";
+    font-size: 1.3rem;
+    color: var(--vl-marigold);
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+  .vl-details[open] .vl-summary::after { content: "–"; }
+  .vl-details p { margin-top: 14px; color: #4B4A44; max-width: 66ch; }
+
+  /* ---------- Final CTA ---------- */
+  .vl-final-cta {
+    background: var(--vl-navy-deep);
+    color: var(--vl-paper);
+    padding: 70px 0;
+    text-align: left;
+  }
+  .vl-final-cta h2 {
+    color: var(--vl-paper);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    max-width: 20ch;
+  }
+  .vl-final-cta p {
+    color: #B8B4A6;
+    margin-top: 14px;
+  }
+  .vl-final-cta .vl-hero-ctas { margin-top: 28px; }
 </style>
 @endpush
 
 @section('contents')
+<div class="vidyalab-page">
 
-{{-- =====================================================================
-     1. HERO
-     ===================================================================== --}}
-<section class="dot-bg pt-14 pb-16 lg:pt-20 lg:pb-24 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-      {{-- Left --}}
-      <div class="space-y-6">
-        <div class="flex items-center gap-2 text-xs text-slate-400 font-semibold">
-          <a href="{{ route('labs') }}" class="hover:text-brand-orange transition-colors">Labs</a>
-          <i class="fa-solid fa-chevron-right text-[9px]"></i>
-          <span class="text-slate-600">Composite Skill Lab</span>
+  <!-- Hero Section -->
+  <section class="vl-hero">
+    <div class="vidyalab-wrap vl-hero-grid">
+      <div>
+        <h1>The skill lab your NEP&nbsp;2020 review committee will actually approve.</h1>
+        <p class="lead">Turnkey Robotics, AI, and coding labs built to CBSE specifications — installed, mapped to your syllabus, and staffed with trained teachers before the term starts.</p>
+        <div class="vl-hero-ctas">
+          <a href="#book" class="vl-btn-primary">Book a free site assessment</a>
+          <a href="#checklist" class="vl-btn-secondary">Download the compliance checklist</a>
         </div>
+        <div class="vl-stat-strip">
+          <div><span class="num">212</span><span class="label">CBSE schools fitted</span></div>
+          <div><span class="num">18</span><span class="label">states covered</span></div>
+          <div><span class="num">46,000+</span><span class="label">students learning hands-on</span></div>
+        </div>
+      </div>
+      <div class="vl-blueprint">
+        <svg viewBox="0 0 420 320" role="img" aria-label="Floor plan diagram of a skill lab showing robotics, AI, electronics, and coding zones">
+          <rect x="4" y="4" width="412" height="312" fill="none" stroke="#3A4665" stroke-width="1"/>
+          <line x1="4" y1="106" x2="416" y2="106" stroke="#3A4665" stroke-width="1"/>
+          <line x1="4" y1="212" x2="416" y2="212" stroke="#3A4665" stroke-width="1"/>
+          <line x1="210" y1="4" x2="210" y2="316" stroke="#3A4665" stroke-width="1"/>
 
-        <h1 class="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-brand-navy leading-[1.15]">
-          Set Up a CBSE-Compliant<br>
-          <span class="text-brand-orange">Composite Skill Lab</span> in Just<br>
-          3–4 Weeks
-        </h1>
+          <text x="20" y="30" fill="#D98E2B" font-family="IBM Plex Sans" font-size="12" font-weight="600">ROBOTICS BENCH</text>
+          <circle cx="40" cy="66" r="14" fill="none" stroke="#7C87A6"/>
+          <circle cx="80" cy="66" r="14" fill="none" stroke="#7C87A6"/>
+          <circle cx="120" cy="66" r="14" fill="none" stroke="#7C87A6"/>
+          <circle cx="160" cy="66" r="14" fill="none" stroke="#7C87A6"/>
 
-        <p class="text-base sm:text-lg text-slate-600">
-          Everything You Need for CBSE Skill Education
-          <strong class="text-brand-orange">Starting at ₹3 Lakh</strong>
-        </p>
+          <text x="228" y="30" fill="#D98E2B" font-family="IBM Plex Sans" font-size="12" font-weight="600">AI &amp; DATA STATION</text>
+          <rect x="228" y="46" width="60" height="40" fill="none" stroke="#7C87A6"/>
+          <rect x="300" y="46" width="60" height="40" fill="none" stroke="#7C87A6"/>
 
-        <ul class="space-y-2.5">
-          @foreach([
-            'CBSE Skill-75/2024 Compliant',
-            'Complete Equipment + Installation + Training',
-            'Documentation for Affiliation Inspections',
-            'Delivered Across India',
-          ] as $pt)
-          <li class="flex items-center gap-2.5 text-sm text-slate-700">
-            <span class="w-2 h-2 rounded-full bg-brand-orange flex-shrink-0"></span>{{ $pt }}
-          </li>
-          @endforeach
+          <text x="20" y="132" fill="#D98E2B" font-family="IBM Plex Sans" font-size="12" font-weight="600">ELECTRONICS LAB</text>
+          <rect x="20" y="148" width="170" height="46" fill="none" stroke="#7C87A6"/>
+          <line x1="63" y1="148" x2="63" y2="194" stroke="#7C87A6"/>
+          <line x1="106" y1="148" x2="106" y2="194" stroke="#7C87A6"/>
+          <line x1="149" y1="148" x2="149" y2="194" stroke="#7C87A6"/>
+
+          <text x="228" y="132" fill="#D98E2B" font-family="IBM Plex Sans" font-size="12" font-weight="600">CODING PODS</text>
+          <rect x="228" y="148" width="30" height="30" fill="none" stroke="#7C87A6"/>
+          <rect x="268" y="148" width="30" height="30" fill="none" stroke="#7C87A6"/>
+          <rect x="308" y="148" width="30" height="30" fill="none" stroke="#7C87A6"/>
+          <rect x="348" y="148" width="30" height="30" fill="none" stroke="#7C87A6"/>
+
+          <text x="20" y="238" fill="#D98E2B" font-family="IBM Plex Sans" font-size="12" font-weight="600">TEACHER STATION</text>
+          <rect x="20" y="254" width="120" height="36" fill="none" stroke="#7C87A6"/>
+
+          <text x="228" y="238" fill="#D98E2B" font-family="IBM Plex Sans" font-size="12" font-weight="600">DISPLAY &amp; REVIEW WALL</text>
+          <rect x="228" y="254" width="160" height="36" fill="none" stroke="#7C87A6"/>
+        </svg>
+        <div class="vl-blueprint-cap">A typical 900 sq ft skill lab layout — adapted to your available classroom space.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outcomes Section -->
+  <section class="vl-section" id="outcomes">
+    <div class="vidyalab-wrap">
+      <div class="vl-section-head">
+        <div class="vl-eyebrow-line"></div>
+        <h2>Most skill labs get installed once and inspected forever after.</h2>
+        <p>We've walked into enough school storerooms to know the pattern. Here's the difference between a lab that sits idle and one your students actually use.</p>
+      </div>
+      <div class="vl-split">
+        <div class="problem">
+          <span class="vl-tag warn">What usually happens</span>
+          <h3>A kit arrives, nobody is trained on it</h3>
+          <p>Vendors deliver hardware against a purchase order, run one orientation session, and leave. Six months later the robotics kits are in a cupboard and the "lab" is a line item in the prospectus, not a place students go.</p>
+        </div>
+        <div>
+          <span class="vl-tag good">What we install instead</span>
+          <h3>A lab mapped to what your teachers already teach</h3>
+          <p>Every module is tied to a CBSE syllabus unit before installation. Teachers are certified to run it independently. We check in every term, not just at handover.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Section -->
+  <section class="vl-section" id="program" style="background:#EDEADF;">
+    <div class="vidyalab-wrap">
+      <div class="vl-section-head">
+        <div class="vl-eyebrow-line"></div>
+        <h2>What's included in the setup</h2>
+        <p>One vendor, one contract, one team accountable for the lab working — not just existing.</p>
+      </div>
+      <div class="vl-row-list">
+        <div class="vl-row-item">
+          <h3>Lab hardware &amp; workstations</h3>
+          <p>Robotics kits, AI/data stations, electronics benches, and coding pods sized to your enrolment and classroom footprint.</p>
+        </div>
+        <div class="vl-row-item">
+          <h3>Curriculum mapping</h3>
+          <p>Every activity is matched to a specific CBSE syllabus unit and grade, so the lab supports what's already being taught — not a separate elective nobody has time for.</p>
+        </div>
+        <div class="vl-row-item">
+          <h3>Teacher training &amp; certification</h3>
+          <p>Your existing science and computer faculty are trained and certified to run sessions independently, with no dependence on our staff after handover.</p>
+        </div>
+        <div class="vl-row-item">
+          <h3>Annual maintenance &amp; support</h3>
+          <p>Hardware servicing, software updates, and a direct line to our support team for the life of the contract.</p>
+        </div>
+        <div class="vl-row-item">
+          <h3>Compliance documentation</h3>
+          <p>NEP 2020 and CBSE skill-lab documentation prepared and ready to hand to your inspection committee.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="vl-testimonial">
+    <div class="vidyalab-wrap">
+      <blockquote>"Our last STEM kit sat in a storeroom for two years. This one has a timetable slot every week, and our own teachers run it without calling anyone for help."</blockquote>
+      <cite>— Principal, Sacred Heart CBSE Sr. Sec. School, Coimbatore</cite>
+    </div>
+  </section>
+
+  <!-- Checklist / Lead Form Section -->
+  <section class="vl-section" id="checklist">
+    <div class="vidyalab-wrap vl-form-panel">
+      <div class="vl-form-copy">
+        <div class="vl-eyebrow-line"></div>
+        <h2>Get the CBSE Skill Lab Compliance Checklist 2026</h2>
+        <p style="margin-top:14px; color:#4B4A44;">A working document you can hand to your inspection committee or trustees — before you talk to any vendor, including us.</p>
+        <ul>
+          <li>What CBSE and NEP 2020 actually require of a skill lab</li>
+          <li>Space, wiring, and safety specifications</li>
+          <li>Questions to ask any vendor before signing</li>
+          <li>A budget range by school size</li>
         </ul>
-
-        <div class="flex flex-wrap gap-4 pt-2">
-          <a href="#demo"
-             class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-brand-navy hover:bg-brand-darknavy text-white text-sm font-bold shadow transition-all hover:-translate-y-0.5">
-            Book a Free Lab Consultation
-          </a>
-          <a href="#brochure"
-             class="inline-flex items-center justify-center px-6 py-3 rounded-lg border-2 border-brand-navy text-brand-navy text-sm font-bold hover:bg-slate-50 transition-all">
-            Download Brochure
-          </a>
-        </div>
       </div>
-
-      {{-- Right --}}
-      <div class="relative">
-        <div class="absolute -inset-3 bg-brand-orange/10 rounded-3xl rotate-1 blur-sm"></div>
-        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
-          <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=85"
-               alt="Students working on composite skill lab robotics projects"
-               class="w-full aspect-[4/3] object-cover" />
+      <form class="vl-form" id="leadForm">
+        <div class="vl-field">
+          <label for="name">Your name</label>
+          <input id="name" type="text" required>
         </div>
+        <div class="vl-field">
+          <label for="school">School name</label>
+          <input id="school" type="text" required>
+        </div>
+        <div class="vl-field">
+          <label for="city">City</label>
+          <input id="city" type="text" required>
+        </div>
+        <div class="vl-field">
+          <label for="phone">Phone number</label>
+          <input id="phone" type="tel" required>
+        </div>
+        <div class="vl-field">
+          <label for="email">Email address</label>
+          <input id="email" type="email" required>
+        </div>
+        <button type="submit" class="vl-form-submit">Send me the checklist</button>
+        <div class="vl-form-note">We'll also follow up once by phone. No spam, no mailing list.</div>
+        <div class="vl-confirm" id="confirmMsg">Thanks — the checklist is on its way to your email.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Compliance Comparison Section -->
+  <section class="vl-section" id="compliance" style="background:#EDEADF;">
+    <div class="vidyalab-wrap">
+      <div class="vl-section-head">
+        <div class="vl-eyebrow-line"></div>
+        <h2>How this compares to a generic setup</h2>
+      </div>
+      <div class="vl-table-wrap">
+        <table class="vl-table">
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th>Generic / DIY vendor</th>
+              <th>Vidyalab</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Curriculum alignment</td>
+              <td class="no">Left to your teachers</td>
+              <td class="yes">Mapped before installation</td>
+            </tr>
+            <tr>
+              <td>Installation time</td>
+              <td class="no">8–14 weeks, variable</td>
+              <td class="yes">4–6 weeks, fixed schedule</td>
+            </tr>
+            <tr>
+              <td>Teacher training</td>
+              <td class="no">One orientation session</td>
+              <td class="yes">Full certification, ongoing refreshers</td>
+            </tr>
+            <tr>
+              <td>Maintenance &amp; support</td>
+              <td class="no">Case by case, extra cost</td>
+              <td class="yes">Included for contract term</td>
+            </tr>
+            <tr>
+              <td>Compliance documentation</td>
+              <td class="no">Not provided</td>
+              <td class="yes">Prepared and handed over</td>
+            </tr>
+            <tr>
+              <td>Pricing</td>
+              <td class="no">Itemised, often revised upward</td>
+              <td class="yes">Fixed quote before you sign</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+  </section>
 
-    {{-- Stats row --}}
-    <div class="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4">
-      @foreach([
-        ['icon'=>'fa-school',           'stat'=>'500+',          'label'=>'Schools Served'],
-        ['icon'=>'fa-calendar-check',   'stat'=>'3–4 Weeks',     'label'=>'Setup Timeline'],
-        ['icon'=>'fa-screwdriver-wrench','stat'=>'100%',         'label'=>'Inspection-Ready Docs'],
-        ['icon'=>'fa-graduation-cap',   'stat'=>'Classes VI–XII','label'=>'Full Grade Coverage'],
-      ] as $s)
-      <div class="bg-[#f0f4ff] rounded-2xl p-5 flex items-center gap-4 border border-brand-navy/10">
-        <div class="w-11 h-11 rounded-xl bg-brand-navy/10 flex items-center justify-center text-brand-orange text-xl flex-shrink-0">
-          <i class="fa-solid {{ $s['icon'] }}"></i>
-        </div>
-        <div>
-          <div class="text-xl font-extrabold text-brand-navy leading-tight">{{ $s['stat'] }}</div>
-          <div class="text-xs text-slate-500 font-semibold">{{ $s['label'] }}</div>
-        </div>
+  <!-- FAQ Section -->
+  <section class="vl-section" id="faq">
+    <div class="vidyalab-wrap" style="max-width:760px;">
+      <div class="vl-section-head">
+        <div class="vl-eyebrow-line"></div>
+        <h2>Questions school owners usually ask</h2>
       </div>
-      @endforeach
-    </div>
-  </div>
-</section>
-
-{{-- =====================================================================
-     2. WHAT IS A COMPOSITE SKILL LAB
-     ===================================================================== --}}
-<section class="py-16 lg:py-24 bg-white border-t border-slate-100">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-      <div class="rounded-2xl overflow-hidden shadow-xl border border-slate-200 aspect-[4/3]">
-        <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=900&q=85"
-             alt="Students at composite skill lab workstation"
-             class="w-full h-full object-cover" />
-      </div>
-
-      <div class="space-y-5">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-orange/10 text-brand-orange text-xs font-bold uppercase tracking-wider">
-          CBSE Mandated
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy leading-tight">
-          What Is a Composite Skill Lab?
-        </h2>
-        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-          A Composite Skill Lab is a multidisciplinary, hands-on learning space mandated by CBSE under Circular No. Skill-75/2024, aligned with NEP 2020 and NCF-SE 2023. It brings practical skill-based education — covering AI, robotics, coding, electronics, healthcare, agriculture, and vocational trades — into mainstream schooling for Classes VI–XII.
-        </p>
-        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-          The lab delivers skill education across three CBSE-defined forms of work:
-          <strong class="text-brand-navy">Work with Life Forms</strong>,
-          <strong class="text-brand-navy">Work with Machines and Materials</strong>, and
-          <strong class="text-brand-navy">Work on Providing Human Services</strong> — preparing students with real-world, industry-relevant competencies.
-        </p>
-        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800 font-semibold leading-relaxed">
-          <i class="fa-solid fa-triangle-exclamation mr-2 text-amber-500"></i>
-          <strong>CBSE Deadline:</strong> All existing affiliated schools must set up a Composite Skill Lab by
-          <strong class="text-red-600">22 August 2027</strong>. New affiliation applicants must have it before affiliation is granted.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-{{-- =====================================================================
-     3. THREE FORMS OF WORK
-     ===================================================================== --}}
-<section class="py-16 lg:py-24 bg-[#f8f9ff]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-navy/10 text-brand-navy text-xs font-bold uppercase tracking-wider">
-        NCF-SE 2023 Framework
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
-        Multi-Sector Skill Education Across<br class="hidden sm:block"> Three Forms of Work
-      </h2>
-      <p class="text-slate-600 text-sm sm:text-base">
-        CBSE mandates coverage across all three forms of work. Schools choose sectors within each form based on their infrastructure, student needs, and local relevance.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-      <div class="skill-card bg-white rounded-2xl border border-green-200 shadow-sm overflow-hidden">
-        <div class="bg-green-600 px-6 py-5">
-          <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-white text-xl mb-3">
-            <i class="fa-solid fa-seedling"></i>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">Work with Life Forms</h3>
-          <p class="text-green-100 text-xs mt-1">Biology, agriculture & sustainability</p>
-        </div>
-        <div class="p-6 space-y-2.5">
-          @foreach(['Agriculture & Gardening','Horticulture & Nursery Management','Food Production','Animal Husbandry','Sustainability Projects'] as $item)
-          <div class="flex items-center gap-2 text-sm text-slate-700">
-            <i class="fa-solid fa-check text-green-500 text-xs flex-shrink-0"></i> {{ $item }}
-          </div>
-          @endforeach
-        </div>
-      </div>
-
-      <div class="skill-card bg-white rounded-2xl border border-blue-200 shadow-sm overflow-hidden">
-        <div class="bg-brand-navy px-6 py-5">
-          <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-white text-xl mb-3">
-            <i class="fa-solid fa-gears"></i>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">Work with Machines & Materials</h3>
-          <p class="text-blue-100 text-xs mt-1">Engineering, technology & fabrication</p>
-        </div>
-        <div class="p-6 space-y-2.5">
-          @foreach(['Coding, Robotics & AI','Electronics & Mechatronics','IT / ITeS','Carpentry & Woodwork','Apparel & Fashion Design','AVGC & Media Content Creation'] as $item)
-          <div class="flex items-center gap-2 text-sm text-slate-700">
-            <i class="fa-solid fa-check text-brand-navy text-xs flex-shrink-0"></i> {{ $item }}
-          </div>
-          @endforeach
-        </div>
-      </div>
-
-      <div class="skill-card bg-white rounded-2xl border border-orange-200 shadow-sm overflow-hidden">
-        <div class="bg-brand-orange px-6 py-5">
-          <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-white text-xl mb-3">
-            <i class="fa-solid fa-hand-holding-heart"></i>
-          </div>
-          <h3 class="text-lg font-extrabold text-white">Work on Providing Human Services</h3>
-          <p class="text-orange-100 text-xs mt-1">Healthcare, finance & community services</p>
-        </div>
-        <div class="p-6 space-y-2.5">
-          @foreach(['Healthcare','Finance & Banking','Tourism & Hospitality','Retail','Beauty & Wellness'] as $item)
-          <div class="flex items-center gap-2 text-sm text-slate-700">
-            <i class="fa-solid fa-check text-brand-orange text-xs flex-shrink-0"></i> {{ $item }}
-          </div>
-          @endforeach
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-{{-- =====================================================================
-     4. LAB TYPES (4 cards)
-     ===================================================================== --}}
-<section class="py-16 lg:py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-orange/10 text-brand-orange text-xs font-bold uppercase tracking-wider">
-        Lab Models
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
-        Composite Skill Labs Designed for a Holistic Learning Experience
-      </h2>
-      <p class="text-slate-600 text-sm sm:text-base">
-        Our labs foster creativity, innovation, and practical learning — from AI and Robotics to Art & Media, Financial Literacy, and Automobile Engineering.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-      @php
-      $labTypes = [
-        [
-          'badge'   => 'Future Tech Lab',
-          'badgecls'=> 'bg-blue-50 text-blue-700',
-          'title'   => 'Robotics, AI, 3D Printing & Electronics',
-          'img'     => 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=80',
-          'alt'     => 'Future Tech Lab — AI & Robotics',
-          'desc'    => 'Empowers schools with advanced tech resources — smart development boards, 3D printers, sensors, and AI/coding software. Builds critical thinking, problem-solving, and 21st-century skills through experiential, hands-on technology and engineering learning.',
-          'tags'    => ['AI & ML','Robotics','3D Printing','Coding','Electronics','IoT'],
-        ],
-        [
-          'badge'   => 'Art, Design & Media Lab',
-          'badgecls'=> 'bg-pink-50 text-pink-700',
-          'title'   => 'Design, Marketing & Media Literacy',
-          'img'     => 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=80',
-          'alt'     => 'Art Design and Media Lab',
-          'desc'    => 'Covers skills in marketing, mass media, multimedia design, and graphic work. Includes sketching tools, craft supplies, sculpting materials, fashion design tools, graphic tablets, and software such as Adobe Creative Suite and Canva. Teaches digital art, animation, blogging, and vlogging.',
-          'tags'    => ['Graphic Design','Digital Art','Animation','Media','Fashion','Craft'],
-        ],
-        [
-          'badge'   => 'Entrepreneurship & Finance Lab',
-          'badgecls'=> 'bg-emerald-50 text-emerald-700',
-          'title'   => 'Financial Literacy, Banking & Entrepreneurship',
-          'img'     => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=80',
-          'alt'     => 'Entrepreneurship and Finance Lab',
-          'desc'    => 'Offers skills in financial markets, financial literacy, and banking. Covers taxation, business administration, cost accounting, and office procedures. Includes financial software, budgeting apps, and business simulation programs. Prepares students for careers in finance and entrepreneurship.',
-          'tags'    => ['Finance','Banking','Taxation','Business','Accounting','Entrepreneurship'],
-        ],
-        [
-          'badge'   => 'Woodworking & Automobile Lab',
-          'badgecls'=> 'bg-amber-50 text-amber-700',
-          'title'   => 'Automobile, Woodworking & Craftsmanship',
-          'img'     => 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=900&q=80',
-          'alt'     => 'Woodworking and Automobile Lab',
-          'desc'    => 'Hands-on work with woodworking and automotive mechanics. Includes power tools, machinery, materials, and safety equipment. Teaches 3D design, laser cutting, engraving, craftsmanship, and basic automotive work. Prepares students for engineering and manufacturing career pathways.',
-          'tags'    => ['Woodwork','Automotive','Carpentry','Laser Cutting','3D Design','Safety'],
-        ],
-      ];
-      @endphp
-
-      @foreach($labTypes as $lab)
-      <div class="group skill-card rounded-2xl border border-slate-200 overflow-hidden bg-white">
-        <div class="aspect-[16/7] overflow-hidden bg-slate-100">
-          <img src="{{ $lab['img'] }}" alt="{{ $lab['alt'] }}"
-               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-        </div>
-        <div class="p-6 space-y-3">
-          <span class="inline-block px-3 py-1 rounded-full {{ $lab['badgecls'] }} text-xs font-bold">{{ $lab['badge'] }}</span>
-          <h3 class="text-xl font-extrabold text-brand-navy">{{ $lab['title'] }}</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">{{ $lab['desc'] }}</p>
-          <div class="flex flex-wrap gap-2 pt-1">
-            @foreach($lab['tags'] as $tag)
-            <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold">{{ $tag }}</span>
-            @endforeach
-          </div>
-        </div>
-      </div>
-      @endforeach
-
-    </div>
-  </div>
-</section>
-
-{{-- =====================================================================
-     5. 21ST CENTURY SKILLS (dark navy band)
-     ===================================================================== --}}
-<section class="py-16 lg:py-20 bg-brand-navy">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-white text-xs font-bold uppercase tracking-wider">
-        Skills for the Future
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
-        Imparting 21st-Century Skills Through the Composite Skill Lab
-      </h2>
-      <p class="text-blue-100 text-sm sm:text-base">
-        Elevate education — bridging technology and experiential learning to empower students and teachers with essential skills for the modern world.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-      @foreach([
-        ['fa-lightbulb',   'Critical Thinking & Problem Solving'],
-        ['fa-pen-ruler',   'Design Thinking & Innovation'],
-        ['fa-people-group','Communication & Collaboration'],
-        ['fa-terminal',    'Algorithmic Literacy'],
-        ['fa-coins',       'Financial Literacy'],
-        ['fa-rocket',      'Entrepreneurship'],
-      ] as [$icon, $label])
-      <div class="bg-white/10 border border-white/10 rounded-2xl p-5 text-center space-y-3 hover:bg-white/15 transition-colors">
-        <div class="w-11 h-11 mx-auto rounded-xl bg-brand-orange/20 text-brand-orange flex items-center justify-center text-lg">
-          <i class="fa-solid {{ $icon }}"></i>
-        </div>
-        <p class="text-xs font-bold text-white leading-tight">{{ $label }}</p>
-      </div>
-      @endforeach
-    </div>
-  </div>
-</section>
-
-{{-- =====================================================================
-     6. COMPLETE PACKAGE — WHAT WE INCLUDE
-     ===================================================================== --}}
-<section class="py-16 lg:py-24 bg-[#f8f9ff]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-orange/10 text-brand-orange text-xs font-bold uppercase tracking-wider">
-        Complete Package
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
-        What All We Include in the CBSE Composite Skill Lab
-      </h2>
-      <p class="text-slate-600 text-sm sm:text-base">
-        A complete, future-focused solution — hardware kits, software, curriculum, teacher training, and an LMS, all in one package designed for day-one deployment.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      @php
-      $includes = [
-        ['icon'=>'fa-cube',             'color'=>'bg-blue-100 text-blue-600',   'title'=>'Lab Layout & Infrastructure',    'desc'=>'Modular space design for a 400 sq ft (split) or 600 sq ft (combined) lab with workstations, storage, interactive screens, and safe collaborative zones.'],
-        ['icon'=>'fa-robot',            'color'=>'bg-orange-100 text-brand-orange','title'=>'Hardware Kits & Equipment',  'desc'=>'Robotics kits, 3D printers, electronics components, sensors, microcontrollers, science instruments, and full sector-specific tool sets for all three forms of work.'],
-        ['icon'=>'fa-laptop-code',      'color'=>'bg-purple-100 text-purple-600','title'=>'Technology & Software',        'desc'=>'Computers with pre-installed coding, AI, and design software. AR/VR tools, an integrated LMS platform, and digital collaboration systems — all ready to go.'],
-        ['icon'=>'fa-book-open',        'color'=>'bg-green-100 text-green-600',  'title'=>'Curriculum & Lesson Plans',    'desc'=>'CBSE and NEP 2020-aligned interdisciplinary lesson plans, student activity books, project briefs, and assessment rubrics for every grade and every sector.'],
-        ['icon'=>'fa-chalkboard-user',  'color'=>'bg-rose-100 text-rose-600',    'title'=>'Teacher Training Programme',   'desc'=>'Comprehensive upskilling in AI, ML, coding, AR-VR, and robotics. Includes project-based assessment frameworks and peer review structures for teachers.'],
-        ['icon'=>'fa-file-shield',      'color'=>'bg-amber-100 text-amber-600',  'title'=>'Affiliation Documentation',    'desc'=>'Complete compliance documentation aligned with CBSE Circular Skill-75/2024 for smooth affiliation inspections, renewals, and audit readiness.'],
-      ];
-      @endphp
-      @foreach($includes as $inc)
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 space-y-4 hover:shadow-md transition-shadow">
-        <div class="w-12 h-12 rounded-xl {{ $inc['color'] }} flex items-center justify-center text-xl">
-          <i class="fa-solid {{ $inc['icon'] }}"></i>
-        </div>
-        <h3 class="text-base font-extrabold text-brand-navy">{{ $inc['title'] }}</h3>
-        <p class="text-sm text-slate-600 leading-relaxed">{{ $inc['desc'] }}</p>
-      </div>
-      @endforeach
-    </div>
-  </div>
-</section>
-
-{{-- =====================================================================
-     7. LAB SIZE OPTIONS
-     ===================================================================== --}}
-<section class="py-16 lg:py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-navy/10 text-brand-navy text-xs font-bold uppercase tracking-wider">
-        CBSE Lab Size Requirements
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">Layout Plan for Composite Skill Lab</h2>
-      <p class="text-slate-600 text-sm sm:text-base">
-        CBSE permits two configurations. Choose the option that suits your school's space and grade structure.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-      <div class="rounded-2xl border-2 border-brand-navy/20 bg-[#f0f4ff] p-8 space-y-4 text-center hover:border-brand-navy transition-colors">
-        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-navy text-white flex items-center justify-center text-2xl">
-          <i class="fa-solid fa-school"></i>
-        </div>
-        <h3 class="text-2xl font-extrabold text-brand-navy">Option A</h3>
-        <div class="text-4xl font-black text-brand-orange">600 sq ft</div>
-        <p class="text-sm font-bold text-brand-navy">Single Lab — Classes VI to XII</p>
-        <p class="text-sm text-slate-600 leading-relaxed">One combined lab serving all grades from Class 6 through Class 12 in a single, flexible multi-sector space.</p>
-        <div class="inline-block px-4 py-1.5 rounded-full bg-brand-navy text-white text-xs font-bold">Ideal for Mid-Size to Large Schools</div>
-      </div>
-
-      <div class="rounded-2xl border-2 border-brand-orange/30 bg-[#fff7f0] p-8 space-y-4 text-center hover:border-brand-orange transition-colors">
-        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-orange text-white flex items-center justify-center text-2xl">
-          <i class="fa-solid fa-door-open"></i>
-        </div>
-        <h3 class="text-2xl font-extrabold text-brand-navy">Option B</h3>
-        <div class="text-4xl font-black text-brand-navy">2 × 400 sq ft</div>
-        <p class="text-sm font-bold text-brand-navy">Two Separate Labs</p>
-        <p class="text-sm text-slate-600 leading-relaxed"><strong>Lab 1:</strong> Classes VI–X &nbsp;|&nbsp; <strong>Lab 2:</strong> Classes XI–XII. Each 400 sq ft, tailored to the grade level and skill depth required.</p>
-        <div class="inline-block px-4 py-1.5 rounded-full bg-brand-orange text-white text-xs font-bold">Ideal for Larger Schools</div>
-      </div>
-    </div>
-
-    <p class="text-center text-sm text-slate-500 mt-8">
-      <i class="fa-solid fa-circle-info mr-1.5 text-brand-navy"></i>
-      Both configurations are fully compliant with CBSE Circular No. Skill-75/2024.
-    </p>
-  </div>
-</section>
-
-{{-- =====================================================================
-     8. MOST CHOSEN SKILL SUBJECTS (with progress bars)
-     ===================================================================== --}}
-<section class="py-16 lg:py-24 bg-[#f8f9ff]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-      <div class="space-y-6">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-orange/10 text-brand-orange text-xs font-bold uppercase tracking-wider">
-          Student Preference
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy leading-tight">
-          Most Chosen CBSE Skill Subjects Among Students
-        </h2>
-        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-          CBSE Circular No. Skill-75/2024 mandates all affiliated schools to equip a Composite Skill Lab. The Board offers 22 skill subjects for Class 10 and 43 for Class 12. Information Technology and Artificial Intelligence are consistently the top choice, followed by Physical Activity Trainer, Tourism, and Beauty & Wellness.
-        </p>
-        <div class="space-y-4 pt-2">
-          @foreach([
-            ['Information Technology',    92, 'bg-brand-navy'],
-            ['Artificial Intelligence',   87, 'bg-brand-orange'],
-            ['Physical Activity Trainer', 61, 'bg-green-500'],
-            ['Tourism',                   48, 'bg-purple-500'],
-            ['Beauty & Wellness',         39, 'bg-pink-500'],
-          ] as [$name, $pct, $bar])
-          <div>
-            <div class="flex justify-between text-xs font-bold text-slate-700 mb-1.5">
-              <span>{{ $name }}</span><span>{{ $pct }}%</span>
-            </div>
-            <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
-              <div class="{{ $bar }} h-full rounded-full" style="width:{{ $pct }}%"></div>
-            </div>
-          </div>
-          @endforeach
-        </div>
-      </div>
-
-      <div class="rounded-2xl overflow-hidden shadow-xl border border-slate-200 aspect-[4/3]">
-        <img src="https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=900&q=85"
-             alt="Students engaged in skill-based learning"
-             class="w-full h-full object-cover" />
-      </div>
-
-    </div>
-  </div>
-</section>
-
-{{-- =====================================================================
-     9. FUTURE SKILLS GRID
-     ===================================================================== --}}
-<section class="py-16 lg:py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-navy/10 text-brand-navy text-xs font-bold uppercase tracking-wider">
-        Empowering Students
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
-        Empowering Kids with the Right Future Skills
-      </h2>
-      <p class="text-slate-600 text-sm sm:text-base">
-        With a hands-on approach to AI, Coding, Robotics, and STEM, we cultivate innovators by building the 21st-century skills that unleash the true potential of every young learner.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-      @foreach([
-        ['fa-code',        'Coding — Graphical & Python', 'bg-blue-50',   'text-blue-600'],
-        ['fa-brain',       'Artificial Intelligence',     'bg-purple-50', 'text-purple-600'],
-        ['fa-microchip',   'Machine Learning',            'bg-indigo-50', 'text-indigo-600'],
-        ['fa-robot',       'Robotics',                    'bg-orange-50', 'text-brand-orange'],
-        ['fa-vr-cardboard','AI and VR Tech',              'bg-pink-50',   'text-pink-600'],
-        ['fa-wifi',        'Internet of Things (IoT)',    'bg-cyan-50',   'text-cyan-600'],
-        ['fa-fingerprint', 'Biometric & Robotics',        'bg-green-50',  'text-green-600'],
-        ['fa-gears',       'Advanced Robotics',           'bg-amber-50',  'text-amber-600'],
-      ] as [$icon, $label, $bg, $ic])
-      <div class="{{ $bg }} rounded-2xl p-5 text-center space-y-3 border border-slate-100 hover:shadow-md transition-shadow">
-        <div class="w-12 h-12 mx-auto rounded-xl bg-white shadow-sm flex items-center justify-center text-xl {{ $ic }}">
-          <i class="fa-solid {{ $icon }}"></i>
-        </div>
-        <p class="text-xs font-bold text-brand-navy leading-tight">{{ $label }}</p>
-      </div>
-      @endforeach
-    </div>
-  </div>
-</section>
-
-{{-- =====================================================================
-     10. CBSE MANDATE & COMPLIANCE
-     ===================================================================== --}}
-<section class="py-16 lg:py-24 bg-[#fff7f0] border-y border-brand-orange/10">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-
-      <div class="space-y-6">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 text-red-600 text-xs font-bold uppercase tracking-wider border border-red-100">
-          <i class="fa-solid fa-circle-exclamation"></i> Mandatory for All CBSE Schools
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy leading-tight">
-          Mandatory Implementation of CBSE Composite Skill Lab
-        </h2>
-        <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
-          <div class="flex items-start gap-3 bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
-            <i class="fa-solid fa-building-columns text-brand-navy mt-0.5 flex-shrink-0"></i>
-            <p><strong class="text-brand-navy">For New Affiliations:</strong> Schools seeking fresh CBSE affiliation must establish a fully equipped Composite Skill Lab as a mandatory prerequisite before affiliation is granted.</p>
-          </div>
-          <div class="flex items-start gap-3 bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
-            <i class="fa-solid fa-calendar-xmark text-brand-orange mt-0.5 flex-shrink-0"></i>
-            <p><strong class="text-brand-navy">For Existing Affiliations:</strong> All currently affiliated schools must set up a Composite Skill Lab by <strong class="text-red-600">22 August 2027</strong> to remain compliant with CBSE requirements.</p>
-          </div>
-          <div class="flex items-start gap-3 bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
-            <i class="fa-solid fa-indian-rupee-sign text-green-600 mt-0.5 flex-shrink-0"></i>
-            <p><strong class="text-brand-navy">Funding:</strong> Government schools can use central/state funds, World Bank project grants, and social impact funding. Private schools can explore CSR initiatives, government schemes, and public-private partnerships.</p>
-          </div>
-          <div class="flex items-start gap-3 bg-red-50 rounded-xl p-4 border border-red-200">
-            <i class="fa-solid fa-triangle-exclamation text-red-500 mt-0.5 flex-shrink-0"></i>
-            <p><strong class="text-red-700">Non-compliance may affect CBSE affiliation status.</strong> Contact us today to begin your setup well ahead of the deadline.</p>
-          </div>
-        </div>
-        <div class="flex flex-wrap gap-3 pt-2">
-          <a href="#demo" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-brand-navy text-white text-sm font-bold hover:bg-brand-darknavy transition-all shadow">
-            <i class="fa-solid fa-file-arrow-down text-xs"></i> Download CBSE Circular
-          </a>
-          <a href="#demo" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-brand-navy text-brand-navy text-sm font-bold hover:bg-brand-navy/5 transition-all">
-            Model Layout Plan
-          </a>
-        </div>
-      </div>
-
-      <div class="space-y-5">
-        <div class="rounded-2xl overflow-hidden shadow-xl border border-slate-200 aspect-[4/3]">
-          <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=85"
-               alt="CBSE composite skill lab setup"
-               class="w-full h-full object-cover" />
-        </div>
-        <div class="bg-brand-navy rounded-2xl p-5 text-white text-center space-y-1">
-          <p class="text-xs font-bold uppercase tracking-wider text-blue-200">CBSE Circular Reference</p>
-          <p class="text-lg font-extrabold">Circular No. Skill-75/2024</p>
-          <p class="text-xs text-blue-100">Issued 23 August 2024 &nbsp;·&nbsp; Deadline 22 August 2027</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-{{-- =====================================================================
-     11. FAQ
-     ===================================================================== --}}
-<section class="py-16 lg:py-24 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="text-center mb-14 space-y-3">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-navy/10 text-brand-navy text-xs font-bold uppercase tracking-wider">
-        FAQs
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
-        Frequently Asked Questions on Setting Up a Composite Skill Lab
-      </h2>
-    </div>
-
-    @php
-    $faqs = [
-      ['What is a Composite Skill Lab?',
-       'A Composite Skill Lab is an interactive, multidisciplinary learning space where students gain hands-on experience across disciplines including STEM, Robotics, IoT, Coding, AI, 3D Printing, Arts & Design, Woodworking, Automobile, Entrepreneurship, and Financial Literacy. It bridges the gap between theory and real-world application.'],
-      ['Why is the Composite Skill Lab important?',
-       'The lab aligns with NEP 2020 and NCF-SE 2023, which emphasise skill education alongside academic subjects. It provides practical, application-based learning, prepares students for emerging career opportunities, and fosters creativity, critical thinking, and problem-solving skills.'],
-      ['Which schools must set up a Composite Skill Lab?',
-       'New Schools: Schools applying for CBSE affiliation must have a fully equipped Composite Skill Lab in place before affiliation is granted. Existing Schools: All currently CBSE-affiliated schools must set up the lab by 22 August 2027.'],
-      ['What are the CBSE lab size options?',
-       'Schools can choose between: (A) One 600 sq ft lab for Classes VI–XII, or (B) Two separate 400 sq ft labs — one for Classes VI–X and one for Classes XI–XII. Both configurations are fully CBSE-compliant.'],
-      ['What infrastructure and equipment is required?',
-       'Essential infrastructure includes power outlets, stable internet, ventilation, and storage. Equipment requirements depend on selected skill sectors and typically include robotics kits, 3D printers, computers with coding/AI software, electronics components, science instruments, safety equipment, and sector-specific tools.'],
-      ['How much does a Composite Skill Lab cost?',
-       'Setup starts from ₹3 Lakh. The final investment depends on lab size, number of skill sectors, equipment depth, and inclusion of AI/robotics modules. All our packages include teacher training — it is not an add-on.'],
-      ['Can schools reuse existing labs and spaces?',
-       'Yes. Existing spaces such as ATL, IT labs, Home Science labs, or makerspaces can contribute to CSL requirements if they fully satisfy the infrastructure, safety, storage, and multi-sector conditions specified by CBSE. However, a single-sector lab does not automatically qualify as a complete Composite Skill Lab.'],
-      ['How can schools fund a Composite Skill Lab?',
-       'Schools can use existing infrastructure and resources to minimise costs. External funding options include CSR initiatives, government schemes, and public-private partnerships. Government schools can access central and state funds, World Bank project grants, and similar programmes. Contact us for school-specific funding guidance.'],
-    ];
-    @endphp
-
-    <div class="space-y-3">
-      @foreach($faqs as [$q, $a])
-      <details class="group bg-white border border-slate-200 rounded-2xl overflow-hidden">
-        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none list-none">
-          <span class="text-sm sm:text-base font-bold text-brand-navy">{{ $q }}</span>
-          <i class="fa-solid fa-chevron-down faq-chevron text-slate-400 text-xs flex-shrink-0 transition-transform duration-200"></i>
-        </summary>
-        <div class="px-6 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-          {{ $a }}
-        </div>
+      <details class="vl-details" open>
+        <summary class="vl-summary">What does a skill lab actually cost?</summary>
+        <p>It depends on school size and the modules you choose — robotics, AI/data, electronics, and coding can be installed together or in phases. We give you a fixed quote after a free site assessment, not a range you have to negotiate down.</p>
       </details>
-      @endforeach
+      <details class="vl-details">
+        <summary class="vl-summary">How long does installation take?</summary>
+        <p>Four to six weeks from signed agreement to a working lab, including teacher training. Most schools time this to a term break.</p>
+      </details>
+      <details class="vl-details">
+        <summary class="vl-summary">Will it actually fit our CBSE curriculum, or is it a separate elective?</summary>
+        <p>Every module is mapped to specific CBSE syllabus units by grade before we install anything, so sessions slot into existing science, computer, and skill-education periods.</p>
+      </details>
+      <details class="vl-details">
+        <summary class="vl-summary">What happens after installation — are we on our own?</summary>
+        <p>No. Annual maintenance, software updates, and a direct support line are included for the contract term, and we check in with your faculty every term.</p>
+      </details>
+      <details class="vl-details">
+        <summary class="vl-summary">Is there a minimum school size?</summary>
+        <p>We've fitted labs for schools from 300 to 3,000 students — the hardware and space plan scale to your enrolment and available classroom area.</p>
+      </details>
     </div>
+  </section>
 
-  </div>
-</section>
-
-{{-- =====================================================================
-     12. DEMO / CTA FORM
-     ===================================================================== --}}
-<section class="py-16 lg:py-24 bg-[#fedecf] border-y border-brand-orange/20" id="demo">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-      <div class="space-y-5">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-brand-orange text-xs font-bold uppercase tracking-wider shadow-sm">
-          Free Consultation
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy">
-          Book Your FREE Demo Today
-        </h2>
-        <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Ready to experience the power of a Composite Skill Lab? Our education specialists will assess your school, help you choose the right sectors, and plan a compliant setup within your budget — in as little as one hour.
-        </p>
-        <div class="space-y-3 pt-1">
-          @foreach([
-            'CBSE Circular Skill-75/2024 Compliance Review',
-            'Lab Size & Layout Recommendation',
-            'Sector Selection Guidance',
-            'Equipment & Budget Planning',
-            'Teacher Training Roadmap',
-          ] as $b)
-          <div class="flex items-center gap-3 text-sm text-slate-700 font-semibold">
-            <i class="fa-solid fa-circle-check text-brand-orange text-base flex-shrink-0"></i>
-            {{ $b }}
-          </div>
-          @endforeach
-        </div>
+  <!-- Final CTA Section -->
+  <section class="vl-final-cta" id="book">
+    <div class="vidyalab-wrap">
+      <h2>Ready to see what a working lab looks like at your school?</h2>
+      <p>A 15-minute call with our education consultant — no obligation, no sales pitch, just a straight answer on fit and cost.</p>
+      <div class="vl-hero-ctas">
+        <a href="#checklist" class="vl-btn-primary">Book a free site assessment</a>
       </div>
-
-      <div class="bg-white/95 rounded-3xl p-6 sm:p-8 shadow-xl border border-white/80">
-        <h3 class="text-lg font-extrabold text-brand-navy mb-5">Request your Demo Today</h3>
-        <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you! Our specialists will reach out within 24 hours to schedule your free consultation.');">
-          <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">School Name *</label>
-            <input type="text" required placeholder="e.g. National Public School" class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all" />
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Contact Person *</label>
-              <input type="text" required placeholder="Your full name" class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all" />
-            </div>
-            <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Phone Number *</label>
-              <input type="tel" required placeholder="+91 98765 43210" class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all" />
-            </div>
-          </div>
-          <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Email Address *</label>
-            <input type="email" required placeholder="principal@school.edu.in" class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all" />
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">City *</label>
-              <input type="text" required placeholder="e.g. Bengaluru, Delhi" class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all" />
-            </div>
-            <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">School Board *</label>
-              <select required class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all">
-                <option value="">Select Board</option>
-                <option value="cbse">CBSE</option>
-                <option value="icse">ICSE</option>
-                <option value="cambridge">Cambridge / IGCSE</option>
-                <option value="ib">IB</option>
-                <option value="state">State Board</option>
-              </select>
-            </div>
-          </div>
-          <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Message</label>
-            <textarea rows="3" placeholder="Tell us about your space, grade levels, or existing infrastructure..." class="w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3 text-sm focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/20 transition-all"></textarea>
-          </div>
-          <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-navy hover:bg-brand-darknavy text-white text-sm font-bold shadow-md hover:shadow-xl transition-all duration-200">
-            Book a Free Lab Consultation
-          </button>
-        </form>
-      </div>
-
+      <p style="margin-top:18px; font-size:0.85rem; color:#9B9688;">We respond within one working day.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-{{-- =====================================================================
-     13. OTHER LABS
-     ===================================================================== --}}
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10">
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-3">Explore Our Other Labs</h2>
-      <p class="text-slate-500 text-sm">Each lab complements and expands your school's innovation ecosystem.</p>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
-      @foreach([
-        [route('labs.ai-robotics'), 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=500&q=80', 'AI & Robotics Lab',    'Hands-on robotics, coding & AI experiments'],
-        [route('labs.stem'),        'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=500&q=80', 'STEM Lab',             'Electronics, IoT & project-based learning'],
-        [route('labs.ecec'),        'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=500&q=80', 'ECEC Lab',             'Early childhood exploration & creativity'],
-      ] as [$url, $img, $name, $desc])
-      <a href="{{ $url }}" class="group flex flex-col gap-3 p-4 rounded-2xl border border-slate-200 hover:border-brand-orange hover:shadow-lg transition-all bg-white">
-        <div class="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100">
-          <img src="{{ $img }}" alt="{{ $name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-        </div>
-        <div>
-          <p class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors text-sm">{{ $name }}</p>
-          <p class="text-xs text-slate-500 mt-0.5">{{ $desc }}</p>
-        </div>
-      </a>
-      @endforeach
-    </div>
-  </div>
-</section>
-
+</div>
 @endsection
+
+@push('scripts')
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const leadForm = document.getElementById('leadForm');
+    if (leadForm) {
+      leadForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const confirmMsg = document.getElementById('confirmMsg');
+        if (confirmMsg) confirmMsg.style.display = 'block';
+        this.reset();
+      });
+    }
+  });
+</script>
+@endpush

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vidyalab — Skill Labs for CBSE Schools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #17233F;
+    --navy-deep: #101A30;
+    --paper: #F5F2EA;
+    --paper-warm: #EFEAD e; /* fallback unused */
+    --marigold: #D98E2B;
+    --marigold-deep: #B9721B;
+    --teal: #2F6F62;
+    --ink: #2A2A28;
+    --hair: #D8D2C2;
+    --hair-on-navy: rgba(245,242,234,0.22);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Newsreader', Georgia, serif;
+    font-weight:500;
+    color:var(--navy);
+    line-height:1.15;
+    margin:0;
+  }
+  a{color:inherit;}
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  :focus-visible{
+    outline:2.5px solid var(--marigold);
+    outline-offset:3px;
+  }
+  button, .btn{
+    font-family:'IBM Plex Sans', sans-serif;
+    cursor:pointer;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:40;
+    background:var(--navy);
+    border-bottom:1px solid var(--hair-on-navy);
+  }
+  .header-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .wordmark{
+    font-family:'Newsreader', serif;
+    font-size:1.35rem;
+    color:var(--paper);
+    letter-spacing:0.01em;
+    text-decoration:none;
+  }
+  .wordmark em{ font-style:italic; color:var(--marigold); }
+  nav{ display:flex; gap:28px; align-items:center; }
+  nav a{
+    color:var(--paper);
+    text-decoration:none;
+    font-size:0.93rem;
+    opacity:0.88;
+  }
+  nav a:hover{ opacity:1; text-decoration:underline; text-underline-offset:4px; }
+  .nav-cta{
+    background:var(--marigold);
+    color:var(--navy-deep);
+    padding:9px 18px;
+    border-radius:2px;
+    font-weight:600;
+    font-size:0.9rem;
+    text-decoration:none;
+  }
+  .nav-cta:hover{ background:var(--marigold-deep); color:var(--paper); }
+  .nav-links-mobile{ display:none; }
+  @media (max-width: 760px){
+    nav .nav-links{ display:none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:var(--navy);
+    color:var(--paper);
+    padding:72px 0 56px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media (max-width:860px){
+    .hero-grid{ grid-template-columns:1fr; }
+  }
+  .hero h1{
+    font-size:clamp(2.05rem, 4vw, 2.9rem);
+    color:var(--paper);
+  }
+  .hero p.lead{
+    margin-top:20px;
+    font-size:1.08rem;
+    max-width:46ch;
+    color:#D9D5C8;
+  }
+  .hero-ctas{
+    margin-top:32px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--marigold);
+    color:var(--navy-deep);
+    border:none;
+    padding:14px 26px;
+    font-size:0.98rem;
+    font-weight:600;
+    border-radius:2px;
+  }
+  .btn-primary:hover{ background:#F0A643; }
+  .btn-secondary{
+    background:transparent;
+    color:var(--paper);
+    border:1px solid var(--hair-on-navy);
+    padding:14px 26px;
+    font-size:0.98rem;
+    border-radius:2px;
+    text-decoration:none;
+  }
+  .btn-secondary:hover{ border-color:var(--paper); }
+
+  /* stat strip */
+  .stat-strip{
+    margin-top:44px;
+    display:flex;
+    border-top:1px solid var(--hair-on-navy);
+    padding-top:22px;
+    gap:36px;
+    flex-wrap:wrap;
+  }
+  .stat-strip div{ min-width:120px; }
+  .stat-strip .num{
+    font-family:'Newsreader', serif;
+    font-size:1.7rem;
+    color:var(--marigold);
+    display:block;
+  }
+  .stat-strip .label{
+    font-size:0.85rem;
+    color:#B8B4A6;
+  }
+
+  /* blueprint svg */
+  .blueprint{
+    background:var(--navy-deep);
+    border:1px solid var(--hair-on-navy);
+    border-radius:2px;
+    padding:20px;
+  }
+  .blueprint svg{ width:100%; height:auto; display:block; }
+  .blueprint-cap{
+    margin-top:12px;
+    font-size:0.8rem;
+    color:#9B96886;
+    color:#9B9688;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding:76px 0; }
+  .eyebrow-line{
+    width:44px; height:2px; background:var(--marigold); margin-bottom:18px;
+  }
+  .section-head{ max-width:60ch; margin-bottom:44px; }
+  .section-head h2{ font-size:clamp(1.6rem, 3vw, 2.15rem); }
+  .section-head p{ margin-top:14px; color:#4B4A44; font-size:1.02rem; }
+
+  /* ---------- Problem/Solution ---------- */
+  .split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border:1px solid var(--hair);
+  }
+  @media (max-width:760px){ .split{ grid-template-columns:1fr; } }
+  .split > div{ padding:38px; }
+  .split .problem{ border-right:1px solid var(--hair); }
+  @media (max-width:760px){ .split .problem{ border-right:none; border-bottom:1px solid var(--hair); } }
+  .split h3{ font-size:1.25rem; margin-bottom:14px; }
+  .split p{ color:#4B4A44; }
+  .tag{
+    display:inline-block;
+    font-size:0.78rem;
+    font-weight:600;
+    padding:4px 10px;
+    border-radius:2px;
+    margin-bottom:16px;
+  }
+  .tag.warn{ background:#F1E3D2; color:#8A5A1E; }
+  .tag.good{ background:#DEE9E4; color:var(--teal); }
+
+  /* ---------- Included rows ---------- */
+  .row-list{ border-top:1px solid var(--hair); }
+  .row-item{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-bottom:1px solid var(--hair);
+  }
+  @media (max-width:700px){
+    .row-item{ grid-template-columns:1fr; gap:8px; }
+  }
+  .row-item h3{ font-size:1.15rem; }
+  .row-item p{ color:#4B4A44; margin:0; }
+
+  /* ---------- Testimonial ---------- */
+  .testimonial{
+    background:var(--navy);
+    color:var(--paper);
+    padding:70px 0;
+  }
+  .testimonial blockquote{
+    font-family:'Newsreader', serif;
+    font-style:italic;
+    font-size:clamp(1.35rem, 2.6vw, 1.9rem);
+    max-width:44ch;
+    margin:0;
+    color:#F1EEE4;
+  }
+  .testimonial cite{
+    display:block;
+    margin-top:24px;
+    font-style:normal;
+    font-size:0.92rem;
+    color:#B8B4A6;
+  }
+
+  /* ---------- Lead form ---------- */
+  .form-panel{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+    align-items:start;
+  }
+  @media (max-width:820px){ .form-panel{ grid-template-columns:1fr; } }
+  .form-copy h2{ font-size:clamp(1.5rem, 3vw, 2rem); }
+  .form-copy ul{ margin-top:22px; padding-left:0; list-style:none; }
+  .form-copy li{
+    padding-left:26px;
+    position:relative;
+    margin-bottom:12px;
+    color:#4B4A44;
+  }
+  .form-copy li::before{
+    content:"";
+    position:absolute; left:0; top:9px;
+    width:8px; height:8px;
+    background:var(--teal);
+  }
+  form{
+    background:#fff;
+    border:1px solid var(--hair);
+    padding:32px;
+  }
+  .field{ margin-bottom:16px; }
+  label{ display:block; font-size:0.85rem; margin-bottom:6px; color:#4B4A44; }
+  input{
+    width:100%;
+    padding:11px 12px;
+    border:1px solid var(--hair);
+    font-size:0.95rem;
+    font-family:inherit;
+    background:var(--paper);
+  }
+  input:focus{ outline:2.5px solid var(--marigold); outline-offset:1px; border-color:transparent; }
+  .form-submit{
+    width:100%;
+    margin-top:6px;
+    background:var(--navy);
+    color:var(--paper);
+    border:none;
+    padding:14px;
+    font-weight:600;
+    font-size:0.98rem;
+    border-radius:2px;
+  }
+  .form-submit:hover{ background:var(--navy-deep); }
+  .form-note{ font-size:0.8rem; color:#807C70; margin-top:12px; }
+  .confirm{
+    display:none;
+    background:#DEE9E4;
+    color:var(--teal);
+    padding:14px 16px;
+    font-size:0.92rem;
+    margin-top:16px;
+  }
+
+  /* ---------- Comparison table ---------- */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    border:1px solid var(--hair);
+  }
+  th, td{
+    text-align:left;
+    padding:16px 18px;
+    border-bottom:1px solid var(--hair);
+    font-size:0.95rem;
+  }
+  th{
+    font-family:'Newsreader', serif;
+    font-weight:500;
+    color:var(--navy);
+    font-size:1rem;
+    background:#EDEADF;
+  }
+  td.yes{ color:var(--teal); font-weight:600; }
+  td.no{ color:#9C6B3E; }
+  tr:last-child td{ border-bottom:none; }
+
+  /* ---------- FAQ ---------- */
+  details{
+    border-bottom:1px solid var(--hair);
+    padding:20px 0;
+  }
+  summary{
+    font-family:'Newsreader', serif;
+    font-size:1.08rem;
+    color:var(--navy);
+    cursor:pointer;
+    list-style:none;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  summary::-webkit-details-marker{ display:none; }
+  summary::after{
+    content:"+";
+    font-size:1.3rem;
+    color:var(--marigold);
+    font-family:'IBM Plex Sans', sans-serif;
+  }
+  details[open] summary::after{ content:"–"; }
+  details p{ margin-top:14px; color:#4B4A44; max-width:66ch; }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:var(--navy-deep);
+    color:var(--paper);
+    padding:70px 0;
+    text-align:left;
+  }
+  .final-cta h2{ color:var(--paper); font-size:clamp(1.6rem,3vw,2.2rem); max-width:20ch; }
+  .final-cta p{ color:#B8B4A6; margin-top:14px; }
+  .final-cta .hero-ctas{ margin-top:28px; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--navy);
+    color:#9B9688;
+    padding:34px 0;
+    font-size:0.85rem;
+  }
+  footer .foot-row{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  }
+  footer a{ color:#D9D5C8; text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-row">
+    <a href="#" class="wordmark">Vidya<em>lab</em></a>
+    <nav>
+      <div class="nav-links" style="display:flex; gap:28px; align-items:center;">
+        <a href="#program">Program</a>
+        <a href="#outcomes">Outcomes</a>
+        <a href="#compliance">Compliance</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a href="#book" class="nav-cta">Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>The skill lab your NEP&nbsp;2020 review committee will actually approve.</h1>
+      <p class="lead">Turnkey Robotics, AI, and coding labs built to CBSE specifications — installed, mapped to your syllabus, and staffed with trained teachers before the term starts.</p>
+      <div class="hero-ctas">
+        <a href="#book" class="btn-primary">Book a free site assessment</a>
+        <a href="#checklist" class="btn-secondary">Download the compliance checklist</a>
+      </div>
+      <div class="stat-strip">
+        <div><span class="num">212</span><span class="label">CBSE schools fitted</span></div>
+        <div><span class="num">18</span><span class="label">states covered</span></div>
+        <div><span class="num">46,000+</span><span class="label">students learning hands-on</span></div>
+      </div>
+    </div>
+    <div class="blueprint">
+      <svg viewBox="0 0 420 320" role="img" aria-label="Floor plan diagram of a skill lab showing robotics, AI, electronics, and coding zones">
+        <rect x="4" y="4" width="412" height="312" fill="none" stroke="#3A4665" stroke-width="1"/>
+        <line x1="4" y1="106" x2="416" y2="106" stroke="#3A4665" stroke-width="1"/>
+        <line x1="4" y1="212" x2="416" y2="212" stroke="#3A4665" stroke-width="1"/>
+        <line x1="210" y1="4" x2="210" y2="316" stroke="#3A4665" stroke-width="1"/>
+
+        <text x="20" y="30" fill="#D98E2B" font-family="IBM Plex Sans" font-size="12" font-weight="600">ROBOTICS BENCH</text>
+        <circle cx="40" cy="66" r="14" fill="none" stroke="#7C87A6"/>
+        <circle cx="80" cy="66" r="14" fill="none" stroke="#7C87A6"/>
+        <circle cx="120" cy="66" r="14" fill="none" stroke="#7C87A6"/>
+        <circle cx="160" cy="66" r="14" fill="none" stroke="#7C87A6"/>
+
+        <text x="228" y="30" fill="#D98E2B" font-family="IBM Plex Sans" font-size="12" font-weight="600">AI &amp; DATA STATION</text>
+        <rect x="228" y="46" width="60" height="40" fill="none" stroke="#7C87A6"/>
+        <rect x="300" y="46" width="60" height="40" fill="none" stroke="#7C87A6"/>
+
+        <text x="20" y="132" fill="#D98E2B" font-family="IBM Plex Sans" font-size="12" font-weight="600">ELECTRONICS LAB</text>
+        <rect x="20" y="148" width="170" height="46" fill="none" stroke="#7C87A6"/>
+        <line x1="63" y1="148" x2="63" y2="194" stroke="#7C87A6"/>
+        <line x1="106" y1="148" x2="106" y2="194" stroke="#7C87A6"/>
+        <line x1="149" y1="148" x2="149" y2="194" stroke="#7C87A6"/>
+
+        <text x="228" y="132" fill="#D98E2B" font-family="IBM Plex Sans" font-size="12" font-weight="600">CODING PODS</text>
+        <rect x="228" y="148" width="30" height="30" fill="none" stroke="#7C87A6"/>
+        <rect x="268" y="148" width="30" height="30" fill="none" stroke="#7C87A6"/>
+        <rect x="308" y="148" width="30" height="30" fill="none" stroke="#7C87A6"/>
+        <rect x="348" y="148" width="30" height="30" fill="none" stroke="#7C87A6"/>
+
+        <text x="20" y="238" fill="#D98E2B" font-family="IBM Plex Sans" font-size="12" font-weight="600">TEACHER STATION</text>
+        <rect x="20" y="254" width="120" height="36" fill="none" stroke="#7C87A6"/>
+
+        <text x="228" y="238" fill="#D98E2B" font-family="IBM Plex Sans" font-size="12" font-weight="600">DISPLAY &amp; REVIEW WALL</text>
+        <rect x="228" y="254" width="160" height="36" fill="none" stroke="#7C87A6"/>
+      </svg>
+      <div class="blueprint-cap">A typical 900 sq ft skill lab layout — adapted to your available classroom space.</div>
+    </div>
+  </div>
+</section>
+
+<section id="outcomes">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-line"></div>
+      <h2>Most skill labs get installed once and inspected forever after.</h2>
+      <p>We've walked into enough school storerooms to know the pattern. Here's the difference between a lab that sits idle and one your students actually use.</p>
+    </div>
+    <div class="split">
+      <div class="problem">
+        <span class="tag warn">What usually happens</span>
+        <h3>A kit arrives, nobody is trained on it</h3>
+        <p>Vendors deliver hardware against a purchase order, run one orientation session, and leave. Six months later the robotics kits are in a cupboard and the "lab" is a line item in the prospectus, not a place students go.</p>
+      </div>
+      <div>
+        <span class="tag good">What we install instead</span>
+        <h3>A lab mapped to what your teachers already teach</h3>
+        <p>Every module is tied to a CBSE syllabus unit before installation. Teachers are certified to run it independently. We check in every term, not just at handover.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="program" style="background:#EDEADF;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-line"></div>
+      <h2>What's included in the setup</h2>
+      <p>One vendor, one contract, one team accountable for the lab working — not just existing.</p>
+    </div>
+    <div class="row-list">
+      <div class="row-item">
+        <h3>Lab hardware &amp; workstations</h3>
+        <p>Robotics kits, AI/data stations, electronics benches, and coding pods sized to your enrolment and classroom footprint.</p>
+      </div>
+      <div class="row-item">
+        <h3>Curriculum mapping</h3>
+        <p>Every activity is matched to a specific CBSE syllabus unit and grade, so the lab supports what's already being taught — not a separate elective nobody has time for.</p>
+      </div>
+      <div class="row-item">
+        <h3>Teacher training &amp; certification</h3>
+        <p>Your existing science and computer faculty are trained and certified to run sessions independently, with no dependence on our staff after handover.</p>
+      </div>
+      <div class="row-item">
+        <h3>Annual maintenance &amp; support</h3>
+        <p>Hardware servicing, software updates, and a direct line to our support team for the life of the contract.</p>
+      </div>
+      <div class="row-item">
+        <h3>Compliance documentation</h3>
+        <p>NEP 2020 and CBSE skill-lab documentation prepared and ready to hand to your inspection committee.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="wrap">
+    <blockquote>"Our last STEM kit sat in a storeroom for two years. This one has a timetable slot every week, and our own teachers run it without calling anyone for help."</blockquote>
+    <cite>— Principal, Sacred Heart CBSE Sr. Sec. School, Coimbatore</cite>
+  </div>
+</section>
+
+<section id="checklist">
+  <div class="wrap form-panel">
+    <div class="form-copy">
+      <div class="eyebrow-line"></div>
+      <h2>Get the CBSE Skill Lab Compliance Checklist 2026</h2>
+      <p style="margin-top:14px; color:#4B4A44;">A working document you can hand to your inspection committee or trustees — before you talk to any vendor, including us.</p>
+      <ul>
+        <li>What CBSE and NEP 2020 actually require of a skill lab</li>
+        <li>Space, wiring, and safety specifications</li>
+        <li>Questions to ask any vendor before signing</li>
+        <li>A budget range by school size</li>
+      </ul>
+    </div>
+    <form id="leadForm">
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" type="text" required>
+      </div>
+      <div class="field">
+        <label for="school">School name</label>
+        <input id="school" type="text" required>
+      </div>
+      <div class="field">
+        <label for="city">City</label>
+        <input id="city" type="text" required>
+      </div>
+      <div class="field">
+        <label for="phone">Phone number</label>
+        <input id="phone" type="tel" required>
+      </div>
+      <div class="field">
+        <label for="email">Email address</label>
+        <input id="email" type="email" required>
+      </div>
+      <button type="submit" class="form-submit">Send me the checklist</button>
+      <div class="form-note">We'll also follow up once by phone. No spam, no mailing list.</div>
+      <div class="confirm" id="confirmMsg">Thanks — the checklist is on its way to your email.</div>
+    </form>
+  </div>
+</section>
+
+<section id="compliance" style="background:#EDEADF;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-line"></div>
+      <h2>How this compares to a generic setup</h2>
+    </div>
+    <table>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Generic / DIY vendor</th>
+        <th>Vidyalab</th>
+      </tr>
+      <tr>
+        <td>Curriculum alignment</td>
+        <td class="no">Left to your teachers</td>
+        <td class="yes">Mapped before installation</td>
+      </tr>
+      <tr>
+        <td>Installation time</td>
+        <td class="no">8–14 weeks, variable</td>
+        <td class="yes">4–6 weeks, fixed schedule</td>
+      </tr>
+      <tr>
+        <td>Teacher training</td>
+        <td class="no">One orientation session</td>
+        <td class="yes">Full certification, ongoing refreshers</td>
+      </tr>
+      <tr>
+        <td>Maintenance &amp; support</td>
+        <td class="no">Case by case, extra cost</td>
+        <td class="yes">Included for contract term</td>
+      </tr>
+      <tr>
+        <td>Compliance documentation</td>
+        <td class="no">Not provided</td>
+        <td class="yes">Prepared and handed over</td>
+      </tr>
+      <tr>
+        <td>Pricing</td>
+        <td class="no">Itemised, often revised upward</td>
+        <td class="yes">Fixed quote before you sign</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap" style="max-width:760px;">
+    <div class="section-head">
+      <div class="eyebrow-line"></div>
+      <h2>Questions school owners usually ask</h2>
+    </div>
+    <details open>
+      <summary>What does a skill lab actually cost?</summary>
+      <p>It depends on school size and the modules you choose — robotics, AI/data, electronics, and coding can be installed together or in phases. We give you a fixed quote after a free site assessment, not a range you have to negotiate down.</p>
+    </details>
+    <details>
+      <summary>How long does installation take?</summary>
+      <p>Four to six weeks from signed agreement to a working lab, including teacher training. Most schools time this to a term break.</p>
+    </details>
+    <details>
+      <summary>Will it actually fit our CBSE curriculum, or is it a separate elective?</summary>
+      <p>Every module is mapped to specific CBSE syllabus units by grade before we install anything, so sessions slot into existing science, computer, and skill-education periods.</p>
+    </details>
+    <details>
+      <summary>What happens after installation — are we on our own?</summary>
+      <p>No. Annual maintenance, software updates, and a direct support line are included for the contract term, and we check in with your faculty every term.</p>
+    </details>
+    <details>
+      <summary>Is there a minimum school size?</summary>
+      <p>We've fitted labs for schools from 300 to 3,000 students — the hardware and space plan scale to your enrolment and available classroom area.</p>
+    </details>
+  </div>
+</section>
+
+<section class="final-cta" id="book">
+  <div class="wrap">
+    <h2>Ready to see what a working lab looks like at your school?</h2>
+    <p>A 15-minute call with our education consultant — no obligation, no sales pitch, just a straight answer on fit and cost.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary">Book a free site assessment</a>
+    </div>
+    <p style="margin-top:18px; font-size:0.85rem;">We respond within one working day.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div>Vidyalab — Skill lab infrastructure for CBSE schools</div>
+    <div><a href="tel:+910000000000">+91 00000 00000</a> &nbsp;·&nbsp; <a href="mailto:hello@vidyalab.in">hello@vidyalab.in</a></div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('leadForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('confirmMsg').style.display = 'block';
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="UNESCO's Global Skills Academy connects learners to free, certifiable training for the future of work.">
+  <title>UNESCO's Global Skills Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #102e5b;
+      --blue: #1e58a6;
+      --sky: #dceef7;
+      --yellow: #f8c847;
+      --ink: #12243e;
+      --muted: #5c6c80;
+      --paper: #f7f8f5;
+      --line: #dbe3e8;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font: 16px/1.6 'DM Sans', sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .wrap { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+    .topline { padding: 10px 0; background: var(--navy); color: #d9e8f5; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+    .topline .wrap { display: flex; justify-content: space-between; gap: 20px; }
+    header { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(12px); }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; color: var(--navy); font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 1.05; }
+    .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; background: var(--yellow); color: var(--navy); font-size: 20px; font-weight: 700; }
+    .brand small { display: block; margin-top: 4px; color: var(--muted); font: 11px 'DM Sans', sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+    nav { display: flex; align-items: center; gap: 24px; color: #314967; font-size: 14px; font-weight: 600; }
+    nav a:hover { color: var(--blue); }
+    .nav-cta, .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--blue); color: var(--white); padding: 13px 20px; font-weight: 700; border-radius: 2px; transition: transform .2s, background .2s; }
+    .nav-cta:hover, .button:hover { background: var(--navy); transform: translateY(-2px); }
+    .menu { display: none; border: 0; background: transparent; color: var(--navy); font-size: 28px; }
+    .hero { position: relative; min-height: 615px; display: flex; align-items: end; overflow: hidden; background: var(--navy); color: var(--white); }
+    .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,31,64,.94) 0%, rgba(8,31,64,.70) 44%, rgba(8,31,64,.15) 100%); z-index: 1; }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .hero-content { position: relative; z-index: 2; padding: 110px 0 92px; max-width: 720px; }
+    .eyebrow { color: var(--yellow); font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    h1, h2, h3 { margin: 0; font-family: 'Space Grotesk', sans-serif; line-height: 1.08; }
+    h1 { margin: 20px 0; max-width: 700px; font-size: clamp(42px, 6vw, 76px); letter-spacing: -.04em; }
+    .hero p { max-width: 620px; margin: 0 0 30px; color: #e6eef5; font-size: 18px; }
+    .button.light { background: var(--yellow); color: var(--navy); }
+    .button.light:hover { background: #fff; }
+    .intro { display: grid; grid-template-columns: 1fr 1.25fr; gap: 70px; padding: 100px 0; align-items: start; }
+    h2 { font-size: clamp(34px, 4vw, 54px); letter-spacing: -.035em; color: var(--navy); }
+    .intro p, .section-lead { color: var(--muted); font-size: 18px; }
+    .intro p { margin-top: 0; }
+    .rule { width: 68px; height: 5px; margin: 22px 0; background: var(--yellow); }
+    .platform { background: var(--sky); padding: 100px 0; }
+    .platform-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
+    .platform-copy p { color: #3b5770; font-size: 18px; }
+    .platform-image { position: relative; min-height: 420px; }
+    .platform-image img { width: 100%; height: 420px; object-fit: cover; }
+    .image-tag { position: absolute; left: -18px; bottom: -18px; max-width: 250px; padding: 18px 20px; background: var(--yellow); color: var(--navy); font-weight: 700; }
+    .platform-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 54px; }
+    .platform-fact { padding: 20px; border-top: 3px solid var(--blue); background: rgba(255,255,255,.64); color: var(--navy); font-size: 14px; font-weight: 700; }
+    .platform-fact:hover { background: #fff; }
+    .opportunities { padding: 100px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 42px; }
+    .section-head .section-lead { max-width: 480px; margin: 0; }
+    .opportunity-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .opportunity { position: relative; min-height: 330px; display: flex; align-items: end; overflow: hidden; color: var(--white); }
+    .opportunity::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 20%, rgba(10,30,58,.9)); }
+    .opportunity img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .opportunity:hover img { transform: scale(1.06); }
+    .opportunity-content { position: relative; z-index: 1; padding: 24px; }
+    .opportunity h3 { font-size: 25px; margin-bottom: 8px; }
+    .opportunity p { margin: 0; color: #e1ebf2; font-size: 14px; }
+    .training-details { display: grid; gap: 18px; margin-top: 42px; }
+    .training-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; padding: 34px; background: #fff; border: 1px solid var(--line); }
+    .training-detail h3 { margin-bottom: 14px; color: var(--navy); font-size: 30px; }
+    .training-detail p { margin: 0 0 18px; color: var(--muted); }
+    .partner-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .partner-list li { padding: 8px 11px; background: var(--sky); color: var(--navy); font-size: 13px; font-weight: 700; }
+    .partner-list a { color: var(--blue); }
+    .quote { margin: 20px 0 0; padding: 18px 20px; border-left: 4px solid var(--yellow); background: #fff9df; color: #3b4e62; font-style: italic; }
+    .quote cite { display: block; margin-top: 8px; color: var(--blue); font-size: 13px; font-style: normal; font-weight: 700; }
+    .ai-section { padding: 92px 0; background: var(--navy); color: var(--white); }
+    .ai-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 76px; }
+    .ai-section h2 { color: var(--white); }
+    .ai-section p { color: #cbd9e6; font-size: 18px; }
+    .ai-image { border: 14px solid rgba(255,255,255,.1); }
+    .ai-image img { width: 100%; height: 370px; object-fit: cover; }
+    .numbers { padding: 100px 0; background: #fff; }
+    .numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 50px; }
+    .number { padding-top: 20px; border-top: 4px solid var(--yellow); }
+    .number strong { display: block; color: var(--blue); font: 700 clamp(38px, 5vw, 64px)/1 'Space Grotesk', sans-serif; letter-spacing: -.05em; }
+    .number span { display: block; margin-top: 12px; color: var(--muted); font-weight: 600; }
+    .model { padding: 100px 0; }
+    .model-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 65px; align-items: center; }
+    .model img { width: 100%; height: 360px; object-fit: cover; }
+    .model ul { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 14px; color: var(--muted); font-weight: 600; }
+    .model li::before { content: '→'; display: inline-block; width: 28px; color: var(--blue); font-size: 20px; }
+    .regional { padding: 100px 0; background: var(--sky); }
+    .regional-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 42px; }
+    .regional-card { padding: 26px; background: #fff; border-top: 4px solid var(--blue); }
+    .regional-card h3 { margin-bottom: 12px; color: var(--blue); font-size: 20px; }
+    .regional-card p { margin: 0; color: var(--muted); }
+    .news { padding: 100px 0; background: #fff; }
+    .news-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 42px; }
+    .news-card { padding: 24px; border: 1px solid var(--line); }
+    .news-card span { color: var(--blue); font-size: 12px; font-weight: 700; text-transform: uppercase; }
+    .news-card h3 { margin: 12px 0 18px; font-size: 19px; }
+    .news-card time { color: var(--muted); font-size: 13px; }
+    .coalition { padding: 84px 0; background: var(--navy); color: #dbe8f2; }
+    .coalition-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+    .coalition h2 { color: #fff; }
+    .coalition p { max-width: 560px; }
+    .coalition img { width: 180px; height: 180px; margin-left: auto; object-fit: cover; }
+    .socials { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 24px; color: var(--yellow); font-size: 14px; font-weight: 700; }
+    .additional { padding: 30px 0; background: #061b38; color: #a9bfd2; }
+    .additional .wrap { display: flex; justify-content: space-between; gap: 24px; align-items: center; }
+    .additional-links { display: flex; flex-wrap: wrap; gap: 20px; font-size: 13px; }
+    .cta { padding: 78px 0; background: var(--yellow); }
+    .cta-inner { display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+    .cta h2 { max-width: 620px; color: var(--navy); }
+    .cta p { max-width: 540px; margin: 16px 0 0; color: #304a5f; }
+    footer { padding: 66px 0 30px; background: #092449; color: #cbd9e6; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 45px; padding-bottom: 52px; }
+    footer .brand { color: #fff; }
+    footer .brand small { color: #9eb5ca; }
+    footer h3 { margin-bottom: 18px; color: #fff; font-size: 16px; }
+    footer a { display: block; margin: 9px 0; color: #cbd9e6; font-size: 14px; }
+    footer a:hover { color: var(--yellow); }
+    .copyright { padding-top: 20px; border-top: 1px solid rgba(255,255,255,.18); font-size: 12px; color: #9eb5ca; }
+    @media (max-width: 900px) {
+      nav { display: none; }
+      .menu { display: block; }
+      .nav-cta { margin-left: auto; }
+      .intro, .platform-grid, .ai-grid, .model-grid { grid-template-columns: 1fr; gap: 40px; }
+      .opportunity-grid { grid-template-columns: repeat(2, 1fr); }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+      .training-detail, .regional-grid, .news-grid { grid-template-columns: 1fr; }
+      .platform-facts { grid-template-columns: repeat(2, 1fr); }
+      .coalition-grid { grid-template-columns: 1fr; gap: 28px; }
+      .coalition img { margin-left: 0; }
+      .section-head, .cta-inner { align-items: start; flex-direction: column; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 32px, 1180px); }
+      .topline .wrap { font-size: 10px; }
+      .topline .wrap span:last-child { display: none; }
+      .nav { min-height: 68px; }
+      .brand { font-size: 14px; }
+      .brand-mark { width: 36px; height: 36px; }
+      .nav-cta { padding: 10px 12px; font-size: 12px; }
+      .hero { min-height: 570px; }
+      .hero-content { padding: 80px 0 65px; }
+      .hero p, .platform-copy p, .ai-section p { font-size: 16px; }
+      .intro, .platform, .opportunities, .ai-section, .numbers, .model { padding: 68px 0; }
+      .regional, .news { padding: 68px 0; }
+      .opportunity-grid, .numbers-grid, .footer-grid { grid-template-columns: 1fr; }
+      .platform-facts { grid-template-columns: 1fr; }
+      .additional .wrap { align-items: start; flex-direction: column; }
+      .opportunity { min-height: 280px; }
+      .platform-image img { height: 300px; }
+      .image-tag { left: 12px; bottom: -16px; }
+      .ai-image img, .model img { height: 280px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline"><div class="wrap"><span>UNESCO Global Education Coalition</span><span>Skills for the future of work</span></div></div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top"><span class="brand-mark">U</span><span>Global Skills<br>Academy<small>UNESCO</small></span></a>
+      <nav aria-label="Main navigation"><a href="#about">About</a><a href="#skills">Skills</a><a href="#model">Our model</a><a href="#news">News</a></nav>
+      <a class="nav-cta" href="mailto:gsa@unesco.org">Partner with us <span>↗</span></a>
+      <button class="menu" aria-label="Open navigation">☰</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <img src="https://www.unesco.org/sites/default/files/styles/banner_tablet/public/2024-04/global-skills-academy.jpg.webp?itok=u0wH1aKC" alt="Students collaborating in a learning space">
+      <div class="wrap hero-content">
+        <div class="eyebrow">UNESCO's Global Skills Academy</div>
+        <h1>Skills that open doors to the future.</h1>
+        <p>Free, quality training and mentorship for a more inclusive, resilient and future-ready generation.</p>
+        <a class="button light" href="#skills">Explore training opportunities <span>→</span></a>
+      </div>
+    </section>
+
+    <section class="wrap intro" id="about">
+      <div><div class="eyebrow" style="color:var(--blue)">A global movement</div><div class="rule"></div><h2>Building skills. Creating opportunity.</h2></div>
+      <div><p>The Global Skills Academy (GSA) is an initiative dedicated to addressing the pressing labour skills gaps and empowering individuals for a future-ready workforce. Under the umbrella of the UNESCO Global Education Coalition and in line with UNESCO's Strategy for Technical and Vocational Education and Training, the GSA is committed to supporting ten million youth and adults globally in building essential skills for improved employability by 2029.</p><p>The GSA focuses on empowering learners with key skills, including digital literacy, entrepreneurial skills and green technologies. To achieve this goal, the GSA leverages strategic partnerships and mobilizes 230 TVET institutions across 150 countries through the UNESCO and UNEVOC networks.</p><a class="button" href="https://www.unesco.org/en/unesco-media/4240689/lightbox?hub=182955">Watch the GSA mission <span>▶</span></a></div>
+    </section>
+
+    <section class="platform"><div class="wrap platform-grid"><div class="platform-copy"><div class="eyebrow" style="color:var(--blue)">Skills for the future</div><h2>One platform.<br>Many possibilities.</h2><p>The Skills for the Future platform is an open-access global hub convened by UNESCO's Global Skills Academy, in collaboration with KPMG International. The platform empowers businesses, civil society and youth to scale up impact, foster inclusive partnerships and accelerate progress toward SDG 4 on Quality Education.</p><a class="button" href="https://www.unesco.org/en/global-education-coalition/skills-academy/skills-future?hub=182955">Explore the platform <span>↗</span></a></div><div class="platform-image"><img src="https://www.unesco.org/sites/default/files/styles/split_tablet/public/2024-05/global-skills-academy-opportunities.jpg.webp?itok=5GfJn6uJ" alt="Learners working together"><div class="image-tag">Become part of a global movement to equip young people for the future of work.</div></div></div><div class="wrap platform-facts"><a class="platform-fact" href="https://unesdoc.unesco.org/ark:/48223/pf0000389406">Only 1 in 4 employees in STEM is a woman →</a><a class="platform-fact" href="https://economicgraph.linkedin.com/en-us/research/global-green-skills-report">Only 12% of jobs have green skills →</a><a class="platform-fact" href="https://unevoc.unesco.org/up/Supporting_Education_and_Skills_Development_Systems_for_Informal_Workers_Recovery_After_the_Pandemic.pdf">58% of global workers are still in informal employment →</a><a class="platform-fact" href="https://www.itu.int/en/mediacentre/backgrounders/Pages/bridging-the-gender-divide.aspx">Gender gaps in digital access remain a major obstacle →</a></div></section>
+
+    <section class="wrap opportunities" id="skills"><div class="section-head"><div><div class="eyebrow" style="color:var(--blue)">Our training opportunities</div><h2>Learn what moves<br>the world forward.</h2></div><p class="section-lead">Access free, certifiable training and mentorship programmes from our global partners.</p></div><div class="opportunity-grid"><a class="opportunity" href="#"><img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2024-04/global-skills-academy-digital.jpg.webp?itok=nU_r_Oc7" alt="Digital skills training"><div class="opportunity-content"><h3>Digital skills</h3><p>Build confidence with the technologies shaping tomorrow's jobs.</p></div></a><a class="opportunity" href="#"><img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2024-04/global-skills-academy-green.jpg.webp?itok=6NYmTPp0" alt="Green skills training"><div class="opportunity-content"><h3>Green skills</h3><p>Develop the expertise needed for a sustainable future.</p></div></a><a class="opportunity" href="#"><img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2024-04/global-skills-academy-entrepreneurial.jpg.webp?itok=6tZLaLrK" alt="Entrepreneurial skills training"><div class="opportunity-content"><h3>Entrepreneurial skills</h3><p>Turn ideas into action with practical, transversal skills.</p></div></a><a class="opportunity" href="#"><img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2024-04/global-skills-academy-mentorship.jpg.webp?itok=1JonceNt" alt="Mentorship programme"><div class="opportunity-content"><h3>Mentorship</h3><p>Learn from industry mentors and shape your next step.</p></div></a></div></section>
+
+    <div class="wrap training-details">
+      <article class="training-detail"><div><div class="eyebrow" style="color:var(--blue)">Digital skills</div><h3>Prepare for a connected world.</h3><p>Digital competence receives a growing demand, with more than 75% of companies looking to adopt digital technologies such as big data, cloud computing and artificial intelligence, and 86% of companies incorporating digital platforms in their digital marketing strategies in the next five years.</p><p>Access free, certifiable digital literacy and skills training with our partners:</p></div><ul class="partner-list"><li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/aleph?hub=182955">Aleph Inc.</a></li><li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/anthology?hub=182955">Anthology</a></li><li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/china-pocy?hub=182955">China POCY Group</a></li><li>Cisco</li><li>Coursera</li><li>Fundación Telefónica</li><li>GIZ-atingi</li><li>Huawei</li><li>IBM</li><li>ITU</li><li>Microsoft</li><li>Orange</li><li>Outsystems</li><li>Pix</li><li>Technovation</li></ul></article>
+      <article class="training-detail"><div><div class="eyebrow" style="color:var(--blue)">Green skills</div><h3>Build a sustainable future.</h3><p>Green expertise is hired 1.19x more, and demand for green and sustainability skills has grown by more than 60% since 2016 in economies like sustainable fashion, environmental services and renewable energy. Projection shows demand will outstrip supply in five years, emphasizing the critical need for green skills development.</p><p>Access free, certifiable green and sustainability skills training with our partners:</p></div><ul class="partner-list"><li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/festo?hub=182955">FESTO</a></li><li>GIZ-atingi</li><li>IBM</li><li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/siemens-stiftung?hub=182955">Siemens Stiftung</a></li><li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/skilled?hub=182955">SkillEd</a></li><li>WHO Academy</li></ul></article>
+      <article class="training-detail"><div><div class="eyebrow" style="color:var(--blue)">Entrepreneurial skills</div><h3>Make ideas matter.</h3><p>Entrepreneurial and transversal skills can boost careers by developing empathy, agility and readiness to learn, improving communication and project management, identifying opportunities and building leadership.</p><p>Access free, certifiable entrepreneurial and transversal skills training with our partners:</p></div><ul class="partner-list"><li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/generation-global?hub=182955">Generation Global</a></li><li>GIZ-atingi</li><li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/hp?hub=182955">HP LIFE</a></li></ul></article>
+      <article class="training-detail"><div><div class="eyebrow" style="color:var(--blue)">Mentorship programmes</div><h3>Learn from experience.</h3><p>Mentorship programs provide each mentee a unique experience through a dedicated mentor from industry, providing insights and experience about study and personal development, giving guidance in career planning and advancement, opening doors for potential job opportunities.</p><p>Enroll in free mentorship programs with our partners:</p></div><ul class="partner-list"><li>DIOR</li><li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/kpmg?hub=182955">KPMG</a></li><li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/ja-americas?hub=182955">Junior Achievement Americas</a></li></ul><blockquote class="quote">“I'd say that UNESCO is doing a great job in bridging the gap between students and quality education in developing countries.”<cite>Tolulope Omoyeni, Women@DIOR Nigeria</cite></blockquote></article>
+    </div>
+
+    <section class="ai-section"><div class="wrap ai-grid"><div><div class="eyebrow">New programme</div><h2>AI EmpowerED</h2><p>Through UNESCO's Global Skills Academy, in partnership with Microsoft Elevate, KPMG International and Tablet Academy, AI EmpowerED supports TVET systems to equip educators and learners with practical and responsible AI skills for the future of work. By combining global partnerships, national training networks and certification pathways, the programme expands access to AI learning at scale, empowering teachers to drive change in the classroom and enabling learners to develop the digital competencies needed to succeed in tomorrow's economies.</p><p>Discover how AI-empowered skills are creating new pathways to inclusion, innovation and employability worldwide.</p><blockquote class="quote">“I need to train in entrepreneurship and digital marketing. This way, I will be able to compete in the job market or start my own business.”<cite>Jules Beugré Djoman, GSA student, Côte d'Ivoire</cite></blockquote><a class="button light" href="https://www.unesco.org/en/global-education-coalition/skills-academy/ai-empowered-ed?hub=182955">Learn more <span>→</span></a></div><div class="ai-image"><img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2026-07/ai-empowered-2.JPG?itok=gTcKy0mc" alt="AI EmpowerED learning session"></div></div></section>
+
+    <section class="numbers"><div class="wrap"><div class="eyebrow" style="color:var(--blue)">GSA mission in figures</div><h2>Change at global scale.</h2><div class="numbers-grid"><div class="number"><strong>25</strong><span>global partners</span></div><div class="number"><strong>1M+</strong><span>learners reached</span></div><div class="number"><strong>170+</strong><span>TVET institutions mobilized</span></div><div class="number"><strong>63</strong><span>countries connected</span></div></div></div></section>
+
+    <section class="wrap model" id="model"><div class="model-grid"><img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2025-02/gsa-working-model.jpg.webp?itok=I9GRnb5g" alt="Global Skills Academy working model"><div><div class="eyebrow" style="color:var(--blue)">Our working model</div><h2>Partnerships at the heart of progress.</h2><p class="section-lead">We connect Member States, institutions and individual learners to a wide range of training programmes offered by UNESCO's Global Education Coalition partners.</p><ul><li>Flexible solutions for local labour markets</li><li>Scalable programmes designed for inclusion</li><li>A network that leaves no one behind</li></ul></div></div></section>
+
+    <section class="regional"><div class="wrap"><div class="eyebrow" style="color:var(--blue)">Regional statistics</div><h2>Skills gaps look different<br>around the world.</h2><div class="regional-grid"><a class="regional-card" href="https://blogs.worldbank.org/en/nasikiliza/empowering-africa-s-youth--bridging-the-digital-skills-afe-gap"><h3>Africa →</h3><p>230 million digital jobs will be created in Sub-Saharan Africa by 2030.</p></a><a class="regional-card" href="https://impact.economist.com/perspectives/sites/default/files/bridging_the_skills_gap_fuelling_careers_and_the_economy_in_asia_pacific.pdf"><h3>Asia-Pacific →</h3><p>86 million workers in Asia-Pacific require reskilling or upskilling to match the pace of technological change.</p></a><a class="regional-card" href="https://www.ilo.org/resource/news/ilo-despite-lower-unemployment-rate-2023-recovery-labour-markets-latin"><h3>Latin America and the Caribbean →</h3><p>The unemployment rate for young people is 14%, more than double the overall rate of 6.5%.</p></a></div><blockquote class="quote">“GSA is an amazing platform to unite many training and learning offerings that learners, educational institutions and education systems can choose from. HP is happy and proud to be able to contribute to this platform.”<cite>Dr. Markus Schwertel, GSA Partner, Hewlett Packard</cite></blockquote></div></section>
+
+    <section class="news" id="news"><div class="wrap"><div class="eyebrow" style="color:var(--blue)">Latest updates</div><h2>News</h2><div class="news-grid"><a class="news-card" href="https://www.unesco.org/en/articles/china-southeast-asia-tvet-management-capacity-building-workshop-successfully-concluded?hub=182955"><span>News</span><h3>China-Southeast Asia TVET Management Capacity Building Workshop Successfully Concluded</h3><time datetime="2026-07-03">3 July 2026</time></a><a class="news-card" href="https://www.unesco.org/en/articles/unescos-global-skills-academy-expanding-digital-and-ai-skills-across-tvet-systems-kenya?hub=182955"><span>News</span><h3>UNESCO's Global Skills Academy: expanding digital and AI skills across TVET systems in Kenya</h3><time datetime="2026-06-18">18 June 2026</time></a><a class="news-card" href="https://www.unesco.org/en/articles/unescos-global-skills-academy-tesda-expands-access-free-digital-skills-and-ai-courses-philippines?hub=182955"><span>News</span><h3>TESDA expands access to free digital skills and AI courses in the Philippines</h3><time datetime="2026-06-10">10 June 2026</time></a><a class="news-card" href="https://www.unesco.org/en/articles/unescos-global-education-coalition-empowers-ugandas-educators-ai-and-digital-skills-inclusive-tvet?hub=182955"><span>Article</span><h3>UNESCO's Global Education Coalition empowers Uganda's educators with AI and digital skills</h3><time datetime="2026-04-29">29 April 2026</time></a></div></div></section>
+
+    <section class="cta"><div class="wrap cta-inner"><div><div class="eyebrow" style="color:var(--navy)">Ready to make a positive impact?</div><h2>Bring your skills programme to more learners.</h2><p>Partnerships with organisations prepared to offer free training and skills development opportunities at scale are considered on a regular basis. For further discussion contact us at gsa@unesco.org.</p></div><a class="button" href="mailto:gsa@unesco.org">Contact us <span>↗</span></a><img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2025-12/gsa-logos.png.webp?itok=qtvIx9k6" alt="Global Skills Academy partners" style="max-width:180px"></div></section>
+  </main>
+
+  <section class="coalition"><div class="wrap coalition-grid"><div><div class="eyebrow">UNESCO's Global Education Coalition</div><h2>Stronger together.</h2><p>UNESCO's Global Education Coalition brings partners together to build resilient education systems and accelerate action for quality education around the world.</p><a class="button light" href="https://www.unesco.org/en/global-education-coalition?hub=182955">Learn more <span>→</span></a><div class="socials"><a href="https://www.instagram.com/unesco/?hl=en">Instagram</a><a href="https://www.linkedin.com/company/unesco">LinkedIn</a><a href="https://www.youtube.com/UNESCO">YouTube</a><a href="https://x.com/UNESCO">X</a><a href="https://www.tiktok.com/@unesco?lang=en">TikTok</a><a href="https://www.facebook.com/unesco/">Facebook</a></div></div><img src="https://www.unesco.org/sites/default/files/styles/square_144/public/2022-01/ed_global_coalition.jpg.webp?itok=wC2teMlJ" alt="UNESCO Global Education Coalition"></div></section>
+  <footer><div class="wrap footer-grid"><div><a class="brand" href="#top"><span class="brand-mark">U</span><span>Global Skills<br>Academy<small>UNESCO</small></span></a><p>Supporting ten million youth and adults globally in building essential skills for improved employability by 2029.</p></div><div><h3>Explore</h3><a href="#about">About the academy</a><a href="#skills">Training opportunities</a><a href="#model">Our working model</a></div><div><h3>Connect</h3><a href="mailto:gsa@unesco.org">gsa@unesco.org</a><a href="https://www.unesco.org/en/global-education-coalition?hub=182955">Global Education Coalition</a><a href="https://www.unesco.org/en">UNESCO.org</a></div><div><h3>Follow UNESCO</h3><a href="https://www.instagram.com/unesco/?hl=en">Instagram</a><a href="https://www.linkedin.com/company/unesco">LinkedIn</a><a href="https://www.youtube.com/UNESCO">YouTube</a><a href="https://x.com/UNESCO">X</a></div></div><div class="wrap copyright">© UNESCO · A Global Education Coalition initiative · <a href="https://www.unesco.org/en/website-privacy-notice">Privacy notice</a></div></footer>
+  <div class="additional"><div class="wrap"><strong>Additional links</strong><div class="additional-links"><a href="https://www.unesco.org/en">Networks</a><a href="https://www.unesco.org/en">Specialized websites</a><a href="https://www.unesco.org/en">Terms of use</a><a href="https://www.unesco.org/en">Policies</a></div></div></div>
+</body>
+</html>

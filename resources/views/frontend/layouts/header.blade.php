@@ -359,7 +359,7 @@
                                 @endif
                             @endauth
 
-                            <div class="tgmobile__search">
+                            <!-- <div class="tgmobile__search">
                                 <form action="{{ route('courses') }}">
                                     <select class="form-select w_150px" aria-label="Default select example"
                                         name="main_category">
@@ -372,7 +372,7 @@
                                     <input type="text" placeholder="{{ __('Search here') }}..." name="search">
                                     <button><i class="fas fa-search"></i></button>
                                 </form>
-                            </div>
+                            </div> -->
                             <div class="tgmobile__menu-outer">
                                 <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
                             </div>
@@ -451,7 +451,7 @@
         margin-left: 8px;
     }
     .tgmenu__action {
-        display: flex !important;
+        display: none !important;
         align-items: center;
         margin: 0 0 0 auto !important;
     }
