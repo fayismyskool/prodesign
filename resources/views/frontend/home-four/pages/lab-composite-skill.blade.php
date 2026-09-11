@@ -1,6 +1,6 @@
 @extends('frontend.home-four.layouts.master')
 
-@section('meta_title', 'Vidyalab — Skill Labs for CBSE Schools | ' . config('app.name', 'Skillvation'))
+@section('meta_title', 'Composite — Skill Labs for CBSE Schools | ' . config('app.name', 'Skillvation'))
 @section('meta_description', 'Turnkey Robotics, AI, and coding labs built to CBSE specifications — installed, mapped to your syllabus, and staffed with trained teachers before the term starts.')
 
 @push('styles')
@@ -229,7 +229,7 @@
     font-size: clamp(1.35rem, 2.6vw, 1.9rem);
     max-width: 44ch;
     margin: 0;
-    color: #F1EEE4;
+    color: black;
     line-height: 1.45;
   }
   .vl-testimonial cite {
@@ -496,6 +496,133 @@
           <p>NEP 2020 and CBSE skill-lab documentation prepared and ready to hand to your inspection committee.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  
+
+  <!-- Subscription Plans Section -->
+  <section class="vl-section" id="plans">
+    <div class="vidyalab-wrap">
+      <div class="vl-section-head">
+        <div class="vl-eyebrow-line"></div>
+        <h2>Choose the right plan for your school</h2>
+        <p>Every plan includes installation, curriculum mapping, and teacher training. Pick the tier that matches your school's size and ambition.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:0; border:1px solid var(--vl-hair);">
+
+        <!-- Basic Plan -->
+        <div style="padding:36px 32px; border-right:1px solid var(--vl-hair); display:flex; flex-direction:column; gap:0;">
+          <div style="font-size:.8rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#807C70; margin-bottom:14px;">Basic</div>
+          <div style="font-family:'Newsreader',serif; font-size:2.4rem; color:var(--vl-navy); line-height:1; margin-bottom:4px;">₹3 <span style="font-size:1rem; color:#807C70; font-family:'IBM Plex Sans',sans-serif;">Lakh</span></div>
+          <div style="font-size:.85rem; color:#807C70; margin-bottom:24px;">one-time setup</div>
+          <div style="font-size:.95rem; color:var(--vl-navy); font-weight:500; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--vl-hair);">For schools up to 500 students — single classroom lab, core CBSE compliance ready.</div>
+          <ul style="list-style:none; padding:0; margin:0 0 28px; display:flex; flex-direction:column; gap:12px; flex:1;">
+            @foreach([
+              'Lab hardware for one 400 sq ft room',
+              'Robotics & coding kits (Grades VI–X)',
+              'CBSE Skill-75/2024 documentation',
+              '2-day teacher orientation',
+              'Helpdesk support (email)',
+              '1-year hardware warranty',
+            ] as $item)
+            <li style="display:flex; align-items:flex-start; gap:10px; font-size:.9rem; color:#4B4A44;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0; margin-top:2px;"><circle cx="8" cy="8" r="8" fill="#DEE9E4"/><path d="M5 8l2 2 4-4" stroke="#2F6F62" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {{ $item }}
+            </li>
+            @endforeach
+          </ul>
+          <a href="{{ route('basic-plan') }}"
+             style="display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--vl-navy); color:var(--vl-navy); padding:13px 20px; font-size:.9rem; font-weight:600; text-decoration:none; border-radius:2px; transition:background .2s; font-family:'IBM Plex Sans',sans-serif;"
+             onmouseover="this.style.background='rgba(23,35,63,.06)'" onmouseout="this.style.background='transparent'">
+            View Basic Plan →
+          </a>
+        </div>
+
+        <!-- Advance Plan -->
+        <div style="padding:36px 32px; border-right:1px solid var(--vl-hair); display:flex; flex-direction:column; gap:0; background:var(--vl-navy); position:relative;">
+          <div style="position:absolute; top:0; left:0; right:0; background:var(--vl-marigold); color:var(--vl-navy-deep); font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; text-align:center; padding:7px;">Most Popular</div>
+          <div style="margin-top:28px; font-size:.8rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#9B9688; margin-bottom:14px;">Advance</div>
+          <div style="font-family:'Newsreader',serif; font-size:2.4rem; color:var(--vl-paper); line-height:1; margin-bottom:4px;">₹6 <span style="font-size:1rem; color:#9B9688; font-family:'IBM Plex Sans',sans-serif;">Lakh</span></div>
+          <div style="font-size:.85rem; color:#9B9688; margin-bottom:24px;">one-time setup</div>
+          <div style="font-size:.95rem; color:#D9D5C8; font-weight:500; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid rgba(245,242,234,.15);">For schools up to 1,000 students — full composite lab, AI modules, and ongoing curriculum refresh.</div>
+          <ul style="list-style:none; padding:0; margin:0 0 28px; display:flex; flex-direction:column; gap:12px; flex:1;">
+            @foreach([
+              'Everything in Basic',
+              '600 sq ft combined lab layout',
+              'AI & electronics modules added',
+              'Curriculum mapped to Grades VI–XII',
+              '5-day teacher certification programme',
+              'Quarterly term check-ins',
+              'Priority helpdesk (phone + email)',
+              '2-year hardware warranty',
+            ] as $item)
+            <li style="display:flex; align-items:flex-start; gap:10px; font-size:.9rem; color:#D9D5C8;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0; margin-top:2px;"><circle cx="8" cy="8" r="8" fill="rgba(217,142,43,.25)"/><path d="M5 8l2 2 4-4" stroke="#D98E2B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {{ $item }}
+            </li>
+            @endforeach
+          </ul>
+          <a href="{{ route('advance-plan') }}"
+             style="display:inline-flex; align-items:center; justify-content:center; background:var(--vl-marigold); color:var(--vl-navy-deep); padding:13px 20px; font-size:.9rem; font-weight:600; text-decoration:none; border-radius:2px; transition:background .2s; font-family:'IBM Plex Sans',sans-serif; border:none;"
+             onmouseover="this.style.background='#F0A643'" onmouseout="this.style.background='var(--vl-marigold)'">
+            View Advance Plan →
+          </a>
+        </div>
+
+        <!-- Premium Plan -->
+        <div style="padding:36px 32px; display:flex; flex-direction:column; gap:0;">
+          <div style="font-size:.8rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#807C70; margin-bottom:14px;">Premium</div>
+          <div style="font-family:'Newsreader',serif; font-size:2.4rem; color:var(--vl-navy); line-height:1; margin-bottom:4px;">₹10 <span style="font-size:1rem; color:#807C70; font-family:'IBM Plex Sans',sans-serif;">Lakh</span></div>
+          <div style="font-size:.85rem; color:#807C70; margin-bottom:24px;">one-time setup</div>
+          <div style="font-size:.95rem; color:var(--vl-navy); font-weight:500; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--vl-hair);">For large schools and groups — dual-room composite lab, full digital infrastructure, and dedicated support.</div>
+          <ul style="list-style:none; padding:0; margin:0 0 28px; display:flex; flex-direction:column; gap:12px; flex:1;">
+            @foreach([
+              'Everything in Advance',
+              'Two separate labs (400 sq ft each)',
+              '3D printing & VR/AR stations',
+              'Custom branding for your school',
+              'Dedicated lab coordinator (1st year)',
+              'Annual curriculum update service',
+              'On-site support visits (twice yearly)',
+              '3-year hardware warranty',
+            ] as $item)
+            <li style="display:flex; align-items:flex-start; gap:10px; font-size:.9rem; color:#4B4A44;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0; margin-top:2px;"><circle cx="8" cy="8" r="8" fill="#DEE9E4"/><path d="M5 8l2 2 4-4" stroke="#2F6F62" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {{ $item }}
+            </li>
+            @endforeach
+          </ul>
+          <a href="{{ route('premium-plan') }}"
+             style="display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--vl-navy); color:var(--vl-navy); padding:13px 20px; font-size:.9rem; font-weight:600; text-decoration:none; border-radius:2px; transition:background .2s; font-family:'IBM Plex Sans',sans-serif;"
+             onmouseover="this.style.background='rgba(23,35,63,.06)'" onmouseout="this.style.background='transparent'">
+            View Premium Plan →
+          </a>
+        </div>
+
+      </div>
+
+      {{-- Responsive mobile stack --}}
+      <style>
+        @media (max-width: 740px) {
+          #plans > .vidyalab-wrap > div[style*="grid-template-columns"] {
+            grid-template-columns: 1fr !important;
+          }
+          #plans > .vidyalab-wrap > div[style*="grid-template-columns"] > div {
+            border-right: none !important;
+            border-bottom: 1px solid var(--vl-hair);
+          }
+          #plans > .vidyalab-wrap > div[style*="grid-template-columns"] > div:last-child {
+            border-bottom: none;
+          }
+        }
+      </style>
+
+      <p style="margin-top:20px; font-size:.82rem; color:#807C70; text-align:center;">
+        All prices are indicative. Final quote provided after a free site assessment. &nbsp;·&nbsp;
+        <a href="#checklist" style="color:var(--vl-marigold); text-decoration:none;">Contact us</a> for multi-school or trust pricing.
+      </p>
     </div>
   </section>
 

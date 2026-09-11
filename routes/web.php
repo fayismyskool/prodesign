@@ -57,6 +57,18 @@ Route::group(['middleware' => 'maintenance.mode'], function () {
         return view('frontend.home-four.pages.labs');
     })->name('labs');
 
+    Route::get('/basic-plan', function () {
+        return view('frontend.home-four.pages.basic-plan');
+    })->name('basic-plan');
+
+    Route::get('/advance-plan', function () {
+        return view('frontend.home-four.pages.advance-plan');
+    })->name('advance-plan');
+
+    Route::get('/premium-plan', function () {
+        return view('frontend.home-four.pages.premium-plan');
+    })->name('premium-plan');
+
     Route::get('/labs/ai-robotics', function () {
         return view('frontend.home-four.pages.lab-ai-robotics');
     })->name('labs.ai-robotics');

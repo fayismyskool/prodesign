@@ -1,6 +1,6 @@
 @extends('frontend.home-four.layouts.master')
 
-@section('meta_title', "UNESCO's Global Skills Academy — " . config('app.name', 'Skillvation'))
+@section('meta_title', "Home — " . config('app.name', 'Skillvation'))
 @section('meta_description', "The Global Skills Academy is dedicated to addressing labour skills gaps and empowering individuals for a future-ready workforce.")
 
 @push('styles')
