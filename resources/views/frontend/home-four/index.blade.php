@@ -529,8 +529,8 @@
   <!-- 1. Hero Title Banner -->
   <section class="unesco-hero-banner">
     <div class="unesco-container">
-      <h1>UNESCO's Global Skills Academy</h1>
-      <p>Empowering youth and adults for the future of work</p>
+      <h1>India's Favorite Skill Platform</h1>
+      <p>Empowering students and teachers for the future of education</p>
     </div>
   </section>
 
@@ -539,11 +539,14 @@
     <div class="unesco-container">
       <div class="unesco-grid-2col">
         <div>
-          <p>
+          <!-- <p>
             The Global Skills Academy (GSA) is an initiative dedicated to addressing the pressing labour skills gaps and empowering individuals for a future-ready workforce. Under the umbrella of <a href="https://www.unesco.org/en/global-education-coalition" target="_blank" rel="noopener" class="text-blue-600 underline font-semibold">UNESCO Global Education Coalition</a> and in line with <a href="https://unesdoc.unesco.org/ark:/48223/pf0000383360" target="_blank" rel="noopener" class="text-blue-600 underline font-semibold">UNESCO Strategy for Technical and Vocational Education and Training (TVET)</a>, the GSA is committed to supporting ten million youth and adults globally in building essential skills for improved employability by 2029.
           </p>
           <p class="mt-4">
             The GSA focuses on empowering learners with key skills, including digital literacy, entrepreneurial skills, and green technologies. These skills are crucial for navigating the rapidly evolving job market driven by technological, economic, and societal transformations.
+          </p> -->
+          <p>
+            At Skillvation, we believe that passionate teachers deserve opportunities that reward their talent, dedication, and expertise. Education is evolving, and so are the ways teachers can build meaningful careers. Our platform empowers educators to teach online, share their knowledge with students across the world, and earn a stable income from the comfort of their homesAt Skillvation, we believe that passionate teachers deserve opportunities that reward their talent, dedication, and expertise. Education is evolving, and so are the ways teachers can build meaningful careers. Our platform empowers educators to teach online, share their knowledge with students across the world, and earn a stable income from the comfort of their homes
           </p>
         </div>
         
@@ -554,17 +557,18 @@
               <i class="fa-solid fa-play"></i>
             </a>
           </div>
-          <div class="unesco-media-caption">© UNESCO</div>
+          <!-- <div class="unesco-media-caption">© UNESCO</div> -->
         </div>
       </div>
 
       <div class="mt-8">
-        <p>
+        <!-- <p>
           To achieve this goal, the GSA leverages strategic partnerships and mobilizes 230 TVET institutions across 150 countries through the UNESCO and <a href="https://unevoc.unesco.org/home/fwd2About+the+UNEVOC+Network" target="_blank" rel="noopener" class="text-blue-600 underline font-semibold">UNEVOC networks</a>. By analyzing the evolving labour market’s skills supply and demand, the GSA offers free training and mentorship programs. These programs empower learners with in-demand skills, including digital literacy and skills, green technologies, and entrepreneurial capabilities.
         </p>
         <p class="mt-3">
           The GSA is dedicated to bridging this skills gap and empowering individuals to thrive in our 21st-century economy.
-        </p>
+        </p> -->
+        <p>We help teachers grow with practical, easy-to-learn skills designed for today’s classrooms. Our platform offers structured lessons, expert guidance, and real-world teaching strategies to support continuous improvement. We believe every teacher deserves the tools and confidence to inspire stronger learning outcomes.</p>
       </div>
     </div>
   </section>
@@ -574,15 +578,16 @@
     <div class="unesco-container">
       <div class="unesco-grid-2col">
         <div>
-          <h2 class="text-3xl font-bold mb-4">Skills for the Future Global Platform</h2>
-          <p>
+          <h2 class="text-3xl font-bold mb-4">Skills for the Future</h2>
+          <!-- <p>
             The <a href="https://www.unesco.org/en/global-education-coalition/skills-academy/skills-future?hub=182955" target="_blank" rel="noopener" class="text-blue-600 underline font-semibold">Skills for the Future platform</a> is an open-access global hub convened by UNESCO’s Global Skills Academy, in collaboration with KPMG International. The platform empowers businesses, civil society, and youth to scale up impact, foster inclusive partnerships, and accelerate progress toward SDG 4 on Quality Education. By connecting initiatives and amplifying collective action, it aims to build a more inclusive, resilient, and future-ready generation.
-          </p>
+          </p> -->
+          <p>Skill 2 Skool supports schools in identifying and nurturing student strengths through structured observation, reflection, and skill mapping. By focusing on aptitude, interest, and behaviour patterns, schools gain deeper insights into student potential—supporting informed guidance, confidence building, and holistic development.</p>
           <p class="font-bold text-gray-900 mt-4 mb-6">
-            Become part of a global movement to equip young people for the future of work!
+            Become part of a global movement to equip young students for the future!
           </p>
-          <a href="https://www.unesco.org/en/global-education-coalition/skills-academy/skills-future" target="_blank" rel="noopener" class="unesco-pill-btn">
-            <span>Explore existing skills initiatives and share your initiatives</span>
+          <a href="/skill2school" target="_blank" rel="noopener" class="unesco-pill-btn">
+            <span>Explore existing skills initiatives</span>
             <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
@@ -594,25 +599,25 @@
               <i class="fa-solid fa-play"></i>
             </a>
           </div>
-          <div class="unesco-media-caption">© UNESCO</div>
+          <!-- <div class="unesco-media-caption">© UNESCO</div> -->
         </div>
       </div>
 
       <!-- 4 Colored Stat Cards -->
       <div class="unesco-stats-grid">
         <a href="https://unesdoc.unesco.org/ark:/48223/pf0000389406" target="_blank" rel="noopener" class="unesco-stat-card stat-card-stem">
-          <div class="stat-title">Only 1 in 4</div>
-          <div class="stat-desc">employees in STEM is a woman</div>
+          <div class="stat-title">The Skill Gap</div>
+          <div class="stat-desc">Independent findings from the companion India Skills Report 2026 indicate that while national youth employability has marginally risen to 56.35%, nearly 43.65% of Indian graduates still lack the necessary skills to be hired immediately by industry standards.</div>
         </a>
 
         <a href="https://economicgraph.linkedin.com/en-us/research/global-green-skills-report" target="_blank" rel="noopener" class="unesco-stat-card stat-card-green">
-          <div class="stat-title">Only 12%</div>
-          <div class="stat-desc">of jobs have green skills, while 22 % of job postings require at least one green skill</div>
+          <div class="stat-title">The NEET Cohort</div>
+          <div class="stat-desc">According to the NITI Aayog framework using NSSO baselines, 8.9 crore (89 million) young Indians between the ages of 15 and 29 fall under the category of NEET (Not in Education, Employment, or Training).</div>
         </a>
 
         <a href="https://unevoc.unesco.org/up/Supporting_Education_and_Skills_Development_Systems_for_Informal_Workers_Recovery_After_the_Pandemic.pdf" target="_blank" rel="noopener" class="unesco-stat-card stat-card-informal">
-          <div class="stat-title">58%</div>
-          <div class="stat-desc">of global workers are still in informal employment</div>
+          <div class="stat-title">Graduate Unemployment</div>
+          <div class="stat-desc">The transition from university to the corporate sector remains severely strained. Roughly 40% of young graduates under the age of 25 are unemployed. Out of 6.3 crore graduates in the 20–29 age bracket, 1.1 crore remain jobless due to skill mismatches.</div>
         </a>
 
         <a href="https://www.itu.int/en/mediacentre/backgrounders/Pages/bridging-the-gender-divide.aspx" target="_blank" rel="noopener" class="unesco-stat-card stat-card-gender">
@@ -622,11 +627,15 @@
       </div>
 
       <div class="space-y-4 text-gray-700">
-        <p>
+        <!-- <p>
           Globally, one out of five individuals aged 15-34 remain disengaged from education, employment, or training (<a href="https://www.ilo.org/global/research/global-reports/weso/WCMS_865332/lang--en/index.htm" target="_blank" rel="noopener" class="text-blue-600 underline font-medium">International Labour Organization <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>). That translates to 360 million young individuals seeking opportunities to build a brighter future through quality education, training and employment opportunities.
         </p>
         <p>
           The rapid pace of technological, economic, and societal transformations compounds this issue. Recent reports from the World Economic Forum indicate that 43% of business tasks are expected to be automated by 2027. This suggests the need for widespread reskilling (the process of acquiring new skills or knowledge to perform a different job or task) or upskilling initiatives to ensure employees globally can navigate the changing demands of the labour market (<a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener" class="text-blue-600 underline font-medium">World’s Economic Forum “ Futures of Jobs” Report <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>).
+        </p> -->
+        <p>The data surrounding Indian students and their lack of employable skills comes from the National Sample Survey Office (NSSO) data utilized in the comprehensive report titled Reimagining Skilling for Viksit Bharat@2047 released by NITI Aayog. This study builds directly on foundational NSSO survey metrics regarding youth training and employment to outline India's current skill deficit. 
+          </p>
+          <p>The core issue highlighted is that India is facing a crisis of "job-readiness" rather than just a crisis of "job availability." </p>(<a href="https://www.academicmantraservices.com/blog/why-57-of-indian-graduates-cant-get-hired-despite-23-crore-vacancies-2026-analysis" target="_blank" rel="noopener" class="text-blue-600 underline font-medium">International Labour Organization <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>).<a href=""></a>
         </p>
       </div>
     </div>
@@ -638,31 +647,33 @@
       <div class="unesco-grid-2col">
         <div>
           <h2 class="text-3xl font-bold mb-4">AI EmpowerED: Equipping teachers and learners for an AI-driven future</h2>
-          <p>
+          <!-- <p>
             Through UNESCO’s Global Skills Academy, in partnership with Microsoft Elevate, KPMG International and Tablet Academy, AI EmpowerED supports TVET systems to equip educators and learners with practical and responsible AI skills for the future of work. By combining together global partnerships, national training networks and certification pathways, the programme expands access to AI learning at scale – empowering teachers to drive change in the classroom and enabling learners to develop the digital competencies needed to succeed in tomorrow’s economies.
+          </p> -->
+          <p>An AI Learning Management System (AI LMS) uses Artificial Intelligence to enhance teaching and learning by transforming traditional curriculum into skill-based, application-oriented content. Instead of limiting learning to textbooks and memorisation, an AI LMS supports lesson planning, assessments, and content delivery through smart recommendations, real-world examples, and competency-focused activities. Skillvation’s AI LMS, LATAA ( LEARNING AND TEACHING AI ASSISTANT) , is purpose-built for CBSE and NEP-aligned education, helping schools shift from rote learning to skill development and experiential learning—without disrupting their existing syllabus.
           </p>
           <p class="font-bold text-gray-900 mt-4 mb-6">
-            Discover how AI-empowered skills are creating new pathways to inclusion, innovation, and employability worldwide.
+            Discover how AI-empowered skills are creating new pathways to inclusion and innovation.
           </p>
-          <a href="https://www.unesco.org/en/global-education-coalition/skills-academy/ai-empowered-ed?hub=182955" target="_blank" rel="noopener" class="unesco-pill-btn">
+          <!-- <a href="https://www.unesco.org/en/global-education-coalition/skills-academy/ai-empowered-ed?hub=182955" target="_blank" rel="noopener" class="unesco-pill-btn">
             <span>Learn more</span>
             <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          </a> -->
         </div>
 
         <div>
           <div class="unesco-media-card">
             <img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2026-07/ai-empowered-2.JPG?itok=gTcKy0mc" alt="AI EmpowerED Learning Session">
           </div>
-          <div class="unesco-media-caption">© Tablet Academy</div>
+          <!-- <div class="unesco-media-caption">© Tablet Academy</div> -->
         </div>
       </div>
 
       <!-- Quote -->
-      <div class="unesco-quote-box">
+      <!-- <div class="unesco-quote-box">
         <p>“I need to train in entrepreneurship and digital marketing. This way, I will be able to compete in the job market or start my own business.”</p>
         <cite>Jules Beugré Djoman, GSA student, Côte d'Ivoire</cite>
-      </div>
+      </div> -->
     </div>
   </section>
 
@@ -673,8 +684,12 @@
       <!-- Split Blue Hero Block -->
       <div class="unesco-split-banner">
         <div class="unesco-split-banner-left">
-          <h2>Our training opportunities</h2>
-          <p>Explore our partners' free, certifiable training opportunities in digital, green, entrepreneurial skills and career-oriented mentorship programs.</p>
+          <h2>Our Upskilling opportunities</h2>
+          <p>Explore our courses, certifiable training opportunities in Life Science, Machines & Materials, Human Services skills and other training programs.</p>
+        <a href="/upskill4teacher" target="_blank" rel="noopener" class="unesco-pill-btn">
+            <span>Explore Courses</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
         <div class="unesco-split-banner-right">
           <img src="https://www.unesco.org/sites/default/files/styles/split_tablet/public/2024-05/global-skills-academy-opportunities.jpg.webp?itok=5GfJn6uJ" alt="Training Opportunities">
@@ -791,10 +806,10 @@
           </div>
         </div>
 
-        <div class="unesco-quote-box mt-6">
+        <!-- <div class="unesco-quote-box mt-6">
           <p>“I'd say that UNESCO is doing a great job in bridging the gap between students and quality education in developing countries. The Global Skills Academy Initiative has also exposed students like me to experience a new way, the digital way, of enjoying quality education.”</p>
           <cite>Tolulope Omoyeni, Women@DIOR Nigeria</cite>
-        </div>
+        </div> -->
       </div>
 
     </div>
@@ -807,16 +822,16 @@
         <div>
           <h2 class="text-3xl font-bold mb-4">Our working model</h2>
           <p class="text-gray-700 mb-4">
-            Partnerships sit at the heart of the Global Skills Academy’s (GSA) success. The GSA leverages multi-stakeholder partnerships and mobilizes over 230 Technical and Vocational Education and Training institutions across 150 countries through UNESCO and the UNEVOC Network.
+            Partnerships sit at the heart of Skillvation's success. We leverage om multi-stakeholder partnerships approach and mobilizes multiple Art, Technical and Vocational Eucation.
           </p>
-          <p class="font-semibold text-gray-800 mb-2">The GSA connects:</p>
+          <p class="font-semibold text-gray-800 mb-2">Skillvation connects:</p>
           <ul class="list-disc pl-6 space-y-2 text-gray-700 mb-4">
-            <li>Member States</li>
-            <li>institutions</li>
-            <li>individual learners</li>
+            <li>School</li>
+            <li>Teacher</li>
+            <li>Students</li>
           </ul>
           <p class="text-gray-700">
-            to a wide range of training programs offered by UNESCO’s Global Education Coalition partners. This expansive network enables GSA to reach learners worldwide, ensuring that no one is left behind in accessing quality training.
+            A wide range of training programs and projects offered. This expansive knowledge enables learners to explore various courses, ensuring that no one is left behind in accessing quality education.
           </p>
         </div>
 
@@ -824,99 +839,29 @@
           <div class="unesco-media-card bg-white p-4 border border-gray-200">
             <img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2025-02/gsa-working-model.jpg.webp?itok=I9GRnb5g" alt="UNESCO GSA Working Model" style="object-fit: contain;">
           </div>
-          <div class="unesco-media-caption">© UNESCO</div>
+          <!-- <div class="unesco-media-caption">© UNESCO</div> -->
         </div>
       </div>
     </div>
   </section>
 
   <!-- 7. GSA Mission in Figures -->
-  <section class="unesco-section">
-    <div class="unesco-container">
-      <h2 class="text-3xl font-bold mb-6 text-gray-900">GSA mission in figures</h2>
-      
-      <div class="unesco-figures-grid">
-        <!-- Card 1: 25 partners -->
-        <div class="unesco-figure-card">
-          <div class="unesco-figure-circle">
-            <img src="https://www.unesco.org/sites/default/files/styles/square_120/public/2022-10/NGO%20partnership%20hero%20image.jpg.webp?itok=AIhaldR9" alt="25 Partners">
-          </div>
-          <div class="unesco-figure-number">25</div>
-          <div class="unesco-figure-label">partners</div>
-        </div>
-
-        <!-- Card 2: 1+ million learners -->
-        <div class="unesco-figure-card">
-          <div class="unesco-figure-circle">
-            <img src="https://www.unesco.org/sites/default/files/styles/square_120/public/2022-03/higher%20education%20main%20page.jpg.webp?itok=tlbFBvUW" alt="1+ Million Learners">
-          </div>
-          <div class="unesco-figure-number">1+ million</div>
-          <div class="unesco-figure-label">learners</div>
-        </div>
-
-        <!-- Card 3: 170+ TVET institutions -->
-        <div class="unesco-figure-card">
-          <div class="unesco-figure-circle">
-            <img src="https://www.unesco.org/sites/default/files/styles/square_120/public/2024-04/global-skills-academy-impact-institutions.jpg.webp?itok=LOF40NAx" alt="170+ TVET institutions">
-          </div>
-          <div class="unesco-figure-number">170+</div>
-          <div class="unesco-figure-label">TVET institutions</div>
-          <div class="unesco-figure-subtext">mobilized across the world</div>
-        </div>
-
-        <!-- Card 4: 63 countries -->
-        <div class="unesco-figure-card">
-          <div class="unesco-figure-circle">
-            <img src="https://www.unesco.org/sites/default/files/styles/square_120/public/2022-07/world-map.JPG?itok=6Y5Kudha" alt="63 Countries">
-          </div>
-          <div class="unesco-figure-number">63</div>
-          <div class="unesco-figure-label">countries</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- 8. Regional Statistics -->
-  <section class="unesco-section">
-    <div class="unesco-container">
-      <h2 class="text-3xl font-bold mb-2">Regional statistics</h2>
-      <p class="text-gray-600 mb-6">Skills gaps look different around the world.</p>
-
-      <div class="unesco-regional-grid">
-        <a href="https://blogs.worldbank.org/en/nasikiliza/empowering-africa-s-youth--bridging-the-digital-skills-afe-gap" target="_blank" rel="noopener" class="unesco-regional-card">
-          <h3><span>Africa</span> <i class="fa-solid fa-arrow-right text-sm"></i></h3>
-          <p>230 million digital jobs will be created in Sub-Saharan Africa by 2030.</p>
-        </a>
-
-        <a href="https://impact.economist.com/perspectives/sites/default/files/bridging_the_skills_gap_fuelling_careers_and_the_economy_in_asia_pacific.pdf" target="_blank" rel="noopener" class="unesco-regional-card">
-          <h3><span>Asia-Pacific</span> <i class="fa-solid fa-arrow-right text-sm"></i></h3>
-          <p>86 million workers in Asia-Pacific require reskilling or upskilling to match the pace of technological change.</p>
-        </a>
-
-        <a href="https://www.ilo.org/resource/news/ilo-despite-lower-unemployment-rate-2023-recovery-labour-markets-latin" target="_blank" rel="noopener" class="unesco-regional-card">
-          <h3><span>Latin America and Caribbean</span> <i class="fa-solid fa-arrow-right text-sm"></i></h3>
-          <p>The unemployment rate for young people is 14%, more than double the overall rate of 6.5%.</p>
-        </a>
-      </div>
-
-      <div class="unesco-quote-box mt-8">
-        <p>“GSA is an amazing platform to unite many training and learning offerings that learners, educational institutions, education systems can choose from. HP is happy and proud to be able to contribute to this platform.”</p>
-        <cite>Dr. Markus Schwertel, GSA Partner, Hewlett Packard</cite>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- 9. Ready to make a positive impact? CTA -->
   <section class="unesco-section bg-light">
     <div class="unesco-container">
       <div class="unesco-grid-2col">
         <div>
-          <h2 class="text-3xl font-bold mb-4">Ready to make a positive impact?</h2>
+          <h2 class="text-3xl font-bold mb-4">Leaders of Learning</h2>
           <p class="text-gray-700 mb-6">
-            Partnerships with organisations prepared to offer free training and skills development opportunities at scale are considered on a regular basis. For further discussion contact us at <a href="mailto:gsa@unesco.org" class="text-blue-600 font-semibold">gsa@unesco.org</a>.
+            Experience a hassle-free onboarding process designed for your comfort. From key handovers to utility setups, we take care of everything so you can settle into your new home with ease.
           </p>
-          <a href="mailto:gsa@unesco.org" class="unesco-pill-btn">
-            <span>Contact us</span>
+          <a href="/ttt" class="unesco-pill-btn">
+            <span>Know more</span>
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
         </div>
@@ -932,7 +877,7 @@
   </section>
 
   <!-- 10. News Section -->
-  <section class="unesco-section">
+  <!-- <section class="unesco-section">
     <div class="unesco-container">
       <h2 class="text-3xl font-bold mb-2">News</h2>
       <p class="text-gray-600">Latest updates from the Global Skills Academy network</p>
@@ -979,31 +924,24 @@
         </a>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- 11. UNESCO's Global Education Coalition Footer Block -->
   <section class="unesco-coalition-block">
     <div class="unesco-container">
       <div class="unesco-grid-2col">
         <div>
-          <h2>UNESCO's Global Education Coalition</h2>
+          <h2>School Onboarding Made Easy!</h2>
           <p>
-            UNESCO's Global Education Coalition brings partners together to build resilient education systems and accelerate action for quality education around the world.
+            Experience a hassle-free onboarding process designed for your comfort. From key handovers to utility setups, we take care of everything so you can settle into your new home with ease.
           </p>
           <div class="mt-6">
-            <a href="https://www.unesco.org/en/global-education-coalition" target="_blank" rel="noopener" class="unesco-pill-btn" style="background-color: #ffffff; color: var(--unesco-navy) !important;">
-              <span>Learn more</span>
+            <a href="/register" target="_blank" rel="noopener" class="unesco-pill-btn" style="background-color: #ffffff; color: var(--unesco-navy) !important;">
+              <span>Sign up</span>
               <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
-          <div class="unesco-social-links">
-            <a href="https://www.instagram.com/unesco/?hl=en" target="_blank" rel="noopener"><i class="fa-brands fa-instagram mr-1"></i> Instagram</a>
-            <a href="https://www.linkedin.com/company/unesco" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin mr-1"></i> LinkedIn</a>
-            <a href="https://www.youtube.com/UNESCO" target="_blank" rel="noopener"><i class="fa-brands fa-youtube mr-1"></i> YouTube</a>
-            <a href="https://x.com/UNESCO" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter mr-1"></i> X</a>
-            <a href="https://www.tiktok.com/@unesco?lang=en" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok mr-1"></i> TikTok</a>
-            <a href="https://www.facebook.com/unesco/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook mr-1"></i> Facebook</a>
-          </div>
+          
         </div>
 
         <div class="flex justify-center lg:justify-end">
