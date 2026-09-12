@@ -6,6 +6,7 @@ use App\Enums\UserStatus;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Rules\CustomRecaptcha;
+use App\Services\WabaOtpService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,6 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
-use Modules\Order\app\Models\Enrollment;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -26,62 +26,63 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Handle an incoming authentication request.
+     * Handle an incoming authentication request (Email or Phone + Password).
      */
     public function store(Request $request): RedirectResponse
     {
         $setting = Cache::get('setting');
 
         $rules = [
-            'email' => 'required|email',
-            'password' => 'required',
-            'g-recaptcha-response' => $setting->recaptcha_status == 'active' ? ['required', new CustomRecaptcha()] : 'nullable',
+            'login'                => 'required|string',
+            'password'             => 'required|string',
+            'g-recaptcha-response' => ($setting && $setting->recaptcha_status == 'active') ? ['required', new CustomRecaptcha()] : 'nullable',
         ];
 
         $customMessages = [
-            'email.required' => __('Email is required'),
+            'login.required'    => __('Email or mobile number is required'),
             'password.required' => __('Password is required'),
             'g-recaptcha-response.required' => __('Please complete the recaptcha to submit the form'),
         ];
         $this->validate($request, $rules, $customMessages);
 
-        $credential = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
+        $loginInput = trim($request->login);
 
-        $user = User::where('email', $request->email)->first();
+        // Check if login input is email or phone
+        $isEmail = filter_var($loginInput, FILTER_VALIDATE_EMAIL);
+
+        if ($isEmail) {
+            $user = User::where('email', $loginInput)->first();
+        } else {
+            $wabaService = app(WabaOtpService::class);
+            $cleanPhone = $wabaService->sanitizePhone($loginInput);
+            $user = User::where('phone', $cleanPhone)
+                ->orWhere('phone', $loginInput)
+                ->orWhere('phone', 'like', '%' . substr($cleanPhone, -10))
+                ->first();
+        }
 
         // Check if user exists and password match
         if (!$user || !Hash::check($request->password, $user->password)) {
-            $notification = __('Invalid credentials please check your email and password');
-            throw ValidationException::withMessages(['email' => $notification]);
+            $notification = __('Invalid credentials. Please check your email/mobile and password.');
+            throw ValidationException::withMessages(['login' => $notification]);
         }
 
         // Check if user active
-        if ($user->status != UserStatus::ACTIVE->value) {
-            $notification = __('Inactive account');
-            throw ValidationException::withMessages(['email' => $notification]);
+        if ($user->status != UserStatus::ACTIVE->value && $user->status !== 'active') {
+            $notification = __('Your account is inactive.');
+            throw ValidationException::withMessages(['login' => $notification]);
         }
 
         // Check if user is banned
-        if ($user->is_banned == UserStatus::BANNED->value) {
-            $notification = __('Your account has been banned');
-            $notification = ['messege' => $notification, 'alert-type' => 'error'];
-
-            return redirect()->back()->with($notification);
-        }
-
-        // Check if email is verified
-        if (!$user->email_verified_at) {
-            $notification = __('Please verify your email');
+        if ($user->is_banned == UserStatus::BANNED->value || $user->is_banned === 'yes') {
+            $notification = __('Your account has been banned.');
             $notification = ['messege' => $notification, 'alert-type' => 'error'];
 
             return redirect()->back()->with($notification);
         }
 
         // Authenticate user
-        Auth::guard('web')->attempt($credential, $request->remember);
+        Auth::guard('web')->login($user, (bool)$request->remember);
 
         // Redirect user to dashboard based on role
         $notification = __('Logged in successfully.');
@@ -89,14 +90,15 @@ class AuthenticatedSessionController extends Controller
 
         $intendedUrl = session()->get('url.intended');
         if ($intendedUrl && \Str::contains($intendedUrl, '/admin')) {
-            if($user->role == 'instructor')  return redirect()->route('instructor.dashboard') ;
-            if($user->role == 'school')  return redirect()->route('school.dashboard') ;
+            if ($user->role == 'instructor') return redirect()->route('instructor.dashboard');
+            if ($user->role == 'school')     return redirect()->route('school.dashboard');
             return redirect()->route('student.dashboard');
         }
 
-        $defaultRoute = match($user->role) {
-            'instructor' => route('instructor.dashboard'),
+        $defaultRoute = match ($user->role) {
             'school'     => route('school.dashboard'),
+            'teacher'    => route('student.dashboard'),
+            'instructor' => route('instructor.dashboard'),
             default      => route('student.dashboard'),
         };
 

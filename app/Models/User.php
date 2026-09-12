@@ -31,6 +31,8 @@ class User extends Authenticatable {
         'role',
         'name',
         'email',
+        'phone',
+        'phone_verified_at',
         'password',
         'status',
         'is_banned',
@@ -39,6 +41,14 @@ class User extends Authenticatable {
         'school_name',
         'registration_number',
         'contact_person',
+        'job_title',
+        'bio',
+        'short_bio',
+        'gender',
+        'age',
+        'country_id',
+        'state',
+        'city',
     ];
 
     /**
@@ -58,6 +68,7 @@ class User extends Authenticatable {
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'phone_verified_at' => 'datetime',
         'password'          => 'hashed',
     ];
 
@@ -157,6 +168,10 @@ class User extends Authenticatable {
 
     public function isSchool(): bool {
         return $this->role === 'school';
+    }
+
+    public function isTeacher(): bool {
+        return $this->role === 'teacher';
     }
 
     public function isInstructor(): bool {

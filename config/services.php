@@ -31,4 +31,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'waba' => [
+        'driver'         => env('WABA_DRIVER', 'wabaconnect'),
+        'base_url'       => env('WABA_BASE_URL', 'https://login.wabaconnect.com/api'),
+        'license_number' => env('WABA_LICENSE_NUMBER', '79242162270'),
+        'api_key'        => env('WABA_API_KEY', 'MbeBNmpHqXVT7OJL3wtxKRkyd'),
+        'template_name'  => env('WABA_TEMPLATE_NAME', ''),
+    ],
+
 ];

@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\OtpAuthController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -22,6 +23,11 @@ Route::middleware('guest:web')->group(function () {
         ->name('login');
 
     Route::post('user-login', [AuthenticatedSessionController::class, 'store'])->name('user-login');
+
+    // WhatsApp / WABA OTP Routes
+    Route::post('auth/send-otp', [OtpAuthController::class, 'sendOtp'])->name('auth.send-otp');
+    Route::post('auth/verify-otp', [OtpAuthController::class, 'verifyOtp'])->name('auth.verify-otp');
+    Route::post('auth/login-otp', [OtpAuthController::class, 'loginWithOtp'])->name('auth.login-otp');
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
