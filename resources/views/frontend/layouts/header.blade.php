@@ -243,7 +243,6 @@
                                         <ul class="menu_user_list">
                                             @guest
                                                 <li><a href="{{ route('login') }}">{{ __('Sign in') }}</a></li>
-                                                <li><a href="https://sso.myskool.club/login?client_id=skillvation&redirect_uri=https%3A%2F%2Fskillvation.com%2Fcallback&state=4jWtX7gbTl2fWjN2" class="hidden sm:inline-block text-slate-600 font-bold hover:text-primary transition-colors text-xs sm:text-sm px-2">SSO Login </a>
                                                 <li><a href="{{ route('register') }}">{{ __('Sign Up') }}</a></li>
                                             @else
                                                 @if (Auth::guard('web')->user())
@@ -333,7 +332,6 @@
                             @guest
                                 <ul class="mobile_menu_login d-flex flex-wrap">
                                     <li><a href="{{ route('login') }}">{{ __('login') }}</a></li>
-                                    <li><a href="https://sso.myskool.club/login?client_id=skillvation&redirect_uri=https%3A%2F%2Fskillvation.com%2Fcallback&state=4jWtX7gbTl2fWjN2" class="">SSO Login </a></li>
                                     <li><a href="{{ route('register') }}">{{ __('register') }}</a></li>
                                 </ul>
                             @endguest

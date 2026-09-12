@@ -225,9 +225,6 @@
         <a href="{{ route('register') }}" class="hidden sm:inline-block text-primary font-bold hover:text-primary-dark transition-colors text-xs sm:text-sm px-2">
           Sign Up
         </a>
-        <a href="https://sso.myskool.club/login?client_id=skillvation&redirect_uri=https%3A%2F%2Fskillvation.com%2Fcallback&state=4jWtX7gbTl2fWjN2" class="hidden sm:inline-block text-slate-600 font-bold hover:text-primary transition-colors text-xs sm:text-sm px-2">
-          SSO Login
-        </a>
         <a href="{{ route('login') }}" style="background-color: #1976d2; color: #ffffff;" class="bg-primary hover:bg-primary-dark text-white px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all shadow-sm hover:shadow inline-flex items-center justify-center">
           Login
         </a>
@@ -367,10 +364,6 @@
         <a href="{{ route('register') }}"
            class="block px-3 py-2.5 rounded-xl text-sm font-bold text-primary hover:bg-blue-50 transition-colors">
           Sign Up
-        </a>
-        <a href="https://sso.myskool.club/login?client_id=skillvation&redirect_uri=https%3A%2F%2Fskillvation.com%2Fcallback&state=4jWtX7gbTl2fWjN2"
-           class="block px-3 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors">
-          SSO Login
         </a>
         <a href="{{ route('login') }}"
            style="background-color:#1976d2;"
