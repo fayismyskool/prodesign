@@ -116,12 +116,12 @@
                                 </label>
                                 <div class="row g-3">
                                     <div class="col-4">
-                                        <div class="reg-role-card active" data-role="student" onclick="selectRole('student')">
-                                            <div class="role-icon" style="background:#e0f2fe; color:#0284c7;">
-                                                <i class="fa-solid fa-user-graduate"></i>
+                                        <div class="reg-role-card active" data-role="school" onclick="selectRole('school')">
+                                            <div class="role-icon" style="background:#f3e8ff; color:#9333ea;">
+                                                <i class="fa-solid fa-school"></i>
                                             </div>
-                                            <div class="font-weight-bold text-dark" style="font-size:15px;">{{ __('Student') }}</div>
-                                            <small class="text-muted d-none d-sm-block" style="font-size:12px;">{{ __('For learners') }}</small>
+                                            <div class="font-weight-bold text-dark" style="font-size:15px;">{{ __('School') }}</div>
+                                            <small class="text-muted d-none d-sm-block" style="font-size:12px;">{{ __('For institutions') }}</small>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -134,12 +134,12 @@
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <div class="reg-role-card" data-role="school" onclick="selectRole('school')">
-                                            <div class="role-icon" style="background:#f3e8ff; color:#9333ea;">
-                                                <i class="fa-solid fa-school"></i>
+                                        <div class="reg-role-card" data-role="student" onclick="selectRole('student')">
+                                            <div class="role-icon" style="background:#e0f2fe; color:#0284c7;">
+                                                <i class="fa-solid fa-user-graduate"></i>
                                             </div>
-                                            <div class="font-weight-bold text-dark" style="font-size:15px;">{{ __('School') }}</div>
-                                            <small class="text-muted d-none d-sm-block" style="font-size:12px;">{{ __('For institutions') }}</small>
+                                            <div class="font-weight-bold text-dark" style="font-size:15px;">{{ __('Student') }}</div>
+                                            <small class="text-muted d-none d-sm-block" style="font-size:12px;">{{ __('For learners') }}</small>
                                         </div>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@
 
                             <form method="POST" action="{{ route('register') }}" class="account__form" id="final-register-form">
                                 @csrf
-                                <input type="hidden" name="account_type" id="form-account-type" value="student">
+                                <input type="hidden" name="account_type" id="form-account-type" value="school">
                                 <input type="hidden" name="phone" id="form-phone" value="">
                                 <input type="hidden" name="phone_token" id="form-phone-token" value="">
 
@@ -340,7 +340,7 @@
 
 @push('scripts')
 <script>
-    let selectedRole = 'student';
+    let selectedRole = 'school';
     let verifiedPhone = '';
     let verifiedPhoneToken = '';
     let countdownInterval = null;
