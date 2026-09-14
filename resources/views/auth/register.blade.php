@@ -3,16 +3,37 @@
 
 @push('styles')
 <style>
+  /* Responsive Container & Spacing */
+  @media (max-width: 767.98px) {
+    .singUp-area.section-py-120 {
+      padding-top: 40px !important;
+      padding-bottom: 50px !important;
+    }
+    .singUp-wrap {
+      padding: 24px 16px !important;
+      border-radius: 12px;
+    }
+    .singUp-wrap .title {
+      font-size: 24px !important;
+    }
+  }
+
+  /* Role Selection Cards */
   .reg-role-card {
     border: 2px solid #e2e8f0;
     border-radius: 12px;
-    padding: 16px 14px;
+    padding: 16px 10px;
     cursor: pointer;
     transition: all 0.25s ease;
     background: #ffffff;
     text-align: center;
     position: relative;
     user-select: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .reg-role-card:hover {
     border-color: #1976d2;
@@ -25,55 +46,112 @@
     box-shadow: 0 4px 14px rgba(25, 118, 210, 0.18);
   }
   .reg-role-card .role-icon {
-    width: 46px;
-    height: 46px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 8px;
     transition: all 0.25s ease;
   }
   .reg-role-card.active .role-icon {
     background-color: #1976d2 !important;
     color: #ffffff !important;
   }
+  .reg-role-card .role-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.2;
+  }
+  .reg-role-card .role-subtitle {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 3px;
+  }
+
+  @media (max-width: 575.98px) {
+    .reg-role-card {
+      padding: 10px 4px;
+      border-radius: 10px;
+    }
+    .reg-role-card .role-icon {
+      width: 36px;
+      height: 36px;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+    .reg-role-card .role-title {
+      font-size: 12px;
+    }
+    .reg-role-card .role-subtitle {
+      display: none !important;
+    }
+  }
+
   .reg-step-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: #1976d2;
     color: #fff;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
-    margin-right: 8px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  /* OTP Inputs Mobile Responsive */
+  .otp-inputs-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    max-width: 320px;
+    margin: 0 auto 16px auto;
   }
   .otp-digit-input {
-    width: 46px;
-    height: 52px;
+    flex: 1;
+    min-width: 34px;
+    max-width: 44px;
+    height: 48px;
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     border: 2px solid #cbd5e1;
     border-radius: 8px;
     transition: all 0.2s ease;
+    padding: 0;
   }
   .otp-digit-input:focus {
     border-color: #25d366;
     outline: none;
     box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.2);
   }
+
+  @media (max-width: 380px) {
+    .otp-inputs-wrapper {
+      gap: 4px;
+    }
+    .otp-digit-input {
+      min-width: 30px;
+      max-width: 38px;
+      height: 42px;
+      font-size: 17px;
+    }
+  }
+
   .waba-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     background: #e8f8ee;
     color: #128c7e;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     padding: 4px 10px;
     border-radius: 20px;
@@ -82,11 +160,13 @@
     background: #f0fdf4;
     border: 1px solid #bbf7d0;
     border-radius: 10px;
-    padding: 12px 16px;
+    padding: 12px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 </style>
 @endpush
@@ -114,14 +194,14 @@
                                 <label class="form-label font-weight-bold mb-2 d-block text-dark font-semibold">
                                     <span class="reg-step-badge">1</span> {{ __('Select Account Type') }}
                                 </label>
-                                <div class="row g-3">
+                                <div class="row g-2 g-sm-3">
                                     <div class="col-4">
                                         <div class="reg-role-card active" data-role="school" onclick="selectRole('school')">
                                             <div class="role-icon" style="background:#f3e8ff; color:#9333ea;">
                                                 <i class="fas fa-school"></i>
                                             </div>
-                                            <div class="font-weight-bold text-dark" style="font-size:15px;">{{ __('School') }}</div>
-                                            <small class="text-muted d-none d-sm-block" style="font-size:12px;">{{ __('For institutions') }}</small>
+                                            <div class="role-title">{{ __('School') }}</div>
+                                            <div class="role-subtitle">{{ __('For institutions') }}</div>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -129,8 +209,8 @@
                                             <div class="role-icon" style="background:#fef3c7; color:#d97706;">
                                                 <i class="fas fa-chalkboard-teacher"></i>
                                             </div>
-                                            <div class="font-weight-bold text-dark" style="font-size:15px;">{{ __('Teacher') }}</div>
-                                            <small class="text-muted d-none d-sm-block" style="font-size:12px;">{{ __('For educators') }}</small>
+                                            <div class="role-title">{{ __('Teacher') }}</div>
+                                            <div class="role-subtitle">{{ __('For educators') }}</div>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -138,8 +218,8 @@
                                             <div class="role-icon" style="background:#e0f2fe; color:#0284c7;">
                                                 <i class="fas fa-user-graduate"></i>
                                             </div>
-                                            <div class="font-weight-bold text-dark" style="font-size:15px;">{{ __('Student') }}</div>
-                                            <small class="text-muted d-none d-sm-block" style="font-size:12px;">{{ __('For learners') }}</small>
+                                            <div class="role-title">{{ __('Student') }}</div>
+                                            <div class="role-subtitle">{{ __('For learners') }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -170,7 +250,7 @@
                             </div>
 
                             {{-- 3. OTP Enter Box (Initially Hidden) --}}
-                            <div id="otp-input-container" class="p-4 border rounded-3 bg-light mb-4" style="display:none;">
+                            <div id="otp-input-container" class="p-3 p-sm-4 border rounded-3 bg-light mb-4" style="display:none;">
                                 <div class="text-center mb-3">
                                     <div class="waba-badge mb-2">
                                         <i class="fab fa-whatsapp"></i> {{ __('WhatsApp Verification') }}
@@ -182,7 +262,7 @@
                                     </p>
                                 </div>
 
-                                <div class="d-flex justify-content-center gap-2 mb-3">
+                                <div class="otp-inputs-wrapper">
                                     <input type="text" maxlength="1" class="otp-digit-input" id="otp-1" oninput="otpMove(this, 'otp-2', '')" onkeydown="otpBack(this, event, '')">
                                     <input type="text" maxlength="1" class="otp-digit-input" id="otp-2" oninput="otpMove(this, 'otp-3', 'otp-1')" onkeydown="otpBack(this, event, 'otp-1')">
                                     <input type="text" maxlength="1" class="otp-digit-input" id="otp-3" oninput="otpMove(this, 'otp-4', 'otp-2')" onkeydown="otpBack(this, event, 'otp-2')">

@@ -3,16 +3,32 @@
 
 @push('styles')
 <style>
+  /* Responsive Container & Spacing */
+  @media (max-width: 767.98px) {
+    .singUp-area.section-py-120 {
+      padding-top: 40px !important;
+      padding-bottom: 50px !important;
+    }
+    .singUp-wrap {
+      padding: 24px 16px !important;
+      border-radius: 12px;
+    }
+    .singUp-wrap .title {
+      font-size: 24px !important;
+    }
+  }
+
   .auth-tabs {
     display: flex;
     background: #f1f5f9;
     border-radius: 10px;
     padding: 4px;
     margin-bottom: 24px;
+    gap: 4px;
   }
   .auth-tab-btn {
     flex: 1;
-    padding: 10px 16px;
+    padding: 10px 12px;
     border-radius: 8px;
     border: none;
     background: transparent;
@@ -22,34 +38,67 @@
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: center;
+    white-space: nowrap;
   }
   .auth-tab-btn.active {
     background: #ffffff;
     color: #1976d2;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   }
+
+  @media (max-width: 480px) {
+    .auth-tab-btn {
+      font-size: 12px;
+      padding: 8px 6px;
+    }
+  }
+
+  /* OTP Inputs Mobile Responsive */
+  .otp-inputs-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    max-width: 320px;
+    margin: 0 auto 16px auto;
+  }
   .otp-digit-input {
-    width: 44px;
-    height: 50px;
+    flex: 1;
+    min-width: 34px;
+    max-width: 44px;
+    height: 48px;
     text-align: center;
     font-size: 20px;
     font-weight: 700;
     border: 2px solid #cbd5e1;
     border-radius: 8px;
     transition: all 0.2s ease;
+    padding: 0;
   }
   .otp-digit-input:focus {
     border-color: #25d366;
     outline: none;
     box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.2);
   }
+
+  @media (max-width: 380px) {
+    .otp-inputs-wrapper {
+      gap: 4px;
+    }
+    .otp-digit-input {
+      min-width: 30px;
+      max-width: 38px;
+      height: 42px;
+      font-size: 17px;
+    }
+  }
+
   .waba-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     background: #e8f8ee;
     color: #128c7e;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     padding: 4px 10px;
     border-radius: 20px;
@@ -162,7 +211,7 @@
                             </div>
 
                             {{-- Step 2: Enter OTP --}}
-                            <div id="login-otp-box" class="p-4 border rounded-3 bg-light" style="display:none;">
+                            <div id="login-otp-box" class="p-3 p-sm-4 border rounded-3 bg-light" style="display:none;">
                                 <div class="text-center mb-3">
                                     <div class="waba-badge mb-2">
                                         <i class="fab fa-whatsapp"></i> {{ __('WhatsApp Login Code') }}
@@ -174,7 +223,7 @@
                                     </p>
                                 </div>
 
-                                <div class="d-flex justify-content-center gap-2 mb-3">
+                                <div class="otp-inputs-wrapper">
                                     <input type="text" maxlength="1" class="otp-digit-input" id="l-otp-1" oninput="lOtpMove(this, 'l-otp-2', '')" onkeydown="lOtpBack(this, event, '')">
                                     <input type="text" maxlength="1" class="otp-digit-input" id="l-otp-2" oninput="lOtpMove(this, 'l-otp-3', 'l-otp-1')" onkeydown="lOtpBack(this, event, 'l-otp-1')">
                                     <input type="text" maxlength="1" class="otp-digit-input" id="l-otp-3" oninput="lOtpMove(this, 'l-otp-4', 'l-otp-2')" onkeydown="lOtpBack(this, event, 'l-otp-2')">
