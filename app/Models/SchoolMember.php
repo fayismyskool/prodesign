@@ -15,6 +15,10 @@ class SchoolMember extends Model
         'user_id',
         'role_in_school',
         'id_number',
+        'grade',
+        'section',
+        'academic_year',
+        'board',
         'status',
     ];
 

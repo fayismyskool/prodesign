@@ -1,4 +1,11 @@
-<div class="modal-body">
+<div class="modal-header d-flex justify-content-between align-items-center">
+    <h5 class="modal-title mb-0 fw-bold">{{ __('Add Quiz Question') }}</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body p-4">
     <form action="{{ route('admin.course-chapter.quiz-question.store', $quizId) }}" method="POST"
         class="add_lesson_form instructor__profile-form">
         @csrf

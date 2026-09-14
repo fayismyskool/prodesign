@@ -1,0 +1,639 @@
+[
+  {
+    "project_number": 1,
+    "title": "Project 1: School Kitchen Garden",
+    "part": "Part 1: Work with Life Forms",
+    "description": "<p>Learn about growing plants for food in your school. You will create a kitchen garden in your school campus, either in plant beds or in pots. Key learning areas include identifying gardening tools and materials, soil preparation, making vermicompost, sowing seeds and transplanting seedlings, watering and organic pest management, tracking growth, harvesting, visiting a local vegetable market, and understanding pricing and yield economics.</p>",
+    "activities": [
+      {
+        "number": 1,
+        "title": "Activity 1: Visit to an agricultural farm/nursery/garden to learn about tools and plants",
+        "duration": "60 Mins (Visit / 2 Periods)",
+        "material_required": "Field notebook, pencil, eraser, camera or smartphone (under teacher supervision), clipboard, survey questionnaire.",
+        "description": "Visit a nearby nursery, community farm, or agricultural research station. Observe various seasonal vegetables, herbs, and flowering plants. Interact with gardeners and farmers to identify tools (trowel, spade, shears, cultivator, watering can) and understand soil mixes, watering routines, and pest protection methods.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p1-act-01-farm-nursery-visit.pdf",
+        "topic_category": "Field Exploration & Nursery Visits",
+        "video_url": "https://www.youtube.com/embed/gW9b2K2iP0Y",
+        "audio_path": "uploads/custom-images/grade-6/audio/p1_act_01_guide.wav"
+      },
+      {
+        "number": 2,
+        "title": "Activity 2: Planning your school kitchen garden",
+        "duration": "45 Mins",
+        "material_required": "Graph paper/chart paper, measuring tape, markers, list of seasonal vegetable seeds (spinach, coriander, tomato, chilli, mint, brinjal).",
+        "description": "Form groups to survey the school campus and select an optimal sunny spot (or space for pots/grow bags). Measure dimensions, sketch a layout map showing vegetable beds, pathways, and water access points, and select seasonal crops suited to the climate and available space.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p1-act-02-planning-kitchen-garden.pdf",
+        "topic_category": "Field Exploration & Nursery Visits",
+        "video_url": "https://www.youtube.com/embed/e1_kP15Yv98",
+        "audio_path": "uploads/custom-images/grade-6/audio/p1_act_02_guide.wav"
+      },
+      {
+        "number": 3,
+        "title": "Activity 3: Making vermicompost",
+        "duration": "60 Mins",
+        "material_required": "Earthen pot or wooden/plastic container with drainage holes, dry leaves/straw (brown matter), green kitchen scraps/fruit peels, cow dung slurry, earthworms (Eisenia fetida / red wigglers), water sprayer, gunny bag cover.",
+        "description": "Set up a vermicomposting bed in a shaded area. Layer dry leaves, soil, green organic waste, and cow dung slurry. Introduce earthworms, maintain moisture with regular gentle spraying, cover with a moist gunny bag, and observe the decomposition process into nutrient-rich vermicompost over 45-60 days.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p1-act-03-making-vermicompost.pdf",
+        "topic_category": "Soil Science & Composting",
+        "video_url": "https://www.youtube.com/embed/n9OgTxyB_eU",
+        "audio_path": "uploads/custom-images/grade-6/audio/p1_act_03_guide.wav"
+      },
+      {
+        "number": 4,
+        "title": "Activity 4: Preparing the kitchen garden for planting",
+        "duration": "60 Mins",
+        "material_required": "Spade, garden trowel, hand cultivator, rake, garden gloves, potting soil, vermicompost, cow dung manure, containers/grow bags (if gardening in pots).",
+        "description": "Clear the selected ground or pots of stones, weeds, and plastics. Loosen the soil to a depth of 15-20 cm using trowels and cultivators. Mix garden soil with vermicompost and manure in a 2:1:1 ratio to ensure adequate aeration, moisture retention, and fertility.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p1-act-04-preparing-garden-planting.pdf",
+        "topic_category": "Soil Science & Composting",
+        "video_url": "https://www.youtube.com/embed/kY1yqFfN9h0",
+        "audio_path": "uploads/custom-images/grade-6/audio/p1_act_04_guide.wav"
+      },
+      {
+        "number": 5,
+        "title": "Activity 5: Sowing seeds and planting of seedlings",
+        "duration": "45 Mins",
+        "material_required": "Selected seeds (coriander, fenugreek, spinach, beans), seedlings (tomato, chilli, brinjal), seed tray, trowel, watering can with rose attachment, plant label stakes.",
+        "description": "Sow seeds at appropriate depths (roughly 2-3 times seed size) with recommended row spacing. Transplant young, healthy seedlings with root balls intact during late afternoon to prevent shock. Water gently using a rose can and attach labelled markers.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p1-act-05-sowing-seeds-planting.pdf",
+        "topic_category": "Sowing, Growth & Plant Care",
+        "video_url": "https://www.youtube.com/embed/l592Qk2xX9k",
+        "audio_path": "uploads/custom-images/grade-6/audio/p1_act_05_guide.wav"
+      },
+      {
+        "number": 6,
+        "title": "Activity 6: Taking care of plants",
+        "duration": "45 Mins (Daily Routine)",
+        "material_required": "Watering can, neem oil spray / organic biopesticide, garden shears, bamboo stakes, coir string, organic mulch (straw/dry leaves).",
+        "description": "Establish a daily care roster. Apply organic straw mulch around plant bases to conserve moisture and suppress weeds. Water plants at early morning or evening. Inspect leaves for pests, apply organic neem solution where needed, and provide bamboo stake support to climbing and fruiting plants.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p1-act-06-taking-care-of-plants.pdf",
+        "topic_category": "Sowing, Growth & Plant Care",
+        "video_url": "https://www.youtube.com/embed/q2Z6h7kP_tE",
+        "audio_path": "uploads/custom-images/grade-6/audio/p1_act_06_guide.wav"
+      },
+      {
+        "number": 7,
+        "title": "Activity 7: Observing your plants grow",
+        "duration": "30 Mins (Weekly Tracker)",
+        "material_required": "Observation logbook/portfolio sheet, ruler/measuring scale, magnifying glass, coloured pens.",
+        "description": "Maintain a weekly nature growth journal. Measure stem height, count leaf numbers, record flowering dates and first fruit appearances. Note changes in leaf colour, weather influences, and draw sketches of developmental milestones.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p1-act-07-observing-plants-grow.pdf",
+        "topic_category": "Sowing, Growth & Plant Care",
+        "video_url": "https://www.youtube.com/embed/tkFpy_n5f4A",
+        "audio_path": "uploads/custom-images/grade-6/audio/p1_act_07_guide.wav"
+      },
+      {
+        "number": 8,
+        "title": "Activity 8: Harvesting",
+        "duration": "45 Mins",
+        "material_required": "Gardening shears/clean scissors, harvesting baskets/cloth bags, weighing scale, clean cotton cloth.",
+        "description": "Identify harvest-ready crops (e.g. vibrant greens, firm tomatoes, fresh chillies). Harvest leafy vegetables by gentle cutting and pluck fruits carefully without damaging branches. Weigh the total yield and record the quantities in your project record sheet.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p1-act-08-harvesting.pdf",
+        "topic_category": "Harvesting & Farm Economics",
+        "video_url": "https://www.youtube.com/embed/z1XqP8rW7mU",
+        "audio_path": "uploads/custom-images/grade-6/audio/p1_act_08_guide.wav"
+      },
+      {
+        "number": 9,
+        "title": "Activity 9: Visit to the vegetable market",
+        "duration": "60 Mins (Visit / 2 Periods)",
+        "material_required": "Survey notepad, pen, clipboard, price comparison sheet.",
+        "description": "Visit a local Mandi or weekly Sabzi Haat. Observe how farmers and vendors display, grade, weigh, and price seasonal vegetables. Ask questions about sourcing, storage, shelf life, and price variations between wholesale and retail.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p1-act-09-vegetable-market-visit.pdf",
+        "topic_category": "Harvesting & Farm Economics",
+        "video_url": "https://www.youtube.com/embed/w8eX2k7rM8o",
+        "audio_path": "uploads/custom-images/grade-6/audio/p1_act_09_guide.wav"
+      },
+      {
+        "number": 10,
+        "title": "Activity 10: Setting a price and calculating returns",
+        "duration": "45 Mins",
+        "material_required": "Calculator, project expense ledger, price chart.",
+        "description": "Tabulate all input expenses incurred during the project (seeds, pots, manure, tools). Compare with the total harvested yield and prevailing market prices. Calculate total estimated value and net returns, learning basic farm economics and the dignity of agricultural labour.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p1-act-10-pricing-calculating-returns.pdf",
+        "topic_category": "Harvesting & Farm Economics",
+        "video_url": "https://www.youtube.com/embed/b3R7x5zT9pA",
+        "audio_path": "uploads/custom-images/grade-6/audio/p1_act_10_guide.wav"
+      }
+    ],
+    "project_pdf": "uploads/custom-images/grade-6/split-pdfs/project-1-school-kitchen-garden.pdf"
+  },
+  {
+    "project_number": 2,
+    "title": "Project 2: Biodiversity Register",
+    "part": "Part 1: Work with Life Forms",
+    "description": "<p>Discover and record the incredible variety of life forms inhabiting the school campus and surrounding neighbourhood. This project develops observation skills, scientific curiosity, and ecological responsibility. Students map survey habitats, interact with naturalists and local elders, document trees, flowering plants, birds, butterflies, insects, and small animals, identify unknown species, and create a comprehensive School Biodiversity Register.</p>",
+    "activities": [
+      {
+        "number": 1,
+        "title": "Activity 1: What is around us? - Exploring local life forms",
+        "duration": "45 Mins",
+        "material_required": "Notebook, pencil, magnifying glass, clipboard.",
+        "description": "Conduct an introductory nature walk across the school perimeter. List all living organisms spotted in 30 minutes across different microhabitats (under stones, on tree bark, in flowerbeds, around water coolers). Categorize them into trees, shrubs, insects, birds, and animals.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p2-act-01-exploring-local-life-forms.pdf",
+        "topic_category": "Local Ecosystem Survey",
+        "video_url": "https://www.youtube.com/embed/v6ubvEJ3KGM",
+        "audio_path": "uploads/custom-images/grade-6/audio/p2_act_01_guide.wav"
+      },
+      {
+        "number": 2,
+        "title": "Activity 2: Meet an expert (Botanist / Naturalist / Local Elder)",
+        "duration": "60 Mins",
+        "material_required": "Interview questionnaire, voice recorder/notepad, pen.",
+        "description": "Invite a local plant expert, forest officer, farmer, or traditional healer to the classroom. Interview them regarding native versus invasive plant species, seasonal migratory birds, medicinal herbs, and historical changes in local wildlife diversity.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p2-act-02-meet-an-expert.pdf",
+        "topic_category": "Local Ecosystem Survey",
+        "video_url": "https://www.youtube.com/embed/r4X_Y2pM7o0",
+        "audio_path": "uploads/custom-images/grade-6/audio/p2_act_02_guide.wav"
+      },
+      {
+        "number": 3,
+        "title": "Activity 3: Identify places to survey and create a habitat map",
+        "duration": "45 Mins",
+        "material_required": "Chart paper, sketch pens, campus blueprint or sketch grid, compass.",
+        "description": "Divide the school and surrounding area into distinct survey zones (e.g. Zone A: Playfield & hedges, Zone B: Shady tree grove, Zone C: Pond/puddle area, Zone D: Garden & flowerbeds). Draw a labelled zone map and assign student teams to specific zones.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p2-act-03-identify-places-to-survey.pdf",
+        "topic_category": "Habitat Mapping & Observation",
+        "video_url": "https://www.youtube.com/embed/m9T4kL7sP0o",
+        "audio_path": "uploads/custom-images/grade-6/audio/p2_act_03_guide.wav"
+      },
+      {
+        "number": 4,
+        "title": "Activity 4: Scheduling visits for observing biodiversity",
+        "duration": "30 Mins",
+        "material_required": "Monthly survey calendar, group duty roster.",
+        "description": "Design a structured survey schedule covering different times of day (early morning for bird calls and butterflies, afternoon for basking lizards, dusk for moths and nocturnal life). Plan multi-season observation dates to capture seasonal shifts.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p2-act-04-scheduling-observations.pdf",
+        "topic_category": "Habitat Mapping & Observation",
+        "video_url": "https://www.youtube.com/embed/d3W1r8pL9kA",
+        "audio_path": "uploads/custom-images/grade-6/audio/p2_act_04_guide.wav"
+      },
+      {
+        "number": 5,
+        "title": "Activity 5: Filling in the School Biodiversity Register",
+        "duration": "60 Mins",
+        "material_required": "Biodiversity Register format sheets, measuring tape, colour pencils, camera/smartphone.",
+        "description": "Collect detailed field data in standardized register templates. Record local common name, scientific name (if known), habitat type, physical features (leaf shape, colour, bark texture, bird beak shape), food habits, and special ecological benefits.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p2-act-05-filling-biodiversity-register.pdf",
+        "topic_category": "Register Documentation & Cataloging",
+        "video_url": "https://www.youtube.com/embed/k4N2r8xT1oY",
+        "audio_path": "uploads/custom-images/grade-6/audio/p2_act_05_guide.wav"
+      },
+      {
+        "number": 6,
+        "title": "Activity 6: Identifying \u2018unknown\u2019 species using field guides & digital tools",
+        "duration": "45 Mins",
+        "material_required": "Illustrated field guides/flora books, plant/bird identification apps (e.g. Google Lens, Seek, PlantNet under supervision), specimen photos/sketches.",
+        "description": "Take photographs or detailed sketch notes of unidentified insects, wildflowers, and trees. Compare characteristics with library field identification books and supervised educational AI/digital identification tools to determine their identity and family.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p2-act-06-identifying-unknown-species.pdf",
+        "topic_category": "Register Documentation & Cataloging",
+        "video_url": "https://www.youtube.com/embed/b2R9x7mL5kQ",
+        "audio_path": "uploads/custom-images/grade-6/audio/p2_act_06_guide.wav"
+      },
+      {
+        "number": 7,
+        "title": "Activity 7: Presentation of biodiversity register and exhibition",
+        "duration": "60 Mins",
+        "material_required": "Bound register / display chartboards, specimen photo gallery, infographics, presentation cards.",
+        "description": "Compile the completed entries into the Master School Biodiversity Register. Create presentation charts showing species abundance, rare finds, food webs, and conservation recommendations. Present findings to classmates, teachers, and school assembly.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p2-act-07-presentation-biodiversity-register.pdf",
+        "topic_category": "Register Documentation & Cataloging",
+        "video_url": "https://www.youtube.com/embed/f7P9r4kL3oX",
+        "audio_path": "uploads/custom-images/grade-6/audio/p2_act_07_guide.wav"
+      }
+    ],
+    "project_pdf": "uploads/custom-images/grade-6/split-pdfs/project-2-biodiversity-register.pdf"
+  },
+  {
+    "project_number": 3,
+    "title": "Project 3: Maker Skills",
+    "part": "Part 2: Work with Machines and Materials",
+    "description": "<p>Engage in hands-on design, building, and basic mechanical engineering. Students explore how simple machines (levers, inclined planes, pulleys, screws, wedges, wheels and axles) make work easier. Through project-based activities, students craft working toys like lever puppets, propeller cars, and rubber-band vehicles, explore bicycle mechanics, visit a local repair workshop, and showcase creations in a Maker Fair.</p>",
+    "activities": [
+      {
+        "number": 1,
+        "title": "Activity 1: Simple machines in our surroundings",
+        "duration": "45 Mins",
+        "material_required": "Everyday objects (scissors, bottle opener, screw, door hinge, ramp, nutcracker, pulley wheel), worksheet.",
+        "description": "Investigate common tools found in homes and classrooms. Identify the 6 fundamental simple machines: Lever, Wheel and Axle, Pulley, Inclined Plane, Wedge, and Screw. Classify household items and explain how each provides mechanical advantage.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p3-act-01-simple-machines-surroundings.pdf",
+        "topic_category": "Mechanics & Simple Machines",
+        "video_url": "https://www.youtube.com/embed/fvOma4iKO54",
+        "audio_path": "uploads/custom-images/grade-6/audio/p3_act_01_guide.wav"
+      },
+      {
+        "number": 2,
+        "title": "Activity 2: Using levers to make toys (Jumping Jack / Mechanical Puppet)",
+        "duration": "60 Mins",
+        "material_required": "Stiff cardboard/cereal box card, split pins (paper fasteners), ice cream sticks, scissors, string, colouring pens, hole punch.",
+        "description": "Build a mechanical jumping puppet or moving dragon using Class 1 and Class 3 lever mechanisms. Cut limb segments, join them with pivot split pins, connect pull-strings to levers, and analyze the fulcrum, effort, and load dynamics.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p3-act-02-levers-making-toys.pdf",
+        "topic_category": "Mechanics & Simple Machines",
+        "video_url": "https://www.youtube.com/embed/YlYE3b4h_V4",
+        "audio_path": "uploads/custom-images/grade-6/audio/p3_act_02_guide.wav"
+      },
+      {
+        "number": 3,
+        "title": "Activity 3: Using a propeller to make toys (Wind-powered racer / Flying copter)",
+        "duration": "60 Mins",
+        "material_required": "Plastic propeller/cut plastic bottle strips, wooden skewer / straw, rubber bands, bead, plastic cap, light balsa/corrugated plastic base.",
+        "description": "Construct a rubber-band powered propeller car or spinning copter. Assemble the propeller on a low-friction axle, twist the rubber band to store potential energy, release to convert into kinetic thrust, and test travel distances.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p3-act-03-propeller-powered-toys.pdf",
+        "topic_category": "Propulsion, Wheels & Axles",
+        "video_url": "https://www.youtube.com/embed/Zz_fQ4w3kP4",
+        "audio_path": "uploads/custom-images/grade-6/audio/p3_act_03_guide.wav"
+      },
+      {
+        "number": 4,
+        "title": "Activity 4: Using a wheel and axle to make toys (Balloon-powered car)",
+        "duration": "60 Mins",
+        "material_required": "Plastic bottle caps/cardboard wheels, wooden skewers/metal rods (axles), plastic straws (bearings), corrugated cardboard chassis, balloon, tape.",
+        "description": "Engineer a 4-wheel vehicle with free-spinning wheels and axles enclosed in straw bearings. Align wheels for straight travel, attach a balloon exhaust nozzle, and test how wheel alignment and axle friction affect vehicle speed.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p3-act-04-wheel-and-axle-toys.pdf",
+        "topic_category": "Propulsion, Wheels & Axles",
+        "video_url": "https://www.youtube.com/embed/fXw_m_n4pL4",
+        "audio_path": "uploads/custom-images/grade-6/audio/p3_act_04_guide.wav"
+      },
+      {
+        "number": 5,
+        "title": "Activity 5: Using more than one simple machine to make composite toys",
+        "duration": "60 Mins",
+        "material_required": "Cardboard, rubber bands, thread, pulleys, skewers, bottle caps, hot glue / craft glue, wooden clips.",
+        "description": "Design a compound mechanical toy combining two or more simple machines (e.g. a crane using a lever arm + pulley + wheel winch, or a rubber-band catapult vehicle). Test stability, load capacity, and motion efficiency.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p3-act-05-multi-machine-toys.pdf",
+        "topic_category": "Propulsion, Wheels & Axles",
+        "video_url": "https://www.youtube.com/embed/b4K_p9xL1m0",
+        "audio_path": "uploads/custom-images/grade-6/audio/p3_act_05_guide.wav"
+      },
+      {
+        "number": 6,
+        "title": "Activity 6: Simple machines in a bicycle",
+        "duration": "45 Mins",
+        "material_required": "Standard bicycle (on stand/inverted), magnifying glass, cleaning rag, bicycle diagram worksheet.",
+        "description": "Analyze a bicycle as a master compound machine. Locate and document: Wheel & Axle (wheels, pedals), Levers (brake handles, gear shifters), Pulley/Sprocket-chain drive (chain and gears), Screws & Bolts (frame joints), and Wedges (teeth on sprockets).",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p3-act-06-bicycle-mechanics.pdf",
+        "topic_category": "Bicycle Mechanics & Repair",
+        "video_url": "https://www.youtube.com/embed/8v_T7wP9kL0",
+        "audio_path": "uploads/custom-images/grade-6/audio/p3_act_06_guide.wav"
+      },
+      {
+        "number": 7,
+        "title": "Activity 7: Visit to a bicycle repair shop",
+        "duration": "60 Mins (Visit / 2 Periods)",
+        "material_required": "Interview notepad, pen, protective gloves, clipboard.",
+        "description": "Visit a local bicycle mechanic's workshop. Observe puncture repair, wheel truing, chain lubrication, brake shoe alignment, and ball-bearing replacement. Interview the technician about safety maintenance, diagnostic skills, and tools used.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p3-act-07-bicycle-repair-shop-visit.pdf",
+        "topic_category": "Bicycle Mechanics & Repair",
+        "video_url": "https://www.youtube.com/embed/k9T_x4mP2o1",
+        "audio_path": "uploads/custom-images/grade-6/audio/p3_act_07_guide.wav"
+      },
+      {
+        "number": 8,
+        "title": "Activity 8: Organise an exhibition of the toys (Maker Fair)",
+        "duration": "60 Mins",
+        "material_required": "Display tables, name tags, project explanation cards, demonstration test track, scorecards.",
+        "description": "Host a classroom Maker Fair. Set up interactive demonstration booths for all student-built mechanical toys. Demonstrate how each toy functions, explain the underlying physics and machine concepts, and invite feedback from peers and teachers.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p3-act-08-toy-fair-exhibition.pdf",
+        "topic_category": "Bicycle Mechanics & Repair",
+        "video_url": "https://www.youtube.com/embed/m1R_z8xP9k4",
+        "audio_path": "uploads/custom-images/grade-6/audio/p3_act_08_guide.wav"
+      }
+    ],
+    "project_pdf": "uploads/custom-images/grade-6/split-pdfs/project-3-maker-skills.pdf"
+  },
+  {
+    "project_number": 4,
+    "title": "Project 4: Animation and Games",
+    "part": "Part 2: Work with Machines and Materials",
+    "description": "<p>Step into digital creation, visual block coding, and computational thinking. Students explore game dynamics, storyboarding, sprite design, backdrop illustration, event handling, loops, conditionals, and collision detection using visual programming environments (like Scratch or Blockly). Students create animated greeting cards and fully playable interactive arcade games.</p>",
+    "activities": [
+      {
+        "number": 1,
+        "title": "Activity 1: Game design - Understanding rules, goals, and mechanics",
+        "duration": "45 Mins",
+        "material_required": "Chart paper, sticky notes, markers, classic board games (Ludo, Snakes & Ladders) or simple digital games.",
+        "description": "Deconstruct games into core components: Goal/Objective, Rules/Constraints, Player Actions, Obstacles/Challenges, and Feedback/Score. Analyze what makes games engaging, fair, and fun to play.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p4-act-01-game-design-principles.pdf",
+        "topic_category": "Game Design & Storyboarding",
+        "video_url": "https://www.youtube.com/embed/2v_bN8xL4k4",
+        "audio_path": "uploads/custom-images/grade-6/audio/p4_act_01_guide.wav"
+      },
+      {
+        "number": 2,
+        "title": "Activity 2: Model your favourite game - Storyboarding and flowcharting",
+        "duration": "45 Mins",
+        "material_required": "Drawing paper, flowchart template, ruler, coloured pencils.",
+        "description": "Pick a favourite game (e.g. Pong, Pac-Man, Maze Runner, Flappy Bird). Draw a sequence storyboard showing starting screen, gameplay loop, winning state, and game over screen. Create a basic flowchart showing player decision logic.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p4-act-02-model-favourite-game.pdf",
+        "topic_category": "Game Design & Storyboarding",
+        "video_url": "https://www.youtube.com/embed/f4K_m7xP9o0",
+        "audio_path": "uploads/custom-images/grade-6/audio/p4_act_02_guide.wav"
+      },
+      {
+        "number": 3,
+        "title": "Activity 3: Trying out educational block-coding games",
+        "duration": "45 Mins",
+        "material_required": "Computers / tablets with internet or offline block coding software (Scratch, Blockly Games, Code.org).",
+        "description": "Explore visual puzzle-based coding games. Learn the fundamental principles of sequencing, looping (repeat blocks), conditional statements (if-then-else), and debugging syntax-free visual blocks.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p4-act-03-trying-online-games.pdf",
+        "topic_category": "Game Design & Storyboarding",
+        "video_url": "https://www.youtube.com/embed/w9X_r4kL2o1",
+        "audio_path": "uploads/custom-images/grade-6/audio/p4_act_03_guide.wav"
+      },
+      {
+        "number": 4,
+        "title": "Activity 4: Preparing to make your own game - Setting up the workspace",
+        "duration": "45 Mins",
+        "material_required": "Computer with Scratch (offline desktop editor or browser editor).",
+        "description": "Familiarize yourself with the visual programming interface: Stage (coordinate grid X: -240 to 240, Y: -180 to 180), Sprite Pane, Backdrop Pane, Code Palette (Motion, Looks, Sound, Events, Control, Sensing, Variables).",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p4-act-04-block-coding-prep-scratch.pdf",
+        "topic_category": "Block Coding & Visual Sprites",
+        "video_url": "https://www.youtube.com/embed/VIpmkeqJhmQ",
+        "audio_path": "uploads/custom-images/grade-6/audio/p4_act_04_guide.wav"
+      },
+      {
+        "number": 5,
+        "title": "Activity 5: Build characters, objects, and a backdrop (Costume & Paint Editor)",
+        "duration": "60 Mins",
+        "material_required": "Scratch Paint Editor, mouse/graphics input.",
+        "description": "Design custom characters (sprites) and background stages. Use vector/bitmap drawing tools to paint player characters, obstacles, collectible stars/coins, and victory backdrops. Create multiple costumes to enable walking and jumping animations.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p4-act-05-sprites-costumes-backdrops.pdf",
+        "topic_category": "Block Coding & Visual Sprites",
+        "video_url": "https://www.youtube.com/embed/4yPz9mR_k44",
+        "audio_path": "uploads/custom-images/grade-6/audio/p4_act_05_guide.wav"
+      },
+      {
+        "number": 6,
+        "title": "Activity 6: Programming your characters and objects (Motion & Events)",
+        "duration": "45 Mins",
+        "material_required": "Scratch coding software.",
+        "description": "Write event-driven scripts: 'When Green Flag Clicked', 'When Key Pressed (Arrow Keys)'. Use 'change X by 10', 'change Y by 10', and 'next costume' blocks to bring characters to life with keyboard navigation.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p4-act-06-motion-event-programming.pdf",
+        "topic_category": "Block Coding & Visual Sprites",
+        "video_url": "https://www.youtube.com/embed/n3W_r8xL9k4",
+        "audio_path": "uploads/custom-images/grade-6/audio/p4_act_06_guide.wav"
+      },
+      {
+        "number": 7,
+        "title": "Activity 7: Create an animated birthday card for your friend",
+        "duration": "60 Mins",
+        "material_required": "Scratch editor, sound effects/music clips.",
+        "description": "Combine animation, text dialogue, and sound. Program balloons floating upwards with looping glide blocks, candles sparkling with costume changes, and characters wishing 'Happy Birthday' with audio playback and speech bubble effects.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p4-act-07-animated-birthday-card.pdf",
+        "topic_category": "Block Coding & Visual Sprites",
+        "video_url": "https://www.youtube.com/embed/b9T_x4kL7o0",
+        "audio_path": "uploads/custom-images/grade-6/audio/p4_act_07_guide.wav"
+      },
+      {
+        "number": 8,
+        "title": "Activity 8: Designing your game - Rules, scoring, and level layout",
+        "duration": "45 Mins",
+        "material_required": "Game design template sheet, pencil, eraser.",
+        "description": "Define the game concept (e.g. Catching falling apples, dodging obstacles, navigating a maze). Write down exact game parameters: Starting lives (3), Point per collection (+10), Speed increments, Winning score (100), and Game Over condition.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p4-act-08-designing-game-logic.pdf",
+        "topic_category": "Game Mechanics & Collision Logic",
+        "video_url": "https://www.youtube.com/embed/d2W_r8xL4k1",
+        "audio_path": "uploads/custom-images/grade-6/audio/p4_act_08_guide.wav"
+      },
+      {
+        "number": 9,
+        "title": "Activity 9: Coding your game - Variables, sensing, and collision logic",
+        "duration": "60 Mins",
+        "material_required": "Scratch editor.",
+        "description": "Program core game loops: Create variables for 'Score' and 'Lives'. Use Sensing blocks ('touching Sprite/Color?'), conditional logic ('if touching apple then change Score by 10 and play sound, hide and wait'), and clone blocks for multiple falling items.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p4-act-09-coding-sensing-scoring.pdf",
+        "topic_category": "Game Mechanics & Collision Logic",
+        "video_url": "https://www.youtube.com/embed/m7P_x9kL4o0",
+        "audio_path": "uploads/custom-images/grade-6/audio/p4_act_09_guide.wav"
+      },
+      {
+        "number": 10,
+        "title": "Activity 10: Trying it out - Playtesting and bug fixing",
+        "duration": "45 Mins",
+        "material_required": "Computer, feedback evaluation rubrics.",
+        "description": "Conduct peer playtesting sessions. Have classmates play your game without verbal instructions. Observe where players get confused or if glitches occur (e.g. sprite getting stuck in walls). Debug script timing and adjust difficulty balance.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p4-act-10-playtesting-debugging.pdf",
+        "topic_category": "Testing, Debugging & Publishing",
+        "video_url": "https://www.youtube.com/embed/k8W_r4xL9o1",
+        "audio_path": "uploads/custom-images/grade-6/audio/p4_act_10_guide.wav"
+      },
+      {
+        "number": 11,
+        "title": "Activity 11: Sharing your game - Publishing and peer review",
+        "duration": "45 Mins",
+        "material_required": "Computer, projector or shared folder / Scratch studio.",
+        "description": "Write clear player instructions and credit notes for your game project. Share the project with the school community or classroom studio, play each other's games, and write appreciative constructive feedback.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p4-act-11-sharing-game-showcase.pdf",
+        "topic_category": "Testing, Debugging & Publishing",
+        "video_url": "https://www.youtube.com/embed/r9T_x8kL4o4",
+        "audio_path": "uploads/custom-images/grade-6/audio/p4_act_11_guide.wav"
+      }
+    ],
+    "project_pdf": "uploads/custom-images/grade-6/split-pdfs/project-4-animation-and-games.pdf"
+  },
+  {
+    "project_number": 5,
+    "title": "Project 5: School Museum",
+    "part": "Part 3: Work in Human Services",
+    "description": "<p>A community-focused cultural heritage and museology project. Students explore the historical roots of their families and local regions, identify cultural artefacts (old utensils, coins, traditional tools, textiles, manuscripts, photographs), learn accessioning and safe preservation practices, write descriptive museum labels, and curate a public School Museum Exhibition.</p>",
+    "activities": [
+      {
+        "number": 1,
+        "title": "Activity 1: Visiting a local museum or heritage centre",
+        "duration": "60 Mins (Visit / 2 Periods)",
+        "material_required": "Observation diary, pencil, museum questionnaire, camera/phone (where permitted).",
+        "description": "Visit a state, district, or tribal museum. Observe how galleries are themed, how lighting, display vitrines, and temperature controls protect artefacts, and how label cards communicate date, material, origin, and significance to visitors.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p5-act-01-visiting-a-museum.pdf",
+        "topic_category": "Museums & Local Heritage",
+        "video_url": "https://www.youtube.com/embed/k2R_x9mL7o4",
+        "audio_path": "uploads/custom-images/grade-6/audio/p5_act_01_guide.wav"
+      },
+      {
+        "number": 2,
+        "title": "Activity 2: Learn the history of your family and local area",
+        "duration": "45 Mins",
+        "material_required": "Oral history interview recording sheet, family tree chart.",
+        "description": "Interview grandparents, elderly neighbours, or community elders. Document oral histories about traditional occupations, lifestyle changes over generations, historic festivals, folklore, and indigenous crafts practiced in the region.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p5-act-02-family-and-local-history.pdf",
+        "topic_category": "Museums & Local Heritage",
+        "video_url": "https://www.youtube.com/embed/m4W_r8xL9k1",
+        "audio_path": "uploads/custom-images/grade-6/audio/p5_act_02_guide.wav"
+      },
+      {
+        "number": 3,
+        "title": "Activity 3: Identify artefacts and learn about them",
+        "duration": "45 Mins",
+        "material_required": "Magnifying glass, cotton gloves, measuring tape, Artefact Documentation Sheet.",
+        "description": "Examine historical objects brought from homes (e.g. brass inkpots, antique coins, hand-spun textiles, vintage clocks, traditional wooden grain measures). Document physical measurements, material composition, approximate age, and original usage.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p5-act-03-identifying-artefacts.pdf",
+        "topic_category": "Artefact Curation & Documentation",
+        "video_url": "https://www.youtube.com/embed/b8P_x4kL9o0",
+        "audio_path": "uploads/custom-images/grade-6/audio/p5_act_03_guide.wav"
+      },
+      {
+        "number": 4,
+        "title": "Activity 4: Selecting and accessioning artefacts for the school museum",
+        "duration": "45 Mins",
+        "material_required": "Museum accession register, acid-free tags, soft pencil, classification categories.",
+        "description": "Curate items into thematic sections (Daily Life & Utensils, Art & Crafts, Coins & Philately, Agriculture & Tools, Old Technology). Assign a unique accession number to each object (e.g. SM-2026-001) and record lender details in the master register.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p5-act-04-selecting-artefacts.pdf",
+        "topic_category": "Artefact Curation & Documentation",
+        "video_url": "https://www.youtube.com/embed/f2W_r8xL4k4",
+        "audio_path": "uploads/custom-images/grade-6/audio/p5_act_04_guide.wav"
+      },
+      {
+        "number": 5,
+        "title": "Activity 5: Keeping the artefacts safe (Care, handling, and conservation)",
+        "duration": "45 Mins",
+        "material_required": "Soft bristle brushes, cotton gloves, acid-free butter paper, bubble wrap, silica gel pouches, display stands.",
+        "description": "Learn museum conservation standards: Always handle artefacts with clean cotton gloves; dust gently with soft artist brushes without applying harsh chemicals; store sensitive textiles and papers away from direct sunlight and moisture.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p5-act-05-keeping-artefacts-safe.pdf",
+        "topic_category": "Conservation & Safe Handling",
+        "video_url": "https://www.youtube.com/embed/n9T_x4kL7o1",
+        "audio_path": "uploads/custom-images/grade-6/audio/p5_act_05_guide.wav"
+      },
+      {
+        "number": 6,
+        "title": "Activity 6: Preparing presentation labels and museum signage",
+        "duration": "60 Mins",
+        "material_required": "Card stock paper, calligraphy/fine tip pens, stands/laminating sheets.",
+        "description": "Write professional museum labels for each artefact containing: Object Name, Local/Traditional Name, Material, Approximate Period/Year, Donor/Lender Name, and a 2-3 sentence engaging story describing how it was used.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p5-act-06-curating-labels-presentation.pdf",
+        "topic_category": "Exhibition & Public Presentation",
+        "video_url": "https://www.youtube.com/embed/d8W_r9xL4k0",
+        "audio_path": "uploads/custom-images/grade-6/audio/p5_act_06_guide.wav"
+      },
+      {
+        "number": 7,
+        "title": "Activity 7: Organising an exhibition of artefacts (School Museum Day)",
+        "duration": "60 Mins",
+        "material_required": "Display tables with tablecloths, directional signboards, visitor guestbook, student docent badges.",
+        "description": "Transform a classroom or hall into the School Museum. Train student docents/guides to welcome visitors, narrate stories behind the artefacts, explain conservation ethics, and collect impressions in a Visitor Feedback Book.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p5-act-07-school-museum-day.pdf",
+        "topic_category": "Exhibition & Public Presentation",
+        "video_url": "https://www.youtube.com/embed/m2P_x9kL4o1",
+        "audio_path": "uploads/custom-images/grade-6/audio/p5_act_07_guide.wav"
+      }
+    ],
+    "project_pdf": "uploads/custom-images/grade-6/split-pdfs/project-5-school-museum.pdf"
+  },
+  {
+    "project_number": 6,
+    "title": "Project 6: Cooking without Fire",
+    "part": "Part 3: Work in Human Services",
+    "description": "<p>A practical culinary and hospitality project cultivating life skills, nutritional awareness, and food safety without open flame. Students learn recipe literacy, precise ingredient measurement, kitchen hygiene and safe cutting techniques, food storage, eco-friendly composting of organic waste, making nutritious drinks, cold salads, wraps, and sandwiches, culminating in a festive school Food Mela.</p>",
+    "activities": [
+      {
+        "number": 1,
+        "title": "Activity 1: Reading and understanding recipes",
+        "duration": "45 Mins",
+        "material_required": "Sample cold recipe cards (fruit chaat, sprout salad, buttermilk, pinwheel sandwiches), dictionary.",
+        "description": "Learn how recipes are structured: Title, Preparation Time, Yield/Servings, Ingredients list with specific units (tbsp, tsp, cups, grams), and sequential step-by-step method. Define culinary terms like 'dice', 'grate', 'whisk', 'toss', and 'garnish'.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p6-act-01-reading-recipes.pdf",
+        "topic_category": "Nutrition Literacy & Menu Planning",
+        "video_url": "https://www.youtube.com/embed/w4R_x9kL7o1",
+        "audio_path": "uploads/custom-images/grade-6/audio/p6_act_01_guide.wav"
+      },
+      {
+        "number": 2,
+        "title": "Activity 2: Deciding on dishes to be prepared (Balanced Nutrition Menu)",
+        "duration": "45 Mins",
+        "material_required": "Food pyramid chart, menu planning sheet, nutritional guide.",
+        "description": "Work in teams to plan a balanced non-flame menu incorporating all major food groups (proteins from sprouts/paneer, vitamins/minerals from fresh vegetables/fruits, fiber, healthy fats). Ensure dishes are seasonal, budget-friendly, and easy to prepare.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p6-act-02-menu-planning.pdf",
+        "topic_category": "Nutrition Literacy & Menu Planning",
+        "video_url": "https://www.youtube.com/embed/b2W_r8xL4k0",
+        "audio_path": "uploads/custom-images/grade-6/audio/p6_act_02_guide.wav"
+      },
+      {
+        "number": 3,
+        "title": "Activity 3: Measure your food ingredients (Kitchen math & accuracy)",
+        "duration": "45 Mins",
+        "material_required": "Measuring cups (1 cup, 1/2 cup, 1/4 cup), measuring spoons (1 tbsp, 1 tsp, 1/2 tsp), digital kitchen scale, dry ingredients (rice flakes, pulses) and water.",
+        "description": "Master accurate volumetric and weight measurements. Practice levelling dry ingredients with a butter knife, reading liquid volumes at eye level in measuring jugs, and converting standard cooking units.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p6-act-03-measuring-food-ingredients.pdf",
+        "topic_category": "Kitchen Tools, Safety & Hygiene",
+        "video_url": "https://www.youtube.com/embed/k7P_x4kL9o4",
+        "audio_path": "uploads/custom-images/grade-6/audio/p6_act_03_guide.wav"
+      },
+      {
+        "number": 4,
+        "title": "Activity 4: Handling tools with care and safety",
+        "duration": "45 Mins",
+        "material_required": "Child-safe peelers, plastic/butter knives, cutting boards, graters, lemon squeezers, aprons, chef caps.",
+        "description": "Practice kitchen safety protocols: Hand washing with soap for 20 seconds, wearing clean aprons and tying back hair. Learn the claw grip technique when slicing cucumbers, carrots, and apples to protect fingertips from slipping tools.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p6-act-04-tool-safety-hygiene.pdf",
+        "topic_category": "Kitchen Tools, Safety & Hygiene",
+        "video_url": "https://www.youtube.com/embed/m9W_r8xL4k1",
+        "audio_path": "uploads/custom-images/grade-6/audio/p6_act_04_guide.wav"
+      },
+      {
+        "number": 5,
+        "title": "Activity 5: Storing food safely and preventing contamination",
+        "duration": "30 Mins",
+        "material_required": "Airtight containers, glass jars, food-grade wraps, labelling tape, marker.",
+        "description": "Explore proper food storage methods: Keeping dairy and prepared salads chilled, sealing dry snacks in airtight jars to keep out moisture, using clean dry spoons, and labelling container dates to ensure freshness and prevent foodborne illnesses.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p6-act-05-storing-food.pdf",
+        "topic_category": "Food Storage & Waste Management",
+        "video_url": "https://www.youtube.com/embed/f8T_x9kL4o0",
+        "audio_path": "uploads/custom-images/grade-6/audio/p6_act_05_guide.wav"
+      },
+      {
+        "number": 6,
+        "title": "Activity 6: Handling and disposing of kitchen waste (Green composting)",
+        "duration": "30 Mins",
+        "material_required": "Two segregated waste bins (Green for wet/organic, Blue for dry/recyclable), vegetable peels, citrus rinds.",
+        "description": "Implement source segregation during food preparation. Collect vegetable skins, fruit peels, and coriander stalks in the wet bin to deposit in the school vermicompost pit (connecting back to Project 1).",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p6-act-06-kitchen-waste-composting.pdf",
+        "topic_category": "Food Storage & Waste Management",
+        "video_url": "https://www.youtube.com/embed/d4W_r8xL9k4",
+        "audio_path": "uploads/custom-images/grade-6/audio/p6_act_06_guide.wav"
+      },
+      {
+        "number": 7,
+        "title": "Activity 7: Beverage making (Fresh Lemonade / Mint Chaas / Fruit Cooler)",
+        "duration": "45 Mins",
+        "material_required": "Lemons, fresh mint leaves, roasted cumin powder, black salt, curd/yogurt, honey/jaggery, water, glasses, hand churner/whisk.",
+        "description": "Prepare healthy, refreshing traditional beverages. Whisk fresh curd with chilled water, black salt, and roasted cumin to make digestive Chaas, or blend fresh lemon juice, crushed mint, and honey for instant natural energy drinks.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p6-act-07-beverage-making.pdf",
+        "topic_category": "Cold Beverage & Salad Preparation",
+        "video_url": "https://www.youtube.com/embed/n2P_x9kL4o1",
+        "audio_path": "uploads/custom-images/grade-6/audio/p6_act_07_guide.wav"
+      },
+      {
+        "number": 8,
+        "title": "Activity 8: Make dishes that require cutting and mixing (Sprouts Chaat / Corn Salad)",
+        "duration": "45 Mins",
+        "material_required": "Sprouted moong/chana, boiled sweet corn, diced cucumbers, tomatoes, chopped coriander, lemon juice, chaat masala, mixing bowls, serving spoons.",
+        "description": "Prepare protein-rich sprouted salads. Combine sprouted lentils with crunchy vegetables, season with chaat masala and lemon dressing, mix evenly with wooden spoons, and portion into eco-friendly leaf bowls.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p6-act-08-cutting-mixing-salads.pdf",
+        "topic_category": "Cold Beverage & Salad Preparation",
+        "video_url": "https://www.youtube.com/embed/r8W_r4xL9o0",
+        "audio_path": "uploads/custom-images/grade-6/audio/p6_act_08_guide.wav"
+      },
+      {
+        "number": 9,
+        "title": "Activity 9: Make dishes that require cutting and assembling (Veg Sandwiches / Canapes / Rolls)",
+        "duration": "45 Mins",
+        "material_required": "Whole wheat bread slices/crackers/rotis, butter/green mint chutney, sliced boiled potatoes, beetroots, cucumber, cheese slices.",
+        "description": "Assemble attractive layered sandwiches and rolled pinwheels. Spread chutney evenly to the edges, neatly arrange sliced vegetables in layers, trim or shape with cookie cutters, and arrange artistically on serving platters.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p6-act-09-cutting-assembling-sandwiches.pdf",
+        "topic_category": "Sandwich Assembly & Food Mela",
+        "video_url": "https://www.youtube.com/embed/b4P_x9kL7o4",
+        "audio_path": "uploads/custom-images/grade-6/audio/p6_act_09_guide.wav"
+      },
+      {
+        "number": 10,
+        "title": "Activity 10: Organise a food Mela (Food Stall & Hospitality)",
+        "duration": "60 Mins",
+        "material_required": "Stall decoration materials, printed price menus, food display trays, disposable compostable plates, cash box/token counter.",
+        "description": "Set up a simulated Food Mela on campus. Practice hospitality, courteous customer service, food presentation, hygiene checks, cashiering, and collecting visitor feedback on taste and nutritional value.",
+        "split_pdf": "uploads/custom-images/grade-6/split-pdfs/p6-act-10-school-food-mela.pdf",
+        "topic_category": "Sandwich Assembly & Food Mela",
+        "video_url": "https://www.youtube.com/embed/k9W_r8xL4k1",
+        "audio_path": "uploads/custom-images/grade-6/audio/p6_act_10_guide.wav"
+      }
+    ],
+    "project_pdf": "uploads/custom-images/grade-6/split-pdfs/project-6-cooking-without-fire.pdf"
+  }
+]

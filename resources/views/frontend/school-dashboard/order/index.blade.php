@@ -48,7 +48,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('school.orders.show', $order->id) }}" class="btn btn-sm btn-outline-primary" title="{{ __('View Invoice') }}">
+                                        <a href="{{ route('school.orders.show', $order->id) }}" class="btn btn-sm btn-icon-only btn-outline-primary" title="{{ __('View Invoice') }}">
                                             <i class="fa fa-eye"></i>
                                         </a>
                                     </td>

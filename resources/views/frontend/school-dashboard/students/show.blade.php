@@ -10,31 +10,53 @@
         </div>
 
         {{-- Student Overview Card --}}
-        <div class="card mb-4">
-            <div class="card-body">
+        <div class="card mb-4 shadow-sm border-0" style="border-radius: 12px;">
+            <div class="card-body p-4">
                 <div class="row align-items-center">
                     <div class="col-md-2 text-center mb-3 mb-md-0">
-                        <div style="width: 70px; height: 70px; border-radius: 50%; background: #0ea5e9; color: white; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; margin: auto;">
+                        <div style="width: 75px; height: 75px; border-radius: 50%; background: linear-gradient(135deg, #0ea5e9, #3b82f6); color: white; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; margin: auto; box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);">
                             {{ strtoupper(substr($member->user->name, 0, 1)) }}
                         </div>
                     </div>
-                    <div class="col-md-5">
-                        <h5 class="mb-1">{{ $member->user->name }}</h5>
-                        <p class="text-muted mb-1"><i class="fa fa-envelope"></i> {{ $member->user->email }}</p>
-                        @if($member->id_number)
-                            <p class="text-muted mb-0"><i class="fa fa-id-card"></i> {{ __('Roll / ID') }}: {{ $member->id_number }}</p>
-                        @endif
+                    <div class="col-md-6">
+                        <h5 class="mb-1 fw-bold">{{ $member->user->name }}</h5>
+                        <p class="text-muted mb-2"><i class="fa fa-envelope text-primary me-1"></i> {{ $member->user->email }}</p>
+                        
+                        <div class="d-flex flex-wrap gap-2 align-items-center">
+                            @if($member->grade)
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">
+                                    <i class="fa fa-graduation-cap me-1"></i> {{ $member->grade }}@if($member->section) - {{ __('Sec') }} {{ $member->section }}@endif
+                                </span>
+                            @endif
+                            @if($member->board)
+                                <span class="badge bg-info-subtle text-info border border-info-subtle px-2 py-1">
+                                    <i class="fa fa-university me-1"></i> {{ $member->board }}
+                                </span>
+                            @endif
+                            @if($member->academic_year)
+                                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle px-2 py-1">
+                                    <i class="fa fa-calendar-alt me-1"></i> {{ $member->academic_year }}
+                                </span>
+                            @endif
+                            @if($member->id_number)
+                                <span class="badge bg-light text-dark border px-2 py-1">
+                                    <i class="fa fa-id-badge me-1"></i> {{ __('ID') }}: {{ $member->id_number }}
+                                </span>
+                            @endif
+                        </div>
                     </div>
-                    <div class="col-md-5 text-md-end">
-                        <p class="mb-1">
+                    <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                        <p class="mb-2">
                             <strong>{{ __('Status') }}:</strong>
                             @if($member->status === 'active')
-                                <span class="badge bg-success">{{ __('Active') }}</span>
+                                <span class="badge bg-success px-3 py-1">{{ __('Active') }}</span>
                             @else
-                                <span class="badge bg-secondary">{{ __('Inactive') }}</span>
+                                <span class="badge bg-secondary px-3 py-1">{{ __('Inactive') }}</span>
                             @endif
                         </p>
-                        <p class="text-muted mb-0"><strong>{{ __('Joined') }}:</strong> {{ $member->created_at->format('M d, Y') }}</p>
+                        <p class="text-muted mb-0" style="font-size: 13px;">
+                            <strong>{{ __('Enrolled in School') }}:</strong> {{ $member->created_at->format('M d, Y') }}
+                        </p>
                     </div>
                 </div>
             </div>

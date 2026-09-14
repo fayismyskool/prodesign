@@ -1,8 +1,11 @@
 <!-- Edit Grade Modal (loaded dynamically) -->
-<div class="modal-header">
-  <h6 class="modal-title">{{ __('Edit Grade') }}</h6>
+<div class="modal-header d-flex justify-content-between align-items-center">
+  <h5 class="modal-title mb-0 fw-bold">{{ __('Edit Grade') }}</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
-<div class="">
+<div class="modal-body p-4">
   <form action="{{ route('admin.course-grade.update', $grade->id) }}" class="instructor__profile-form" method="post">
     @csrf
     @method('PUT')

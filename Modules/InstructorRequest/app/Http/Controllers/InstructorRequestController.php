@@ -39,6 +39,93 @@ class InstructorRequestController extends Controller
 
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        checkAdminHasPermissionAndThrowException('instructor.request.list');
+
+        $users = User::select('id', 'name', 'email', 'phone', 'role')
+            ->orderBy('name', 'asc')
+            ->get();
+
+        $withdrawMethods = [];
+        if (class_exists(\Modules\PaymentWithdraw\app\Models\WithdrawMethod::class)) {
+            $withdrawMethods = \Modules\PaymentWithdraw\app\Models\WithdrawMethod::where('status', 'active')->get();
+        }
+
+        return view('instructorrequest::instructor-request.create', compact('users', 'withdrawMethods'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        checkAdminHasPermissionAndThrowException('instructor.request.list');
+
+        $request->validate([
+            'user_type' => 'required|in:existing,new',
+            'user_id' => 'required_if:user_type,existing|nullable|exists:users,id',
+            'name' => 'required_if:user_type,new|nullable|string|max:255',
+            'email' => 'required_if:user_type,new|nullable|email|max:255|unique:users,email',
+            'phone' => 'nullable|string|max:50',
+            'password' => 'required_if:user_type,new|nullable|min:4',
+            'status' => 'required|in:pending,approved,rejected',
+            'certificate' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp,zip,doc,docx|max:10240',
+            'identity_scan' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp,zip,doc,docx|max:10240',
+            'payout_account' => 'nullable|string|max:255',
+            'payout_information' => 'nullable|string',
+            'extra_information' => 'nullable|string',
+        ]);
+
+        if ($request->user_type == 'new') {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+                'role' => $request->status == 'approved' ? 'instructor' : 'student',
+                'status' => 'active',
+                'email_verified_at' => now(),
+                'phone_verified_at' => $request->phone ? now() : null,
+            ]);
+            $user->email_verified_at = now();
+            $user->save();
+            $userId = $user->id;
+        } else {
+            $user = User::findOrFail($request->user_id);
+            if ($request->status == 'approved') {
+                $user->role = 'instructor';
+                $user->save();
+            }
+            $userId = $user->id;
+        }
+
+        $instructorRequest = InstructorRequest::updateOrCreate(
+            ['user_id' => $userId],
+            [
+                'status' => $request->status,
+                'payout_account' => $request->payout_account,
+                'payout_information' => $request->payout_information,
+                'extra_information' => $request->extra_information,
+            ]
+        );
+
+        if ($request->hasFile('certificate')) {
+            $instructorRequest->certificate = file_upload($request->file('certificate'));
+            $instructorRequest->save();
+        }
+
+        if ($request->hasFile('identity_scan')) {
+            $instructorRequest->identity_scan = file_upload($request->file('identity_scan'));
+            $instructorRequest->save();
+        }
+
+        return $this->redirectWithMessage(RedirectType::CREATE->value, 'admin.instructor-request.index');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)

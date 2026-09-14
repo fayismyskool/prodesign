@@ -15,6 +15,7 @@ class ActivityFile extends Model
         'file_path',
         'file_name',
         'file_type',
+        'order',
     ];
 
     public function lesson(): BelongsTo

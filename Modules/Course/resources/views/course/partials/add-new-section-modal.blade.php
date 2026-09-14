@@ -2,8 +2,8 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true" data-bs-backdrop='static'>
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h6 class="modal-title" id="exampleModalTitle">{{ __('Add New Chapter') }}</h6>
+      <div class="modal-header d-flex justify-content-between align-items-center">
+        <h5 class="modal-title mb-0 fw-bold" id="exampleModalTitle">{{ __('Add New Chapter') }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

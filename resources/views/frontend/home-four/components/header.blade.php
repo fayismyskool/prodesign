@@ -203,7 +203,7 @@
             <i class="fa-solid fa-graduation-cap text-xs"></i>
             <span>School Portal</span>
           </a>
-        @elseif (auth()->user()->role === 'instructor' && instructorStatus() === 'approved')
+        @elseif (auth()->user()->role === 'instructor')
           <a href="{{ route('instructor.dashboard') }}" class="bg-primary hover:bg-primary-dark text-white px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all shadow-sm hover:shadow inline-flex items-center justify-center gap-1.5">
             <i class="fa-solid fa-chalkboard-user text-xs"></i>
             <span>Instructor Portal</span>

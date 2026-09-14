@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="dashboard__instructor-info-right">
-                        <a href="{{ route('student.dashboard') }}" class="btn btn-two arrow-btn">{{ __('Student Dashboard') }} <img
+                        <a href="{{ route('instructor.courses.create') }}" class="btn btn-two arrow-btn">{{ __('Create New Course') }} <img
                             src="{{ asset('frontend/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
                     </div>
                 </div>

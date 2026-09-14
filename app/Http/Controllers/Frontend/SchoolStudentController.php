@@ -27,7 +27,20 @@ class SchoolStudentController extends Controller
 
     public function create(): View
     {
-        return view('frontend.school-dashboard.students.create');
+        $grades = ['Nursery', 'LKG', 'UKG', 'Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12'];
+        $sections = ['A', 'B', 'C', 'D', 'E', 'F'];
+        $boards = ['CBSE', 'ICSE', 'State Board', 'IB (International Baccalaureate)', 'Cambridge (IGCSE)', 'Other'];
+        
+        $currentYear = (int) date('Y');
+        $academicYears = [
+            ($currentYear - 2) . '-' . ($currentYear - 1),
+            ($currentYear - 1) . '-' . $currentYear,
+            $currentYear . '-' . ($currentYear + 1),
+            ($currentYear + 1) . '-' . ($currentYear + 2),
+            ($currentYear + 2) . '-' . ($currentYear + 3),
+        ];
+
+        return view('frontend.school-dashboard.students.create', compact('grades', 'sections', 'boards', 'academicYears'));
     }
 
     public function downloadTemplate()
@@ -40,8 +53,8 @@ class SchoolStudentController extends Controller
             'Expires'             => '0',
         ];
 
-        $columns = ['Name', 'Email', 'Roll_Number', 'Password'];
-        $sample  = ['John Smith', 'student@example.com', 'STD-101', '123456'];
+        $columns = ['Name', 'Email', 'Roll_Number', 'Grade', 'Section', 'Academic_Year', 'Board', 'Password'];
+        $sample  = ['John Smith', 'student@example.com', 'STD-101', 'Grade 6', 'A', '2026-2027', 'CBSE', '123456'];
 
         $callback = function () use ($columns, $sample) {
             $file = fopen('php://output', 'w');
@@ -98,10 +111,14 @@ class SchoolStudentController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name'      => 'required|string|max:255',
-            'email'     => 'required|email|max:255',
-            'password'  => 'nullable|string|min:4',
-            'id_number' => 'nullable|string|max:100',
+            'name'          => 'required|string|max:255',
+            'email'         => 'required|email|max:255',
+            'password'      => 'nullable|string|min:4',
+            'id_number'     => 'nullable|string|max:100',
+            'grade'         => 'nullable|string|max:50',
+            'section'       => 'nullable|string|max:20',
+            'academic_year' => 'nullable|string|max:20',
+            'board'         => 'nullable|string|max:50',
         ]);
 
         return DB::transaction(function () use ($request) {
@@ -135,6 +152,10 @@ class SchoolStudentController extends Controller
                 'user_id'        => $user->id,
                 'role_in_school' => 'student',
                 'id_number'      => $request->id_number,
+                'grade'          => $request->grade,
+                'section'        => $request->section,
+                'academic_year'  => $request->academic_year,
+                'board'          => $request->board,
                 'status'         => 'active',
             ]);
 
@@ -186,7 +207,20 @@ class SchoolStudentController extends Controller
                 $name     = preg_replace('/^\xEF\xBB\xBF/', '', trim($row[0] ?? ''));
                 $email    = trim($row[1] ?? '');
                 $idNum    = trim($row[2] ?? '');
-                $password = trim($row[3] ?? '') ?: '123456';
+
+                if (count($row) >= 8) {
+                    $grade        = trim($row[3] ?? '') ?: null;
+                    $section      = trim($row[4] ?? '') ?: null;
+                    $academicYear = trim($row[5] ?? '') ?: null;
+                    $board        = trim($row[6] ?? '') ?: null;
+                    $password     = trim($row[7] ?? '') ?: '123456';
+                } else {
+                    $grade        = null;
+                    $section      = null;
+                    $academicYear = null;
+                    $board        = null;
+                    $password     = trim($row[3] ?? '') ?: '123456';
+                }
 
                 if (!$name || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $skipped++;
@@ -221,6 +255,10 @@ class SchoolStudentController extends Controller
                     'user_id'        => $user->id,
                     'role_in_school' => 'student',
                     'id_number'      => $idNum ?: null,
+                    'grade'          => $grade,
+                    'section'        => $section,
+                    'academic_year'  => $academicYear,
+                    'board'          => $board,
                     'status'         => 'active',
                 ]);
                 $added++;

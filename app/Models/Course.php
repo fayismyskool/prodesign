@@ -13,6 +13,8 @@ use Modules\Order\app\Models\Enrollment;
 class Course extends Model {
     use HasFactory, SoftDeletes;
 
+    protected $guarded = ['id'];
+
     function scopeActive() {
         return $this->where(['is_approved' => 'approved', 'status' => 'active']);
     }

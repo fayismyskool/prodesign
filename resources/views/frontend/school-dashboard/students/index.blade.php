@@ -23,6 +23,8 @@
                                 <th>#</th>
                                 <th>{{ __('Name') }}</th>
                                 <th>{{ __('Email') }}</th>
+                                <th>{{ __('Grade & Section') }}</th>
+                                <th>{{ __('Board / Year') }}</th>
                                 <th>{{ __('Roll / ID') }}</th>
                                 <th>{{ __('Status') }}</th>
                                 <th>{{ __('Actions') }}</th>
@@ -38,6 +40,28 @@
                                         </a>
                                     </td>
                                     <td>{{ $member->user->email }}</td>
+                                    <td>
+                                        @if($member->grade)
+                                            <span class="badge bg-light text-dark border px-2 py-1">
+                                                {{ $member->grade }}
+                                                @if($member->section) - {{ __('Sec') }} {{ $member->section }} @endif
+                                            </span>
+                                        @else
+                                            <span class="text-muted">-</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div style="font-size: 13px;">
+                                            @if($member->board)
+                                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-0" style="font-size: 11px;">{{ $member->board }}</span>
+                                            @endif
+                                            @if($member->academic_year)
+                                                <small class="text-muted d-block mt-1">{{ $member->academic_year }}</small>
+                                            @elseif(!$member->board)
+                                                <span class="text-muted">-</span>
+                                            @endif
+                                        </div>
+                                    </td>
                                     <td>{{ $member->id_number ?? '-' }}</td>
                                     <td>
                                         @if($member->status === 'active')
@@ -47,18 +71,18 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('school.students.show', $member->id) }}" class="btn btn-sm btn-outline-info" title="{{ __('View Progress & Quiz Scores') }}">
+                                        <a href="{{ route('school.students.show', $member->id) }}" class="btn btn-sm btn-icon-only btn-outline-info" title="{{ __('View Progress & Quiz Scores') }}">
                                             <i class="fa fa-chart-line"></i>
                                         </a>
                                         <form action="{{ route('school.students.toggle-status', $member->id) }}" method="POST" class="d-inline">
                                             @csrf @method('PATCH')
-                                            <button type="submit" class="btn btn-sm btn-outline-warning" title="{{ $member->status === 'active' ? __('Deactivate') : __('Activate') }}">
+                                            <button type="submit" class="btn btn-sm btn-icon-only btn-outline-warning" title="{{ $member->status === 'active' ? __('Deactivate') : __('Activate') }}">
                                                 <i class="fa fa-{{ $member->status === 'active' ? 'ban' : 'check' }}"></i>
                                             </button>
                                         </form>
                                         <form action="{{ route('school.students.destroy', $member->id) }}" method="POST" class="d-inline" onsubmit="return confirm('{{ __('Are you sure?') }}')">
                                             @csrf @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <button type="submit" class="btn btn-sm btn-icon-only btn-outline-danger">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>
@@ -66,7 +90,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6" class="text-center">{{ __('No students found. Add your first student!') }}</td>
+                                    <td colspan="8" class="text-center">{{ __('No students found. Add your first student!') }}</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -94,8 +118,8 @@
                     <div class="modal-body">
                         <div class="alert alert-light border mb-3" style="font-size: 13px;">
                             <div class="fw-bold mb-1"><i class="fa fa-info-circle text-info"></i> {{ __('CSV Column Format:') }}</div>
-                            <code>Name, Email, Roll_Number, Password</code>
-                            <div class="text-muted mt-1">{{ __('Password is optional (defaults to 123456). Accounts will be activated immediately.') }}</div>
+                            <code>Name, Email, Roll_Number, Grade, Section, Academic_Year, Board, Password</code>
+                            <div class="text-muted mt-1">{{ __('Grade, Section, Academic Year, Board, and Password (default: 123456) are optional.') }}</div>
                         </div>
 
                         <div class="mb-3">

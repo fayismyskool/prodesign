@@ -167,26 +167,39 @@ class CustomerController extends Controller
     {
         checkAdminHasPermissionAndThrowException('customer.view');
 
+        // Default role filter is 'school' if not explicitly set
+        $selectedRole = $request->has('role') ? $request->get('role') : 'school';
+
         $query = User::query();
-        $query->where(['status' => 'active', 'is_banned' => 'no'])->where('email_verified_at', '!=', null);
+        $query->where(['status' => 'active', 'is_banned' => 'no'])->whereNotNull('email_verified_at');
+
+        if (!empty($selectedRole) && $selectedRole !== 'all') {
+            $query->where('role', $selectedRole);
+        }
 
         $query->when($request->filled('keyword'), function ($q) use ($request) {
-            $q->where('name', 'like', '%' . $request->keyword . '%')
-                ->orWhere('email', 'like', '%' . $request->keyword . '%')
-                ->orWhere('phone', 'like', '%' . $request->keyword . '%')
-                ->orWhere('address', 'like', '%' . $request->keyword . '%');
+            $q->where(function ($sub) use ($request) {
+                $sub->where('name', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('email', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('phone', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('school_name', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('address', 'like', '%' . $request->keyword . '%');
+            });
         });
 
         $orderBy = $request->filled('order_by') && $request->order_by == 1 ? 'asc' : 'desc';
 
         if ($request->filled('par-page')) {
-            $users = $request->get('par-page') == 'all' ? $query->orderBy('id', $orderBy)->get() : $query->orderBy('id', $orderBy)->paginate($request->get('par-page'))->withQueryString();
+            $users = $request->get('par-page') == 'all'
+                ? $query->orderBy('id', $orderBy)->get()
+                : $query->orderBy('id', $orderBy)->paginate($request->get('par-page'))->withQueryString();
         } else {
             $users = $query->orderBy('id', $orderBy)->paginate()->withQueryString();
         }
 
         return view('customer::active_customer')->with([
             'users' => $users,
+            'selectedRole' => $selectedRole,
         ]);
     }
 

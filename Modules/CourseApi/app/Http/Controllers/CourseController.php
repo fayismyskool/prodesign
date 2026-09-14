@@ -32,6 +32,7 @@ class CourseController extends Controller
     {
         
         $query = Course::query();
+        $query->whereNotNull('api_course_id')->where('api_course_id', '!=', 0)->where('api_course_id', '!=', '');
         $query->when($request->keyword, fn ($q) => $q->where('title', 'like', '%' . request('keyword') . '%'));
         $query->when($request->category, function($q) use ($request) {
             $q->whereHas('category', function($q) use ($request) {

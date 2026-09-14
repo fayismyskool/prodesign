@@ -7,6 +7,15 @@
         <section class="section">
             <div class="section-header">
                 <h1>{{ __('Instructor Request') }}</h1>
+                <div class="section-header-button">
+                    <a href="{{ route('admin.instructor-request.create') }}" class="btn btn-primary"><i
+                            class="fas fa-plus"></i> {{ __('Add New') }}</a>
+                </div>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
+                    </div>
+                    <div class="breadcrumb-item">{{ __('Instructor Request') }}</div>
+                </div>
             </div>
 
             <div class="section-body">
@@ -119,7 +128,7 @@
                                                     </td>
                                                 </tr>
                                             @empty
-                                                <x-empty-table :name="__('Instructor Request')" route="" create="no"
+                                                <x-empty-table :name="__('Instructor Request')" route="admin.instructor-request.create" create="yes"
                                                     :message="__('No data found!')" colspan="5"></x-empty-table>
                                             @endforelse
                                         </tbody>

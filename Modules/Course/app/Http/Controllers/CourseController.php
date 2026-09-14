@@ -29,6 +29,9 @@ class CourseController extends Controller
     function index(Request $request): View
     {
         $query = Course::query();
+        $query->where(function ($q) {
+            $q->whereNull('api_course_id')->orWhere('api_course_id', 0)->orWhere('api_course_id', '');
+        });
         $query->when($request->keyword, fn ($q) => $q->where('title', 'like', '%' . request('keyword') . '%'));
         $query->when($request->category, function($q) use ($request) {
             $q->whereHas('category', function($q) use ($request) {
@@ -127,13 +130,14 @@ class CourseController extends Controller
                 ));
                 break;
             case '3':
+                $courseId = $request->id ?? $request->route('id') ?? Session::get('course_create');
                 $grades   = CourseGrade::where('status', 'active')->orderBy('order')->get();
                 $chapters = CourseChapter::with([
                     'chapterItems',
                     'chapterItems.lesson',
                     'chapterItems.lesson.activityFiles',
-                ])->where(['course_id' => $request->id, 'status' => 'active'])->orderBy('order')->get();
-                return view('course::course.course-content', compact('chapters', 'grades'));
+                ])->where(['course_id' => $courseId, 'status' => 'active'])->orderBy('order')->get();
+                return view('course::course.course-content', compact('chapters', 'grades', 'courseId'));
                 break;
             case '4':
                 $courseId = request('id');

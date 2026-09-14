@@ -90,11 +90,11 @@ class SchoolCourseController extends Controller
         $course = Course::withTrashed()->findOrFail($courseId);
 
         // Verify purchase
-        $enrolled = Enrollment::where('user_id', $school->id)
+        $schoolEnrollment = Enrollment::where('user_id', $school->id)
             ->where('course_id', $courseId)
-            ->exists();
+            ->first();
 
-        if (!$enrolled) {
+        if (!$schoolEnrollment) {
             abort(403, 'You have not purchased this course.');
         }
 
@@ -147,7 +147,7 @@ class SchoolCourseController extends Controller
             }
         }
 
-        DB::transaction(function () use ($newMembers, $school, $courseId) {
+        DB::transaction(function () use ($newMembers, $school, $courseId, $schoolEnrollment) {
             foreach ($newMembers as $member) {
                 SchoolCourseAssignment::updateOrCreate(
                     [
@@ -162,12 +162,13 @@ class SchoolCourseController extends Controller
                     ]
                 );
 
-                Enrollment::firstOrCreate(
+                Enrollment::updateOrCreate(
                     [
                         'user_id'   => $member->user_id,
                         'course_id' => $courseId,
                     ],
                     [
+                        'order_id'   => $schoolEnrollment->order_id,
                         'has_access' => 1,
                     ]
                 );

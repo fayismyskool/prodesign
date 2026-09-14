@@ -246,12 +246,11 @@
                                                 <li><a href="{{ route('register') }}">{{ __('Sign Up') }}</a></li>
                                             @else
                                                 @if (Auth::guard('web')->user())
-                                                    @if (instructorStatus() == 'approved')
+                                                    @if (userAuth()->role == 'instructor')
                                                         <li><a
                                                                 href="{{ route('instructor.dashboard') }}">{{ __('Instructor Dashboard') }}</a>
                                                         </li>
-                                                    @endif
-                                                    @if (userAuth()->role == 'school')
+                                                    @elseif (userAuth()->role == 'school')
                                                         <li><a
                                                                 href="{{ route('school.dashboard') }}">{{ __('School Dashboard') }}</a>
                                                         </li>

@@ -1,7 +1,7 @@
 @extends('admin.master_layout')
 
 @section('custom_meta')
-    <meta name="course_id" content="{{ request('id') }}">
+    <meta name="course_id" content="{{ $courseId ?? request('id') ?? request()->route('id') ?? session('course_create') }}">
 @endsection
 
 @section('title')

@@ -145,10 +145,14 @@ class CourseContentController extends Controller
     {
         $newOrder = $request->chapter_ids;
 
-        foreach ($newOrder as $key => $value) {
-            $chapter = CourseChapter::where('course_id', $courseId)->find($value);
-            $chapter->order = $key + 1;
-            $chapter->save();
+        if (!empty($newOrder) && is_array($newOrder)) {
+            foreach ($newOrder as $key => $value) {
+                CourseChapter::where('id', $value)->where('course_id', $courseId)->update(['order' => $key + 1]);
+            }
+        }
+
+        if ($request->ajax()) {
+            return response()->json(['status' => 'success', 'message' => __('Chapters sorted successfully')]);
         }
 
         return redirect()->back()->with(['messege' => __('Updated successfully'), 'alert-type' => 'success']);
@@ -270,10 +274,16 @@ class CourseContentController extends Controller
 
     function lessonEdit(Request $request)
     {
-        $courseId = $request->courseId;
         $chapterItemId = $request->chapterItemId;
-        $chapterItem = CourseChapterItem::with(['lesson', 'lesson.activityFiles', 'quiz'])->find($chapterItemId);
-        $chapters = CourseChapter::where('course_id', $courseId)->get();
+        $chapterItem = CourseChapterItem::with(['lesson', 'lesson.activityFiles', 'quiz'])->findOrFail($chapterItemId);
+        $courseId = $request->courseId ?? $chapterItem->course_id ?? Session::get('course_create');
+        $chapterId = $request->chapterId ?? $chapterItem->chapter_id;
+        $chapters = CourseChapter::where('course_id', $courseId)->orderBy('order')->get();
+        if ($chapters->isEmpty() && $chapterItem->course_id) {
+            $chapters = CourseChapter::where('course_id', $chapterItem->course_id)->orderBy('order')->get();
+            $courseId = $chapterItem->course_id;
+        }
+
         if ($request->type == 'lesson') {
             return view('course::course.partials.lesson-edit-modal', [
                 'chapters' => $chapters,
@@ -361,15 +371,29 @@ class CourseContentController extends Controller
                 'chapter_item_id'   => $chapterItem->id,
             ]);
 
+            // Reorder existing files
+            if ($request->has('ordered_file_ids') && is_array($request->ordered_file_ids)) {
+                foreach ($request->ordered_file_ids as $orderIndex => $fileId) {
+                    ActivityFile::where('id', $fileId)->where('lesson_id', $courseChapterLesson->id)->update([
+                        'order' => $orderIndex + 1
+                    ]);
+                }
+            }
+
             // Handle new file manager paths
-            foreach ((array) $request->activity_files_paths as $url) {
-                if (empty($url)) continue;
-                ActivityFile::create([
-                    'lesson_id' => $courseChapterLesson->id,
-                    'file_path' => $url,
-                    'file_name' => basename(parse_url($url, PHP_URL_PATH)),
-                    'file_type' => pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_EXTENSION),
-                ]);
+            if ($request->has('activity_files_paths')) {
+                $maxOrder = ActivityFile::where('lesson_id', $courseChapterLesson->id)->max('order') ?? 0;
+                foreach ((array) $request->activity_files_paths as $url) {
+                    if (empty($url)) continue;
+                    $maxOrder++;
+                    ActivityFile::create([
+                        'lesson_id' => $courseChapterLesson->id,
+                        'file_path' => $url,
+                        'file_name' => basename(parse_url($url, PHP_URL_PATH)),
+                        'file_type' => pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_EXTENSION),
+                        'order'     => $maxOrder,
+                    ]);
+                }
             }
         } else {
             $quiz = Quiz::where('chapter_item_id', $chapterItem->id)->first();
@@ -389,10 +413,12 @@ class CourseContentController extends Controller
     function sortLessons(Request $request, string $chapterId)
     {
         $newOrder = $request->orderIds;
-        foreach ($newOrder as $key => $itemId) {
-            $chapterItem = CourseChapterItem::where(['chapter_id' => $chapterId, 'id' => $itemId])->first();
-            $chapterItem->order = $key + 1;
-            $chapterItem->save();
+        if (!empty($newOrder) && is_array($newOrder)) {
+            foreach ($newOrder as $key => $itemId) {
+                if (!empty($itemId)) {
+                    CourseChapterItem::where('id', $itemId)->where('chapter_id', $chapterId)->update(['order' => $key + 1]);
+                }
+            }
         }
 
         return response()->json(['status' => 'success', 'message' => __('Lesson sorted successfully')]);

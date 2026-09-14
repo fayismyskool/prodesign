@@ -46,6 +46,9 @@
                                                     class="icon_area d-flex flex-wrap justify-content-between align-items-center w-100">
                                                     <div class="d-flex flex-wrap align-items-center">
                                                         <span class="icon-container"><i class="far fa-folder"></i></span>
+                                                        @if($chapter->grade)
+                                                            <small class="mb-0 ms-2 bold-text text-primary">{{ $chapter->grade->title }} :&nbsp;</small>
+                                                        @endif
                                                         <p class="mb-0 ms-2 bold-text">{{ $chapter->title }}</p>
                                                     </div>
                                                 </div>
@@ -64,6 +67,9 @@
                                                         <li><a class="dropdown-item add-lesson-btn" data-type="document"
                                                                 data-chapterid="{{ $chapter->id }}"
                                                                 href="javascript:;">{{ __('Add Document') }}</a></li>
+                                                        <li><a class="dropdown-item add-lesson-btn" data-type="activity"
+                                                                data-chapterid="{{ $chapter->id }}"
+                                                                href="javascript:;">{{ __('Add Activity') }}</a></li>
                                                         <li><a class="dropdown-item add-lesson-btn" data-type="live"
                                                                 data-chapterid="{{ $chapter->id }}"
                                                                 href="javascript:;">{{ __('Add Live lesson') }}</a></li>
@@ -108,7 +114,7 @@
                                                                         class="fas fa-edit"></i></a>
                                                                 <a href="{{ route('instructor.course-chapter.lesson.destroy', $chapterItem->id) }}"
                                                                     class="ms-2 text-danger delete-item"><i
-                                                                        class="fas fa-trash-alt"></i></i></a>
+                                                                        class="fas fa-trash-alt"></i></a>
                                                                 <a href="javascript:;" class="ms-2 dragger"><i
                                                                         class="fas fa-arrows-alt"></i></a>
                                                             </div>
@@ -137,13 +143,47 @@
                                                                         class="fas fa-edit"></i></a>
                                                                 <a href="{{ route('instructor.course-chapter.lesson.destroy', $chapterItem->id) }}"
                                                                     class="ms-2 text-danger delete-item"><i
-                                                                        class="fas fa-trash-alt"></i></i></a>
+                                                                        class="fas fa-trash-alt"></i></a>
                                                                 <a href="javascript:;" class="ms-2 dragger"><i
                                                                         class="fas fa-arrows-alt"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @else
+                                                @elseif ($chapterItem->type == 'activity')
+                                                    <div class="card course-section-item create_couese_item mb-3"
+                                                        data-chapter-item-id="{{ $chapterItem->id }}"
+                                                        data-chapterid="{{ $chapter->id }}">
+                                                        <div
+                                                            class="d-flex flex-wrap justify-content-between align-items-center">
+                                                            <div
+                                                                class="edit_course_icons d-flex flex-wrap align-items-center">
+                                                                <span class="icon-container"><i
+                                                                        class="fas fa-tasks"></i></span>
+                                                                <p class="mb-0 ms-2 bold-text">
+                                                                    {{ truncate($chapterItem?->lesson?->title) }}</p>
+                                                            </div>
+                                                            <div class="item-action d-flex align-items-center">
+                                                                @if($chapterItem->lesson && $chapterItem->lesson->activityFiles->count())
+                                                                    <span class="badge bg-info text-white me-2">
+                                                                        <i class="fas fa-paperclip"></i> {{ $chapterItem->lesson->activityFiles->count() }}
+                                                                    </span>
+                                                                @endif
+                                                                <a href="javascript:;"
+                                                                    class="ms-2 text-dark edit-lesson-btn"
+                                                                    data-type="{{ $chapterItem->type }}"
+                                                                    data-courseid="{{ $chapter->course_id }}"
+                                                                    data-chapterid="{{ $chapter->id }}"
+                                                                    data-chapter_item_id="{{ $chapterItem->id }}"><i
+                                                                        class="fas fa-edit"></i></a>
+                                                                <a href="{{ route('instructor.course-chapter.lesson.destroy', $chapterItem->id) }}"
+                                                                    class="ms-2 text-danger delete-item"><i
+                                                                        class="fas fa-trash-alt"></i></a>
+                                                                <a href="javascript:;" class="ms-2 dragger"><i
+                                                                        class="fas fa-arrows-alt"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @elseif ($chapterItem->type == 'quiz' && $chapterItem->quiz)
                                                     <div class="accordion card mb-2" id="accordionExample"
                                                         data-chapter-item-id="{{ $chapterItem->id }}"
                                                         data-chapterid="{{ $chapter->id }}">
@@ -201,7 +241,7 @@
                                                                 class="accordion-collapse collapse"
                                                                 data-bs-parent="#accordionExample">
                                                                 <div class="accordion-body">
-                                                                    @forelse ($chapterItem?->quiz?->questions as $question)
+                                                                    @forelse ($chapterItem->quiz->questions ?? [] as $question)
                                                                         <div class="card course-section-item mb-3"
                                                                             data-chapter-item-id="" data-chapterid="">
                                                                             <div
@@ -220,7 +260,7 @@
                                                                                             class="fas fa-edit"></i></a>
                                                                                     <a href="{{ route('instructor.course-chapter.quiz-question.destroy', $question->id) }}"
                                                                                         class="ms-2 text-danger delete-item"><i
-                                                                                            class="fas fa-trash-alt"></i></i></a>
+                                                                                            class="fas fa-trash-alt"></i></a>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -229,6 +269,21 @@
                                                                             {{ __('No questions found.') }}</p>
                                                                     @endforelse
                                                                 </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="card course-section-item create_couese_item mb-3"
+                                                        data-chapter-item-id="{{ $chapterItem->id }}"
+                                                        data-chapterid="{{ $chapter->id }}">
+                                                        <div class="d-flex flex-wrap justify-content-between align-items-center">
+                                                            <div class="edit_course_icons d-flex flex-wrap align-items-center">
+                                                                <span class="icon-container"><i class="fas fa-file"></i></span>
+                                                                <p class="mb-0 ms-2 bold-text">{{ truncate($chapterItem?->lesson?->title ?? $chapterItem?->type) }}</p>
+                                                            </div>
+                                                            <div class="item-action">
+                                                                <a href="{{ route('instructor.course-chapter.lesson.destroy', $chapterItem->id) }}"
+                                                                    class="ms-2 text-danger delete-item"><i class="fas fa-trash-alt"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -1,6 +1,9 @@
 @if (Module::isEnabled('Language') && Route::has('admin.course.index'))
     @php
-        $pendingCourseCount = \App\Models\Course::where('is_approved', 'pending')->count();
+        $pendingCourseCount = \App\Models\Course::where('is_approved', 'pending')
+            ->where(function ($q) {
+                $q->whereNull('api_course_id')->orWhere('api_course_id', 0)->orWhere('api_course_id', '');
+            })->count();
     @endphp
     <li
         class="nav-item dropdown {{ isRoute(['admin.courses.*', 'admin.course-category.*', 'admin.course-filter.*', 'admin.course-language.*', 'admin.course-level.*', 'admin.course-grade.*', 'admin.course-review.*', 'admin.course-delete-request.*', 'admin.course-sub-category.*'], 'active') }}">

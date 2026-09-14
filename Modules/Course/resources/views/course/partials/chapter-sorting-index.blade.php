@@ -1,23 +1,24 @@
-<div class="modal-header">
-    <h6 class="modal-title" id="">{{ __('Sort Chapters') }}</h6>
+<div class="modal-header d-flex justify-content-between align-items-center">
+    <h5 class="modal-title mb-0 fw-bold">{{ __('Sort Chapters') }}</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 
-<div>
+<div class="p-3">
     <form action="{{ route('admin.course-chapter.sorting.store', $courseId) }}" method="POST"
         class="chapter_sorting_form">
         @csrf
-        <ul class="list-group draggable-list">
+        <ul class="list-group chapter_sorting_list">
             @foreach ($chapters as $chapter)
-                <li class="list-group-item mb-2" data-order="{{ $chapter->order }}">
+                <li class="list-group-item mb-2 d-flex align-items-center justify-content-between" data-order="{{ $chapter->order }}">
                     <input type="hidden" name="chapter_ids[]" value="{{ $chapter->id }}">
-                    <div class="course_shorting d-flex flex-wrap justify-content-between align-items-center">
-                        <div class="d-flex flex-wrap align-items-center">
-                            <span class="icon-container"><i class="fas fa-play"></i></span>
-                            <p class="mb-0 ms-2 bold-text"> {{ truncate($chapter->title, 70) }}</p>
-                        </div>
-                        <div class="item-action">
-                            <a href="javascript:;" class="ms-2 text-dark dragger"><i class="fas fa-arrows-alt"></i></a>
-                        </div>
+                    <div class="d-flex align-items-center">
+                        <span class="icon-container mr-2 text-primary"><i class="fas fa-folder"></i></span>
+                        <span class="fw-bold">{{ $chapter->grade ? $chapter->grade->title . ': ' : '' }}{{ truncate($chapter->title, 70) }}</span>
+                    </div>
+                    <div class="item-action">
+                        <a href="javascript:;" class="text-dark dragger" style="cursor: grab; font-size: 1.1rem;"><i class="fas fa-arrows-alt"></i></a>
                     </div>
                 </li>
             @endforeach
@@ -25,6 +26,5 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary"
-        onclick="$('.chapter_sorting_form').trigger('submit')">{{ __('Save changes') }}</button>
+    <button type="button" class="btn btn-primary save-chapter-sorting-btn">{{ __('Save changes') }}</button>
 </div>

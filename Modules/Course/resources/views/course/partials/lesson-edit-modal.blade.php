@@ -1,8 +1,11 @@
-<div class="modal-header">
-    <h6 class="modal-title fs-5" id="">{{ __('Update Lesson') }}</h6>
+<div class="modal-header d-flex justify-content-between align-items-center">
+    <h5 class="modal-title mb-0 fw-bold">{{ __('Update Lesson') }}</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 
-<div class="p-3">
+<div class="modal-body p-4">
     <form action="{{ route('admin.course-chapter.lesson.update') }}" method="POST"
         class="update_lesson_form instructor__profile-form">
         @csrf

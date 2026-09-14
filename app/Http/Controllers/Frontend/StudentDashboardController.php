@@ -23,6 +23,9 @@ class StudentDashboardController extends Controller {
         if (userAuth()->role === 'school') {
             return redirect()->route('school.dashboard');
         }
+        if (userAuth()->role === 'instructor') {
+            return redirect()->route('instructor.dashboard');
+        }
 
         $totalEnrolledCourses = Enrollment::where('user_id', userAuth()->id)->count();
         $totalQuizAttempts = QuizResult::where('user_id', userAuth()->id)->count();
@@ -38,12 +41,21 @@ class StudentDashboardController extends Controller {
 
     function enrolledCourses() {
         $enrolls = Enrollment::with(['course' => function ($q) {
-            $q->withTrashed();
+            $q->withTrashed()->with(['category.translation', 'instructor', 'reviews']);
         }])->where('user_id', userAuth()->id)->orderByDesc('id')->paginate(10);
-    // echo '<pre>';
-    // print_r($enrolls);
-    // exit();
-        return view('frontend.student-dashboard.enrolled-courses.index', compact('enrolls'));
+
+        $enrolledCourseIds = Enrollment::where('user_id', userAuth()->id)->pluck('course_id')->filter()->toArray();
+
+        // Cross-selling: Recommend related active courses not enrolled by the student
+        $relatedCourses = Course::where(['is_approved' => 'approved', 'status' => 'active'])
+            ->whereNotIn('id', $enrolledCourseIds)
+            ->with(['category.translation', 'instructor', 'reviews'])
+            ->withCount(['enrollments'])
+            ->inRandomOrder()
+            ->take(6)
+            ->get();
+
+        return view('frontend.student-dashboard.enrolled-courses.index', compact('enrolls', 'relatedCourses'));
     }
 
     function enrolledCoursesGrades(string $slug) {

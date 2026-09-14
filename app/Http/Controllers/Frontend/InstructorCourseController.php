@@ -106,7 +106,9 @@ class InstructorCourseController extends Controller
 
     function edit(Request $request)
     {
-        if (!Session::get('course_create')) {
+        if ($request->id) {
+            Session::put('course_create', $request->id);
+        } elseif (!Session::get('course_create')) {
             return redirect(route('instructor.courses.create'));
         }
 
@@ -133,7 +135,10 @@ class InstructorCourseController extends Controller
                 ));
                 break;
             case '3':
-                $chapters = CourseChapter::with(['chapterItems'])->where(['course_id' => $request->id, 'status' => 'active'])->orderBy('order')->get();
+                $chapters = CourseChapter::with(['chapterItems.lesson.activityFiles', 'chapterItems.quiz.questions', 'grade'])
+                    ->where(['course_id' => $request->id, 'status' => 'active'])
+                    ->orderBy('order')
+                    ->get();
                 return view('frontend.instructor-dashboard.course.course-content', compact('chapters'));
                 break;
             case '4':

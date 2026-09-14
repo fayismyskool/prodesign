@@ -13,6 +13,7 @@ class CourseChapterLesson extends Model {
 
     protected $fillable = [
         'title',
+        'topic_category',
         'description',
         'material_required',
         'age_min',
@@ -22,6 +23,8 @@ class CourseChapterLesson extends Model {
         'chapter_id',
         'chapter_item_id',
         'file_path',
+        'video_url',
+        'audio_path',
         'storage',
         'file_type',
         'volume',
@@ -34,7 +37,7 @@ class CourseChapterLesson extends Model {
         return $this->hasOne(CourseProgress::class, 'lesson_id', 'id');
     }
     function activityFiles(): HasMany {
-        return $this->hasMany(ActivityFile::class, 'lesson_id', 'id');
+        return $this->hasMany(ActivityFile::class, 'lesson_id', 'id')->orderBy('order', 'asc')->orderBy('id', 'asc');
     }
     function course(): BelongsTo {
         return $this->belongsTo(Course::class, 'course_id', 'id');

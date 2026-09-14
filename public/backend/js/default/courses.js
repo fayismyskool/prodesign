@@ -10,13 +10,15 @@ const supported_source = [
     "iframe",
     "aws",
 ];
-const dynamicModalContent = $(".dynamic-modal .modal-content .modal-body");
+const dynamicModalContent = $(".dynamic-modal .modal-content");
 
 /** Template Variables */
 const loader = `
-<div class="d-flex justify-content-center align-items:center p-3">
-  <div class="spinner-border" role="status">
-    <span class="visually-hidden"></span>
+<div class="modal-body">
+  <div class="d-flex justify-content-center align-items-center p-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden"></span>
+    </div>
   </div>
 </div>`;
 
@@ -145,37 +147,42 @@ $(document).ready(function () {
     }
 
     /** make accordion child's sortable */
-    $(".course-section .accordion-body").sortable({
-        items: "> .card",
-        containment: "parent",
-        cursor: "move",
-        handle: ".dragger",
-        tolerance: "pointer",
-        // function on update
-        update: function (event, ui) {
-            let orderIds = $(this).sortable("toArray", {
-                attribute: "data-chapter-item-id",
-            });
-            let chapterId = ui.item.data("chapterid");
-            let csrf_token = $('meta[name="csrf-token"]').attr("content");
-            $.ajax({
-                method: "post",
-                url: base_url + "/admin/course-chapter/lesson/sorting/" + chapterId,
-                data: {
-                    _token: csrf_token,
-                    orderIds: orderIds,
-                },
-                success: function (data) {
-                    if (data.status == "success") {
-                        toastr.success(data.message);
+    function initLessonSortable() {
+        $(".course-section .accordion-body").sortable({
+            items: "> .card",
+            containment: "parent",
+            cursor: "move",
+            handle: ".dragger",
+            tolerance: "pointer",
+            update: function (event, ui) {
+                let orderIds = $(this).find('> .card').map(function() {
+                    return $(this).data('chapter-item-id') || $(this).attr('data-chapter-item-id');
+                }).get();
+                let chapterId = ui.item.data("chapterid") || ui.item.attr("data-chapterid");
+                let csrf_token = $('meta[name="csrf-token"]').attr("content");
+                $.ajax({
+                    method: "post",
+                    url: base_url + "/admin/course-chapter/lesson/sorting/" + chapterId,
+                    data: {
+                        _token: csrf_token,
+                        orderIds: orderIds,
+                    },
+                    success: function (data) {
+                        if (data.status == "success") {
+                            toastr.success(data.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        toastr.error("Sorting error: " + error);
                     }
-                },
-            });
-        },
-    });
+                });
+            },
+        });
+    }
+    initLessonSortable();
 
     /** handle chapter sorting modal */
-    $(".sort-chapter-btn").on("click", function () {
+    $(document).on("click", ".sort-chapter-btn", function () {
         $(".dynamic-modal").modal("show");
         let courseId = $('meta[name="course_id"]').attr("content");
         $.ajax({
@@ -187,7 +194,7 @@ $(document).ready(function () {
             success: function (data) {
                 dynamicModalContent.html(data);
 
-                $(".draggable-list").sortable({
+                $(".chapter_sorting_list").sortable({
                     containment: "parent",
                     cursor: "move",
                     handle: ".dragger",
@@ -197,6 +204,30 @@ $(document).ready(function () {
             error: function (xhr, status, error) {
                 console.error(error);
             },
+        });
+    });
+
+    // Save Chapter sorting via AJAX
+    $(document).on("click", ".save-chapter-sorting-btn", function (e) {
+        e.preventDefault();
+        let form = $(".chapter_sorting_form");
+        let url  = form.attr("action");
+        $.ajax({
+            method: "POST",
+            url: url,
+            data: form.serialize(),
+            beforeSend: function () {
+                $(".save-chapter-sorting-btn").prop("disabled", true).text("Saving...");
+            },
+            success: function (res) {
+                $(".dynamic-modal").modal("hide");
+                toastr.success(res.message || "Chapters sorted successfully");
+                window.location.reload();
+            },
+            error: function (xhr) {
+                toastr.error("Error saving chapter order");
+                $(".save-chapter-sorting-btn").prop("disabled", false).text("Save changes");
+            }
         });
     });
 
@@ -363,12 +394,12 @@ $(document).ready(function () {
     });
 
     /** load lesson update modal */
-    $(".edit-lesson-btn").on("click", function () {
+    $(document).on("click", ".edit-lesson-btn", function () {
         $(".dynamic-modal").modal("show");
         let type = $(this).data("type");
         let chapterId = $(this).data("chapterid");
         let chapterItemId = $(this).data("chapter_item_id");
-        let courseId = $('meta[name="course_id"]').attr("content");
+        let courseId = $(this).data("courseid") || $('meta[name="course_id"]').attr("content");
         $.ajax({
             method: "GET",
             url: base_url + "/admin/course-chapter/lesson/edit",
@@ -383,10 +414,22 @@ $(document).ready(function () {
             },
             success: function (data) {
                 dynamicModalContent.html(data);
-                $(".file-manager").filemanager("file", {prefix: base_url + '/laravel-filemanager'});
+                if ($.fn.filemanager) {
+                    $(".file-manager").filemanager("file", {prefix: base_url + '/laravel-filemanager'});
+                }
+                if ($.fn.sortable) {
+                    $('#existing_files_list').sortable({
+                        handle: '.file-dragger',
+                        items: '.existing-file-row',
+                        cursor: 'move',
+                        containment: 'parent',
+                        tolerance: 'pointer',
+                        opacity: 0.8
+                    });
+                }
             },
             error: function (xhr, status, error) {
-                toastr(error);
+                toastr.error(error || "Error loading edit modal");
             },
         });
     });
