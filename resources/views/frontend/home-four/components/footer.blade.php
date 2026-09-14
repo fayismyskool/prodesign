@@ -4,7 +4,9 @@
 
     <!-- Column 1: About -->
     <div>
-      <img alt="{{ config('app.name', 'Skillvation') }}" class="h-8 mb-4" src="{{ asset('designs/img/logo.png') }}" onerror="this.src='{{ asset(Cache::get('setting')?->logo ?? 'frontend/img/logo/logo.svg') }}'" />
+      <a href="{{ route('home') }}" class="inline-block mb-4">
+        <img alt="{{ config('app.name', 'Skillvation') }}" class="h-8 sm:h-9 w-auto object-contain" src="{{ asset('designs/img/logo.png') }}" onerror="this.onerror=null;this.src='{{ asset(Cache::get('setting')?->logo ?? 'frontend/img/logo/logo.svg') }}';" />
+      </a>
       <p class="text-sm font-medium mb-4 text-on-surface-variant">About Us</p>
       <p class="text-sm text-on-surface-variant">
         Our mission is to inspire students and educators to think creatively,

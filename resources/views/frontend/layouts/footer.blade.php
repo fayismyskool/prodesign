@@ -1,5 +1,6 @@
 @php
     $footerSetting = \Modules\FooterSetting\app\Models\FooterSetting::first();
+    $setting = Cache::get('setting');
     $footer_menu_one = Cache::rememberForever('footer_menu_one', function () {
         return menuGetBySlug('footer-col-one');
     });
@@ -9,6 +10,17 @@
     $footer_menu_three = Cache::rememberForever('footer_menu_three', function () {
         return menuGetBySlug('footer-col-three');
     });
+
+    $footerLogo = null;
+    if (!empty($footerSetting?->logo) && file_exists(public_path($footerSetting->logo))) {
+        $footerLogo = asset($footerSetting->logo);
+    } elseif (!empty($setting?->footer_logo) && file_exists(public_path($setting->footer_logo))) {
+        $footerLogo = asset($setting->footer_logo);
+    } elseif (!empty($setting?->logo) && file_exists(public_path($setting->logo))) {
+        $footerLogo = asset($setting->logo);
+    } else {
+        $footerLogo = asset('designs/img/logo.png');
+    }
 @endphp
 
 <footer
@@ -20,7 +32,9 @@
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="footer__widget">
                         <div class="logo mb-35">
-                            <a href="{{ route('home') }}"><img src="{{ !empty($footerSetting?->logo) ? asset($footerSetting?->logo) : asset($setting?->logo) }}" alt="img"></a>
+                            <a href="{{ route('home') }}" class="d-inline-block px-3 py-2 rounded-3 bg-white shadow-sm" style="max-width: 220px;">
+                                <img src="{{ $footerLogo }}" alt="{{ config('app.name', 'Skillvation') }}" onerror="this.onerror=null;this.src='{{ asset('designs/img/logo.png') }}';" style="max-height: 40px; width: auto; display: block;">
+                            </a>
                         </div>
                         <div class="footer__content">
                             <p>{{ $footerSetting?->footer_text }}</p>
