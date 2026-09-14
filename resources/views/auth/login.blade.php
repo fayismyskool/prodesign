@@ -82,10 +82,10 @@
                         {{-- Dual Login Tabs --}}
                         <div class="auth-tabs">
                             <button type="button" class="auth-tab-btn active" id="tab-password-btn" onclick="switchLoginTab('password')">
-                                <i class="fa-solid fa-key mr-1"></i> {{ __('Password Login') }}
+                                <i class="fas fa-key mr-1"></i> {{ __('Password Login') }}
                             </button>
                             <button type="button" class="auth-tab-btn" id="tab-otp-btn" onclick="switchLoginTab('otp')">
-                                <i class="fa-brands fa-whatsapp mr-1"></i> {{ __('WhatsApp OTP Login') }}
+                                <i class="fab fa-whatsapp mr-1"></i> {{ __('WhatsApp OTP Login') }}
                             </button>
                         </div>
 
@@ -157,7 +157,7 @@
                                 </div>
 
                                 <button type="button" id="btn-login-send-otp" class="btn btn-two arrow-btn w-100 py-3" onclick="handleLoginSendOtp()">
-                                    <i class="fa-brands fa-whatsapp mr-2"></i> {{ __('Send WhatsApp Login Code') }}
+                                    <i class="fab fa-whatsapp mr-2"></i> {{ __('Send WhatsApp Login Code') }}
                                 </button>
                             </div>
 
@@ -165,7 +165,7 @@
                             <div id="login-otp-box" class="p-4 border rounded-3 bg-light" style="display:none;">
                                 <div class="text-center mb-3">
                                     <div class="waba-badge mb-2">
-                                        <i class="fa-brands fa-whatsapp"></i> {{ __('WhatsApp Login Code') }}
+                                        <i class="fab fa-whatsapp"></i> {{ __('WhatsApp Login Code') }}
                                     </div>
                                     <h5 class="font-weight-bold text-dark mb-1">{{ __('Enter 6-Digit Code') }}</h5>
                                     <p class="text-muted small mb-0">
@@ -235,7 +235,7 @@
         }
 
         btnSend.disabled = true;
-        btnSend.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> {{ __("Sending Code...") }}';
+        btnSend.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> {{ __("Sending Code...") }}';
 
         fetch('{{ route("auth.send-otp") }}', {
             method: 'POST',
@@ -252,7 +252,7 @@
         .then(res => res.json())
         .then(data => {
             btnSend.disabled = false;
-            btnSend.innerHTML = '<i class="fa-brands fa-whatsapp mr-2"></i> {{ __("Send WhatsApp Login Code") }}';
+            btnSend.innerHTML = '<i class="fab fa-whatsapp mr-2"></i> {{ __("Send WhatsApp Login Code") }}';
 
             if (data.status === 'success') {
                 document.getElementById('login-display-phone').textContent = '+91 ' + phone;
@@ -260,7 +260,8 @@
                 document.getElementById('login-otp-box').style.display = 'block';
                 document.getElementById('l-otp-1').focus();
 
-                startLoginTimer();
+                startLoginResendTimer();
+
                 if (data.mock_otp) {
                     console.log('Development Mock OTP:', data.mock_otp);
                 }
@@ -269,9 +270,9 @@
                 errEl.style.display = 'block';
             }
         })
-        .catch(() => {
+        .catch(err => {
             btnSend.disabled = false;
-            btnSend.innerHTML = '<i class="fa-brands fa-whatsapp mr-2"></i> {{ __("Send WhatsApp Login Code") }}';
+            btnSend.innerHTML = '<i class="fab fa-whatsapp mr-2"></i> {{ __("Send WhatsApp Login Code") }}';
             errEl.textContent = '{{ __("Network error. Please try again.") }}';
             errEl.style.display = 'block';
         });
@@ -279,7 +280,7 @@
 
     function handleLoginVerifyOtp() {
         const phone = document.getElementById('login-otp-phone').value.trim();
-        const errEl = document.getElementById('l-otp-error');
+        const otpErr = document.getElementById('login-otp-error');
         const btnVerify = document.getElementById('btn-login-verify-otp');
 
         let otp = '';
@@ -287,16 +288,16 @@
             otp += document.getElementById('l-otp-' + i).value.trim();
         }
 
-        errEl.style.display = 'none';
+        otpErr.style.display = 'none';
 
         if (otp.length !== 6) {
-            errEl.textContent = '{{ __("Please enter all 6 digits of the OTP code.") }}';
-            errEl.style.display = 'block';
+            otpErr.textContent = '{{ __("Please enter all 6 digits.") }}';
+            otpErr.style.display = 'block';
             return;
         }
 
         btnVerify.disabled = true;
-        btnVerify.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> {{ __("Logging in...") }}';
+        btnVerify.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> {{ __("Logging in...") }}';
 
         fetch('{{ route("auth.login-otp") }}', {
             method: 'POST',

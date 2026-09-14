@@ -118,7 +118,7 @@
                                     <div class="col-4">
                                         <div class="reg-role-card active" data-role="school" onclick="selectRole('school')">
                                             <div class="role-icon" style="background:#f3e8ff; color:#9333ea;">
-                                                <i class="fa-solid fa-school"></i>
+                                                <i class="fas fa-school"></i>
                                             </div>
                                             <div class="font-weight-bold text-dark" style="font-size:15px;">{{ __('School') }}</div>
                                             <small class="text-muted d-none d-sm-block" style="font-size:12px;">{{ __('For institutions') }}</small>
@@ -127,7 +127,7 @@
                                     <div class="col-4">
                                         <div class="reg-role-card" data-role="teacher" onclick="selectRole('teacher')">
                                             <div class="role-icon" style="background:#fef3c7; color:#d97706;">
-                                                <i class="fa-solid fa-chalkboard-user"></i>
+                                                <i class="fas fa-chalkboard-teacher"></i>
                                             </div>
                                             <div class="font-weight-bold text-dark" style="font-size:15px;">{{ __('Teacher') }}</div>
                                             <small class="text-muted d-none d-sm-block" style="font-size:12px;">{{ __('For educators') }}</small>
@@ -136,7 +136,7 @@
                                     <div class="col-4">
                                         <div class="reg-role-card" data-role="student" onclick="selectRole('student')">
                                             <div class="role-icon" style="background:#e0f2fe; color:#0284c7;">
-                                                <i class="fa-solid fa-user-graduate"></i>
+                                                <i class="fas fa-user-graduate"></i>
                                             </div>
                                             <div class="font-weight-bold text-dark" style="font-size:15px;">{{ __('Student') }}</div>
                                             <small class="text-muted d-none d-sm-block" style="font-size:12px;">{{ __('For learners') }}</small>
@@ -152,7 +152,7 @@
                                 </label>
                                 <div class="d-flex align-items-center mb-1">
                                     <span class="waba-badge">
-                                        <i class="fa-brands fa-whatsapp"></i> {{ __('OTP sent via WhatsApp') }}
+                                        <i class="fab fa-whatsapp"></i> {{ __('OTP sent via WhatsApp') }}
                                     </span>
                                 </div>
                                 <div class="input-group mt-2">
@@ -164,7 +164,7 @@
                                 <div id="phone-error" class="text-danger small mt-1" style="display:none;"></div>
                                 <div class="mt-3">
                                     <button type="button" id="btn-send-otp" class="btn btn-two arrow-btn w-100 py-3" onclick="handleSendOtp()">
-                                        <i class="fa-brands fa-whatsapp mr-2"></i> {{ __('Send WhatsApp Verification Code') }}
+                                        <i class="fab fa-whatsapp mr-2"></i> {{ __('Send WhatsApp Verification Code') }}
                                     </button>
                                 </div>
                             </div>
@@ -173,7 +173,7 @@
                             <div id="otp-input-container" class="p-4 border rounded-3 bg-light mb-4" style="display:none;">
                                 <div class="text-center mb-3">
                                     <div class="waba-badge mb-2">
-                                        <i class="fa-brands fa-whatsapp"></i> {{ __('WhatsApp Verification') }}
+                                        <i class="fab fa-whatsapp"></i> {{ __('WhatsApp Verification') }}
                                     </div>
                                     <h5 class="font-weight-bold text-dark mb-1">{{ __('Enter 6-Digit Code') }}</h5>
                                     <p class="text-muted small mb-0">
@@ -213,7 +213,7 @@
                         <div id="details-form-section" style="display:none;">
                             <div class="verified-phone-box">
                                 <div class="d-flex align-items-center gap-2">
-                                    <i class="fa-solid fa-circle-check text-success fa-lg"></i>
+                                    <i class="fas fa-check-circle text-success fa-lg"></i>
                                     <div>
                                         <div class="font-weight-bold text-dark" style="font-size:14px;" id="badge-verified-phone"></div>
                                         <small class="text-success font-weight-bold" style="font-size:12px;">{{ __('Verified via WhatsApp') }}</small>
@@ -378,7 +378,7 @@
         }
 
         btnSend.disabled = true;
-        btnSend.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> {{ __("Sending WhatsApp OTP...") }}';
+        btnSend.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> {{ __("Sending WhatsApp OTP...") }}';
 
         fetch('{{ route("auth.send-otp") }}', {
             method: 'POST',
@@ -395,7 +395,7 @@
         .then(res => res.json())
         .then(data => {
             btnSend.disabled = false;
-            btnSend.innerHTML = '<i class="fa-brands fa-whatsapp mr-2"></i> {{ __("Send WhatsApp Verification Code") }}';
+            btnSend.innerHTML = '<i class="fab fa-whatsapp mr-2"></i> {{ __("Send WhatsApp Verification Code") }}';
 
             if (data.status === 'success') {
                 document.getElementById('display-phone').textContent = '+91 ' + phoneInput;
@@ -415,7 +415,7 @@
         })
         .catch(err => {
             btnSend.disabled = false;
-            btnSend.innerHTML = '<i class="fa-brands fa-whatsapp mr-2"></i> {{ __("Send WhatsApp Verification Code") }}';
+            btnSend.innerHTML = '<i class="fab fa-whatsapp mr-2"></i> {{ __("Send WhatsApp Verification Code") }}';
             phoneErr.textContent = '{{ __("Network error. Please try again.") }}';
             phoneErr.style.display = 'block';
         });
@@ -440,7 +440,7 @@
         }
 
         btnVerify.disabled = true;
-        btnVerify.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> {{ __("Verifying...") }}';
+        btnVerify.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> {{ __("Verifying...") }}';
 
         fetch('{{ route("auth.verify-otp") }}', {
             method: 'POST',
