@@ -612,6 +612,45 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         selectRole('student');
+
+        const otpInputs = [1, 2, 3, 4, 5, 6].map(i => document.getElementById('otp-' + i)).filter(Boolean);
+        otpInputs.forEach((input) => {
+            input.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pastedData = (e.clipboardData || window.clipboardData).getData('text').trim().replace(/[^0-9]/g, '');
+                if (pastedData) {
+                    for (let i = 0; i < 6; i++) {
+                        const target = document.getElementById('otp-' + (i + 1));
+                        if (target && pastedData[i]) {
+                            target.value = pastedData[i];
+                        }
+                    }
+                    const lastFilledIndex = Math.min(pastedData.length, 6);
+                    const focusTarget = document.getElementById('otp-' + lastFilledIndex);
+                    if (focusTarget) focusTarget.focus();
+
+                    if (pastedData.length >= 6) {
+                        handleVerifyOtp();
+                    }
+                }
+            });
+
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleVerifyOtp();
+                }
+            });
+        });
+
+        const phoneInput = document.getElementById('phone-input');
+        if (phoneInput) {
+            phoneInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleSendOtp();
+                }
+            });
+        }
     });
 </script>
 @endpush

@@ -309,7 +309,7 @@
                 document.getElementById('login-otp-box').style.display = 'block';
                 document.getElementById('l-otp-1').focus();
 
-                startLoginResendTimer();
+                startLoginTimer();
 
                 if (data.mock_otp) {
                     console.log('Development Mock OTP:', data.mock_otp);
@@ -329,7 +329,7 @@
 
     function handleLoginVerifyOtp() {
         const phone = document.getElementById('login-otp-phone').value.trim();
-        const otpErr = document.getElementById('login-otp-error');
+        const otpErr = document.getElementById('l-otp-error');
         const btnVerify = document.getElementById('btn-login-verify-otp');
 
         let otp = '';
@@ -367,15 +367,15 @@
             } else {
                 btnVerify.disabled = false;
                 btnVerify.innerHTML = '{{ __("Verify & Log In") }}';
-                errEl.textContent = data.message || '{{ __("Invalid OTP.") }}';
-                errEl.style.display = 'block';
+                otpErr.textContent = data.message || '{{ __("Invalid OTP.") }}';
+                otpErr.style.display = 'block';
             }
         })
         .catch(() => {
             btnVerify.disabled = false;
             btnVerify.innerHTML = '{{ __("Verify & Log In") }}';
-            errEl.textContent = '{{ __("Verification error. Please try again.") }}';
-            errEl.style.display = 'block';
+            otpErr.textContent = '{{ __("Verification error. Please try again.") }}';
+            otpErr.style.display = 'block';
         });
     }
 
@@ -421,6 +421,48 @@
             document.getElementById(prevId).focus();
         }
     }
+
+    // Support pasting 6-digit OTP code directly in login OTP inputs
+    document.addEventListener('DOMContentLoaded', () => {
+        const otpInputs = [1, 2, 3, 4, 5, 6].map(i => document.getElementById('l-otp-' + i)).filter(Boolean);
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pastedData = (e.clipboardData || window.clipboardData).getData('text').trim().replace(/[^0-9]/g, '');
+                if (pastedData) {
+                    for (let i = 0; i < 6; i++) {
+                        const target = document.getElementById('l-otp-' + (i + 1));
+                        if (target && pastedData[i]) {
+                            target.value = pastedData[i];
+                        }
+                    }
+                    const lastFilledIndex = Math.min(pastedData.length, 6);
+                    const focusTarget = document.getElementById('l-otp-' + lastFilledIndex);
+                    if (focusTarget) focusTarget.focus();
+
+                    if (pastedData.length >= 6) {
+                        handleLoginVerifyOtp();
+                    }
+                }
+            });
+
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleLoginVerifyOtp();
+                }
+            });
+        });
+
+        const phoneInput = document.getElementById('login-otp-phone');
+        if (phoneInput) {
+            phoneInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleLoginSendOtp();
+                }
+            });
+        }
+    });
 </script>
 @endpush
 @endsection
