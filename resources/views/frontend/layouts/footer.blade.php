@@ -24,7 +24,7 @@
 @endphp
 
 <footer
-    class="footer__area {{ Cache::get('setting')?->site_theme && Route::is('home') == 'theme-two' ? 'footer__area-two' : '' }}">
+    class="footer__area {{ Cache::get('setting')?->site_theme && Route::is('home') == 'theme-two' ? 'footer__area-two' : '' }} mt-0">
 
     <div class="footer__top">
         <div class="container">

@@ -50,7 +50,8 @@
 
   /* ── Hero Banner ─────────────────────────────────── */
   .unesco-hero-banner {
-    background: linear-gradient(135deg, #0b2545 0%, #0077d4 100%);
+    background-image: url("{{asset('frontend/img/banner/homeban01.jpeg')}}");
+    /* background: linear-gradient(135deg, #0b2545 0%, #0077d4 100%); */
     color: #ffffff;
     padding: 60px 0;
   }
@@ -562,8 +563,9 @@
         </div>
         
         <div>
-          <div class="unesco-media-card">
-            <img src="https://www.unesco.org/sites/default/files/styles/banner_tablet/public/2024-04/global-skills-academy.jpg.webp?itok=u0wH1aKC" alt="Global Skills Academy Mission">
+          <div class="unesco-media-card" style="    height: auto !important;">
+            <!-- <img src="https://www.unesco.org/sites/default/files/styles/banner_tablet/public/2024-04/global-skills-academy.jpg.webp?itok=u0wH1aKC" alt="Global Skills Academy Mission"> -->
+            <img src="{{ asset('/frontend/img/skillbox/homeimg01.jpeg')}}" alt="Global Skills Academy Mission">
             <!-- <a href="https://www.youtube.com/watch?v=pRSPI0cEXnE" target="_blank" rel="noopener" class="unesco-play-btn" aria-label="Play GSA Mission Video">
               <i class="fa-solid fa-play"></i>
             </a> -->
@@ -991,31 +993,6 @@
       </div>
     </div>
   </section> -->
-
-  <!-- 11. UNESCO's Global Education Coalition Footer Block -->
-  <section class="unesco-coalition-block">
-    <div class="unesco-container">
-      <div class="unesco-grid-2col">
-        <div>
-          <h2>School Onboarding Made Easy!</h2>
-          <p>
-            Experience a hassle-free onboarding process designed for your comfort. From key handovers to utility setups, we take care of everything so you can settle into your new home with ease.
-          </p>
-          <div class="mt-6">
-            <a href="/register" target="_blank" rel="noopener" class="unesco-pill-btn" style="background-color: #ffffff; color: var(--unesco-navy) !important;">
-              <span>Sign up</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-          
-        </div>
-
-        <div class="flex justify-center lg:justify-end">
-          <img src="https://www.unesco.org/sites/default/files/styles/square_144/public/2022-01/ed_global_coalition.jpg.webp?itok=wC2teMlJ" alt="UNESCO Global Education Coalition" style="width: 160px; height: 160px; border-radius: 8px;">
-        </div>
-      </div>
-    </div>
-  </section>
 
 </div>
 @endsection
