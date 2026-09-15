@@ -60,9 +60,9 @@
 
   /* ---------- Hero ---------- */
   .vl-hero {
-    background: var(--vl-navy);
+    background:#d390c1;
     color: var(--vl-paper);
-    padding: 72px 0 56px;
+    padding: 40px 0 40px;
   }
   .vl-hero-grid {
     display: grid;
@@ -528,16 +528,16 @@
     <div class="vidyalab-wrap vl-hero-grid">
       <div>
         <h1>The skill lab your NEP&nbsp;2020 review committee will actually approve.</h1>
-        <p class="lead">Turnkey Robotics, AI, and coding labs built to CBSE specifications — installed, mapped to your syllabus, and staffed with trained teachers before the term starts.</p>
+        <!-- <p class="lead">Turnkey Robotics, AI, and coding labs built to CBSE specifications — installed, mapped to your syllabus, and staffed with trained teachers before the term starts.</p> -->
         <div class="vl-hero-ctas">
           <a href="#book" class="vl-btn-primary">Visit our experience center</a>
           <a href="#checklist" class="vl-btn-secondary">Download brochure</a>
         </div>
-        <div class="vl-stat-strip">
+        <!-- <div class="vl-stat-strip">
           <div><span class="num">212</span><span class="label">CBSE schools fitted</span></div>
           <div><span class="num">18</span><span class="label">states covered</span></div>
           <div><span class="num">46,000+</span><span class="label">students learning hands-on</span></div>
-        </div>
+        </div> -->
       </div>
       <div class="vl-blueprint">
         <svg viewBox="0 0 420 320" role="img" aria-label="Floor plan diagram of a skill lab showing robotics, AI, electronics, and coding zones">
@@ -923,21 +923,27 @@
           <div class="vl-faq-grid">
 
             <div class="vl-faq-card">
-              <div class="vl-faq-card__q">What does a skill lab actually cost?</div>
+              <div class="vl-faq-card__q">What is a Composite Skill Lab?</div>
               <div class="vl-faq-card__divider"></div>
-              <div class="vl-faq-card__a">It depends on school size and the modules you choose — robotics, AI/data, electronics, and coding can be installed together or in phases. We give you a fixed quote after a free site assessment, not a range you have to negotiate down.</div>
+              <div class="vl-faq-card__a">A Composite Skill Lab is a hands-on learning space where students learn practical skills through projects, activities, experiments and real-life applications.</div>
             </div>
 
             <div class="vl-faq-card">
-              <div class="vl-faq-card__q">How long does installation take?</div>
+              <div class="vl-faq-card__q">Is a Composite Skill Lab required for CBSE schools?</div>
               <div class="vl-faq-card__divider"></div>
-              <div class="vl-faq-card__a">Four to six weeks from signed agreement to a working lab, including teacher training. Most schools time this to a term break.</div>
+              <div class="vl-faq-card__a">CBSE has provided guidelines for establishing Composite Skill Labs to support experiential Skill Education. Skillvation helps schools set up labs aligned with these guidelines.</div>
             </div>
 
             <div class="vl-faq-card">
-              <div class="vl-faq-card__q">Will it actually fit our CBSE curriculum, or is it a separate elective?</div>
+              <div class="vl-faq-card__q">What lab options does Skillvation offer?</div>
               <div class="vl-faq-card__divider"></div>
-              <div class="vl-faq-card__a">Every module is mapped to specific CBSE syllabus units by grade before we install anything, so sessions slot into existing science, computer, and skill-education periods.</div>
+              <div class="vl-faq-card__a">
+                <ul>
+                  <li>Standard – Essential infrastructure, furniture, tools and materials.</li>
+                  <li>Advanced – Standard package with additional equipment, tools and project resources</li>
+                  <li>Premium – Comprehensive lab with advanced equipment, extensive project kits and enhanced learning resources.</li>
+                </ul>
+              </div>
             </div>
 
           </div>
@@ -948,25 +954,70 @@
           <div class="vl-faq-grid">
 
             <div class="vl-faq-card">
+              <div class="vl-faq-card__q">How do I choose the right lab?</div>
+              <div class="vl-faq-card__divider"></div>
+              <div class="vl-faq-card__a">The right package depends on your school's budget, student strength, available space and learning requirements. Our team can help you select the most suitable option.</div>
+            </div>
+
+            <div class="vl-faq-card">
+              <div class="vl-faq-card__q">Can the lab be customised?</div>
+              <div class="vl-faq-card__divider"></div>
+              <div class="vl-faq-card__a">Yes. We can customise the lab based on your space, student strength, selected skill areas and existing infrastructure.</div>
+            </div>
+
+            <div class="vl-faq-card">
+              <div class="vl-faq-card__q">What does Skillvation provide?</div>
+              <div class="vl-faq-card__divider"></div>
+              <div class="vl-faq-card__a">Our solutions can include furniture, tools, equipment, safety resources, consumables, teacher demonstration kits, student project kits and learning materials.</div>
+            </div>
+
+          </div>
+        </div>
+
+        {{-- Slide 3 — cards 7, 8, 9 --}}
+        <div class="vl-faq-slide">
+          <div class="vl-faq-grid">
+
+            <div class="vl-faq-card">
+              <div class="vl-faq-card__q">Do you provide student project kits?</div>
+              <div class="vl-faq-card__divider"></div>
+              <div class="vl-faq-card__a">Yes. We provide ready-to-use DIY project kits with materials and easy-to-follow instructions for hands-on activities.</div>
+            </div>
+
+            <div class="vl-faq-card">
+              <div class="vl-faq-card__q">Do you provide teacher training?</div>
+              <div class="vl-faq-card__divider"></div>
+              <div class="vl-faq-card__a">Yes. Teacher orientation and training can be provided to help teachers effectively use the lab and conduct practical activities.</div>
+            </div>
+
+            <div class="vl-faq-card">
+              <div class="vl-faq-card__q">Can we upgrade the lab later?</div>
+              <div class="vl-faq-card__divider"></div>
+              <div class="vl-faq-card__a">Yes. Our modular approach allows schools to start with Standard and upgrade to Advanced or Premium as their requirements grow.</div>
+            </div>
+
+          </div>
+        </div>
+
+        {{-- Slide 4 — cards 10, 11 --}}
+        <div class="vl-faq-slide">
+          <div class="vl-faq-grid">
+
+            <div class="vl-faq-card">
               <div class="vl-faq-card__q">What happens after installation — are we on our own?</div>
               <div class="vl-faq-card__divider"></div>
               <div class="vl-faq-card__a">No. Annual maintenance, software updates, and a direct support line are included for the contract term, and we check in with your faculty every term.</div>
             </div>
 
             <div class="vl-faq-card">
-              <div class="vl-faq-card__q">Is there a minimum school size?</div>
+              <div class="vl-faq-card__q">Why choose Skillvation?</div>
               <div class="vl-faq-card__divider"></div>
-              <div class="vl-faq-card__a">We've fitted labs for schools from 300 to 3,000 students — the hardware and space plan scale to your enrolment and available classroom area.</div>
-            </div>
-
-            <div class="vl-faq-card">
-              <div class="vl-faq-card__q">Can we phase the setup over two academic years?</div>
-              <div class="vl-faq-card__divider"></div>
-              <div class="vl-faq-card__a">Yes. Many schools start with core robotics and coding in year one and add AI/electronics modules in year two — the infrastructure is designed for this from day one.</div>
+              <div class="vl-faq-card__a">Skillvation provides more than a physical lab. We bring together Infrastructure + Equipment + Project Kits + Teacher Support + Experiential Learning to create a complete skill-learning environment.</div>
             </div>
 
           </div>
         </div>
+
 
         {{-- Navigation --}}
         <div class="vl-faq-nav">
@@ -976,8 +1027,10 @@
           <div class="vl-faq-dots" id="faqDots">
             <button class="vl-faq-dot active" data-slide="0" aria-label="Slide 1"></button>
             <button class="vl-faq-dot" data-slide="1" aria-label="Slide 2"></button>
+            <button class="vl-faq-dot" data-slide="2" aria-label="Slide 3"></button>
+            <button class="vl-faq-dot" data-slide="3" aria-label="Slide 4"></button>
           </div>
-          <span class="vl-faq-counter" id="faqCounter">1 / 2</span>
+          <span class="vl-faq-counter" id="faqCounter">1 / 4</span>
           <button class="vl-faq-btn" id="faqNext" aria-label="Next questions">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 5l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>

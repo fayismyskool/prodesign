@@ -545,8 +545,19 @@
           <p class="mt-4">
             The GSA focuses on empowering learners with key skills, including digital literacy, entrepreneurial skills, and green technologies. These skills are crucial for navigating the rapidly evolving job market driven by technological, economic, and societal transformations.
           </p> -->
-          <p>
+          <!-- <p>
             At Skillvation, we believe that passionate teachers deserve opportunities that reward their talent, dedication, and expertise. Education is evolving, and so are the ways teachers can build meaningful careers. Our platform empowers educators to teach online, share their knowledge with students across the world, and earn a stable income from the comfort of their homesAt Skillvation, we believe that passionate teachers deserve opportunities that reward their talent, dedication, and expertise. Education is evolving, and so are the ways teachers can build meaningful careers. Our platform empowers educators to teach online, share their knowledge with students across the world, and earn a stable income from the comfort of their homes
+          </p> -->
+          <p>
+          Education is evolving from knowing to doing.
+          With the growing emphasis on skill education, competency-based learning and experiential learning,
+          schools are increasingly expected to give students opportunities to develop skills through practical experiences
+          rather than learning concepts only from textbooks.
+          At Skillvation, we believe that this transformation needs more than a curriculum.
+          It needs a place where skills can actually be practised.
+          That is where our Skill Education Labs come in.
+          We envision the school lab as an extension of the classroom — a dedicated environment where students can
+          learn a concept, experience it, work with it and apply it.
           </p>
         </div>
         
@@ -568,7 +579,21 @@
         <p class="mt-3">
           The GSA is dedicated to bridging this skills gap and empowering individuals to thrive in our 21st-century economy.
         </p> -->
-        <p>We help teachers grow with practical, easy-to-learn skills designed for today’s classrooms. Our platform offers structured lessons, expert guidance, and real-world teaching strategies to support continuous improvement. We believe every teacher deserves the tools and confidence to inspire stronger learning outcomes.</p>
+        <!-- <p>We help teachers grow with practical, easy-to-learn skills designed for today’s classrooms. Our platform offers structured lessons, expert guidance, and real-world teaching strategies to support continuous improvement. We believe every teacher deserves the tools and confidence to inspire stronger learning outcomes.</p> -->
+        <p>
+        A Lab Designed Around Skill Education
+        A Skillvation Lab brings together multiple dimensions of skill development within a structured learning
+        environment.
+        Students can explore Life Forms, Materials &amp; Machines, Human Services and interdisciplinary areas
+        through practical activities, projects, experiments, making and problem-solving.
+        Instead of simply asking students to learn about a skill, the lab gives them the opportunity to experience the
+        skill first-hand.
+        From a Lab to a Learning Ecosystem
+        For Skillvation, a skill lab is not simply a room filled with equipment.
+        It is a purpose-built learning ecosystem designed to answer a fundamental question:
+        Our focus is therefore not only on setting up labs, but on making those labs active, accessible and relevant
+        learning spaces where students continuously learn through experience.
+        </p>
       </div>
     </div>
   </section>
@@ -605,22 +630,22 @@
 
       <!-- 4 Colored Stat Cards -->
       <div class="unesco-stats-grid">
-        <a href="https://unesdoc.unesco.org/ark:/48223/pf0000389406" target="_blank" rel="noopener" class="unesco-stat-card stat-card-stem">
+        <a href="#" target="_blank" rel="noopener" class="unesco-stat-card stat-card-stem">
           <div class="stat-title">The Skill Gap</div>
           <div class="stat-desc">Independent findings from the companion India Skills Report 2026 indicate that while national youth employability has marginally risen to 56.35%, nearly 43.65% of Indian graduates still lack the necessary skills to be hired immediately by industry standards.</div>
         </a>
 
-        <a href="https://economicgraph.linkedin.com/en-us/research/global-green-skills-report" target="_blank" rel="noopener" class="unesco-stat-card stat-card-green">
+        <a href="#" target="_blank" rel="noopener" class="unesco-stat-card stat-card-green">
           <div class="stat-title">The NEET Cohort</div>
           <div class="stat-desc">According to the NITI Aayog framework using NSSO baselines, 8.9 crore (89 million) young Indians between the ages of 15 and 29 fall under the category of NEET (Not in Education, Employment, or Training).</div>
         </a>
 
-        <a href="https://unevoc.unesco.org/up/Supporting_Education_and_Skills_Development_Systems_for_Informal_Workers_Recovery_After_the_Pandemic.pdf" target="_blank" rel="noopener" class="unesco-stat-card stat-card-informal">
+        <a href="#" target="_blank" rel="noopener" class="unesco-stat-card stat-card-informal">
           <div class="stat-title">Graduate Unemployment</div>
           <div class="stat-desc">The transition from university to the corporate sector remains severely strained. Roughly 40% of young graduates under the age of 25 are unemployed. Out of 6.3 crore graduates in the 20–29 age bracket, 1.1 crore remain jobless due to skill mismatches.</div>
         </a>
 
-        <a href="https://www.itu.int/en/mediacentre/backgrounders/Pages/bridging-the-gender-divide.aspx" target="_blank" rel="noopener" class="unesco-stat-card stat-card-gender">
+        <a href="#" target="_blank" rel="noopener" class="unesco-stat-card stat-card-gender">
           <div class="stat-title">Gender gap</div>
           <div class="stat-desc">in digital access and divide is the biggest obstacle for development for skills for the future</div>
         </a>
@@ -685,11 +710,18 @@
       <div class="unesco-split-banner">
         <div class="unesco-split-banner-left">
           <h2>Our Upskilling opportunities</h2>
-          <p>Explore our courses, certifiable training opportunities in Life Science, Machines & Materials, Human Services skills and other training programs.</p>
-        <a href="/upskill4teacher" target="_blank" rel="noopener" class="unesco-pill-btn">
+          <!-- <p>Explore our courses, certifiable training opportunities in Life Science, Machines & Materials, Human Services skills and other training programs.</p> -->
+        <!-- <a href="/upskill4teacher" target="_blank" rel="noopener" class="unesco-pill-btn">
             <span>Explore Courses</span>
             <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          </a> -->
+          <p>
+          Building the capability to deliver experiential and skill-based education
+          Skillvation's Upskilling for Teachers program is designed to equip educators with the practical knowledge,
+          tools and facilitation skills required to implement experiential Skill Education effectively.
+          Our program enables them to extend their existing subject expertise into practical, interdisciplinary and
+          work-oriented learning experiences.
+          </p>
         </div>
         <div class="unesco-split-banner-right">
           <img src="https://www.unesco.org/sites/default/files/styles/split_tablet/public/2024-05/global-skills-academy-opportunities.jpg.webp?itok=5GfJn6uJ" alt="Training Opportunities">
@@ -700,11 +732,25 @@
       <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-200 mb-8">
         <div class="unesco-grid-2col">
           <div>
-            <h2 class="text-2xl font-bold mb-3 text-blue-900">Digital skills</h2>
-            <p class="text-gray-700 mb-4">
+            <h2 class="text-2xl font-bold mb-3 text-blue-900">Work on Life Forms</h2>
+            <!-- <p class="text-gray-700 mb-4">
               Digital competence receives a growing demand, with more than 75% of companies looking to adopt digital technologies such as big data, cloud computing and artificial intelligence, and 86% of companies incorporating digital platforms in their digital marketing strategies in the next five years (<a href="https://www.weforum.org/publications/the-future-of-jobs-report-2023/digest/" target="_blank" rel="noopener" class="text-blue-600 underline">The Future of Jobs Report 2023</a>).
+            </p> -->
+            <p class="text-gray-700 mb-4">
+            Connecting academic knowledge with life, nature and living systems
+            This training area focuses on developing teachers ability to facilitate practical learning around living systems
+            and life-related activities.
+            Teachers are introduced to concepts and practical approaches related to food, plants, health, nutrition, nature,
+            agriculture, sustainability and everyday life. The emphasis is on converting theoretical concepts into
+            meaningful activities, investigations, demonstrations and projects.
+            Science and Biology teachers can strengthen their ability to design and facilitate hands-on experiences
+            involving living systems, food science, environmental practices and health-related applications.
+              </p>
+              <p class="font-semibold text-gray-800 mb-2">
+            Outcome: Teachers gain the confidence to transform life-science concepts into practical, contextual and
+            experiential learning experiences.
             </p>
-            <p class="font-semibold text-gray-800 mb-2">Access free, certifiable digital literacy and skills training with our partners:</p>
+            <!-- <p class="font-semibold text-gray-800 mb-2">Access free, certifiable digital literacy and skills training with our partners:</p>
             <ul class="unesco-partner-pills">
               <li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/aleph" target="_blank">Aleph Inc.</a></li>
               <li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/anthology" target="_blank">Anthology</a></li>
@@ -721,13 +767,13 @@
               <li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/outsystems" target="_blank">Outsystems</a></li>
               <li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/pix" target="_blank">Pix</a></li>
               <li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/technovation" target="_blank">Technovation</a></li>
-            </ul>
+            </ul> -->
           </div>
           <div>
             <div class="unesco-media-card">
               <img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2024-04/global-skills-academy-digital.jpg.webp?itok=nU_r_Oc7" alt="Digital Skills Training">
             </div>
-            <div class="unesco-media-caption">© UNESCO</div>
+            <!-- <div class="unesco-media-caption">© UNESCO</div> -->
           </div>
         </div>
       </div>
@@ -736,11 +782,25 @@
       <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-200 mb-8">
         <div class="unesco-grid-2col">
           <div>
-            <h2 class="text-2xl font-bold mb-3 text-green-900">Green skills</h2>
-            <p class="text-gray-700 mb-4">
+            <h2 class="text-2xl font-bold mb-3 text-green-900">Work on Materials & Machines</h2>
+            <!-- <p class="text-gray-700 mb-4">
               Green expertise is hired 1.19x more, and demand for green and sustainability skills has grown by more than 60% since 2016 in economies like sustainable fashion, environmental services and renewable energy. Projection shows demand will outstrip supply in 5 years' time, emphasizing the critical need for green skills development (<a href="https://economicgraph.linkedin.com/research/global-green-skills-report" target="_blank" rel="noopener" class="text-blue-600 underline">Global Green Skills Report 2023</a>).
+            </p> -->
+            <p class="text-gray-700 mb-4">
+            Building capability in making, designing, technology and innovation
+            This area focuses on developing teachers&#39; practical understanding of materials, tools, machines, technology
+            and the processes involved in designing and creating products.
+            Teachers are introduced to making-oriented experiences such as STEM, electronics, coding, digital
+            technologies, handicrafts, design, fabrication and problem-solving.
+            The training can be particularly relevant for Physics, Computer Science, Mathematics, Art, Design and
+            Technology teachers, while also enabling teachers from other disciplines to participate in interdisciplinary
+            making and innovation activities.
+            <p>
+            <p class="font-semibold text-gray-800 mb-2">
+            Outcome: Teachers develop the ability to guide students from idea → design → making → testing →
+            improvement, creating a stronger culture of innovation and practical problem-solving.
             </p>
-            <p class="font-semibold text-gray-800 mb-2">Access free, certifiable green and sustainability skills training with our partners:</p>
+            <!-- <p class="font-semibold text-gray-800 mb-2">Access free, certifiable green and sustainability skills training with our partners:</p>
             <ul class="unesco-partner-pills">
               <li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/festo" target="_blank">FESTO</a></li>
               <li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/giz-atingi" target="_blank">GIZ-atingi</a></li>
@@ -748,13 +808,13 @@
               <li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/siemens-stiftung" target="_blank">Siemens Stiftung</a></li>
               <li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/skilled" target="_blank">SkillEd</a></li>
               <li><span>WHO Academy</span></li>
-            </ul>
+            </ul> -->
           </div>
           <div>
             <div class="unesco-media-card">
               <img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2024-04/global-skills-academy-green.jpg.webp?itok=6NYmTPp0" alt="Green Skills Training">
             </div>
-            <div class="unesco-media-caption">© UNESCO</div>
+            <!-- <div class="unesco-media-caption">© UNESCO</div> -->
           </div>
         </div>
       </div>
@@ -763,29 +823,41 @@
       <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-200 mb-8">
         <div class="unesco-grid-2col">
           <div>
-            <h2 class="text-2xl font-bold mb-3 text-red-900">Entrepreneurial skills</h2>
-            <p class="text-gray-700 mb-4">
+            <h2 class="text-2xl font-bold mb-3 text-red-900">Work on Human Services</h2>
+            <!-- <p class="text-gray-700 mb-4">
               Entrepreneurial and transversal skills can boost careers by developing empathy, agility and readiness to learn, improving communication and project management, identifying opportunities and building leadership.
+            </p> -->
+            <p class="text-gray-700 mb-4">
+            Developing capability in people, services and real-world applications
+            This area focuses on the human, social and service dimensions of work. Teachers learn how to facilitate
+            activities that help connect classroom learning with real-world situations involving people, communities,
+            organisations and services.
+            The training can cover areas such as communication, financial literacy, tourism, entrepreneurship,
+            leadership, community engagement and service-oriented activities.
             </p>
-            <p class="font-semibold text-gray-800 mb-2">Access free, certifiable entrepreneurial and transversal skills training with our partners:</p>
+            <p class="font-semibold text-gray-800 mb-2">
+            Outcome: Teachers become better equipped to facilitate real-world, people-centred learning and help students understand how
+            knowledge translates into services, careers and community impact.
+            </p>
+            <!-- <p class="font-semibold text-gray-800 mb-2">Access free, certifiable entrepreneurial and transversal skills training with our partners:</p>
             <ul class="unesco-partner-pills">
               <li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/generation-global" target="_blank">Generation Global</a></li>
               <li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/giz-atingi" target="_blank">GIZ-atingi</a></li>
               <li><a href="https://www.unesco.org/en/global-education-coalition/skills-academy/hp" target="_blank">HP LIFE</a></li>
-            </ul>
+            </ul> -->
           </div>
           <div>
             <div class="unesco-media-card">
               <img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2024-04/global-skills-academy-entrepreneurial.jpg.webp?itok=6tZLaLrK" alt="Entrepreneurial Skills Training">
             </div>
-            <div class="unesco-media-caption">© UNESCO</div>
+            <!-- <div class="unesco-media-caption">© UNESCO</div> -->
           </div>
         </div>
       </div>
 
       <!-- Track 4: Mentorship Programmes -->
-      <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-200 mb-8">
-        <div class="unesco-grid-2col">
+      <!-- <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-200 mb-8"> -->
+        <!-- <div class="unesco-grid-2col">
           <div>
             <h2 class="text-2xl font-bold mb-3 text-amber-900">Mentorship programmes</h2>
             <p class="text-gray-700 mb-4">
@@ -804,13 +876,13 @@
             </div>
             <div class="unesco-media-caption">© UNESCO</div>
           </div>
-        </div>
+        </div> -->
 
         <!-- <div class="unesco-quote-box mt-6">
           <p>“I'd say that UNESCO is doing a great job in bridging the gap between students and quality education in developing countries. The Global Skills Academy Initiative has also exposed students like me to experience a new way, the digital way, of enjoying quality education.”</p>
           <cite>Tolulope Omoyeni, Women@DIOR Nigeria</cite>
         </div> -->
-      </div>
+      <!-- </div> -->
 
     </div>
   </section>
