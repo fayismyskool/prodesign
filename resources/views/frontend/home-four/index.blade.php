@@ -219,9 +219,9 @@
   }
   .unesco-split-banner-left {
     padding: 50px 45px;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; */
     border: 2px solid rgba(255, 255, 255, 0.3);
     margin: 20px;
     border-radius: 2px;
@@ -238,8 +238,8 @@
   }
   .unesco-split-banner-right img {
     width: 100%;
-    height: 100%;
-    min-height: 320px;
+    height: 535px;
+    /* min-height: 320px; */
     object-fit: cover;
   }
 
@@ -564,9 +564,9 @@
         <div>
           <div class="unesco-media-card">
             <img src="https://www.unesco.org/sites/default/files/styles/banner_tablet/public/2024-04/global-skills-academy.jpg.webp?itok=u0wH1aKC" alt="Global Skills Academy Mission">
-            <a href="https://www.youtube.com/watch?v=pRSPI0cEXnE" target="_blank" rel="noopener" class="unesco-play-btn" aria-label="Play GSA Mission Video">
+            <!-- <a href="https://www.youtube.com/watch?v=pRSPI0cEXnE" target="_blank" rel="noopener" class="unesco-play-btn" aria-label="Play GSA Mission Video">
               <i class="fa-solid fa-play"></i>
-            </a>
+            </a> -->
           </div>
           <!-- <div class="unesco-media-caption">© UNESCO</div> -->
         </div>
@@ -620,9 +620,9 @@
         <div>
           <div class="unesco-media-card">
             <img src="https://www.unesco.org/sites/default/files/styles/split_tablet/public/2024-05/global-skills-academy-opportunities.jpg.webp?itok=5GfJn6uJ" alt="Skills for the Future Global Platform">
-            <a href="https://www.youtube.com/watch?v=ItnwUnRESUc" target="_blank" rel="noopener" class="unesco-play-btn" aria-label="Play Skills Platform Video">
+            <!-- <a href="https://www.youtube.com/watch?v=ItnwUnRESUc" target="_blank" rel="noopener" class="unesco-play-btn" aria-label="Play Skills Platform Video">
               <i class="fa-solid fa-play"></i>
-            </a>
+            </a> -->
           </div>
           <!-- <div class="unesco-media-caption">© UNESCO</div> -->
         </div>
@@ -715,13 +715,7 @@
             <span>Explore Courses</span>
             <i class="fa-solid fa-arrow-right"></i>
           </a> -->
-          <p>
-          Building the capability to deliver experiential and skill-based education
-          Skillvation's Upskilling for Teachers program is designed to equip educators with the practical knowledge,
-          tools and facilitation skills required to implement experiential Skill Education effectively.
-          Our program enables them to extend their existing subject expertise into practical, interdisciplinary and
-          work-oriented learning experiences.
-          </p>
+          <p>Building the capability to deliver experiential and skill-based education Skillvation's Upskilling for Teachers program is designed to equip educators with the practical knowledge, tools and facilitation skills required to implement experiential Skill Education effectively. Our program enables them to extend their existing subject expertise into practical, interdisciplinary and work-oriented learning experiences.</p>
         </div>
         <div class="unesco-split-banner-right">
           <img src="https://www.unesco.org/sites/default/files/styles/split_tablet/public/2024-05/global-skills-academy-opportunities.jpg.webp?itok=5GfJn6uJ" alt="Training Opportunities">
@@ -942,7 +936,7 @@
           <div class="unesco-media-card bg-white p-4 border border-gray-200">
             <img src="https://www.unesco.org/sites/default/files/styles/paragraph_medium_tablet/public/2025-12/gsa-logos.png.webp?itok=qtvIx9k6" alt="UNESCO GSA Partner Logos" style="object-fit: contain;">
           </div>
-          <div class="unesco-media-caption">© UNESCO</div>
+          <!-- <div class="unesco-media-caption">© UNESCO</div> -->
         </div>
       </div>
     </div>
